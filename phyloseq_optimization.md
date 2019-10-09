@@ -22,3 +22,5 @@ Databases
 -   [Greengene](https://zenodo.org/record/158955#.XZtApSBS-Uk)
 -   [RefSeq](https://zenodo.org/record/2541239#.XZtAzSBS-Uk)
 -   [GTDB](https://zenodo.org/record/2541239#.XZtA9yBS-Uk)
+
+![Phyloseq Otimization]('phyloseq_Optimization.png')
