@@ -1,0 +1,76 @@
+---
+title: "ordination"
+author: "Renuka"
+date: "2 February 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+library(knitr)
+require(knitcitations)
+library(microbiome)
+library(phyloseq)
+library(ggplot2)
+library(reshape2)
+library(tidyverse)
+library(dada2)
+theme_set(theme_bw(20))
+knitr::opts_chunk$set(fig.width=10, fig.height=10, message=FALSE, warning=FALSE)
+
+
+phy<-phyloseqsp
+library(microbiome)
+library(phyloseq)
+library(vegan)
+opts_chunk$set(dev="CairoPNG")
+method <- "PCoA"
+trans <- "compositional"
+distance <- "bray"
+
+*Principal Coordinates Analysis (PCoA)*
+library(microbiome)
+p <- plot_landscape(microbiome::transform(phy, "compositional"),
+                    distance = "bray",
+                    method = "PCoA",
+                    size = 3,
+                    col = "diet",
+                    shading = FALSE) +
+  scale_colour_brewer(palette = "Set1")		    
+print(p)
+
+
+*Principal Component Analysis (PCA)*
+method <- "PCA"
+trans <- "clr"
+distance <- "euclidean"
+core.taxa <- taxa(core(transform(phy, "compositional"), detection = 0.1/100, prevalence = 50/100))
+ps <- prune_taxa(core.taxa, phy)
+p1 <- plot_landscape(ps,
+                     method = method,
+                     distance = distance,
+                     transformation = trans,
+                     col = "diet"
+) +
+  scale_colour_brewer(palette = "Set1") +
+  labs(title = paste(method, trans, distance, sep = "/"))
+print(p1)
+
+
+
+*Hierarchical clustering*
+  
+  Sample (dis)similarities illustrated for microbiota composition. The two figures are identical and indicate the sample groups (top) and sample names (bottom).
+  
+trans <- "compositional"
+#dist <- "bray"
+dist <- "jaccard"
+hclust.method <- "ward.D2"
+d <- vegdist(t(abundances(transform(phy, trans))), dist)
+hc <- hclust(d, method = hclust.method)
+plot(hc, hang=-1, xlab = "", y = "Dissimilarity", labels = meta(phy)$diet, main = paste(trans, dist, hclust.method, sep = "/"))
+#plot(hc, hang=-1, xlab = "", y = "Dissimilarity", labels = meta(phy)$Sample, main = paste(trans, dist, hclust.method, sep = "/"))
+
+
+```{}
