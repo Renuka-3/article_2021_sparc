@@ -7,7 +7,7 @@ Summary
 
 
 * [core_analysis](core_analysis.Rmd)
-1. result file: (core- genera heatmap.png)
+1. [result_file] (core-_genera heatmap.png)
 
 * Geographical.location analysis: includes
 1) alpha diversity analysis- histogram of core genera , shannon diversity analysis using Kruskal test
