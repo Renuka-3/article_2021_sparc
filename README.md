@@ -17,5 +17,6 @@ Geographical.location analysis: includes
 resultfile: geolocation kruskaltest.png
             geolocation-histogram.png
             geolocation-PCoA.png
+            DESeq2☺geolocation.docx
             
 
