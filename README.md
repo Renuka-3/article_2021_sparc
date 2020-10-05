@@ -17,6 +17,6 @@ Summary
 resultfile: geolocation kruskaltest.png
             geolocation-histogram.png
             geolocation-PCoA.png
-            DESeq2 geolocation.docx
+ 3. [DESeq2 geolocation] (https://github.com/openresearchlabs/skin_microbiome/blob/master/DESeq2%20geolocation.docx)
             
 
