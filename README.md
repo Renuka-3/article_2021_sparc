@@ -9,7 +9,7 @@ Summary
 * [core_analysis](core_analysis.Rmd)
 1. [core-_genera_heatmap.png] (core-_genera_heatmap.png)
 
-* Geographical.location analysis: includes
+* [geographical.location_analysis](geographical.location_analysis)
 1) alpha diversity analysis- histogram of core genera , shannon diversity analysis using Kruskal test
 2) PCoA analysis
 3) DESeq2 analysis 
