@@ -9,8 +9,8 @@ Summary
 * [core_analysis](core_analysis.Rmd) (https://github.com/openresearchlabs/skin_microbiome/blob/master/core%20analysis.Rmd)
 1. [core-_genera_heatmap] (core-_genera_heatmap.png) (https://github.com/openresearchlabs/skin_microbiome/blob/master/core-%20genera%20heatmap.png)
 
-* [geographical.location_analysis](geographical.location_analysis)
-1. alpha diversity analysis- histogram of core genera , shannon diversity analysis using Kruskal test
+* [geographical.location_analysis](geographical.location_analysis) (https://github.com/openresearchlabs/skin_microbiome/blob/master/geographical.location%20analysis)
+1. alpha diversity analysis- histogram of core genera () , shannon diversity analysis using Kruskal test
 2. PCoA analysis
 3. DESeq2 analysis 
 
