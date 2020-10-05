@@ -3,7 +3,7 @@
 
 
 Summary
-* [phyloseq_optimization](phyloseq_optimization.md)
+* [phyloseq_optimization](phyloseq_optimization.md) (https://github.com/openresearchlabs/skin_microbiome/blob/master/core%20analysis.Rmd)
 
 
 * [core_analysis](core_analysis.Rmd)
