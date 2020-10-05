@@ -7,7 +7,7 @@ Summary
 
 
 * [core_analysis](core_analysis.Rmd)
-1. [core-_genera_heatmap.png] (core-_genera_heatmap.png)
+1. [core-_genera_heatmap] (core-_genera_heatmap.png)
 
 * [geographical.location_analysis](geographical.location_analysis)
 1) alpha diversity analysis- histogram of core genera , shannon diversity analysis using Kruskal test
