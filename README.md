@@ -6,7 +6,7 @@ Summary
 * [phyloseq_optimization](phyloseq_optimization.md)
 
 
-* [Core analysis](Core analysis.rmd)- includes heatmap of prevalence of most abundant genera
+* [Core analysis](Core analysis.Rmd)- includes heatmap of prevalence of most abundant genera
 result file: core-genera heatmap.png
 
 * Geographical.location analysis: includes
