@@ -10,13 +10,8 @@ Summary
 1. [core-_genera_heatmap] (core-_genera_heatmap.png) (https://github.com/openresearchlabs/skin_microbiome/blob/master/core-%20genera%20heatmap.png)
 
 * [geographical.location_analysis](geographical.location_analysis) (https://github.com/openresearchlabs/skin_microbiome/blob/master/geographical.location%20analysis)
-1. alpha diversity analysis- histogram of core genera () , shannon diversity analysis using Kruskal test
+1. alpha diversity analysis- histogram of core genera (https://github.com/openresearchlabs/skin_microbiome/blob/master/geolocation%20-histogram.png) , shannon diversity analysis using Kruskal test
 2. PCoA analysis
-3. DESeq2 analysis 
-
-resultfile: geolocation kruskaltest.png
-            geolocation-histogram.png
-            geolocation-PCoA.png
- 3. [DESeq2 geolocation] (https://github.com/openresearchlabs/skin_microbiome/blob/master/DESeq2%20geolocation.docx)
+3. [DESeq2 geolocation] (https://github.com/openresearchlabs/skin_microbiome/blob/master/DESeq2%20geolocation.docx)
             
 
