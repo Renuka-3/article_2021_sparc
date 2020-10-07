@@ -24,5 +24,6 @@ Databases
 -   [GTDB](https://zenodo.org/record/2541239#.XZtA9yBS-Uk)
 
 [Phyloseq Otimization](optimization.jpg)
+----------
 
 The file gives an information about Family data analysis. Raw reads trimmed at different length bases so as to know which trimming lenght generates more number of genera/ OTUs at quality score of 25. And which database works best on data among silva, RDP, greengenes, Refsec, GTDB.
