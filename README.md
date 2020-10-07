@@ -16,5 +16,8 @@ Summary
 1. alpha diversity analysis- histogram of core genera, shannon diversity analysis using Kruskal test
 2. PCoA analysis
 3. DESeq2_geolocation
-            
 
+* [ageanalysis](ageanalysis.md)
+1. alpha diversity analysis- histogram of core genera, shannon diversity analysis using Kruskal test
+2. PCoA analysis
+3. DESeq2 analysis
