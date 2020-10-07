@@ -214,7 +214,7 @@ Group-wise comparisons
 -   Diversity index: diversity\_shannon
 
 <img src="ageanalysis_files/figure-markdown_strict/group_comp-1.png" width="50%" /><img src="ageanalysis_files/figure-markdown_strict/group_comp-2.png" width="50%" />
-[kruskaltest](kuskaltest.png)
+[kruskaltest](group_comp_1.png)
 
 Ordination
 ==========
