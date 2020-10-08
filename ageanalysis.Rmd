@@ -104,7 +104,7 @@ print(p)
 
 
 
-```{r DESeq2, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold"}
+```{r DESeq2, echo=FALSE, message=FALSE, fig.width=5, fig.height=5, out.width="25%", fig.show="hold"}
 library(phyloseq)
 library(reshape2)
 library(DESeq2)
@@ -133,23 +133,22 @@ df$taxon <- rownames(df)
 df <- df %>% arrange(desc(abs(log2FoldChange)), padj) %>%
              filter(padj < padj.th) 
 
-top.taxa <- as.character(df$taxon)
-
 library(knitr)
 kable(df)
 
-
+# Pick the top DEseq2 taxa
+top.taxa <- as.character(df$taxon)
 df <- meta(affinlUnr)
 ps <- microbiome::transform(affinlUnr, "clr")
 for (tax in top.taxa) {
   df$taxa <- abundances(ps)[tax, ]
-  p <- ggplot(df, aes(x = age, y = taxa, color = 'age')) +
+  p <- ggplot(df, aes(x = age, y = taxa)) +
     geom_boxplot() +
+    ggbeeswarm::geom_beeswarm() +    
     theme(axis.text.x = element_text(angle = 360, hjust = 1)) +
     labs(x = "age", y = "Abundance", title = tax)
   print(p)
 }
-
 ```
 
 
