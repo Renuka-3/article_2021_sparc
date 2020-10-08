@@ -30,7 +30,9 @@ opts_chunk$set(dev="CairoPNG")
 # Estimate alpha diversities
 A <- alpha(affinlUnr)
 index <- "diversity_shannon"
-kable(head(A))
+
+# I removed this - no need to show diversities for individual samples. / LL
+# kable(head(A))
 ```
 
 
@@ -41,14 +43,23 @@ kable(head(A))
 df <- meta(affinlUnr)
 df <- bind_cols(df, A)
 df$index <- df[[index]]
-pv <- kruskal.test(data = df, index ~ factor(age))$p.value
+
+# We use Wilcoxon test for two-group comparisons
+pv <- wilcox.test(data = df, index ~ factor(age))$p.value
+
 library(ggbeeswarm)
-p1 <- ggplot(df, aes(x = age, y = index, fill = age)) + ggbeeswarm::geom_beeswarm() + theme(axis.text.x = element_text(angle = 0, hjust = 1)) +
-  labs(y = "Shannon Diversity", x = "", title = paste0("Kruskal test p=", round(pv, 2)))
+p1 <- ggplot(df, aes(x = age, y = index, fill = age)) +
+        ggbeeswarm::geom_beeswarm() +
+	theme(axis.text.x = element_text(angle = 0, hjust = 1)) +
+        labs(y = "Shannon Diversity",
+	     x = "",
+	     title = paste0("Wilcoxon test p=", round(pv, 2)))
 
 print(p1)
 
-p2 <- ggplot(df, aes(fill =age, x = index)) + geom_histogram(alpha = 0.5) + labs(x = "Shannon Diversity", y = "Density")
+p2 <- ggplot(df, aes(fill = age, x = index)) +
+        geom_histogram(alpha = 0.5, position = "dodge") +
+	labs(x = "Shannon Diversity", y = "Density")
 print(p2)
 
 ```
@@ -89,7 +100,7 @@ p <- plot_landscape(microbiome::transform(affinlUnr , "compositional"),
 print(p)
 ```
 
-##DESeq2 analysis*
+## DESeq2 analysis
 
 
 
@@ -97,7 +108,11 @@ print(p)
 library(phyloseq)
 library(reshape2)
 library(DESeq2)
+
+# LL: this is a local path. Can you change this into a path that is not
+# system specific. Use for instance: "data/sparc/manuscript/affinlUnr.RDS"
 affinlUnr <- readRDS("D:/sparc/manuscript/affinlUnr.RDS")
+
 padj.th <- 0.25
 mypseq <- affinlUnr
 
@@ -115,8 +130,8 @@ dds <- DESeq(ds2)
 res <- results(dds)
 df <- as.data.frame(res)
 df$taxon <- rownames(df)
-df <- df %>% arrange(log2FoldChange, padj) %>%
-  filter(padj < padj.th) 
+df <- df %>% arrange(desc(abs(log2FoldChange)), padj) %>%
+             filter(padj < padj.th) 
 
 top.taxa <- as.character(df$taxon)
 
@@ -129,7 +144,8 @@ ps <- microbiome::transform(affinlUnr, "clr")
 for (tax in top.taxa) {
   df$taxa <- abundances(ps)[tax, ]
   p <- ggplot(df, aes(x = age, y = taxa, color = 'age')) +
-    geom_boxplot() + theme(axis.text.x = element_text(angle = 360, hjust = 1)) +
+    geom_boxplot() +
+    theme(axis.text.x = element_text(angle = 360, hjust = 1)) +
     labs(x = "age", y = "Abundance", title = tax)
   print(p)
 }
