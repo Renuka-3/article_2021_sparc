@@ -5,7 +5,7 @@
 Summary
 * [phyloseq_optimization](phyloseq_optimization.md) 
 
-* [core_analysis](core_analysis.md)
+* [coreanalysis](coreanalysis.md)
 1. core_genera_heatmap
 2. phylum abundance distribution
 
