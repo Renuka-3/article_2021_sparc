@@ -1,0 +1,136 @@
+---
+title: "coreanalysis"
+author: "Renuka"
+date: "8/10/2020"
+output: html_document
+---
+
+
+```{r core, message=F, echo=FALSE}
+library(knitr)
+require(knitcitations)
+library(microbiome)
+library(phyloseq)
+library(ggplot2)
+library(reshape2)
+library(tidyverse)
+library(dada2)
+theme_set(theme_bw(20))
+knitr::opts_chunk$set(fig.width=10, fig.height=10, message=FALSE, warning=FALSE)
+
+core_detection <- .1/100
+core_prevalence <- 50/100
+
+phy<-oridffinlUnr<- readRDS("D:/sparc/manuscript/oridffinlUnr.RDS")
+```
+
+
+
+# Core microbiota.
+
+Core microbiota is here defined based on the following parameters:
+
+  * Detection threshold (relative abundance): `r 100 * core_detection`%
+  * Prevalence threshold (above threshold in the population) `r 100 * core_prevalence`%.
+
+The following taxonomic groups are in the core microbiota. Mean relative abundance and population prevalence (above detection threshold) are shown.
+
+Core phyla.
+
+```{r core_phyla, echo=FALSE, message=FALSE, fig.width=10, fig.height=8, out.width="50%"}
+
+ps <- aggregate_taxa(phy, "genus")
+ps <- microbiome::transform(ps, "compositional")
+ps.core <- core(ps, detection = core_detection, prevalence = core_prevalence)
+m <- round(100 * rowMeans(abundances(ps.core)), 1)
+prev <- round(100 * prevalence(ps.core, detection = core_detection), 1)
+d <- as.data.frame(list(Taxon = names(m), Abundance = m, Prevalence = prev))
+rownames(d) <- NULL
+d <- d %>% arrange(desc(Abundance), desc(Prevalence))
+colnames(d) <- c("Taxon", "Relative abundance (%)", "Prevalence (%)")
+kable(d)
+```
+Abundance variation across samples for each core taxa.
+
+```{r core_rank_abundance, echo=FALSE, message=FALSE, fig.width=6, fig.height=4, fig.show="hold"}
+theme_set(theme_bw(base_size = 13))
+dfm <- melt(abundances(ps.core))
+dfm$Var1 <- factor(dfm$Var1, levels = rev(d$Taxon))
+
+dfm$Var_new = str_wrap(dfm$Var1, width = 40)
+
+p2 <- ggplot(dfm, aes(x = Var_new, y = value, color = 'pink')) +
+       geom_boxplot() +
+       scale_y_log10(label = scales::percent) +
+       coord_flip() + theme(legend.position="none") +
+       labs(y = "Relative abundance (%)", x = 'Taxa', title = "Core abundance variation")
+print(p2)
+```
+
+
+Core with varying detection and prevalence thresholds.
+
+```{r core_heatmap, echo=FALSE, message=FALSE}
+theme_set(theme_bw(base_size = 11))
+library(RColorBrewer)
+prevalences <- seq(.05, 1, .05)
+detections <- 10^seq(log10(1e-3), log10(.2), length = 10)
+ps <- microbiome::transform(ps, "compositional")
+
+p1 <- plot_core(ps, plot.type = "heatmap", 
+             prevalences = prevalences,
+             detections = detections,
+         colours = rev(brewer.pal(11, "Spectral")),
+         min.prevalence = .2, horizontal = FALSE)
+print(p1)
+
+```
+##Phylum abundance distributions
+
+Abundance-prevalence plot per Phylum.
+
+```{r phyla, echo=FALSE, message=FALSE, fig.width=12, fig.height=6, fig.show="keep", out.width="80%"}
+library(reshape2)
+a <- aggregate_taxa(phy, level = "phylum")
+xc <- abundances(transform(a, "compositional"))
+dfm <- melt(xc)
+names(dfm) <- c("phylum", "sample", "value")
+dfm$Phylum <- factor(dfm$phylum,
+    levels = as.character(unlist(dfm %>% group_by(phylum) %>%
+  summarise(mean = mean(value)) %>%
+  arrange(desc(mean)) %>%
+  select(phylum))))
+# Add small constant on zero values
+dfm$value[dfm$value == 0] <- min(dfm$value[dfm$value > 0])/2
+# Plot abundance distribution for the phyla
+p <- ggplot(dfm, aes(x = value, fill = Phylum)) +
+         geom_density(alpha = 0.5) +
+	 scale_x_log10(label = scales::percent) +
+	 labs(x = "Relative abundance (%)", y = "Frequency",
+	      title = "Phylum abundance distribution")
+print(p)
+
+```
+
+
+
+
+Phylum abundance table (relative abundance %):
+  
+
+```{r phylum_table, echo=FALSE, message=FALSE, fig.width=12, fig.height=6, fig.show="keep", out.width="100%"}
+library(knitr)
+a <- aggregate_taxa(phy, level = "phylum")
+xc <- abundances(transform(a, "compositional"))
+df <- melt(xc)
+names(df) <- c("phylum", "sample", "value")
+dfm <- df %>% group_by(phylum) %>% 
+         summarise(mean = round(100 * mean(value), 1),
+	           median = round(100 * median(value), 1),
+		   min = round(100 * min(value), 1),
+		   max = round(100 * max(value), 1)) %>%
+	 arrange(desc(mean))
+kable(dfm)
+```
+
+
