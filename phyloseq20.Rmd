@@ -1,5 +1,5 @@
 ---
-title: "phyloseq"
+title: "Phyloseq20.Rmd"
 author: "Renuka"
 date: "13 October 2020"
 output: html_document
@@ -30,6 +30,5 @@ TAX = tax_table(tax_mat)
 sam = sample_data(as.data.frame(samples_df))
 
 agephy <- phyloseq (OTU, TAX, sam)
-
+saveRDS(agephy, file = "agephy.RDS")
 ```
-
