@@ -3,7 +3,7 @@
 
 
 Summary
-* [phyloseq_optimization](phyloseq_optimization.md) 
+## [phyloseq_optimization](phyloseq_optimization.md) 
 
 * [pyloseq20.Rmd](phyloseq20.Rmd)
 Phyloseq needs to be created at very first for analysing microbiome data. OTU table, Taxonomic table and metadata file required to creat phyloseq object. Presesnt phyloseq made to analyse 16S rRNA sequensing data of genetically unrelated individuals of Maharashtra, India.
