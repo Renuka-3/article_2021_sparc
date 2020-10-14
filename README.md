@@ -3,7 +3,7 @@
 
 
 Summary
-*[phyloseq_optimization](phyloseq_optimization.md) 
+* [phyloseq_optimization](phyloseq_optimization.md) 
 
 * [pyloseq20.Rmd](phyloseq20.Rmd)
 
