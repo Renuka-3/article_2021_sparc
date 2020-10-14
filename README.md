@@ -18,7 +18,7 @@ Phyloseq needs to be created at very first for analysing microbiome data. OTU ta
 2. PCoA analysis
 3. DESeq2 analysis
 
-* [ageanalysis](ageanalysis.md)
+* [ageanalysis20](ageanalysis20.md)
 1. alpha diversity analysis- histogram of core genera, shannon diversity analysis using wilcoxon test
 2. PCoA analysis
 3. DESeq2 analysis
