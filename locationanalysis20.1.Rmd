@@ -1,0 +1,201 @@
+---
+title: "locationphy20.1"
+author: "Renuka"
+date: "15 October 2020"
+output: html_document
+---
+
+```{r phyloseq, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(phyloseq)
+library(dada2)
+library(readxl)
+library(dplyr)
+
+otu_mat<- read_excel("D:/sparc/manuscript/diet,location/otu.xlsx")
+tax_mat<- read_excel("D:/sparc/manuscript/diet,location/taxa.xlsx")
+samples_df <- read_excel("D:/sparc/manuscript/diet,location/meta.xlsx")
+row.names(otu_mat) <- otu_mat$OTUU
+otu_mat <- otu_mat %>% select (-OTUU)
+row.names(tax_mat) <- tax_mat$OTUU
+tax_mat <- tax_mat %>% select (-OTUU) 
+
+row.names(samples_df) <- samples_df$Sample
+#samples_df <- samples_df %>% select (-Sample) 
+otu_mat <- as.matrix(otu_mat)
+tax_mat <- as.matrix(tax_mat)
+OTU = otu_table(otu_mat, taxa_are_rows = TRUE)
+TAX = tax_table(tax_mat)
+sam = sample_data(as.data.frame(samples_df))
+
+phy20.1 <- phyloseq (OTU, TAX, sam)
+saveRDS(phy20.1, file = "phy20.1.RDS")
+```
+
+#Analysis
+
+```{r alpha, message=F, echo=F, echo=FALSE}
+library(knitr)
+library(knitcitations)
+library(microbiome)
+library(phyloseq)
+library(ggplot2)
+library(reshape2)
+library(tidyverse)
+library(dada2)
+library(dplyr)
+theme_set(theme_bw(20))
+knitr::opts_chunk$set(fig.width=10, fig.height=10, message=FALSE, warning=FALSE)
+
+phy20.1 <- readRDS("D:/sparc/manuscript/phy20.1.RDS")
+```
+# Alpha diversity analysis
+
+```{r alpha1, echo=FALSE, message=FALSE, warning=FALSE}
+library(microbiome)
+opts_chunk$set(dev="CairoPNG")
+
+# Estimate alpha diversities
+A <- alpha(phy20.1)
+index <- "diversity_shannon"
+# I removed this - no need to show diversities for individual samples. / LL
+#kable(head(A))
+```
+
+
+# Group-wise comparisons
+* Diversity index: `r index`
+
+```{r group_comp, echo=FALSE, echo=FALSE, message=FALSE, fig.width=10, fig.height=8, fig.show="keep", out.width="50%"}
+library(Cairo)
+df <- meta(phy20.1)
+df <- bind_cols(df, A)
+df$index <- df[[index]]
+pv <- kruskal.test(data = df, index ~ factor(Geographical_location))$p.value
+library(ggbeeswarm)
+p1 <- ggplot(df, aes(x = Geographical_location, y = index, fill = Geographical_location)) + ggbeeswarm::geom_beeswarm() + theme(axis.text.x = element_text(angle = 0, hjust = 1)) +
+  labs(y = "Shannon Diversity", x = "", title = paste0("Kruskal test p=", round(pv, 2)))
+
+print(p1)
+
+#p2 <- ggplot(df, aes(fill = Geographical_location, x = index)) + geom_histogram(alpha = 0.5, position = "dodge") + labs(x = "Shannon Diversity", y = "Density")
+#print(p2)
+
+```
+
+#Ordination
+
+```{r init, echo=FALSE, message=FALSE}
+library(microbiome)
+library(phyloseq)
+library(vegan)
+opts_chunk$set(dev="CairoPNG")
+method <- "PCoA"
+trans <- "compositional"
+distance <- "jaccard"
+```
+
+## *Principal Coordinates Analysis (PCoA)*
+
+* Ordination method: `r method`
+* Dissimilarity measure: `r distance`
+
+```{r pcoa, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold"}
+theme_set(theme_bw(15))
+library(microbiome)
+p <- plot_landscape(microbiome::transform(phy20.1 , "compositional"),
+                    distance = "jaccard",
+                    method = "PCoA",
+                    size = 3,
+                    col = "Geographical_location",
+                    shading = FALSE) +
+  scale_colour_brewer(palette = "Set1")		    
+print(p)
+```
+
+##DESeq2 analysis*
+
+
+```{r DESeq2, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold"}
+library(phyloseq)
+library(reshape2)
+library(DESeq2)
+padj.th <- 0.25
+mypseq <- phy20.1
+
+# Remove NAs
+group <- "Geographical_location"
+keep <- meta(phy20.1)[, group] %>% complete.cases()
+
+df <- meta(mypseq)[keep, ]
+
+mygroup <- "Geographical_location"
+df$group <- as.factor(df[[group]] == mygroup)
+sample_data(mypseq) <- sample_data(df)
+quiet(ds2 <- phyloseq_to_deseq2(mypseq, ~ Geographical_location))
+dds <- DESeq(ds2)
+res <- results(dds)
+df <- as.data.frame(res)
+df$taxon <- rownames(df)
+#df <- df %>% arrange(desc(abs(log2FoldChange)), padj) %>%
+#             filter(padj < padj.th) 
+df <- df %>% arrange(padj, desc(abs(log2FoldChange))) %>%
+             filter(padj < padj.th) 
+df <- subset(df, select= c(log2FoldChange, padj, taxon))
+rownames(df) <- NULL
+apply(tax_table(phy20.1), 1, function (x) {paste(x, collapse = "_")})
+
+top.taxa <- as.character(df$taxon)
+
+library(knitr)
+kable(df)
+
+
+df <- meta(phy20.1)
+ps <- microbiome::transform(phy20.1, "clr")
+for (tax in top.taxa) {
+  df$taxa <- abundances(ps)[tax, ]
+  p <- ggplot(df, aes(x = Geographical_location, y = taxa)) +
+    geom_boxplot() + 
+    ggbeeswarm::geom_beeswarm() +
+    theme(axis.text.x = element_text(angle = 360, hjust = 1)) +
+    labs(x = "Geographical location", y = "Abundance", title = tax)
+  print(p)
+}
+```
+
+#PERMANOVA analysis
+```{r PERMANOVA}
+library(microbiome)
+library(ggplot2)
+library(dplyr)
+
+pseq <- phy20.1# Rename the example data
+data = microbiome::meta(phy20.1)
+# Pick relative abundances (compositional) and sample metadata 
+pseq.rel <- microbiome::transform(pseq, "compositional")
+otu <- abundances(pseq.rel)
+meta <- meta(pseq.rel)
+library(vegan)
+library(phyloseq)
+permanova <- adonis(t(otu) ~ Geographical_location,
+               data = meta(phy20.1), permutations=99, method = "bray")
+
+# P-value
+print(as.data.frame(permanova$aov.tab)["Geographical_location", "Pr(>F)"])
+
+dist <- vegdist(t(otu))
+anova(betadisper(dist, meta$Geographical_location))
+```
+
+#Investigate the top factors
+```{r,}
+library(vegan)
+coef <- coefficients(permanova)["Geographical_location1", ]
+top.coef <- coef[rev(order(abs(coef)))[1:20]]
+par(mar = c(3, 14, 2, 1))
+barplot(sort(top.coef), horiz = T, las = 1, main = "Top taxa")
+#barplot(sort(coef(permanova)["Geographical_location1", ]))
+apply(tax_table(phy20.1), 1, function (x) {paste(x, collapse = "_")})
+```
