@@ -32,7 +32,7 @@ object.
 2. PCoA analysis
 3. DESeq2 analysis
 
-* [dietanalysis20](dietanalysis20.md)
+* [dietanalysis](dietanalysis.md)
 1. alpha diversity analysis- shannon diversity analysis using Kruskal test
 2. Beta diversity analysis- PCoA analysis, PERMANOVA
 3. DESeq2 analysis
