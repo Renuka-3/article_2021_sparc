@@ -5,10 +5,17 @@ Summary
 * [phyloseq_optimization](phyloseq_optimization.md) 
 ----------------------------------------------------------------------------
 
-### Unrelated skin microbiome data analysis
-* [phyloseq20.Rmd](phyloseq20.Rmd)
+### Data files
 
-Phyloseq needs to be created at very first for analysing microbiome data. OTU table, Taxonomic table and metadata files required to creat phyloseq object. 
+* [phyloseq20.Rmd](phyloseq20.Rmd)
+* Create the phyloseq object with: (create_phyloseq.R)
+
+Phyloseq needs to be created before analysing microbiome data. OTU
+table, Taxonomic table and metadata files required to creat phyloseq
+object.
+
+
+### Analysis files
 
 * [coreanalysis](coreanalysis.md)
 1. core_genera_heatmap
