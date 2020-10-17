@@ -8,7 +8,7 @@ Summary
 ### Data files
 
 * [phyloseq20.Rmd](phyloseq20.Rmd)
-* Create the phyloseq object with: (create_phyloseq.R)
+* Create the phyloseq object with: (create_phyloseq.R) (Create_phyloseq.Rmd)
 
 Phyloseq needs to be created before analysing microbiome data. OTU
 table, Taxonomic table and metadata files required to creat phyloseq
