@@ -1,7 +1,7 @@
 ---
 title: "dietanalysis20.1.Rmd"
 author: "Renuka"
-date: "16 October 2020"
+date: "`r Sys.Date()`"
 output: html_document
 ---
 
