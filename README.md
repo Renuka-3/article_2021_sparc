@@ -21,7 +21,7 @@ object.
 1. core_genera_heatmap
 2. phylum abundance distribution
 
-* [locationanalysis20.1](locationanalysis20.1.md)
+* [locationanalysis](locationanalysis.md)
 1. Alpha diversity analysis- shannon diversity analysis using wilcoxon test
 2. Beta diversity analysis- PCoA analysis, PERMANOVA
 3. DESeq2 analysis
