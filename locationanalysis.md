@@ -1,7 +1,7 @@
 ---
 title: "Location analysis"
 author: "Renuka"
-date: "2020-10-18"
+date: "2020-10-19"
 output: html_document
 ---
 
@@ -1449,7 +1449,7 @@ par(mar = c(3, 14, 2, 1))
 barplot(sort(top.coef), horiz = T, las = 1, main = "Top taxa")
 ```
 
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png)
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
 
 ```r
 #barplot(sort(coef(permanova)["Geographical_location1", ]))
