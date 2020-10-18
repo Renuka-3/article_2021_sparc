@@ -21,7 +21,7 @@ theme_set(theme_bw(20))
 knitr::opts_chunk$set(fig.width=10, fig.height=10, message=FALSE, warning=FALSE)
 
 # Was created with: source("create_phyloseq.R")
-phy20.1 <- readRDS("data/phy20.1.RDS")
+phy20.1 <- readRDS("C:/Users/Admin/Documents/GitHub/skin_microbiome/data/processed/phyloseq/phy20.1.RDS")
 ```
 
 
