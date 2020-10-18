@@ -4,15 +4,9 @@ library(dada2)
 library(readxl)
 library(dplyr)
 
-# Here, just add folder "data" in this repository directly (do not add
-# data folder to git). Or alternatively, create here a "symbolic link"
-# whose names is "data" and that points to your data location.
-#otu_mat<- read_excel("D:/sparc/manuscript/diet,location/otu.xlsx")
-#tax_mat<- read_excel("D:/sparc/manuscript/diet,location/taxa.xlsx")
-#samples_df <- read_excel("D:/sparc/manuscript/diet,location/meta.xlsx")
-#otu_mat<- read_excel("data/diet,location/otu.xlsx")
-#tax_mat<- read_excel("data/diet,location/taxa.xlsx")
-#samples_df <- read_excel("data/diet,location/meta.xlsx")
+otu_mat    <- as.data.frame(read_excel("data/processed/original_tables/otu.xlsx"))
+tax_mat    <- as.data.frame(read_excel("data/processed/original_tables/taxa.xlsx"))
+samples_df <- as.data.frame(read_excel("data/processed/original_tables/meta.xlsx"))
 
 row.names(otu_mat) <- otu_mat$OTUU
 otu_mat <- otu_mat %>% select (-OTUU)
@@ -28,4 +22,4 @@ TAX = tax_table(tax_mat)
 sam = sample_data(as.data.frame(samples_df))
 
 phy20.1 <- phyloseq(OTU, TAX, sam)
-saveRDS(phy20.1, file = "data/phy20.1.RDS")
+saveRDS(phy20.1, file = "data/processed/phyloseq/phy20.1.RDS")
