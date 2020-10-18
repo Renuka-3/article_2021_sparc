@@ -9,8 +9,9 @@ output: html_document
 
 
 ```
-## Warning in gzfile(file, "rb"): cannot open compressed file 'data/phy20.1.RDS',
-## probable reason 'No such file or directory'
+## Warning in gzfile(file, "rb"): cannot open compressed file 'C:/Users/Admin/
+## Documents/GitHub/skin_microbiome/data/processed/phyloseq/phy20.1.RDS', probable
+## reason 'No such file or directory'
 ```
 
 ```
