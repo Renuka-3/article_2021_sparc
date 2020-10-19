@@ -20,8 +20,8 @@ knitr::opts_chunk$set(fig.width=10, fig.height=10, message=FALSE, warning=FALSE)
 
 core_detection <- .1/100
 core_prevalence <- 50/100
-
-phy<-oridffinlUnr<- readRDS("D:/sparc/manuscript/oridffinlUnr.RDS")
+# Was created with: source("create_phyloseq.R")
+phy20.1 <- readRDS("data/processed/phyloseq/phy20.1.RDS")
 ```
 
 
@@ -39,7 +39,7 @@ Core phyla.
 
 ```{r core_phyla, echo=FALSE, message=FALSE, fig.width=10, fig.height=8, out.width="50%"}
 
-ps <- aggregate_taxa(phy, "genus")
+ps <- aggregate_taxa(phy20.1, "genus")
 ps <- microbiome::transform(ps, "compositional")
 ps.core <- core(ps, detection = core_detection, prevalence = core_prevalence)
 m <- round(100 * rowMeans(abundances(ps.core)), 1)
@@ -91,7 +91,7 @@ Abundance-prevalence plot per Phylum.
 
 ```{r phyla, echo=FALSE, message=FALSE, fig.width=12, fig.height=6, fig.show="keep", out.width="80%"}
 library(reshape2)
-a <- aggregate_taxa(phy, level = "phylum")
+a <- aggregate_taxa(phy20.1, level = "phylum")
 xc <- abundances(transform(a, "compositional"))
 dfm <- melt(xc)
 names(dfm) <- c("phylum", "sample", "value")
@@ -103,7 +103,7 @@ dfm$Phylum <- factor(dfm$phylum,
 # Add small constant on zero values
 dfm$value[dfm$value == 0] <- min(dfm$value[dfm$value > 0])/2
 # Plot abundance distribution for the phyla
-p <- ggplot(dfm, aes(x = value, fill = Phylum)) +
+p <- ggplot(dfm, aes(x = value, fill = phylum)) +
          geom_density(alpha = 0.5) +
 	 scale_x_log10(label = scales::percent) +
 	 labs(x = "Relative abundance (%)", y = "Frequency",
@@ -120,7 +120,7 @@ Phylum abundance table (relative abundance %):
 
 ```{r phylum_table, echo=FALSE, message=FALSE, fig.width=12, fig.height=6, fig.show="keep", out.width="100%"}
 library(knitr)
-a <- aggregate_taxa(phy, level = "phylum")
+a <- aggregate_taxa(phy20.1, level = "phylum")
 xc <- abundances(transform(a, "compositional"))
 df <- melt(xc)
 names(df) <- c("phylum", "sample", "value")
