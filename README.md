@@ -27,10 +27,11 @@ object.
 3. DESeq2 analysis
 4. Investigate the top factors
 
-* [ageanalysis20](ageanalysis20.md)
-1. alpha diversity analysis- histogram of core genera, shannon diversity analysis using wilcoxon test
+* [ageanalysis](ageanalysis.md)
+1. alpha diversity analysis- shannon diversity analysis using wilcoxon test
 2. PCoA analysis
 3. DESeq2 analysis
+4. Investigate the top factors
 
 * [dietanalysis](dietanalysis.md)
 1. alpha diversity analysis- shannon diversity analysis using Kruskal test
