@@ -89,10 +89,9 @@ print(p)
 ```
 
 
-## DESeq2 analysis
+## Differential abundance analysis (with DESeq2)
 
-
-```{r DESeq2, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold"}
+```{r DESeq2, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="25%", fig.show="hold"}
 library(phyloseq)
 library(reshape2)
 library(DESeq2)
@@ -122,9 +121,11 @@ df <- subset(df, select= c(log2FoldChange, padj, taxon))
 rownames(df) <- NULL
 
 # WHat is the purpose of this one?
-# apply(tax_table(phy), 1, function (x) {paste(x, collapse = "_")})
+full.names <- apply(tax_table(phy), 1, function (x) {paste(x, collapse = "_")})
+# top.taxa <- as.character(df$taxon)
 
-top.taxa <- as.character(df$taxon)
+# Add full phylogenetic name for this OTU
+df$full_name <- full.names[df$taxon]
 
 library(knitr)
 kable(df)
