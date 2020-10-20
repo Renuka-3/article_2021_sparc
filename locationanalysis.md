@@ -45,7 +45,9 @@ Diversity index: diversity_shannon
 |      -3.175628| 0.1176826|OTU251  |Bacteria_Actinobacteria_Actinobacteria_Micrococcales_Micrococcaceae_Arthrobacter |
 |      -2.581503| 0.1319555|OTU1075 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Geobacillus                   |
 
-<img src="figure/DESeq2-1.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="33%" /><img src="figure/DESeq2-2.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="33%" /><img src="figure/DESeq2-3.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="33%" /><img src="figure/DESeq2-4.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="33%" /><img src="figure/DESeq2-5.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="33%" /><img src="figure/DESeq2-6.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="33%" />
+```
+## Error in eval(expr, envir, enclos): object 'top.taxa' not found
+```
 
 # PERMANOVA analysis
 
@@ -88,17 +90,37 @@ anova(betadisper(dist, meta$Geographical_location))
 ## Residuals 55 2.49040 0.04528
 ```
 
+
 # Investigate the top factors
+
 
 ```r
 library(vegan)
-coef <- coefficients(permanova)["Geographical_location1", ]
-top.coef <- coef[rev(order(abs(coef)))[1:20]]
-names(top.coef) <- full.names[names(top.coef)]
 
-par(mar = c(3, 20, 2, 1))
-barplot(sort(top.coef), horiz = T, las = 1, main = "Top taxa")
+coef1 <- coefficients(permanova)["Geographical_location1", ]
+top.coef1 <- coef1[rev(order(abs(coef1)))[1:20]]
+names(top.coef1) <- full.names[names(top.coef1)]
+
+coef2 <- coefficients(permanova)["Geographical_location2", ]
+top.coef2 <- coef2[rev(order(abs(coef2)))[1:20]]
+names(top.coef2) <- full.names[names(top.coef2)]
+
+par(mar = c(3, 20, 2, 1), mfrow = 2)
+```
+
+```
+## Error in par(mar = c(3, 20, 2, 1), mfrow = 2): graphical parameter "mfrow" has the wrong length
+```
+
+```r
+barplot(sort(top.coef1), horiz = T, las = 1, main = "Top taxa / 1")
 ```
 
 ![plot of chunk top_factors](figure/top_factors-1.png)
+
+```r
+barplot(sort(top.coef2), horiz = T, las = 1, main = "Top taxa / 2")
+```
+
+![plot of chunk top_factors](figure/top_factors-2.png)
 
