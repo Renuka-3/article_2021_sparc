@@ -104,7 +104,6 @@ mypseq <- Q
 # Remove NAs
 group <- "Age"
 keep <- meta(Q)[, group] %>% complete.cases()
-
 df <- meta(mypseq)[keep, ]
 
 mygroup <- "Age"
