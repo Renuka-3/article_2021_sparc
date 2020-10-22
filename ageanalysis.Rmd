@@ -121,11 +121,9 @@ df <- df %>% arrange(padj, desc(abs(log2FoldChange))) %>%
              filter(padj < padj.th) 
 df <- subset(df, select= c(log2FoldChange, padj, taxon))
 rownames(df) <- NULL
-apply(tax_table(Q), 1, function (x) {paste(x, collapse = "_")})
-top.taxa <- as.character(df$taxon)
 
 # WHat is the purpose of this one?
-#full.names <- apply(tax_table(phy), 1, function (x) {paste(x, collapse = "_")})
+#full.names <- apply(tax_table(Q), 1, function (x) {paste(x, collapse = "_")})
 # top.taxa <- as.character(df$taxon)
 # Add full phylogenetic name for this OTU
 df$full_name <- full.names[df$taxon]

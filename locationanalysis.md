@@ -1,7 +1,7 @@
 ---
 title: "Location analysis"
 author: "Renuka"
-date: "2020-10-21"
+date: "2020-10-22"
 output: html_document
 ---
 
@@ -45,9 +45,7 @@ Diversity index: diversity_shannon
 |      -3.175628| 0.1176826|OTU251  |Bacteria_Actinobacteria_Actinobacteria_Micrococcales_Micrococcaceae_Arthrobacter |
 |      -2.581503| 0.1319555|OTU1075 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Geobacillus                   |
 
-```
-## Error in eval(expr, envir, enclos): object 'top.taxa' not found
-```
+<img src="figure/DESeq2-1.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="33%" /><img src="figure/DESeq2-2.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="33%" /><img src="figure/DESeq2-3.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="33%" /><img src="figure/DESeq2-4.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="33%" /><img src="figure/DESeq2-5.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="33%" /><img src="figure/DESeq2-6.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="33%" /><img src="figure/DESeq2-7.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="33%" />
 
 # PERMANOVA analysis
 
