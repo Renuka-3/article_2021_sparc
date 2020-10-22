@@ -28,7 +28,7 @@ theme_set(theme_bw(20))
 knitr::opts_chunk$set(fig.width=10, fig.height=10, message=FALSE, warning=FALSE)
 
 # Was created with: source("create_phyloseq.R")
-phy20.1 <- readRDS("data/processed/phyloseq/phy20.1.RDS")
+phy <- readRDS("data/processed/phyloseq/phy20.1.RDS")
 ```
 # Alpha diversity analysis
 
@@ -37,7 +37,7 @@ library(microbiome)
 opts_chunk$set(dev="CairoPNG")
 
 # Estimate alpha diversities
-A <- alpha(phy20.1)
+A <- alpha(phy)
 index <- "diversity_shannon"
 ```
 
@@ -47,7 +47,7 @@ index <- "diversity_shannon"
 
 ```{r group_comp, echo=FALSE, echo=FALSE, message=FALSE, fig.width=10, fig.height=8, fig.show="keep", out.width="50%"}
 library(Cairo)
-df <- meta(phy20.1)
+df <- meta(phy)
 df <- bind_cols(df, A)
 df$index <- df[[index]]
 pv <- wilcox.test(data = df, index ~ factor(Diet))$p.value
@@ -82,7 +82,7 @@ distance <- "jaccard"
 ```{r pcoa, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold"}
 theme_set(theme_bw(15))
 library(microbiome)
-p <- plot_landscape(microbiome::transform(phy20.1 , "compositional"),
+p <- plot_landscape(microbiome::transform(phy , "compositional"),
                     distance = "jaccard",
                     method = "PCoA",
                     size = 3,
@@ -101,11 +101,11 @@ library(phyloseq)
 library(reshape2)
 library(DESeq2)
 padj.th <- 0.25
-mypseq <- phy20.1
+mypseq <- phy
 
 # Remove NAs
 group <- "Diet"
-keep <- meta(phy20.1)[, group] %>% complete.cases()
+keep <- meta(phy)[, group] %>% complete.cases()
 
 df <- meta(mypseq)[keep, ]
 
@@ -123,15 +123,18 @@ df <- df %>% arrange(padj, desc(abs(log2FoldChange))) %>%
              filter(padj < padj.th) 
 df <- subset(df, select= c(log2FoldChange, padj, taxon))
 rownames(df) <- NULL
-apply(tax_table(phy20.1), 1, function (x) {paste(x, collapse = "_")})
-top.taxa <- as.character(df$taxon)
 
+# WHat is the purpose of this one?
+#full.names <- apply(tax_table(phy), 1, function (x) {paste(x, collapse = "_")})
+# top.taxa <- as.character(df$taxon)
+# Add full phylogenetic name for this OTU
+df$full_name <- full.names[df$taxon]
 library(knitr)
 kable(df)
 
 
-df <- meta(phy20.1)
-ps <- microbiome::transform(phy20.1, "clr")
+df <- meta(phy)
+ps <- microbiome::transform(phy, "clr")
 for (tax in top.taxa) {
   df$taxa <- abundances(ps)[tax, ]
   p <- ggplot(df, aes(x = Diet, y = taxa)) +
@@ -149,8 +152,8 @@ library(microbiome)
 library(ggplot2)
 library(dplyr)
 
-pseq <- phy20.1# Rename the example data
-data = microbiome::meta(phy20.1)
+pseq <- phy# Rename the example data
+data = microbiome::meta(phy)
 # Pick relative abundances (compositional) and sample metadata 
 pseq.rel <- microbiome::transform(pseq, "compositional")
 otu <- abundances(pseq.rel)
@@ -158,7 +161,7 @@ meta <- meta(pseq.rel)
 library(vegan)
 library(phyloseq)
 permanova <- adonis(t(otu) ~ Diet,
-               data = meta(phy20.1), permutations=99, method = "bray")
+               data = meta(phy), permutations=99, method = "bray")
 
 # P-value
 print(as.data.frame(permanova$aov.tab)["Diet", "Pr(>F)"])
@@ -169,11 +172,12 @@ anova(betadisper(dist, meta$Diet))
 
 # Investigate the top factors
 
-```{r top_factors}
+```{r top_factors, fig.width=20, fig.height=10}
 library(vegan)
-coef <- coefficients(permanova)["Diet1", ]
-top.coef <- coef[rev(order(abs(coef)))[1:20]]
+coef1 <- coefficients(permanova)["Diet1", ]
+top.coef1 <- coef1[rev(order(abs(coef1)))[1:20]]
+names(top.coef1) <- full.names[names(top.coef1)]
 par(mar = c(3, 14, 2, 1))
-barplot(sort(top.coef), horiz = T, las = 1, main = "Top taxa")
-apply(tax_table(phy20.1), 1, function (x) {paste(x, collapse = "_")})
+barplot(sort(top.coef1), horiz = T, las = 1, main = "Top taxa / 1")
+
 ```

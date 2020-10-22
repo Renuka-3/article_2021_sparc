@@ -1435,7 +1435,7 @@ print(as.data.frame(permanova$aov.tab)["Age", "Pr(>F)"])
 ```
 
 ```
-## [1] 0.01
+## [1] 0.02
 ```
 
 ```r
@@ -2819,3 +2819,6 @@ apply(tax_table(Q), 1, function (x) {paste(x, collapse = "_")})
 ##                                                                                                              OTU2569 
 ##                            "Bacteria_Proteobacteria_Gammaproteobacteria_Oceanospirillales_Halomonadaceae_Zymobacter"
 ```
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
