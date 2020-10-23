@@ -30,8 +30,7 @@ knitr::opts_chunk$set(fig.width=10, fig.height=10, message=FALSE, warning=FALSE)
 phy<- readRDS("data/processed/phyloseq/phy20.1.RDS")
 
 # Exclude middle-aged group
-Q <- subset_samples(phy, !age_group %in% middleage)
-
+Q <- subset_samples(phy, !age_group %in% "middle_age")
 # Old code
 # Remove <- c("I1", "I2", "I6", "I9", "I10", "I11", "I16", "I19", "I22", "I25", "I27","I28", "I29", "I31","I34", "I40")
 #subset_samples(phy20.1, Sample %in% Remove)
@@ -65,7 +64,7 @@ p1 <- ggplot(df, aes(x = age_group, y = index, fill = age_group)) +
 	theme(axis.text.x = element_text(angle = 0, hjust = 1)) +
         labs(y = "Shannon Diversity",
 	     x = "",
-	     title = paste0("Wilcoxon test p=", round(pv, 2)))
+	     title = paste0("wilcoxon tast p=", round(pv, 2)))
 
 print(p1)
 ```
