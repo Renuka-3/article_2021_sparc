@@ -21,5 +21,9 @@ OTU = otu_table(otu_mat, taxa_are_rows = TRUE)
 TAX = tax_table(tax_mat)
 sam = sample_data(as.data.frame(samples_df))
 
-phy20.1 <- phyloseq(OTU, TAX, sam)
-saveRDS(phy20.1, file = "data/processed/phyloseq/phy20.1.RDS")
+# Add age group information also
+sample_data(phy)$age_group <- cut(meta(phy)$Age, breaks = c(0, 40, 59, Inf), labels = c("adult", "middle_age", "elderly"))
+
+phy <- phyloseq(OTU, TAX, sam)
+saveRDS(phy, file = "data/processed/phyloseq/phy20.1.RDS")
+

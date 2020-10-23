@@ -28,10 +28,17 @@ knitr::opts_chunk$set(fig.width=10, fig.height=10, message=FALSE, warning=FALSE)
 
 # Was created with: source("create_phyloseq.R")
 phy<- readRDS("data/processed/phyloseq/phy20.1.RDS")
-Remove <- c("I1", "I2", "I6", "I9", "I10", "I11", "I16", "I19", "I22", "I25", "I27","I28", "I29", "I31","I34", "I40")
-subset_samples(phy20.1, Sample %in% Remove)
-Q <- subset_samples(phy, !(Sample %in% Remove))
+
+# Exclude middle-aged group
+Q <- subset_samples(phy, !age_group %in% middleage)
+
+# Old code
+# Remove <- c("I1", "I2", "I6", "I9", "I10", "I11", "I16", "I19", "I22", "I25", "I27","I28", "I29", "I31","I34", "I40")
+#subset_samples(phy20.1, Sample %in% Remove)
+# Q <- subset_samples(phy, !(Sample %in% Remove))
 ```
+
+
 # Alpha diversity analysis
 
 ```{r alpha1, echo=FALSE, message=FALSE, warning=FALSE}
@@ -51,9 +58,9 @@ library(Cairo)
 df <- meta(Q)
 df <- bind_cols(df, A)
 df$index <- df[[index]]
-pv <- wilcox.test(data = df, index ~ factor(Age))$p.value
+pv <- wilcox.test(data = df, index ~ factor(age_group))$p.value
 library(ggbeeswarm)
-p1 <- ggplot(df, aes(x = Age, y = index, fill = Age)) +
+p1 <- ggplot(df, aes(x = age_group, y = index, fill = age_group)) +
         ggbeeswarm::geom_beeswarm() +
 	theme(axis.text.x = element_text(angle = 0, hjust = 1)) +
         labs(y = "Shannon Diversity",
@@ -88,7 +95,7 @@ p <- plot_landscape(microbiome::transform(Q , "compositional"),
                     distance = "jaccard",
                     method = "PCoA",
                     size = 3,
-                    col = "Age",
+                    col = "age_group",
                     shading = FALSE) +
   scale_colour_brewer(palette = "Set1")		    
 print(p)
@@ -102,14 +109,14 @@ padj.th <- 0.25
 mypseq <- Q
 
 # Remove NAs
-group <- "Age"
+group <- "age_group"
 keep <- meta(Q)[, group] %>% complete.cases()
 df <- meta(mypseq)[keep, ]
 
-mygroup <- "Age"
+mygroup <- "age_group"
 df$group <- as.factor(df[[group]] == mygroup)
 sample_data(mypseq) <- sample_data(df)
-quiet(ds2 <- phyloseq_to_deseq2(mypseq, ~ Age))
+quiet(ds2 <- phyloseq_to_deseq2(mypseq, ~ age_group))
 dds <- DESeq(ds2)
 res <- results(dds)
 df <- as.data.frame(res)
@@ -135,11 +142,11 @@ df <- meta(Q)
 ps <- microbiome::transform(Q, "clr")
 for (tax in top.taxa) {
   df$taxa <- abundances(ps)[tax, ]
-  p <- ggplot(df, aes(x = Age, y = taxa)) +
+  p <- ggplot(df, aes(x = age_group, y = taxa)) +
     geom_boxplot() + 
     ggbeeswarm::geom_beeswarm() +
     theme(axis.text.x = element_text(angle = 360, hjust = 1)) +
-    labs(x = "Age", y = "Abundance", title = tax)
+    labs(x = "age_group", y = "Abundance", title = tax)
   print(p)
 }
 ```
@@ -158,21 +165,21 @@ otu <- abundances(pseq.rel)
 meta <- meta(pseq.rel)
 library(vegan)
 library(phyloseq)
-permanova <- adonis(t(otu) ~ Age,
+permanova <- adonis(t(otu) ~ age_group,
                data = meta(Q), permutations=99, method = "bray")
 
 # P-value
-print(as.data.frame(permanova$aov.tab)["Age", "Pr(>F)"])
+print(as.data.frame(permanova$aov.tab)["age_group", "Pr(>F)"])
 
 dist <- vegdist(t(otu))
-anova(betadisper(dist, meta$Age))
+anova(betadisper(dist, meta$age_group))
 ```
 
 # Investigate the top factors
 
 ```{r top_factors}
 library(vegan)
-coef <- coefficients(permanova)["Age1", ]
+coef <- coefficients(permanova)["age_group1", ]
 top.coef <- coef[rev(order(abs(coef)))[1:20]]
 names(top.coef) <- full.names[names(top.coef)]
 par(mar = c(3, 14, 2, 1))

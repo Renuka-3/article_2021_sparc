@@ -9,19 +9,45 @@ output: html_document
 
 
 ```
-## phyloseq-class experiment-level object
-## otu_table()   OTU Table:         [ 674 taxa and 16 samples ]
-## sample_data() Sample Data:       [ 16 samples by 13 sample variables ]
-## tax_table()   Taxonomy Table:    [ 674 taxa by 6 taxonomic ranks ]
+## Error in age_group %in% middleage: object 'age_group' not found
 ```
+
+
 # Alpha diversity analysis
 
 
+```
+## Error in is(x): object 'Q' not found
+```
 
 # Group-wise comparisons
 * Diversity index: diversity_shannon
 
-<img src="figure/group_comp-1.png" title="plot of chunk group_comp" alt="plot of chunk group_comp" width="50%" />
+
+```
+## Error in sample_data(x): object 'Q' not found
+```
+
+```
+## Error in list2(...): object 'A' not found
+```
+
+```
+## Error in df[[index]]: object of type 'closure' is not subsettable
+```
+
+```
+## Error in terms.formula(formula, data = data): 'data' argument is of the wrong type
+```
+
+```
+## Error:   You're passing a function as global data.
+##   Have you misspelled the `data` argument in `ggplot()`
+```
+
+```
+## Error in print(p1): object 'p1' not found
+```
 
 
 # Ordination
@@ -33,31 +59,83 @@ output: html_document
 * Ordination method: PCoA
 * Dissimilarity measure: jaccard
 
-<img src="figure/pcoa-1.png" title="plot of chunk pcoa" alt="plot of chunk pcoa" width="50%" />
+
+```
+## Error in microbiome::transform(Q, "compositional"): object 'Q' not found
+```
+
+```
+## Error in print(p): object 'p' not found
+```
 
 
-| log2FoldChange|      padj|taxon   |full_name                                                                                        |
-|--------------:|---------:|:-------|:------------------------------------------------------------------------------------------------|
-|       4.548054| 0.0000358|OTU2172 |Bacteria_Firmicutes_Bacilli_Bacillales_Staphylococcaceae_Staphylococcus                          |
-|       4.193210| 0.0365749|OTU526  |Bacteria_Actinobacteria_Actinobacteria_Micrococcales_Brevibacteriaceae_Brevibacterium            |
-|      -4.801004| 0.0400515|OTU1615 |Bacteria_Proteobacteria_Alphaproteobacteria_Rickettsiales_Rickettsieae_Orientia                  |
-|      -3.635654| 0.0400515|OTU1216 |Bacteria_Firmicutes_Clostridia_Clostridiales_NA_Intestinimonas                                   |
-|      -4.200172| 0.0682206|OTU1130 |Bacteria_Proteobacteria_Deltaproteobacteria_Myxococcales_Kofleriaceae_Haliangium                 |
-|      -4.562412| 0.0997216|OTU1034 |Bacteria_Firmicutes_Tissierellia_Tissierellales_Peptoniphilaceae_Finegoldia                      |
-|      -4.393058| 0.0997216|OTU806  |Bacteria_Bacteroidetes_Flavobacteriia_Flavobacteriales_Flavobacteriaceae_Cruoricaptor            |
-|      -4.006487| 0.0997216|OTU1275 |Bacteria_Actinobacteria_Actinobacteria_Micrococcales_Micrococcaceae_Kocuria                      |
-|      -3.592363| 0.0997216|OTU506  |Bacteria_Actinobacteria_Actinobacteria_Micrococcales_Dermabacteraceae_Brachybacterium            |
-|       3.297079| 0.0997216|OTU520  |Bacteria_Firmicutes_Bacilli_Bacillales_Paenibacillaceae_Brevibacillus                            |
-|      -2.965051| 0.0997216|OTU1893 |Bacteria_Proteobacteria_Gammaproteobacteria_Pseudomonadales_Pseudomonadaceae_Pseudomonas         |
-|      -2.962616| 0.0997216|OTU194  |Bacteria_Firmicutes_Tissierellia_Tissierellales_Peptoniphilaceae_Anaerococcus                    |
-|      -2.195100| 0.0997216|OTU1075 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Geobacillus                                   |
-|      -2.079609| 0.0997216|OTU2529 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Virgibacillus                                 |
-|      -1.945307| 0.0997216|OTU1585 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Oceanobacillus                                |
-|      -2.130483| 0.1167806|OTU1235 |Bacteria_Firmicutes_Bacilli_Bacillales_Staphylococcaceae_Jeotgalicoccus                          |
-|      -3.648780| 0.1217426|OTU1165 |Bacteria_Proteobacteria_Gammaproteobacteria_Oceanospirillales_Halomonadaceae_Halomonas           |
-|      -2.175555| 0.2076876|OTU876  |Bacteria_Proteobacteria_Deltaproteobacteria_DesulfoVibrionales_Desulfovibrionaceae_Desulfovibrio |
+```
+## Error in eval(expr, envir, enclos): object 'Q' not found
+```
 
-<img src="figure/DESeq2-1.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-2.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-3.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-4.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-5.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-6.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-7.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-8.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-9.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-10.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-11.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-12.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-13.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-14.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-15.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-16.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-17.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-18.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" />
+```
+## Error in sample_data(x): object 'Q' not found
+```
+
+```
+## Error in sample_data(x): object 'mypseq' not found
+```
+
+```
+## Error in df[[group]]: object of type 'closure' is not subsettable
+```
+
+```
+## Error in access(object, "sam_data", errorIfNULL): sam_data slot is empty.
+```
+
+```
+## Error in sample_data(physeq, FALSE): object 'mypseq' not found
+```
+
+```
+## Error in is(object, "DESeqDataSet"): object 'ds2' not found
+```
+
+```
+## Error in is(object, "DESeqDataSet"): object 'dds' not found
+```
+
+```
+## Error in as.data.frame(res): object 'res' not found
+```
+
+```
+## Error in df$taxon <- rownames(df): object of type 'closure' is not subsettable
+```
+
+```
+## Error in UseMethod("arrange_"): no applicable method for 'arrange_' applied to an object of class "function"
+```
+
+```
+## Error in subset.default(df, select = c(log2FoldChange, padj, taxon)): argument "subset" is missing, with no default
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'full.names' not found
+```
+
+```
+## Error in seq_len(m): argument must be coercible to non-negative integer
+```
+
+```
+## Error in sample_data(x): object 'Q' not found
+```
+
+```
+## Error in microbiome::transform(Q, "clr"): object 'Q' not found
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'top.taxa' not found
+```
 
 #PERMANOVA analysis
 
@@ -67,36 +145,79 @@ library(ggplot2)
 library(dplyr)
 
 pseq <- Q
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'Q' not found
+```
+
+```r
 data = microbiome::meta(Q)
+```
+
+```
+## Error in sample_data(x): object 'Q' not found
+```
+
+```r
 # Pick relative abundances (compositional) and sample metadata 
 pseq.rel <- microbiome::transform(pseq, "compositional")
+```
+
+```
+## Error in microbiome::transform(pseq, "compositional"): object 'pseq' not found
+```
+
+```r
 otu <- abundances(pseq.rel)
+```
+
+```
+## Error in is(x): object 'pseq.rel' not found
+```
+
+```r
 meta <- meta(pseq.rel)
+```
+
+```
+## Error in sample_data(x): object 'pseq.rel' not found
+```
+
+```r
 library(vegan)
 library(phyloseq)
-permanova <- adonis(t(otu) ~ Age,
+permanova <- adonis(t(otu) ~ age_group,
                data = meta(Q), permutations=99, method = "bray")
+```
 
+```
+## Error in sample_data(x): object 'Q' not found
+```
+
+```r
 # P-value
-print(as.data.frame(permanova$aov.tab)["Age", "Pr(>F)"])
+print(as.data.frame(permanova$aov.tab)["age_group", "Pr(>F)"])
 ```
 
 ```
-## [1] 0.01
+## Error in as.data.frame(permanova$aov.tab): object 'permanova' not found
 ```
 
 ```r
 dist <- vegdist(t(otu))
-anova(betadisper(dist, meta$Age))
 ```
 
 ```
-## Analysis of Variance Table
-## 
-## Response: Distances
-##           Df  Sum Sq  Mean Sq F value Pr(>F)
-## Groups     1 0.02875 0.028748   1.089  0.303
-## Residuals 40 1.05594 0.026399
+## Error in t(otu): object 'otu' not found
+```
+
+```r
+anova(betadisper(dist, meta$age_group))
+```
+
+```
+## Error in betadisper(dist, meta$age_group): distances 'd' must be a 'dist' object
 ```
 
 # Investigate the top factors
@@ -104,14 +225,37 @@ anova(betadisper(dist, meta$Age))
 
 ```r
 library(vegan)
-coef <- coefficients(permanova)["Age1", ]
+coef <- coefficients(permanova)["age_group1", ]
+```
+
+```
+## Error in coefficients(permanova): object 'permanova' not found
+```
+
+```r
 top.coef <- coef[rev(order(abs(coef)))[1:20]]
+```
+
+```
+## Error in abs(coef): non-numeric argument to mathematical function
+```
+
+```r
 names(top.coef) <- full.names[names(top.coef)]
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'full.names' not found
+```
+
+```r
 par(mar = c(3, 14, 2, 1))
 barplot(sort(top.coef), horiz = T, las = 1, main = "Top taxa / 1")
 ```
 
-![plot of chunk top_factors](figure/top_factors-1.png)
+```
+## Error in sort(top.coef): object 'top.coef' not found
+```
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
