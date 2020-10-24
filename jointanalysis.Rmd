@@ -76,7 +76,7 @@ print(p2)
 res <- adonis(t(otu_table(phy)) ~ Diet + Geographical_location + age_group,
          data = meta(phy),
 	 permutations=99,
-	 method = "bray")
+	 method = "jaccard")
 print(res)
 ```
 

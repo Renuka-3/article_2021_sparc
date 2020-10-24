@@ -24,14 +24,14 @@ output: html_document
 res <- adonis(t(otu_table(phy)) ~ Diet + Geographical_location + age_group,
          data = meta(phy),
 	 permutations=99,
-	 method = "bray")
+	 method = "jaccard")
 print(res)
 ```
 
 ```
 ## 
 ## Call:
-## adonis(formula = t(otu_table(phy)) ~ Diet + Geographical_location +      age_group, data = meta(phy), permutations = 99, method = "bray") 
+## adonis(formula = t(otu_table(phy)) ~ Diet + Geographical_location +      age_group, data = meta(phy), permutations = 99, method = "jaccard") 
 ## 
 ## Permutation: free
 ## Number of permutations: 99
@@ -39,11 +39,11 @@ print(res)
 ## Terms added sequentially (first to last)
 ## 
 ##                       Df SumsOfSqs MeanSqs F.Model      R2 Pr(>F)   
-## Diet                   1    0.3745 0.37445 0.95573 0.01605   0.49   
-## Geographical_location  2    1.7028 0.85138 2.17301 0.07299   0.01 **
-## age_group              2    0.8792 0.43960 1.12202 0.03769   0.31   
-## Residuals             52   20.3734 0.39180         0.87328          
-## Total                 57   23.3298                 1.00000          
+## Diet                   1    0.4264 0.42635 0.99578 0.01690   0.44   
+## Geographical_location  2    1.5967 0.79833 1.86457 0.06328   0.01 **
+## age_group              2    0.9438 0.47189 1.10215 0.03741   0.20   
+## Residuals             52   22.2642 0.42816         0.88241          
+## Total                 57   25.2310                 1.00000          
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
