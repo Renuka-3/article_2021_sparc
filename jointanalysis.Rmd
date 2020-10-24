@@ -1,0 +1,121 @@
+---
+title: "joint analysis"
+author: "Renuka"
+date: "24 October 2020"
+output: html_document
+---
+
+
+# Ordination
+
+```{r init, echo=FALSE, message=FALSE}
+library(microbiome)
+library(phyloseq)
+library(vegan)
+library(Cairo)
+library(knitr)
+library(knitcitations)
+opts_chunk$set(dev="CairoPNG")
+method <- "PCoA"
+trans <- "compositional"
+distance <- "jaccard"
+phy <- readRDS("data/processed/phyloseq/phy20.1.RDS")
+```
+
+## *Principal Coordinates Analysis (PCoA)*
+
+* Ordination method: `r method`
+* Dissimilarity measure: `r distance`
+
+```{r pcoa, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold"}
+theme_set(theme_bw(15))
+library(microbiome)
+p <- plot_landscape(microbiome::transform(phy , "compositional"),
+                    distance = "jaccard",
+                    method = "PCoA",
+                    size = 3,
+                    col = "Diet",
+                    shading = FALSE) +
+  scale_colour_brewer(palette = "Set1")		    
+print(p)
+
+p1 <- plot_landscape(microbiome::transform(phy , "compositional"),
+                    distance = "jaccard",
+                    method = "PCoA",
+                    size = 3,
+                    col = "Geographical_location",
+                    shading = FALSE) +
+  scale_colour_brewer(palette = "Set1")		    
+print(p1)
+
+p2 <- plot_landscape(microbiome::transform(phy , "compositional"),
+                     distance = "jaccard",
+                     method = "PCoA",
+                     size = 3,
+                     col = "age_group",
+                     shading = FALSE) +
+  scale_colour_brewer(palette = "Set1")		    
+print(p2)
+```
+
+#PERMANOVA analysis
+
+```{r PERMANOVA}
+library(microbiome)
+library(ggplot2)
+library(dplyr)
+pseq <- phy
+data = microbiome::meta(phy)
+# Pick relative abundances (compositional) and sample metadata 
+pseq.rel <- microbiome::transform(pseq, "compositional")
+otu <- abundances(pseq.rel)
+meta <- meta(pseq.rel)
+library(vegan)
+library(phyloseq)
+#adonis(t(otu_table(phy)) ~ Diet + Geographical_location + Age, data = meta(phy), permutations=99, method = "bray")
+adonis(t(otu_table(phy)) ~ meta(phy)$Diet + meta(phy)$Geographical_location + meta(phy)$age_group, data = meta(phy), permutations=99, method = "bray")
+```
+
+#DESeq2
+
+```{r DESeq2, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold"}
+library(phyloseq)
+library(reshape2)
+library(DESeq2)
+padj.th <- 0.25
+mypseq <- phy
+# Remove NAs
+#group <- "Diet"
+#keep <- meta(phy)[, group] %>% complete.cases()
+#df <- meta(mypseq)[keep, ]
+#mygroup <- "Diet" + "Geographical_location" + "age_group"
+#df$group <- as.factor(df[[group]] == mygroup)
+#sample_data(mypseq) <- sample_data(df)
+quiet(ds2 <- phyloseq_to_deseq2(mypseq, ~ Diet + Geographical_location))
+dds <- DESeq(ds2)
+res <- results(dds)
+df <- as.data.frame(res)
+df$taxon <- rownames(df)
+df <- df %>% arrange(padj, desc(abs(log2FoldChange))) %>%
+  filter(padj < padj.th) 
+df <- subset(df, select= c(log2FoldChange, padj, taxon))
+rownames(df) <- NULL
+#apply(tax_table(Q), 1, function (x) {paste(x, collapse = "_")})
+#top.taxa <- as.character(df$taxon)
+df$full_name <- full.names[df$taxon]
+
+library(knitr)
+kable(df)
+
+
+#df <- meta(phy)
+#ps <- microbiome::transform(phy, "clr")
+#for (tax in top.taxa) {
+# df$taxa <- abundances(ps)[tax, ]
+# p <- ggplot(df, aes(x = , y = taxa)) +
+#   geom_boxplot() + 
+#   ggbeeswarm::geom_beeswarm() +
+#    theme(axis.text.x = element_text(angle = 360, hjust = 1)) +
+#   labs(x = "", y = "Abundance", title = tax)
+#  print(p)}
+```
