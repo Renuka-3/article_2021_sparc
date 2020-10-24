@@ -1,4 +1,5 @@
 library(ggplot2)
+library(microbiome)
 library(phyloseq)
 library(dada2)
 library(readxl)
@@ -22,8 +23,9 @@ TAX = tax_table(tax_mat)
 sam = sample_data(as.data.frame(samples_df))
 
 # Add age group information also
+phy <- phyloseq(OTU, TAX, sam)
+
 sample_data(phy)$age_group <- cut(meta(phy)$Age, breaks = c(0, 40, 59, Inf), labels = c("adult", "middle_age", "elderly"))
 
-phy <- phyloseq(OTU, TAX, sam)
 saveRDS(phy, file = "data/processed/phyloseq/phy20.1.RDS")
 
