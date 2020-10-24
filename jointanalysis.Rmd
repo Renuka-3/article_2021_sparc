@@ -76,13 +76,13 @@ print(p2)
 res <- adonis(t(otu_table(phy)) ~ Diet + Geographical_location + age_group,
          data = meta(phy),
 	 permutations=99,
-	 method = "jaccard")
+	 method = method)
 print(res)
 ```
 
 # Differential abundance analysis
 
-```{r DESeq2, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold"}
+```{r DESeq2, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="25%", fig.show="hold"}
 location <- meta(phy)$Geographical_location
 A <- abundances(phy);
 pv <- apply(A, 1, function (x) {kruskal.test(x ~ location)$p.value});
@@ -97,5 +97,18 @@ rownames(df) <- NULL
 
 library(knitr)
 kable(df)
+
+ps <- microbiome::transform(phy, "clr")
+d <- meta(ps)
+for (tax in df$taxon) {
+  d$taxa <- abundances(ps)[tax, ]
+  p <- ggplot(d, aes(x = Geographical_location, y = taxa)) +
+    geom_boxplot() + 
+    ggbeeswarm::geom_beeswarm() +
+    theme(axis.text.x = element_text(angle = 360, hjust = 1)) +
+    labs(x = "Location", y = "Abundance (CLR)", title = tax)
+  print(p)
+}
 ```
+
 

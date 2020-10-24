@@ -24,7 +24,14 @@ output: html_document
 res <- adonis(t(otu_table(phy)) ~ Diet + Geographical_location + age_group,
          data = meta(phy),
 	 permutations=99,
-	 method = "jaccard")
+	 method = method)
+```
+
+```
+## Error in vegdist(lhs, method = method, ...): invalid distance method
+```
+
+```r
 print(res)
 ```
 
@@ -87,4 +94,7 @@ print(res)
 |OTU1336 | 0.1409617|Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Lentibacillus                                   |
 |OTU922  | 0.1592962|Bacteria_Firmicutes_Clostridia_Clostridiales_Clostridiales Family XIII. Incertae Sedis_Emergencia  |
 |OTU2218 | 0.1613689|Bacteria_Firmicutes_Bacilli_Lactobacillales_Streptococcaceae_Streptococcus                         |
+
+<img src="figure_joint/DESeq2-1.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-2.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-3.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-4.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-5.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-6.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-7.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-8.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-9.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-10.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-11.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-12.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-13.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-14.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-15.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-16.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-17.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-18.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-19.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-20.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-21.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-22.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-23.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-24.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-25.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-26.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-27.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-28.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-29.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-30.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-31.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-32.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-33.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" /><img src="figure_joint/DESeq2-34.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="25%" />
+
 
