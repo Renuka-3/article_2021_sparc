@@ -39,7 +39,7 @@ object.
 3. DESeq2 analysis
 4. Investigate the top factors
 
-* [jointanalysis] (jointanalysis.md)
+* [jointanalysis](jointanalysis.md)
 1. Beta diversity analysis of all factors - PCoA analysis, PERMANOVA
 2. DESeq2 analysis of all factors 
 
