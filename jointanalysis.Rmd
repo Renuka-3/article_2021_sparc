@@ -40,7 +40,7 @@ phy <- readRDS("data/processed/phyloseq/phy20.1.RDS")
 * Ordination method: `r method`
 * Dissimilarity measure: `r distance`
 
-```{r pcoa, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold", warning=FALSE}
+```{r pcoa, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="33%", fig.show="hold", warning=FALSE}
 theme_set(theme_bw(15))
 p <- plot_landscape(microbiome::transform(phy , "compositional"),
                     distance = distance,

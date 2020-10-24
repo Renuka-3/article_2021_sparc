@@ -10,109 +10,21 @@ output: html_document
 
 
 
-# Alpha diversity analysis
-
-
-
-
-# Group-wise comparisons
+## Alpha diversity analysis
 
 Diversity index: diversity_shannon
 
+
+
 <img src="figure_location/group_comp-1.png" title="plot of chunk group_comp" alt="plot of chunk group_comp" width="50%" />
-
-# Ordination
-
-
-
-## Principal Coordinates Analysis (PCoA)
-
-* Ordination method: PCoA
-* Dissimilarity measure: bray
-
-<img src="figure_location/pcoa-1.png" title="plot of chunk pcoa" alt="plot of chunk pcoa" width="50%" />
-
-
-
-# Community composition (with PERMANOVA)
-
-
-```r
-library(microbiome)
-library(ggplot2)
-library(dplyr)
-
-pseq <- phy# Rename the example data
-data = microbiome::meta(phy)
-# Pick relative abundances (compositional) and sample metadata 
-pseq.rel <- microbiome::transform(pseq, "compositional")
-otu <- abundances(pseq.rel)
-meta <- meta(pseq.rel)
-library(vegan)
-library(phyloseq)
-permanova <- adonis(t(otu) ~ Geographical_location,
-               data = meta(phy), permutations=99, method = distance)
-
-# P-value
-print(as.data.frame(permanova$aov.tab)["Geographical_location", "Pr(>F)"])
-```
-
-```
-## [1] 0.01
-```
-
-```r
-# Check beta dispersion - is this OK?
-dist <- vegdist(t(otu))
-anova(betadisper(dist, meta$Geographical_location))
-```
-
-```
-## Analysis of Variance Table
-## 
-## Response: Distances
-##           Df  Sum Sq Mean Sq F value Pr(>F)
-## Groups     2 0.15882 0.07941  1.7537 0.1827
-## Residuals 55 2.49040 0.04528
-```
-
-
-# Investigate the top factors
-
-
-```r
-library(vegan)
-
-coef1 <- coefficients(permanova)["Geographical_location1", ]
-top.coef1 <- coef1[rev(order(abs(coef1)))[1:20]]
-names(top.coef1) <- full.names[names(top.coef1)]
-
-coef2 <- coefficients(permanova)["Geographical_location2", ]
-top.coef2 <- coef2[rev(order(abs(coef2)))[1:20]]
-names(top.coef2) <- full.names[names(top.coef2)]
-
-par(mar = c(3, 20, 2, 1), mfrow = 2)
-```
-
-```
-## Error in par(mar = c(3, 20, 2, 1), mfrow = 2): graphical parameter "mfrow" has the wrong length
-```
-
-```r
-barplot(sort(top.coef1), horiz = T, las = 1, main = "Top taxa / 1")
-```
-
-![plot of chunk top_factors](figure_location/top_factors-1.png)
-
-```r
-barplot(sort(top.coef2), horiz = T, las = 1, main = "Top taxa / 2")
-```
-
-![plot of chunk top_factors](figure_location/top_factors-2.png)
 
 
 
 ## Differential abundance analysis (with Kruskal-Wallis test)
+
+In (jointanalysis.md) it was shown that geographical location has a significant effect.
+
+Here, we investigate individual taxonomic groups in more detail.
 
 Significant (or marginally signifiant) taxa between geographical locations.
 

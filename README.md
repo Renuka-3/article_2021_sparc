@@ -17,15 +17,13 @@ object.
 
 ### Analysis files
 
-* [coreanalysis](coreanalysis.md)
-1. core_genera_heatmap
-2. phylum abundance distribution
+[Joint analysis](jointanalysis.md): this shows that only geographic
+location has significant effect on the overall community composition.
 
-* [locationanalysis](locationanalysis.md)
-1. Alpha diversity analysis- shannon diversity analysis using wilcoxon test
-2. Beta diversity analysis- PCoA analysis, PERMANOVA
-3. DESeq2 analysis
-4. Investigate the top factors
+
+[Location analysis ](locationanalysis.md): Here we investigate in more
+detail which taxonomic groups differ between locations.
+
 
 * [ageanalysis](ageanalysis.md)
 1. alpha diversity analysis- shannon diversity analysis using wilcoxon test
@@ -39,8 +37,11 @@ object.
 3. DESeq2 analysis
 4. Investigate the top factors
 
-* [jointanalysis](jointanalysis.md)
-1. Beta diversity analysis of all factors - PCoA analysis, PERMANOVA
-2. DESeq2 analysis of all factors 
+
+* [coreanalysis](coreanalysis.md)
+1. core_genera_heatmap
+2. phylum abundance distribution
+
+
 
 
