@@ -1,7 +1,7 @@
 ---
 title: "Location analysis"
 author: "Renuka"
-date: "2020-10-22"
+date: "2020-10-24"
 output: html_document
 ---
 
@@ -19,7 +19,7 @@ output: html_document
 
 Diversity index: diversity_shannon
 
-<img src="figure/group_comp-1.png" title="plot of chunk group_comp" alt="plot of chunk group_comp" width="50%" />
+<img src="figure_location/group_comp-1.png" title="plot of chunk group_comp" alt="plot of chunk group_comp" width="50%" />
 
 # Ordination
 
@@ -30,7 +30,7 @@ Diversity index: diversity_shannon
 * Ordination method: PCoA
 * Dissimilarity measure: jaccard
 
-<img src="figure/pcoa-1.png" title="plot of chunk pcoa" alt="plot of chunk pcoa" width="50%" />
+<img src="figure_location/pcoa-1.png" title="plot of chunk pcoa" alt="plot of chunk pcoa" width="50%" />
 
 
 ## Differential abundance analysis (with DESeq2)
@@ -45,7 +45,9 @@ Diversity index: diversity_shannon
 |      -3.175628| 0.1176826|OTU251  |Bacteria_Actinobacteria_Actinobacteria_Micrococcales_Micrococcaceae_Arthrobacter |
 |      -2.581503| 0.1319555|OTU1075 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Geobacillus                   |
 
-<img src="figure/DESeq2-1.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="33%" /><img src="figure/DESeq2-2.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="33%" /><img src="figure/DESeq2-3.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="33%" /><img src="figure/DESeq2-4.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="33%" /><img src="figure/DESeq2-5.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="33%" /><img src="figure/DESeq2-6.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="33%" /><img src="figure/DESeq2-7.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="33%" />
+```
+## Error in eval(expr, envir, enclos): object 'top.taxa' not found
+```
 
 # PERMANOVA analysis
 
@@ -114,11 +116,11 @@ par(mar = c(3, 20, 2, 1), mfrow = 2)
 barplot(sort(top.coef1), horiz = T, las = 1, main = "Top taxa / 1")
 ```
 
-![plot of chunk top_factors](figure/top_factors-1.png)
+![plot of chunk top_factors](figure_location/top_factors-1.png)
 
 ```r
 barplot(sort(top.coef2), horiz = T, las = 1, main = "Top taxa / 2")
 ```
 
-![plot of chunk top_factors](figure/top_factors-2.png)
+![plot of chunk top_factors](figure_location/top_factors-2.png)
 

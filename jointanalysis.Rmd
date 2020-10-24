@@ -27,6 +27,8 @@ library(DESeq2)
 
 
 opts_chunk$set(dev="CairoPNG")
+knitr::opts_chunk$set(fig.path="figure_joint/")
+
 method <- "PCoA"
 trans <- "compositional"
 distance <- "jaccard"
@@ -71,26 +73,29 @@ print(p2)
 # PERMANOVA analysis
 
 ```{r PERMANOVA, message=FALSE}
-res <- adonis(t(otu_table(phy)) ~ Diet + Geographical_location + age_group, data = meta(phy), permutations=99, method = "bray")
+res <- adonis(t(otu_table(phy)) ~ Diet + Geographical_location + age_group,
+         data = meta(phy),
+	 permutations=99,
+	 method = "bray")
 print(res)
 ```
 
-# DESeq2
+# Differential abundance analysis
 
 ```{r DESeq2, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold"}
-padj.th <- 0.25
-mypseq <- phy
-quiet(ds2 <- phyloseq_to_deseq2(mypseq, ~ Diet + Geographical_location))
-dds <- DESeq(ds2)
-res <- results(dds)
-df <- as.data.frame(res)
-df$taxon <- rownames(df)
-df <- df %>% arrange(padj, desc(abs(log2FoldChange))) %>%
-  filter(padj < padj.th) 
-df <- subset(df, select= c(log2FoldChange, padj, taxon))
-rownames(df) <- NULL
+location <- meta(phy)$Geographical_location
+A <- abundances(phy);
+pv <- apply(A, 1, function (x) {kruskal.test(x ~ location)$p.value});
+padj <- p.adjust(pv);
+
+df <- data.frame(taxon = names(padj), padj = padj)
+# Add full names for the taxa
+full.names <- apply(tax_table(phy), 1, function (x) {paste(x, collapse = "_")})
 df$full_name <- full.names[df$taxon]
+df <- df %>% filter(padj < 0.25) %>% arrange(padj)
+rownames(df) <- NULL
 
 library(knitr)
 kable(df)
 ```
+

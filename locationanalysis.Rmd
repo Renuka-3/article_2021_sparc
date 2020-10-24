@@ -19,6 +19,7 @@ library(dada2)
 library(dplyr)
 theme_set(theme_bw(20))
 knitr::opts_chunk$set(fig.width=10, fig.height=10, message=FALSE, warning=FALSE)
+knitr::opts_chunk$set(fig.path="figure_location/")
 
 # Was created with: source("create_phyloseq.R")
 phy <- readRDS("data/processed/phyloseq/phy20.1.RDS")

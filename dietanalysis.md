@@ -1,7 +1,7 @@
 ---
 title: "Diet analysis"
 author: "Renuka"
-date: "2020-10-22"
+date: "2020-10-24"
 output: html_document
 ---
 
@@ -17,7 +17,7 @@ output: html_document
 # Group-wise comparisons
 * Diversity index: diversity_shannon
 
-<img src="figure/group_comp-1.png" title="plot of chunk group_comp" alt="plot of chunk group_comp" width="50%" />
+<img src="figure_diet/group_comp-1.png" title="plot of chunk group_comp" alt="plot of chunk group_comp" width="50%" />
 
 # Ordination
 
@@ -28,7 +28,7 @@ output: html_document
 * Ordination method: PCoA
 * Dissimilarity measure: jaccard
 
-<img src="figure/pcoa-1.png" title="plot of chunk pcoa" alt="plot of chunk pcoa" width="50%" />
+<img src="figure_diet/pcoa-1.png" title="plot of chunk pcoa" alt="plot of chunk pcoa" width="50%" />
 
 ##DESeq2 analysis*
 
@@ -57,7 +57,9 @@ output: html_document
 |       3.095269| 0.2172731|OTU1874 |Bacteria_Proteobacteria_Gammaproteobacteria_Alteromonadales _Pseudoalteromonadaceae_Pseudoalteromonas |
 |       2.421420| 0.2172731|OTU1450 |Bacteria_Actinobacteria_Actinobacteria_Micrococcales_Microbacteriaceae_Microbacterium                 |
 
-<img src="figure/DESeq2-1.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-2.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-3.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-4.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-5.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-6.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-7.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-8.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-9.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-10.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-11.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-12.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-13.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-14.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-15.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-16.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-17.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure/DESeq2-18.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" />
+```
+## Error in eval(expr, envir, enclos): object 'top.taxa' not found
+```
 
 #PERMANOVA analysis
 
@@ -82,7 +84,7 @@ print(as.data.frame(permanova$aov.tab)["Diet", "Pr(>F)"])
 ```
 
 ```
-## [1] 0.33
+## [1] 0.23
 ```
 
 ```r
@@ -111,4 +113,4 @@ par(mar = c(3, 14, 2, 1))
 barplot(sort(top.coef1), horiz = T, las = 1, main = "Top taxa / 1")
 ```
 
-![plot of chunk top_factors](figure/top_factors-1.png)
+![plot of chunk top_factors](figure_diet/top_factors-1.png)
