@@ -76,39 +76,13 @@ print(p2)
 res <- adonis(t(otu_table(phy)) ~ Diet + Geographical_location + age_group,
          data = meta(phy),
 	 permutations=99,
-	 method = method)
+	 method = distance)
 print(res)
 ```
 
-# Differential abundance analysis
+# Conclusion
 
-```{r DESeq2, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="25%", fig.show="hold"}
-location <- meta(phy)$Geographical_location
-A <- abundances(phy);
-pv <- apply(A, 1, function (x) {kruskal.test(x ~ location)$p.value});
-padj <- p.adjust(pv);
+There is a significant difference in microbiota community composition between different geographical areas.
 
-df <- data.frame(taxon = names(padj), padj = padj)
-# Add full names for the taxa
-full.names <- apply(tax_table(phy), 1, function (x) {paste(x, collapse = "_")})
-df$full_name <- full.names[df$taxon]
-df <- df %>% filter(padj < 0.25) %>% arrange(padj)
-rownames(df) <- NULL
-
-library(knitr)
-kable(df)
-
-ps <- microbiome::transform(phy, "clr")
-d <- meta(ps)
-for (tax in df$taxon) {
-  d$taxa <- abundances(ps)[tax, ]
-  p <- ggplot(d, aes(x = Geographical_location, y = taxa)) +
-    geom_boxplot() + 
-    ggbeeswarm::geom_beeswarm() +
-    theme(axis.text.x = element_text(angle = 360, hjust = 1)) +
-    labs(x = "Location", y = "Abundance (CLR)", title = tax)
-  print(p)
-}
-```
-
+No significant effect is observed in diet or age group.
 

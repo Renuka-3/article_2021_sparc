@@ -17,9 +17,12 @@ library(reshape2)
 library(tidyverse)
 library(dada2)
 library(dplyr)
+library(microbiome)
+
 theme_set(theme_bw(20))
 knitr::opts_chunk$set(fig.width=10, fig.height=10, message=FALSE, warning=FALSE)
 knitr::opts_chunk$set(fig.path="figure_location/")
+opts_chunk$set(dev="CairoPNG")
 
 # Was created with: source("create_phyloseq.R")
 phy <- readRDS("data/processed/phyloseq/phy20.1.RDS")
@@ -29,9 +32,6 @@ phy <- readRDS("data/processed/phyloseq/phy20.1.RDS")
 # Alpha diversity analysis
 
 ```{r alpha1, echo=FALSE, message=FALSE, warning=FALSE}
-library(microbiome)
-opts_chunk$set(dev="CairoPNG")
-
 # Estimate alpha diversities
 A <- alpha(phy)
 index <- "diversity_shannon"
@@ -42,7 +42,7 @@ index <- "diversity_shannon"
 
 Diversity index: `r index`
 
-```{r group_comp, echo=FALSE, echo=FALSE, message=FALSE, fig.width=10, fig.height=8, fig.show="keep", out.width="50%"}
+```{r group_comp, echo=FALSE, echo=FALSE, message=FALSE, fig.width=10, fig.height=6, fig.show="keep", out.width="50%"}
 library(Cairo)
 df <- meta(phy)
 df <- bind_cols(df, A)
@@ -68,7 +68,7 @@ library(vegan)
 opts_chunk$set(dev="CairoPNG")
 method <- "PCoA"
 trans <- "compositional"
-distance <- "jaccard"
+distance <- "bray"
 ```
 
 ## Principal Coordinates Analysis (PCoA)
@@ -80,8 +80,8 @@ distance <- "jaccard"
 theme_set(theme_bw(15))
 library(microbiome)
 p <- plot_landscape(microbiome::transform(phy , "compositional"),
-                    distance = "jaccard",
-                    method = "PCoA",
+                    distance = distance,
+                    method = method,
                     size = 3,
                     col = "Geographical_location",
                     shading = FALSE) +
@@ -90,62 +90,8 @@ print(p)
 ```
 
 
-## Differential abundance analysis (with DESeq2)
 
-```{r DESeq2, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="33%", fig.show="hold"}
-library(phyloseq)
-library(reshape2)
-library(DESeq2)
-padj.th <- 0.25
-mypseq <- phy
-
-# Remove NAs
-group <- "Geographical_location"
-keep <- meta(phy)[, group] %>% complete.cases()
-
-df <- meta(mypseq)[keep, ]
-
-mygroup <- "Geographical_location"
-df$group <- as.factor(df[[group]] == mygroup)
-sample_data(mypseq) <- sample_data(df)
-quiet(ds2 <- phyloseq_to_deseq2(mypseq, ~ Geographical_location))
-dds <- DESeq(ds2)
-res <- results(dds)
-df <- as.data.frame(res)
-df$taxon <- rownames(df)
-#df <- df %>% arrange(desc(abs(log2FoldChange)), padj) %>%
-#             filter(padj < padj.th) 
-
-df <- df %>% arrange(padj, desc(abs(log2FoldChange))) %>%
-             filter(padj < padj.th) 
-df <- subset(df, select= c(log2FoldChange, padj, taxon))
-rownames(df) <- NULL
-
-# WHat is the purpose of this one?
-full.names <- apply(tax_table(phy), 1, function (x) {paste(x, collapse = "_")})
-# top.taxa <- as.character(df$taxon)
-
-# Add full phylogenetic name for this OTU
-df$full_name <- full.names[df$taxon]
-
-library(knitr)
-kable(df)
-
-
-df <- meta(phy)
-ps <- microbiome::transform(phy, "clr")
-for (tax in top.taxa) {
-  df$taxa <- abundances(ps)[tax, ]
-  p <- ggplot(df, aes(x = Geographical_location, y = taxa)) +
-    geom_boxplot() + 
-    ggbeeswarm::geom_beeswarm() +
-    theme(axis.text.x = element_text(angle = 360, hjust = 1)) +
-    labs(x = "Geographical location", y = "Abundance", title = tax)
-  print(p)
-}
-```
-
-# PERMANOVA analysis
+# Community composition (with PERMANOVA)
 
 ```{r PERMANOVA}
 library(microbiome)
@@ -161,11 +107,12 @@ meta <- meta(pseq.rel)
 library(vegan)
 library(phyloseq)
 permanova <- adonis(t(otu) ~ Geographical_location,
-               data = meta(phy), permutations=99, method = "bray")
+               data = meta(phy), permutations=99, method = distance)
 
 # P-value
 print(as.data.frame(permanova$aov.tab)["Geographical_location", "Pr(>F)"])
 
+# Check beta dispersion - is this OK?
 dist <- vegdist(t(otu))
 anova(betadisper(dist, meta$Geographical_location))
 ```
@@ -188,4 +135,41 @@ par(mar = c(3, 20, 2, 1), mfrow = 2)
 barplot(sort(top.coef1), horiz = T, las = 1, main = "Top taxa / 1")
 barplot(sort(top.coef2), horiz = T, las = 1, main = "Top taxa / 2")
 ```
+
+
+
+## Differential abundance analysis (with Kruskal-Wallis test)
+
+Significant (or marginally signifiant) taxa between geographical locations.
+
+```{r diffab, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="25%", fig.show="hold"}
+location <- meta(phy)$Geographical_location
+A <- abundances(phy);
+pv <- apply(A, 1, function (x) {kruskal.test(x ~ location)$p.value});
+padj <- p.adjust(pv);
+
+df <- data.frame(taxon = names(padj), padj = padj)
+# Add full names for the taxa
+full.names <- apply(tax_table(phy), 1, function (x) {paste(x, collapse = "_")})
+df$full_name <- full.names[df$taxon]
+df <- df %>% filter(padj < 0.25) %>% arrange(padj)
+rownames(df) <- NULL
+
+library(knitr)
+kable(df)
+
+ps <- microbiome::transform(phy, "clr")
+d <- meta(ps)
+for (tax in df$taxon) {
+  d$taxa <- abundances(ps)[tax, ]
+  p <- ggplot(d, aes(x = Geographical_location, y = taxa)) +
+    geom_boxplot() + 
+    ggbeeswarm::geom_beeswarm() +
+    theme(axis.text.x = element_text(angle = 360, hjust = 1)) +
+    labs(x = "Location", y = "Abundance (CLR)", title = tax)
+  print(p)
+}
+```
+
+
 

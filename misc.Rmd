@@ -1,0 +1,88 @@
+```{r DESeq2, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="33%", fig.show="hold"}
+library(phyloseq)
+library(reshape2)
+library(DESeq2)
+padj.th <- 0.25
+mypseq <- phy
+
+# Remove NAs
+group <- "Geographical_location"
+keep <- meta(phy)[, group] %>% complete.cases()
+
+df <- meta(mypseq)[keep, ]
+
+mygroup <- "Geographical_location"
+df$group <- as.factor(df[[group]] == mygroup)
+sample_data(mypseq) <- sample_data(df)
+quiet(ds2 <- phyloseq_to_deseq2(mypseq, ~ Geographical_location))
+dds <- DESeq(ds2)
+res <- results(dds)
+df <- as.data.frame(res)
+df$taxon <- rownames(df)
+#df <- df %>% arrange(desc(abs(log2FoldChange)), padj) %>%
+#             filter(padj < padj.th) 
+
+df <- df %>% arrange(padj, desc(abs(log2FoldChange))) %>%
+             filter(padj < padj.th) 
+df <- subset(df, select= c(log2FoldChange, padj, taxon))
+rownames(df) <- NULL
+
+# WHat is the purpose of this one?
+full.names <- apply(tax_table(phy), 1, function (x) {paste(x, collapse = "_")})
+# top.taxa <- as.character(df$taxon)
+
+# Add full phylogenetic name for this OTU
+df$full_name <- full.names[df$taxon]
+
+library(knitr)
+kable(df)
+
+
+df <- meta(phy)
+ps <- microbiome::transform(phy, "clr")
+for (tax in top.taxa) {
+  df$taxa <- abundances(ps)[tax, ]
+  p <- ggplot(df, aes(x = Geographical_location, y = taxa)) +
+    geom_boxplot() + 
+    ggbeeswarm::geom_beeswarm() +
+    theme(axis.text.x = element_text(angle = 360, hjust = 1)) +
+    labs(x = "Geographical location", y = "Abundance", title = tax)
+  print(p)
+}
+```
+
+# Differential abundance analysis
+
+```{r DESeq2, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="25%", fig.show="hold"}
+location <- meta(phy)$Geographical_location
+A <- abundances(phy);
+pv <- apply(A, 1, function (x) {kruskal.test(x ~ location)$p.value});
+padj <- p.adjust(pv);
+
+df <- data.frame(taxon = names(padj), padj = padj)
+# Add full names for the taxa
+full.names <- apply(tax_table(phy), 1, function (x) {paste(x, collapse = "_")})
+df$full_name <- full.names[df$taxon]
+df <- df %>% filter(padj < 0.25) %>% arrange(padj)
+rownames(df) <- NULL
+
+library(knitr)
+kable(df)
+
+ps <- microbiome::transform(phy, "clr")
+d <- meta(ps)
+for (tax in df$taxon) {
+  d$taxa <- abundances(ps)[tax, ]
+  p <- ggplot(d, aes(x = Geographical_location, y = taxa)) +
+    geom_boxplot() + 
+    ggbeeswarm::geom_beeswarm() +
+    theme(axis.text.x = element_text(angle = 360, hjust = 1)) +
+    labs(x = "Location", y = "Abundance (CLR)", title = tax)
+  print(p)
+}
+```
+
+
+
+
+
