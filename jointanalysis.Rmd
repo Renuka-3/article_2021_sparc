@@ -27,7 +27,7 @@ phy <- readRDS("data/processed/phyloseq/phy20.1.RDS")
 * Ordination method: `r method`
 * Dissimilarity measure: `r distance`
 
-```{r pcoa, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold"}
+```{r pcoa, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold", warning=FALSE}
 theme_set(theme_bw(15))
 library(microbiome)
 p <- plot_landscape(microbiome::transform(phy , "compositional"),
@@ -58,9 +58,9 @@ p2 <- plot_landscape(microbiome::transform(phy , "compositional"),
 print(p2)
 ```
 
-#PERMANOVA analysis
+# PERMANOVA analysis
 
-```{r PERMANOVA}
+```{r PERMANOVA, message=FALSE}
 library(microbiome)
 library(ggplot2)
 library(dplyr)
@@ -73,10 +73,11 @@ meta <- meta(pseq.rel)
 library(vegan)
 library(phyloseq)
 #adonis(t(otu_table(phy)) ~ Diet + Geographical_location + Age, data = meta(phy), permutations=99, method = "bray")
-adonis(t(otu_table(phy)) ~ meta(phy)$Diet + meta(phy)$Geographical_location + meta(phy)$age_group, data = meta(phy), permutations=99, method = "bray")
+res <- adonis(t(otu_table(phy)) ~ Diet + Geographical_location + age_group, data = meta(phy), permutations=99, method = "bray")
+print(res)
 ```
 
-#DESeq2
+# DESeq2
 
 ```{r DESeq2, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold"}
 library(phyloseq)
