@@ -43,8 +43,8 @@ phy <- readRDS("data/processed/phyloseq/phy20.1.RDS")
 ```{r pcoa, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold", warning=FALSE}
 theme_set(theme_bw(15))
 p <- plot_landscape(microbiome::transform(phy , "compositional"),
-                    distance = "jaccard",
-                    method = "PCoA",
+                    distance = distance,
+                    method = method,
                     size = 3,
                     col = "Diet",
                     shading = FALSE) +
@@ -52,8 +52,8 @@ p <- plot_landscape(microbiome::transform(phy , "compositional"),
 print(p)
 
 p1 <- plot_landscape(microbiome::transform(phy , "compositional"),
-                    distance = "jaccard",
-                    method = "PCoA",
+                    distance = distance,
+                    method = method,
                     size = 3,
                     col = "Geographical_location",
                     shading = FALSE) +
@@ -61,8 +61,8 @@ p1 <- plot_landscape(microbiome::transform(phy , "compositional"),
 print(p1)
 
 p2 <- plot_landscape(microbiome::transform(phy , "compositional"),
-                     distance = "jaccard",
-                     method = "PCoA",
+                     distance = distance,
+                     method = method,
                      size = 3,
                      col = "age_group",
                      shading = FALSE) +
