@@ -1,9 +1,11 @@
 ---
 title: "Dirichlet multinominal analysis"
 author: "Renuka"
-date: "25 October 2020"
+date: "2020-10-25"
 output: html_document
 ---
+
+
 
 
 ```r
@@ -13,17 +15,45 @@ library(reshape2)
 library(magrittr)
 library(dplyr)
 phy <- readRDS("data/processed/phyloseq/phy20.1.RDS")
-data(phy)
+# data(phy) -> this was to load other example data; not needed as you just loaded phy above
 pseq <- phy
 
+# Include only those groups that exceed certain abundance and prevalenec
 pseq.comp <- microbiome::transform(pseq, "compositional")
-taxa <- core_members(pseq.comp, detection = 0.1/100, prevalence = 50/100)
+
+theme_set(theme_bw(20))
+knitr::opts_chunk$set(fig.width=10, fig.height=10, message=FALSE, warning=FALSE)
+opts_chunk$set(dev="CairoPNG")
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'opts_chunk' not found
+```
+
+```r
+# Set this to make sure that the figures of this Rmd file get their own name
+knitr::opts_chunk$set(fig.path="figure_DMM/")
+
+#det.th <- 0.1/100
+det.th <- 0.1/100
+prev.th <- 10/100
+taxa <- core_members(pseq.comp, detection = det.th, prevalence = prev.th)
 pseq <- prune_taxa(taxa, pseq)
 
 dat <- abundances(pseq)
 count <- as.matrix(t(dat))
+```
 
-fit <- lapply(1:3, dmn, count = count, verbose=TRUE)
+The following `length(taxa)` taxonomic groups are detected with `100 * prev.th`% prevalence at `100 * det.th`% relative abundance: `print(paste(taxa, collapse = ", "))`.
+```
+
+
+
+
+```r
+# Define here the max (possible) number of clusters. The higher it is, the slower the computing.
+max.clusters <- 5
+fit <- lapply(1:max.clusters, dmn, count = count, verbose=TRUE)
 ```
 
 ```
@@ -32,18 +62,27 @@ fit <- lapply(1:3, dmn, count = count, verbose=TRUE)
 ##   Expectation Maximization
 ##   Hessian
 ##   Soft kmeans
-##     iteration 10 change 0.029457
-##     iteration 20 change 0.000797
-##     iteration 30 change 0.000008
+##     iteration 10 change 0.000006
+##   Expectation Maximization setup
+##   Expectation Maximization
+##     iteration 10 change 0.000696
+##     iteration 20 change 0.000000
+##   Hessian
+##   Soft kmeans
 ##   Expectation Maximization setup
 ##   Expectation Maximization
 ##   Hessian
 ##   Soft kmeans
-##     iteration 10 change 0.006641
-##     iteration 20 change 0.000006
 ##   Expectation Maximization setup
 ##   Expectation Maximization
-##     iteration 10 change 0.000025
+##     iteration 10 change 0.000099
+##   Hessian
+##   Soft kmeans
+##     iteration 10 change 0.027979
+##     iteration 20 change 0.000001
+##   Expectation Maximization setup
+##   Expectation Maximization
+##     iteration 10 change 0.000010
 ##   Hessian
 ```
 
@@ -58,30 +97,38 @@ mixturewt(best)
 
 ```
 ##          pi     theta
-## 1 0.7782303  1.618373
-## 2 0.2217697 37.962784
+## 1 0.6052882  6.796877
+## 2 0.2063938 57.980428
+## 3 0.1883180 44.661215
 ```
+
+The optimal number of clusters is: `which.min(unlist(lplc))`.
+
+The (main) drivers per component are visualized.
+
 
 ```r
 ass <- apply(mixture(best), 1, which.max)
 
 for (k in seq(ncol(fitted(best)))) {
-d <- melt(fitted(best))
-  colnames(d) <- c("OTU", "cluster", "value")
-d <- subset(d, cluster == k) %>%
-    # Arrange OTUs by assignment strength
-arrange(value) %>%
-mutate(OTU = factor(OTU, levels = unique(OTU))) %>%
-    # Only show the most important drivers
-filter(abs(value) > quantile(abs(value), 0.8))     
 
-p <- ggplot(d, aes(x = OTU, y = value)) +
-  geom_bar(stat = "identity") +
-  coord_flip() +
-  labs(title = paste("Top drivers: community type", k))
-print(p)
+  d <- melt(fitted(best))
+  colnames(d) <- c("OTU", "cluster", "value")
+  
+  d <- subset(d, cluster == k) %>%
+    # Arrange OTUs by assignment strength
+    arrange(value) %>%
+    mutate(OTU = factor(OTU, levels = unique(OTU))) %>%
+    # Only show the most important drivers
+    filter(abs(value) > quantile(abs(value), 0.8))     
+
+  p <- ggplot(d, aes(x = OTU, y = value)) +
+    geom_bar(stat = "identity") +
+    coord_flip() +
+    labs(title = paste("Top drivers: community type", k))
+  print(p)
 }  
 ```
 
-![plot of chunk unnamed-chunk-6](figure_age/unnamed-chunk-6-1.png)![plot of chunk unnamed-chunk-6](figure_age/unnamed-chunk-6-2.png)
+<img src="figure_DMM/DMM-1.png" title="plot of chunk DMM" alt="plot of chunk DMM" width="33%" /><img src="figure_DMM/DMM-2.png" title="plot of chunk DMM" alt="plot of chunk DMM" width="33%" /><img src="figure_DMM/DMM-3.png" title="plot of chunk DMM" alt="plot of chunk DMM" width="33%" />
 

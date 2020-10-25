@@ -1,28 +1,51 @@
 ---
 title: "Dirichlet multinominal analysis"
 author: "Renuka"
-date: "25 October 2020"
+date: "`r Sys.Date()`"
 output: html_document
 ---
 
-```{r}
+
+
+```{r init}
 library(microbiome)
 library(DirichletMultinomial)
 library(reshape2)
 library(magrittr)
 library(dplyr)
 phy <- readRDS("data/processed/phyloseq/phy20.1.RDS")
-data(phy)
+# data(phy) -> this was to load other example data; not needed as you just loaded phy above
 pseq <- phy
 
+# Include only those groups that exceed certain abundance and prevalenec
 pseq.comp <- microbiome::transform(pseq, "compositional")
-taxa <- core_members(pseq.comp, detection = 0.1/100, prevalence = 50/100)
+
+theme_set(theme_bw(20))
+knitr::opts_chunk$set(fig.width=10, fig.height=10, message=FALSE, warning=FALSE)
+opts_chunk$set(dev="CairoPNG")
+
+# Set this to make sure that the figures of this Rmd file get their own name
+knitr::opts_chunk$set(fig.path="figure_DMM/")
+
+#det.th <- 0.1/100
+det.th <- 0.1/100
+prev.th <- 10/100
+taxa <- core_members(pseq.comp, detection = det.th, prevalence = prev.th)
 pseq <- prune_taxa(taxa, pseq)
 
 dat <- abundances(pseq)
 count <- as.matrix(t(dat))
+```
 
-fit <- lapply(1:3, dmn, count = count, verbose=TRUE)
+The following `length(taxa)` taxonomic groups are detected with `100 * prev.th`% prevalence at `100 * det.th`% relative abundance: `print(paste(taxa, collapse = ", "))`.
+```
+
+
+
+```{r nclusters}
+# Define here the max (possible) number of clusters. The higher it is, the slower the computing.
+max.clusters <- 5
+fit <- lapply(1:max.clusters, dmn, count = count, verbose=TRUE)
 
 lplc <- sapply(fit, laplace) 
 aic  <- sapply(fit, AIC) 
@@ -30,24 +53,32 @@ bic  <- sapply(fit, BIC)
 
 best <- fit[[which.min(unlist(lplc))]]
 mixturewt(best)
+```
 
+The optimal number of clusters is: `which.min(unlist(lplc))`.
+
+The (main) drivers per component are visualized.
+
+```{r DMM, out.width="33%"}
 ass <- apply(mixture(best), 1, which.max)
 
 for (k in seq(ncol(fitted(best)))) {
-d <- melt(fitted(best))
-  colnames(d) <- c("OTU", "cluster", "value")
-d <- subset(d, cluster == k) %>%
-    # Arrange OTUs by assignment strength
-arrange(value) %>%
-mutate(OTU = factor(OTU, levels = unique(OTU))) %>%
-    # Only show the most important drivers
-filter(abs(value) > quantile(abs(value), 0.8))     
 
-p <- ggplot(d, aes(x = OTU, y = value)) +
-  geom_bar(stat = "identity") +
-  coord_flip() +
-  labs(title = paste("Top drivers: community type", k))
-print(p)
+  d <- melt(fitted(best))
+  colnames(d) <- c("OTU", "cluster", "value")
+  
+  d <- subset(d, cluster == k) %>%
+    # Arrange OTUs by assignment strength
+    arrange(value) %>%
+    mutate(OTU = factor(OTU, levels = unique(OTU))) %>%
+    # Only show the most important drivers
+    filter(abs(value) > quantile(abs(value), 0.8))     
+
+  p <- ggplot(d, aes(x = OTU, y = value)) +
+    geom_bar(stat = "identity") +
+    coord_flip() +
+    labs(title = paste("Top drivers: community type", k))
+  print(p)
 }  
 ```
 
