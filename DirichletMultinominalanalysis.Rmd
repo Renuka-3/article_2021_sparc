@@ -7,7 +7,7 @@ output: html_document
 
 
 
-```{r init}
+```{r init, echo=FALSE, message=FALSE, warning=FALSE}
 library(microbiome)
 library(DirichletMultinomial)
 library(reshape2)
@@ -42,7 +42,7 @@ The following `length(taxa)` taxonomic groups are detected with `100 * prev.th`%
 
 
 
-```{r nclusters}
+```{r nclusters, echo=FALSE, message=FALSE, warning=FALSE}
 # Define here the max (possible) number of clusters. The higher it is, the slower the computing.
 max.clusters <- 5
 fit <- lapply(1:max.clusters, dmn, count = count, verbose=TRUE)
@@ -59,7 +59,7 @@ The optimal number of clusters is: `which.min(unlist(lplc))`.
 
 The (main) drivers per component are visualized.
 
-```{r DMM, out.width="33%"}
+```{r DMM, out.width="33%", echo=FALSE, message=FALSE, warning=FALSE}
 ass <- apply(mixture(best), 1, which.max)
 
 for (k in seq(ncol(fitted(best)))) {
