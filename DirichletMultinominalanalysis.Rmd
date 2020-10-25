@@ -38,7 +38,7 @@ dat <- abundances(pseq)
 count <- as.matrix(t(dat))
 ```
 
-The following `r length(taxa)` taxonomic groups are detected with `r 100 * prev.th`% prevalence at `r 100 * det.th`% relative abundance: `r print(paste(taxa, collapse = ", "))`.
+Altogether `r length(taxa)` taxonomic groups are detected with `r 100 * prev.th`% prevalence at `r 100 * det.th`% relative abundance. We used this set to determine the community types.
 
 
 
@@ -64,6 +64,8 @@ The (main) drivers per component are visualized.
 ```{r DMM, out.width="33%", echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold"}
 ass <- apply(mixture(best), 1, which.max)
 
+full.names <- apply(tax_table(phy), 1, function (x) {paste(x, collapse = "_")})
+
 for (k in seq(ncol(fitted(best)))) {
 
   d <- melt(fitted(best))
@@ -76,7 +78,10 @@ for (k in seq(ncol(fitted(best)))) {
     # Only show the most important drivers
     filter(abs(value) > quantile(abs(value), 0.8))     
 
-  p <- ggplot(d, aes(x = OTU, y = value)) +
+  # Add full names
+  d$full_name <- gsub("Bacteria_", "", full.names[d$OTU])
+
+  p <- ggplot(d, aes(x = full_name, y = value)) +
     geom_bar(stat = "identity") +
     coord_flip() +
     labs(title = paste("Top drivers: community type", k))
