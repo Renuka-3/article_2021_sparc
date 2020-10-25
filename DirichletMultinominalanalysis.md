@@ -8,9 +8,6 @@ output: html_document
 
 
 
-```
-## Error in eval(expr, envir, enclos): object 'opts_chunk' not found
-```
 
 The following `length(taxa)` taxonomic groups are detected with `100 * prev.th`% prevalence at `100 * det.th`% relative abundance: `print(paste(taxa, collapse = ", "))`.
 ```
@@ -24,7 +21,7 @@ The following `length(taxa)` taxonomic groups are detected with `100 * prev.th`%
 ##   Expectation Maximization
 ##   Hessian
 ##   Soft kmeans
-##     iteration 10 change 0.000341
+##     iteration 10 change 0.000140
 ##   Expectation Maximization setup
 ##   Expectation Maximization
 ##   Hessian
@@ -33,25 +30,26 @@ The following `length(taxa)` taxonomic groups are detected with `100 * prev.th`%
 ##   Expectation Maximization
 ##   Hessian
 ##   Soft kmeans
-##     iteration 10 change 0.000462
+##     iteration 10 change 0.011442
+##     iteration 20 change 0.001447
 ##   Expectation Maximization setup
 ##   Expectation Maximization
 ##     iteration 10 change 0.000100
 ##   Hessian
 ##   Soft kmeans
-##     iteration 10 change 0.012585
-##     iteration 20 change 0.000057
+##     iteration 10 change 0.002256
 ##   Expectation Maximization setup
 ##   Expectation Maximization
-##     iteration 10 change 0.000005
+##     iteration 10 change 1.705260
+##     iteration 20 change 0.278879
 ##   Hessian
 ```
 
 ```
 ##          pi     theta
-## 1 0.6052877  6.796869
-## 2 0.2063944 57.979654
-## 3 0.1883180 44.660728
+## 1 0.6052825  6.797004
+## 2 0.2063949 57.980333
+## 3 0.1883226 44.659227
 ```
 
 The optimal number of clusters is: `which.min(unlist(lplc))`.

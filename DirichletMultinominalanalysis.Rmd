@@ -13,6 +13,7 @@ library(DirichletMultinomial)
 library(reshape2)
 library(magrittr)
 library(dplyr)
+library(knitr)
 phy <- readRDS("data/processed/phyloseq/phy20.1.RDS")
 # data(phy) -> this was to load other example data; not needed as you just loaded phy above
 pseq <- phy
