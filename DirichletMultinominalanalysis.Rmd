@@ -39,26 +39,27 @@ count <- as.matrix(t(dat))
 ```
 
 The following `r length(taxa)` taxonomic groups are detected with `r 100 * prev.th`% prevalence at `r 100 * det.th`% relative abundance: `r print(paste(taxa, collapse = ", "))`.
-```
+
 
 
 
 ```{r nclusters, echo=FALSE, message=FALSE, warning=FALSE}
 # Define here the max (possible) number of clusters. The higher it is, the slower the computing.
 max.clusters <- 5
-fit <- lapply(1:max.clusters, dmn, count = count, verbose=TRUE)
+quiet(fit <- lapply(1:max.clusters, dmn, count = count, verbose=TRUE))
 
 lplc <- sapply(fit, laplace) 
 aic  <- sapply(fit, AIC) 
 bic  <- sapply(fit, BIC)
 
 best <- fit[[which.min(unlist(lplc))]]
-mixturewt(best)
+# mixturewt(best)
 ```
 
-The optimal number of clusters is: `r which.min(unlist(lplc))`.
+The optimal number of clusters is: `r which.min(unlist(lplc))`
 
 The (main) drivers per component are visualized.
+
 
 ```{r DMM, out.width="33%", echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold"}
 ass <- apply(mixture(best), 1, which.max)
@@ -79,7 +80,9 @@ for (k in seq(ncol(fitted(best)))) {
     geom_bar(stat = "identity") +
     coord_flip() +
     labs(title = paste("Top drivers: community type", k))
+    
   print(p)
+
 }  
 ```
 
