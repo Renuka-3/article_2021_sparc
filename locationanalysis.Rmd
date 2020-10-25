@@ -9,7 +9,7 @@ output: html_document
 
 ```{r alpha, message=F, echo=F, echo=FALSE}
 library(knitr)
-library(knitcitations)
+library(knitcitations) 
 library(microbiome)
 library(phyloseq)
 library(ggplot2)
