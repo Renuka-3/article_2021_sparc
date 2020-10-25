@@ -9,7 +9,7 @@ output: html_document
 
 
 
-The following `length(taxa)` taxonomic groups are detected with `100 * prev.th`% prevalence at `100 * det.th`% relative abundance: `print(paste(taxa, collapse = ", "))`.
+The following 49 taxonomic groups are detected with 10% prevalence at 0.1% relative abundance: .
 ```
 
 
@@ -21,7 +21,7 @@ The following `length(taxa)` taxonomic groups are detected with `100 * prev.th`%
 ##   Expectation Maximization
 ##   Hessian
 ##   Soft kmeans
-##     iteration 10 change 0.000140
+##     iteration 10 change 0.000110
 ##   Expectation Maximization setup
 ##   Expectation Maximization
 ##   Hessian
@@ -30,29 +30,29 @@ The following `length(taxa)` taxonomic groups are detected with `100 * prev.th`%
 ##   Expectation Maximization
 ##   Hessian
 ##   Soft kmeans
-##     iteration 10 change 0.011442
-##     iteration 20 change 0.001447
 ##   Expectation Maximization setup
 ##   Expectation Maximization
 ##     iteration 10 change 0.000100
 ##   Hessian
 ##   Soft kmeans
-##     iteration 10 change 0.002256
+##     iteration 10 change 0.011223
+##     iteration 20 change 0.139316
+##     iteration 30 change 0.000003
 ##   Expectation Maximization setup
 ##   Expectation Maximization
-##     iteration 10 change 1.705260
-##     iteration 20 change 0.278879
+##     iteration 10 change 0.385590
+##     iteration 20 change 0.000003
 ##   Hessian
 ```
 
 ```
 ##          pi     theta
-## 1 0.6052825  6.797004
-## 2 0.2063949 57.980333
-## 3 0.1883226 44.659227
+## 1 0.6052882  6.796876
+## 2 0.2063938 57.980465
+## 3 0.1883180 44.661018
 ```
 
-The optimal number of clusters is: `which.min(unlist(lplc))`.
+The optimal number of clusters is: 3.
 
 The (main) drivers per component are visualized.
 
