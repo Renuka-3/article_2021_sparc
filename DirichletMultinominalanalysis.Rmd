@@ -19,6 +19,7 @@ phy <- readRDS("data/processed/phyloseq/phy20.1.RDS")
 pseq <- phy
 
 # Include only those groups that exceed certain abundance and prevalenec
+set.seed(455423)
 pseq.comp <- microbiome::transform(pseq, "compositional")
 
 theme_set(theme_bw(20))
@@ -28,9 +29,10 @@ opts_chunk$set(dev="CairoPNG")
 # Set this to make sure that the figures of this Rmd file get their own name
 knitr::opts_chunk$set(fig.path="figure_DMM/")
 
+
 #det.th <- 0.1/100
 det.th <- 0.1/100
-prev.th <- 10/100
+prev.th <- 0/100
 taxa <- core_members(pseq.comp, detection = det.th, prevalence = prev.th)
 pseq <- prune_taxa(taxa, pseq)
 
@@ -70,16 +72,16 @@ for (k in seq(ncol(fitted(best)))) {
 
   d <- melt(fitted(best))
   colnames(d) <- c("OTU", "cluster", "value")
-  
+
+  # Add full names
+  d$full_name <- gsub("Bacteria_", "", full.names[d$OTU])
+
   d <- subset(d, cluster == k) %>%
     # Arrange OTUs by assignment strength
     arrange(value) %>%
     mutate(OTU = factor(OTU, levels = unique(OTU))) %>%
     # Only show the most important drivers
     filter(abs(value) > quantile(abs(value), 0.8))     
-
-  # Add full names
-  d$full_name <- gsub("Bacteria_", "", full.names[d$OTU])
 
   p <- ggplot(d, aes(x = full_name, y = value)) +
     geom_bar(stat = "identity") +
@@ -91,3 +93,30 @@ for (k in seq(ncol(fitted(best)))) {
 }  
 ```
 
+
+
+
+
+## Principal Coordinates Analysis (PCoA)
+
+Coloured by DMM community type.
+
+
+```{r pcoa, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="33%", fig.show="hold", warning=FALSE}
+#theme_set(theme_bw(15))
+method <- "PCoA"
+trans <- "compositional"
+distance <- "bray"
+sample_data(phy)$community_type <- factor(ass[rownames(sample_data(phy))])
+p <- plot_landscape(microbiome::transform(phy , "compositional"),
+                    distance = distance,
+                    method = method,
+                    size = 3,
+                    col = "community_type",
+                    shading = FALSE) +
+  scale_colour_brewer(palette = "Set1")		    
+print(p)
+```
+
+* Ordination method: `r method`
+* Dissimilarity measure: `r distance`
