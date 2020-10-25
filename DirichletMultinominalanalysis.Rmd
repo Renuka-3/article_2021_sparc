@@ -29,10 +29,8 @@ opts_chunk$set(dev="CairoPNG")
 # Set this to make sure that the figures of this Rmd file get their own name
 knitr::opts_chunk$set(fig.path="figure_DMM/")
 
-
-#det.th <- 0.1/100
-det.th <- 0.1/100
-prev.th <- 0/100
+det.th <- 0/100
+prev.th <- 10/100
 taxa <- core_members(pseq.comp, detection = det.th, prevalence = prev.th)
 pseq <- prune_taxa(taxa, pseq)
 

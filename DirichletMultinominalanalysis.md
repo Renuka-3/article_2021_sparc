@@ -9,7 +9,7 @@ output: html_document
 
 
 
-Altogether 260 taxonomic groups are detected with 0% prevalence at 0.1% relative abundance. We used this set to determine the community types.
+Altogether 275 taxonomic groups are detected with 10% prevalence at 0% relative abundance. We used this set to determine the community types.
 
 
 
