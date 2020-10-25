@@ -61,7 +61,7 @@ The optimal number of clusters is: `r which.min(unlist(lplc))`
 The (main) drivers per component are visualized.
 
 
-```{r DMM, out.width="33%", echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold"}
+```{r DMM, out.width="100%", echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold"}
 ass <- apply(mixture(best), 1, which.max)
 
 full.names <- apply(tax_table(phy), 1, function (x) {paste(x, collapse = "_")})
