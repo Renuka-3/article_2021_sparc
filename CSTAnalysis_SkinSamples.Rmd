@@ -1,0 +1,274 @@
+---
+title: "CSTAnalysis_SkinSamples"
+author: "Renuka"
+date: "4 November 2020"
+output: html_document
+---
+
+
+```{r initCST_CLR, message=F, echo=F, echo=FALSE}
+library("phyloseq")
+library("ggplot2")
+library("cluster")
+library("igraph")
+library("markovchain")
+library("RColorBrewer")
+library(microbiome)
+library("gridExtra")
+set.seed(455423)
+default.par <- par(no.readonly = TRUE)
+options(stringsAsFactors = FALSE)
+theme_set(theme_bw())
+# EXCLUDEMARGINAL is a flag to exclude marginally preterm births (=37 weeks) in the later analysis
+#EXCLUDEMARGINAL = TRUE
+```
+#Transform the data (proportions)
+```{r transform-data_CLRleo, message=FALSE, echo=FALSE, warning=FALSE}
+#site <- "Vaginal_Swab"
+ps <- readRDS("data/processed/phyloseq/phy20.1.RDS")
+tt <- data.frame(tax_table(ps))
+ps <- transform_sample_counts(ps, function(OTU) OTU/sum(OTU))
+ps1<- prune_taxa(names(sort(taxa_sums(ps), T))[1:50], ps)
+taxa.order1<- taxa_names(ps1)
+```
+
+# Cluster into CSTs
+```{r MDS_CLRleo, warning=FALSE, message=FALSE, echo=FALSE, warning=FALSE}
+braydist <- phyloseq::distance(ps, method="bray")
+ord = ordinate(ps, method = "MDS", distance = braydist)
+plot_scree(ord) + xlim(as.character(seq(1,15))) + ggtitle("MDS-bray ordination eigenvalues")
+evs <- ord$value$Eigenvalues
+print(evs[1:20])
+print(tail(evs))
+```
+
+## Denoise distance matrix
+```{r PCoA-cutoff2_CLRleo, warning=FALSE, message=FALSE, echo=FALSE, warning=FALSE}
+h_sub5 <- hist(evs[6:length(evs)], 100)
+plot(h_sub5$mids, h_sub5$count, log="y", type='h', lwd=10, lend=2)
+```
+
+## Determine number of clusters
+We will use the gap statistic to indicate the number of clusters in this data:
+```{r gap-stat_CLRleo, message=FALSE, echo=FALSE, warning=FALSE}
+NDIM <- 7
+x <- ord$vectors[,1:NDIM]  # rows=sample, cols=MDS axes, entries = value
+pamPCoA = function(x, k) {
+  list(cluster = pam(x[,1:2], k, cluster.only = TRUE))
+}
+gs = clusGap(x, FUN = pamPCoA, K.max = 12, B = 50)
+plot_clusgap(gs) + scale_x_continuous(breaks=c(seq(0, 12, 2)))
+```
+
+## Cluster into CSTs
+Perform PAM 3-fold clusters:
+```{r pam-k5_CLRleo, message=FALSE, echo=FALSE, warning=FALSE}
+K <- 3
+x <- ord$vectors[,1:NDIM]
+clust <- as.factor(pam(x, k=K, cluster.only=T))
+# SWAPPING THE ASSIGNMENT OF 2 AND 3 TO MATCH RAVEL CST ENUMERATION
+clust[clust==2] <- NA
+clust[clust==3] <- 2
+clust[is.na(clust)] <- 3
+sample_data(ps)$CST <- clust
+CSTs <- as.character(seq(K))
+```
+## Evaluate clustering
+```{r see-pam-k3_CLRleo,eval=T,results = 'hide',  message=FALSE, message=FALSE, echo=FALSE, warning=FALSE}
+CSTColors <- brewer.pal(6,"Paired")[c(1,3,2,5,4,6)] # Length 6 for consistency with pre-revision CST+ coloration
+names(CSTColors) <- CSTs
+CSTColorScale <- scale_colour_manual(name = "CST", values = CSTColors[1:5])
+CSTFillScale <- scale_fill_manual(name = "CST", values = CSTColors[1:5])
+#grid.arrange(phyloseq::plot_ordination(ps, ord, color="CST") + CSTColorScale,plot_ordination(ps, ord, axes=c(3,4), color="CST") + CSTColorScale, main="Ordination by Cluster")
+ok<-ordinate(ps, method="NMDS", distance=braydist)
+knitr::opts_chunk$set(results = "hide")
+```
+```{r see-pam-k5u_CLRleo, message=FALSE, message=FALSE, echo=FALSE, warning=FALSE}
+plot_ordination(ps,ok , color="CST") + CSTColorScale + ggtitle("NMDS -- bray -- By Cluster")
+```
+
+#### Ordination plot for the Diet group
+```{r see-pam-k5Sampesl55_CLRleo11, message=FALSE, message=FALSE, echo=FALSE, warning=FALSE}
+theme_set(theme_bw(base_size = 15))
+o<- ordinate(ps, method = 'NMDS', distance = braydist)
+ps1<- prune_samples(sample_data(ps)$Diet == "Veg", ps)
+#o1<- ordinate(ps1, method="NMDS", distance=braydist)
+m1<- meta(ps1)
+oo1<- o$points[rownames(m1),]
+oo1<- as.data.frame(oo1)
+ps2<- prune_samples(sample_data(ps)$Diet == "Mixed", ps)
+m2<- meta(ps2)
+#o2<- ordinate(ps2, method="NMDS", distance=braydist)
+oo2<- o$points[rownames(m2),]
+oo2<- as.data.frame(oo2)
+knitr::opts_chunk$set(results = "hide")
+```
+
+```{r CLRleo2233, fig.height = 9, fig.width = 15, , message=FALSE, echo=FALSE, warning=FALSE}
+theme_set(theme_bw(base_size = 10))
+p1<- list()
+ m1<-meta(ps)$Veg
+for(i in levels(m1)) {
+  pshm1 <- prune_samples(sample_data(ps1)$Veg == i, ps1)
+  n<- rownames(meta(pshm1))
+  df1<-oo1[n,]
+  df<- cbind(df1, meta(pshm1))
+  p1[[i]]<-ggplot(df, aes(x = MDS1, y = MDS2, color = CST))+ geom_point(size= 1.5)+ labs(title = paste0(i), subtitle = 'First Visit') +  xlim(-1, 1)+ ylim(-.5, .5)
+  #print(p1[[i]])
+}
+p2<- list()
+for(i in levels(m1)) {
+  pshm2 <- prune_samples(sample_data(ps2)$Mixed == i, ps2)
+  n<- rownames(meta(pshm2))
+  df3<-oo2[n,]
+  df2<-cbind(df3, meta(pshm2))
+  p2[[i]]<-ggplot(df2, aes(x = MDS1, y = MDS2, color = CST))+ geom_point(size= 1.5)+ labs(title = paste0(i), subtitle = 'Second Visit') + xlim(-1, 1)+ ylim(-.5, .5)
+  #print(p2[[i]])
+}
+```
+
+```{r CLRleo_panel, fig.height=5, fig.width=15, message=FALSE, echo=FALSE, warning=FALSE, error=F}
+theme_set(theme_bw(base_size = 10))
+library(cowplot)
+library(multipanelfigure)
+#figure1 <- multi_panel_figure(columns = 1, rows = 2, panel_label_type = "none")
+#figure1 %<>%
+  #fill_panel(p1$"Veg", column = 1, row = 1) %<>%
+  #fill_panel(p1$`2nd group`, column = 2, row = 1) %<>%
+  #fill_panel(p1$`3rd group`, column = 3, row = 1) %<>%
+  #fill_panel(p1$`4th group`, column = 2, row = 1) %<>%
+  #fill_panel(p2$"Mixed", column = 1, row = 2) %<>%
+  #fill_panel(p2$`2nd group`, column = 2, row = 2) %<>%
+  #fill_panel(p2$`3rd group`, column = 3, row = 2) %<>%
+  #fill_panel(p2$`4th group`, column = 2, row = 2)
+#plot(figure1)
+#par(mfrow=c(1,3), mar=c(4,4,4,1), oma=c(0.5,0.5,0.5,0))
+#ppp<-grid.arrange(p1$`1st group`, p1$`2nd group`, p2$`1st group`, p2$`2nd group`)
+#pppp<-grid.arrange(p1$`3rd group`, p1$`4th group`, p2$`3rd group`, p2$`4th group`)
+#p<- grid.arrange(ppp, pppp, ncol=2)
+```
+
+```{r see-pam-k3Sampesl_CLRleo, message=FALSE,, results="hide",  message=FALSE, echo=FALSE, warning=FALSE}
+o<- ordinate(ps, method="NMDS", distance=braydist)
+knitr::opts_chunk$set(results = "hide")
+```
+
+```{r see-pam-k3Sampesl55_CLRleo, message=FALSE, message=FALSE, echo=FALSE, warning=FALSE,fig.height=8, fig.width=15, out.width='50%'}
+theme_set(theme_bw(base_size = 20))
+plot_ordination(ps,o , "samples", color="Diet", shape = 'Veg') + geom_point(size=2)+ xlim(-1, 1)+ ylim(-.5, .5)
+#plot_ordination(ps,o , "samples", color="InterventionGroup", shape = 'StVisit') + geom_point(size=2)+ xlim(-1, 1)+ ylim(-.5, .5)
+par(mfrow=c(1,4), mar=c(4,4,4,1), oma=c(0.5,0.5,0.5,0))
+```
+##### ...................
+###Heatmap
+```{r clust-diverse_CLRleo, eval= T, message=FALSE, echo=FALSE, warning=FALSE, out.width="20%"}
+theme_set(theme_bw(base_size = 10))
+library(BBmisc)
+library(reshape2)
+library("RColorBrewer")
+library(tidyr)
+set.seed(1234)
+pso<- prune_taxa(taxa.order1, ps)
+#pso1<- microbiome::transform(ps, 'clr')
+g<- otu_table(ps)
+g1<-BBmisc::normalize(g@.Data, 'standardize', range = c(0,1))
+colnames(g1)<- colnames(otu_table(ps)@.Data)
+j<- otu_table(g1, taxa_are_rows = T)
+otu_table(ps)<- j
+p <- list()
+for(CST in CSTs) {
+pshm <- prune_samples(sample_data(ps)$CST == CST, ps)
+dfm <- melt(abundances(pshm))
+colnames(dfm) <- c("Taxa", "Sample", "value")
+p[[CST]]<- heat((dfm), "Sample","Taxa", "value", legend.text = "Abundance",order.rows = F, 
+                order.cols = F, limits= c(-5,5), step = 0.5) + ggtitle(paste("CST:", CST))
+print(p[[CST]])
+}
+```
+##### Boxplots for each genus in the three clusters
+```{r clust-diverse_boxplot_CLRleo, message=FALSE, echo=FALSE, warning=FALSE, out.width="25%"}
+theme_set(theme_bw(base_size = 20))
+library(tidyr)
+set.seed(1234)
+library(ggbeeswarm)
+pv<- c()
+ppp<- list()
+#ps<- readRDS('RDA/phylCLRstan21taxa.rds')
+pso<- prune_taxa(taxa.order1, ps)
+taxa.order1<- taxa_names(ps)
+for (tax in rev(taxa.order1)) {
+  df<- meta(ps)
+  df$taxa<- abundances(ps)[tax,]
+  pv<- kruskal.test(taxa ~ CST, data = df)$p.value
+  ppp[[tax]]<- kruskal.test(taxa ~ CST, data = df)$p.value
+  
+  t<- as.data.frame(tax)
+  t<- separate(t, tax, into = c('1','2','3','4','5','6','genus'), sep = '_')
+  t1<- as.character(t$genus)
+  p<- ggplot(df, aes(x = CST, y = taxa))+ ylim(-5,5) + geom_beeswarm() + ggtitle(paste0(t1))+ ylab("")+ labs(title = paste0(t1)) +  geom_hline(yintercept=0, linetype="dashed", color = "gray")
+  print(p)
+}
+```
+#### adjusted pvalues for kruskal tests By Benjamini-Hochberg
+```{r clust-diverse_boxplot_CLRleokruskal, message=FALSE, echo=FALSE, warning=FALSE, out.width="25%"}
+d <- data.frame(matrix(unlist(ppp), nrow=length(ppp), byrow=T))
+#rownames(d)<-(rev(taxa.order))
+d1<- p.adjust(d$matrix.unlist.ppp...nrow...length.ppp...byrow...T., 'BH')
+d<- cbind(d, d1)
+d4<- d
+colnames(d)<- c('Kruskal_pvalue', 'adjusted_pvalue')
+rownames(d4)<- rev(taxa.order1)
+d4<-d4%>% filter(d1 <= 0.05)
+t<- as.data.frame(taxa.order1)
+t1<- separate(t, taxa.order1, into = c('1','2','3','4','5','6','genus'), sep = '_')
+t1<- as.character(t1$genus)
+#rownames(d)<- rev(t1)
+#write.csv(d, 'Kruskal_tests.csv')
+library(magrittr)
+library(tidyverse)
+d2<- subset(d, adjusted_pvalue <= .05)
+#d2<- d2%>%arrange(desc(adjusted_pvalue))
+write.csv(d2, 'Kruskal_tests.csv')
+```
+
+```{r clust-diverse_boxplot_CLRleokruskalee,eval=T, message=FALSE,results=T, echo=FALSE, warning=FALSE}
+library(knitr)
+d2<- d2[-d2$Kruskal_pvalue]
+d2<-d2 %>% arrange(adjusted_pvalue, desc(adjusted_pvalue))
+kable(d2)
+```
+##### -----------------------------------------------------------------
+```{r clust-diverse_table_CLR,eval=T, results='show', message=FALSE, echo=FALSE, warning=FALSE}
+#ps<- readRDS('RDA/phylPlusCST.rds')
+gg<- meta(ps)
+df11<- subset(gg, CST==1 & Diet =="Veg")
+df12<- subset(gg, CST==1& Diet =="Mixed")
+#df21<- subset(gg, CST==2& StVisit ==1)
+#df22<- subset(gg, CST==2& StVisit ==2)
+#df31<- subset(gg, CST==3& StVisit ==1)
+#df32<- subset(gg, CST==3& StVisit ==2)
+df1<- subset(gg, CST==1); df1<- df1[, -seq(1:46)]
+df2<- subset(gg, CST==2); df2<- df2[, -seq(1:46)]
+df3<- subset(gg, CST==3); df3<- df3[, -seq(1:46)]
+#df4<- subset(gg, CST==4); df4<- df4[, -seq(1:46)]
+#df5<- subset(gg, CST==5); df5<- df5[, -seq(1:46)]
+#dim(df1[1]) + dim(df2[1]) +dim(df3[1]) +dim(df4[1]) +dim(df5[1]) 
+ddddf1<- c(round(dim(df11)[1]/dim(df1)[1] *100,1))
+ddddf2<-c(round(dim(df12)[1]/dim(df1)[1]*100 ,1))
+          
+dfdf<- cbind(ddddf1, ddddf2)
+rownames(dfdf)<- c('Clust.1')
+colnames(dfdf)<- c('Veg','Mixed')
+library(knitr)
+kable(dfdf)
+```
+#### Fisher-exact test at the first and second visits between clusters
+```{r clust-diverse_table_CLR09,eval=T, results='show', message=FALSE, echo=FALSE, warning=FALSE}
+gh<- xtabs(~  CST +Diet, data = gg)
+addmargins(gh)
+ff<- fisher.test(gh)
+```
+```{r clust-diverse_table_CLR0977,eval=T, results='show', message=FALSE, echo=FALSE, warning=FALSE}
+print('Fisher exact test p-value is: ')
+print(ff$p.value)
+```
