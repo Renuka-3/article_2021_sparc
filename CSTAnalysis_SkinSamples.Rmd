@@ -22,7 +22,7 @@ theme_set(theme_bw())
 # EXCLUDEMARGINAL is a flag to exclude marginally preterm births (=37 weeks) in the later analysis
 #EXCLUDEMARGINAL = TRUE
 ```
-#Transform the data (proportions)
+# Transform the data (proportions)
 ```{r transform-data_CLRleo, message=FALSE, echo=FALSE, warning=FALSE}
 #site <- "Vaginal_Swab"
 ps <- readRDS("data/processed/phyloseq/phy20.1.RDS")
@@ -159,9 +159,28 @@ plot_ordination(ps,o , "samples", color="Diet", shape = 'Veg') + geom_point(size
 #plot_ordination(ps,o , "samples", color="InterventionGroup", shape = 'StVisit') + geom_point(size=2)+ xlim(-1, 1)+ ylim(-.5, .5)
 par(mfrow=c(1,4), mar=c(4,4,4,1), oma=c(0.5,0.5,0.5,0))
 ```
-##### ...................
-###Heatmap
-```{r clust-diverse_CLRleo, eval= T, message=FALSE, echo=FALSE, warning=FALSE, out.width="20%"}
+
+# Principal Coordinates Analysis (PCoA)
+Coloured by DMM community type
+```{r pcoa, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="33%", fig.show="hold", warning=FALSE}
+#theme_set(theme_bw(15))
+method <- "PCoA"
+trans <- "compositional"
+distance <- "bray"
+phy <- readRDS("data/processed/phyloseq/phy20.1.RDS")
+sample_data(phy)$community_type <- factor(ass[rownames(sample_data(phy))])
+p <- plot_landscape(microbiome::transform(phy , "compositional"),
+                    distance = distance,
+                    method = method,
+                    size = 3,
+                    col = "community_type",
+                    shading = FALSE) +
+  scale_colour_brewer(palette = "Set1")		    
+print(p)
+```
+
+### Heatmap
+```{r clust-diverse_CLRleo, eval= T, message=FALSE, echo=FALSE, warning=FALSE, out.width="20%", fig.show="hold", warning=FALSE}
 theme_set(theme_bw(base_size = 10))
 library(BBmisc)
 library(reshape2)
@@ -185,7 +204,7 @@ p[[CST]]<- heat((dfm), "Sample","Taxa", "value", legend.text = "Abundance",order
 print(p[[CST]])
 }
 ```
-##### Boxplots for each genus in the three clusters
+### Boxplots for each genus in the three clusters
 ```{r clust-diverse_boxplot_CLRleo, message=FALSE, echo=FALSE, warning=FALSE, out.width="25%"}
 theme_set(theme_bw(base_size = 20))
 library(tidyr)
@@ -196,7 +215,8 @@ ppp<- list()
 #ps<- readRDS('RDA/phylCLRstan21taxa.rds')
 pso<- prune_taxa(taxa.order1, pso1)
 taxa.order1<- taxa_names(pso1)
-for (tax in rev(taxa.order1)) {
+for (tax in rev(taxa.order1)) 
+  {
   df<- meta(pso1)
   df$taxa<- abundances(pso1)[tax,]
   pv<- kruskal.test(taxa ~ CST, data = df)$p.value
@@ -208,7 +228,7 @@ for (tax in rev(taxa.order1)) {
   print(p)
 }
 ```
-#### adjusted pvalues for kruskal tests By Benjamini-Hochberg
+### adjusted pvalues for kruskal tests By Benjamini-Hochberg
 ```{r clust-diverse_boxplot_CLRleokruskal, message=FALSE, echo=FALSE, warning=FALSE, out.width="25%"}
 d <- data.frame(matrix(unlist(ppp), nrow=length(ppp), byrow=T))
 #rownames(d)<-(rev(taxa.order))
@@ -234,6 +254,12 @@ write.csv(d2, 'Kruskal_tests.csv')
 library(knitr)
 d2<- d2[-d2$Kruskal_pvalue]
 d2<-d2 %>% arrange(adjusted_pvalue, desc(adjusted_pvalue))
+
+
+full.names <- apply(tax_table(d2), 1, function (x) {paste(x, collapse = "_")})
+df$full_name <- full.names[df$taxon]
+df <- df %>% filter(padj < 0.25) %>% arrange(padj)
+rownames(df) <- NULL
 kable(d2)
 ```
 ##### -----------------------------------------------------------------
