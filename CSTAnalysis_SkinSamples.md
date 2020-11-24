@@ -7,9 +7,6 @@ output: html_document
 
 
 
-```
-## Error in library("markovchain"): there is no package called 'markovchain'
-```
 # Transform the data (proportions)
 
 
@@ -72,27 +69,6 @@ Coloured by DMM community type
 <img src="figure/pcoa-1.png" title="plot of chunk pcoa" alt="plot of chunk pcoa" width="33%" />
 
 ### Heatmap
-
-```
-## Error in library(BBmisc): there is no package called 'BBmisc'
-```
-
-```
-## Error in loadNamespace(name): there is no package called 'BBmisc'
-```
-
-```
-## Error in colnames(g1) <- colnames(otu_table(pso1)@.Data): object 'g1' not found
-```
-
-```
-## Error in otu_table(g1, taxa_are_rows = T): object 'g1' not found
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'j' not found
-```
-
 <img src="figure/clust-diverse_CLRleo-1.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="20%" /><img src="figure/clust-diverse_CLRleo-2.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="20%" /><img src="figure/clust-diverse_CLRleo-3.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="20%" />
 ### Boxplots for each genus in the three clusters
 
