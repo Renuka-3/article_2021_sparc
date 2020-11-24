@@ -1,5 +1,5 @@
 ---
-title: "CSTAnalysis_SkinSamples"
+title: "CSTAnalysis_SkinSamples.Rmd"
 author: "Renuka"
 date: "4 November 2020"
 output: html_document
@@ -118,7 +118,7 @@ for(i in levels(m1)) {
 }
 p2<- list()
 for(i in levels(m1)) {
-  pshm2 <- prune_samples(sample_data(ps2)$Diet == "Mixed2", ps2)
+  pshm2 <- prune_samples(sample_data(ps2)$Diet == "Mixed", ps2)
   n<- rownames(meta(pshm2))
   df3<-oo2[n,]
   df2<-cbind(df3, meta(pshm2))
@@ -208,6 +208,7 @@ print(p[[CST]])
 ```{r clust-diverse_boxplot_CLRleo, message=FALSE, echo=FALSE, warning=FALSE, out.width="25%"}
 theme_set(theme_bw(base_size = 20))
 library(tidyr)
+library(dplyr)
 set.seed(1234)
 library(ggbeeswarm)
 pv<- c()
@@ -221,11 +222,21 @@ for (tax in rev(taxa.order1))
   df$taxa<- abundances(pso1)[tax,]
   pv<- kruskal.test(taxa ~ CST, data = df)$p.value
   ppp[[tax]]<- kruskal.test(taxa ~ CST, data = df)$p.value
-  t<- as.data.frame(tax)
-  t<- separate(t, tax, into = c('1','2','3','4','5','6','genus'), sep = '_')
-  t1<- as.character(t$genus)
-  p<- ggplot(df, aes(x = CST, y = taxa))+ ylim(-5,5) + geom_beeswarm() + ggtitle(paste0(t1))+ ylab("")+ labs(title = paste0(t1)) +  geom_hline(yintercept=0, linetype="dashed", color = "gray")
-  print(p)
+  padj.th <- 0.25
+  padj <- p.adjust(ppp)
+  df <- data.frame(tax = names(padj), padj = padj)
+  df <- df %>% filter(padj< padj.th)
+df <- subset(df, select= c(padj, tax))
+df$full_name <- full.names[df$tax]
+rownames(df) <- NULL
+library(knitr)
+kable(df)
+#t<- as.data.frame(tax)
+#t<- separate(t, tax, into = c('1','2','3','4','5','genus'), sep = '_')
+#t1<- as.character(t$genus)
+#p<- ggplot(df, aes(x = CST, y = taxa))+ ylim(-5,5) + geom_beeswarm() + ggtitle(paste0(t1))+ ylab("")+ labs(title = paste0(t1)) +  geom_hline(yintercept=0, linetype="dashed", color = "gray")
+p<- ggplot(df, aes(x = padj, y = tax)) + geom_boxplot() + geom_beeswarm()
+print(p)
 }
 ```
 ### adjusted pvalues for kruskal tests By Benjamini-Hochberg
@@ -251,16 +262,14 @@ write.csv(d2, 'Kruskal_tests.csv')
 ```
 
 ```{r clust-diverse_boxplot_CLRleokruskalee,eval=T, message=FALSE,results=T, echo=FALSE, warning=FALSE}
-library(knitr)
-d2<- d2[-d2$Kruskal_pvalue]
-d2<-d2 %>% arrange(adjusted_pvalue, desc(adjusted_pvalue))
-
-
-full.names <- apply(tax_table(d2), 1, function (x) {paste(x, collapse = "_")})
-df$full_name <- full.names[df$taxon]
-df <- df %>% filter(padj < 0.25) %>% arrange(padj)
-rownames(df) <- NULL
-kable(d2)
+#library(knitr)
+#d2<- d2[-d2$Kruskal_pvalue]
+#d2<-d2 %>% arrange(adjusted_pvalue, desc(adjusted_pvalue)
+#full.names <- apply(tax_table(d2), 1, function (x) {paste(x, collapse = "_")})
+#df$full_name <- full.names[df$taxon]
+#df <- df %>% filter(padj < 0.25) %>% arrange(padj)
+#rownames(df) <- NULL
+#kable(d2)
 ```
 ##### -----------------------------------------------------------------
 ```{r clust-diverse_table_CLR,eval=T, results='show', message=FALSE, echo=FALSE, warning=FALSE}
