@@ -1,7 +1,7 @@
 ---
-title: "CSTAnalysis_SkinSamples.Rmd"
+title: "CSTanalysis"
 author: "Renuka"
-date: "`r Sys.Date()`"
+date: "25 November 2020"
 output: html_document
 ---
 
@@ -164,7 +164,6 @@ par(mfrow=c(1,4), mar=c(4,4,4,1), oma=c(0.5,0.5,0.5,0))
 Coloured by DMM community type
 ```{r pcoa, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="33%", fig.show="hold", warning=FALSE}
 #theme_set(theme_bw(15))
-source("DirichletMultinominalanalysis.Rmd")
 method <- "PCoA"
 trans <- "compositional"
 distance <- "bray"
