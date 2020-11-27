@@ -14,6 +14,8 @@ Phyloseq needs to be created before analysing microbiome data. OTU
 table, Taxonomic table and metadata files required to creat phyloseq
 object.
 
+* [main.R](main.R)
+Fist run DM analysis to get results of CST analysis. (source file for CST analysis)
 
 ### Analysis files
 
