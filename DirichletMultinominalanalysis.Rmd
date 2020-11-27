@@ -83,7 +83,7 @@ for (k in seq(ncomp)) {
     
   p <- ggplot(d, aes(x = full_name, y = value)) +
     geom_bar(stat = "identity") +
-    coord_flip() +
+    coord_flip() +    
     labs(title = paste("Top drivers: community type", k))
     
   print(p)
