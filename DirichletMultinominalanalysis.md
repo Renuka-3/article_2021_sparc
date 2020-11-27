@@ -8,9 +8,6 @@ output: html_document
 
 
 
-```
-## Error in library(DirichletMultinomial): there is no package called 'DirichletMultinomial'
-```
 
 Altogether 275 taxonomic groups are detected with 10% prevalence at 0% relative abundance. We used this set to determine the community types.
 
@@ -18,27 +15,24 @@ Altogether 275 taxonomic groups are detected with 10% prevalence at 0% relative 
 
 
 
-```
-## Error in match.fun(FUN): object 'dmn' not found
-```
 
-```
-## Error in match.fun(FUN): object 'laplace' not found
-```
+The optimal number of clusters is: 3
 
-```
-## Error in lapply(X = X, FUN = FUN, ...): object 'fit' not found
-```
+The (main) drivers per component are visualized.
 
-```
-## Error in lapply(X = X, FUN = FUN, ...): object 'fit' not found
-```
 
-```
-## Error in eval(expr, envir, enclos): object 'fit' not found
-```
+<img src="figure_DMM/DMM-1.png" title="plot of chunk DMM" alt="plot of chunk DMM" width="100%" /><img src="figure_DMM/DMM-2.png" title="plot of chunk DMM" alt="plot of chunk DMM" width="100%" /><img src="figure_DMM/DMM-3.png" title="plot of chunk DMM" alt="plot of chunk DMM" width="100%" />
 
 
 
 
 
+## Principal Coordinates Analysis (PCoA)
+
+Coloured by DMM community type.
+
+
+<img src="figure_DMM/pcoa-1.png" title="plot of chunk pcoa" alt="plot of chunk pcoa" width="33%" />
+
+* Ordination method: PCoA
+* Dissimilarity measure: bray
