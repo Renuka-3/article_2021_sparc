@@ -60,27 +60,27 @@ The optimal number of clusters is: `r which.min(unlist(lplc))`
 
 The (main) drivers per component are visualized.
 
-
 ```{r DMM, out.width="100%", echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold", fig.width=20, fig.height=10}
 ass <- apply(mixture(best), 1, which.max)
 
 full.names <- apply(tax_table(phy), 1, function (x) {paste(x, collapse = "_")})
 
-for (k in seq(ncol(fitted(best)))) {
+dd <- melt(fitted(best))
+colnames(dd) <- c("OTU", "cluster", "value")
+# Add full names
+dd$full_name <- gsub("Bacteria_", "", full.names[dd$OTU])
+ncomp <- ncol(fitted(best))
 
-  d <- melt(fitted(best))
-  colnames(d) <- c("OTU", "cluster", "value")
+for (k in seq(ncomp)) {
 
-  # Add full names
-  d$full_name <- gsub("Bacteria_", "", full.names[d$OTU])
-
-  d <- subset(d, cluster == k) %>%
-    # Arrange OTUs by assignment strength
-    arrange(value) %>%
+  d <- subset(dd, cluster == k) %>%
+    # Only show the most important drivers (top 5 percent)
+    filter(abs(value) > quantile(abs(value), 1 - 0.05)) %>%
+    # Arrange OTUs by assignment strength    
+    arrange(desc(value)) %>%
     mutate(OTU = factor(OTU, levels = unique(OTU))) %>%
-    # Only show the most important drivers
-    filter(abs(value) > quantile(abs(value), 0.8))     
-
+    mutate(full_name = factor(full_name, levels = unique(full_name)))    
+    
   p <- ggplot(d, aes(x = full_name, y = value)) +
     geom_bar(stat = "identity") +
     coord_flip() +
