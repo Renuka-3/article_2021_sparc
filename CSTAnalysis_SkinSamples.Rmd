@@ -179,7 +179,7 @@ print(p[[CST]])
 
 ### Boxplots for each genus in the three clusters
 
-```{r clust-diverse_boxplot_CLRleo, message=FALSE, echo=FALSE, warning=FALSE, out.width="25%"}
+```{r clust-diverse_boxplot_CLRleo, message=FALSE, echo=FALSE, warning=FALSE, out.width="25%", fig.height=5, fig.width=6}
 theme_set(theme_bw(base_size = 20))
 library(ggbeeswarm)
 df<- meta(pso)
