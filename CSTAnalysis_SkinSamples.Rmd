@@ -102,7 +102,7 @@ o<- ordinate(ps, method="NMDS", distance=braydist)
 knitr::opts_chunk$set(results = "hide")
 ```
 
-```{r see-pam-k3Sampesl55_CLRleo, message=FALSE, message=FALSE, echo=FALSE, warning=FALSE, out.width='50%'}
+```{r see-pam-k3Sampesl55_CLRleo, message=FALSE, message=FALSE, echo=FALSE, warning=FALSE, fig.height=8, fig.width=12, out.width='50%', fig.show="hold"}
 theme_set(theme_bw(base_size = 20))
 plot_ordination(ps,o , "samples", color="Diet", shape = 'Veg') + geom_point(size=2)+ xlim(-1, 1)+ ylim(-.5, .5)
 par(mfrow=c(1,4), mar=c(4,4,4,1), oma=c(0.5,0.5,0.5,0))
