@@ -1,5 +1,3 @@
-
-
 ```{r initCST_CLR, message=F, echo=F, echo=FALSE}
 library("phyloseq")
 library("ggplot2")
@@ -12,26 +10,24 @@ library("gridExtra")
 library(tidyr)
 library(dplyr)
 set.seed(455423)
-default.par <- par(no.readonly = TRUE)
 options(stringsAsFactors = FALSE)
 theme_set(theme_bw())
 ```
 
 
-
-# Transform the data (proportions)
-
 ```{r transform-data_CLRleo, message=FALSE, echo=FALSE, warning=FALSE}
+# Init / Read data
 ps <- readRDS("data/processed/phyloseq/phy20.1.RDS")
 tt <- data.frame(tax_table(ps))
-ps <- transform_sample_counts(ps, function(OTU) OTU/sum(OTU))
+ps <- transform(ps, "compositional")
 ```
+
 
 # Cluster into CSTs
 
 ```{r MDS_CLRleo, warning=FALSE, message=FALSE, echo=FALSE, warning=FALSE}
 braydist <- phyloseq::distance(ps, method="bray")
-ord = ordinate(ps, method = "MDS", distance = braydist)
+ord <- ordinate(ps, method = "MDS", distance = braydist)
 plot_scree(ord) + xlim(as.character(seq(1,15))) + ggtitle("MDS-bray ordination eigenvalues")
 evs <- ord$value$Eigenvalues
 print(evs[1:20])
@@ -58,7 +54,7 @@ x <- ord$vectors[,1:NDIM]  # rows=sample, cols=MDS axes, entries = value
 pamPCoA = function(x, k) {
   list(cluster = pam(x[,1:2], k, cluster.only = TRUE))
 }
-gs = clusGap(x, FUN = pamPCoA, K.max = 12, B = 50)
+gs <- clusGap(x, FUN = pamPCoA, K.max = 12, B = 50)
 plot_clusgap(gs) + scale_x_continuous(breaks=c(seq(0, 12, 2)))
 ```
 
@@ -67,7 +63,6 @@ plot_clusgap(gs) + scale_x_continuous(breaks=c(seq(0, 12, 2)))
 ## Cluster into CSTs
 
 Perform PAM 3-fold clusters:
-
 
 ```{r pam-k5_CLRleo, message=FALSE, echo=FALSE, warning=FALSE}
 K <- 3
@@ -94,30 +89,18 @@ names(CSTColors) <- CSTs
 CSTColorScale <- scale_colour_manual(name = "CST", values = CSTColors[1:5])
 CSTFillScale <- scale_fill_manual(name = "CST", values = CSTColors[1:5])
 ok <- ordinate(ps, method="NMDS", distance=braydist)
-# knitr::opts_chunk$set(results = "hide")
 ```
-```{r see-pam-k5u_CLRleo, message=FALSE, message=FALSE, echo=FALSE, warning=FALSE}
-plot_ordination(ps,ok , color="CST") + CSTColorScale + ggtitle("NMDS -- bray -- By Cluster")
-```
-
-
-
-```{r see-pam-k3Sampesl_CLRleo, message=FALSE,, results="hide",  message=FALSE, echo=FALSE, warning=FALSE}
-o<- ordinate(ps, method="NMDS", distance=braydist)
-# knitr::opts_chunk$set(results = "hide")
+```{r NMDS, message=FALSE, message=FALSE, echo=FALSE, warning=FALSE, fig.show="hold", out.width="50%"}
+plot_ordination(ps, ok, color="CST") + CSTColorScale + ggtitle("NMDS -- bray -- CST")
+plot_ordination(ps, ok, color="Geographical_location") + CSTColorScale + ggtitle("NMDS -- bray -- Location")
 ```
 
-```{r see-pam-k3Sampesl55_CLRleo, message=FALSE, message=FALSE, echo=FALSE, warning=FALSE, fig.height=8, fig.width=12, out.width='50%', fig.show="hold"}
-theme_set(theme_bw(base_size = 20))
-plot_ordination(ps,o , "samples", color="Diet", shape = 'Veg') + geom_point(size=2)+ xlim(-1, 1)+ ylim(-.5, .5)
-par(mfrow=c(1,4), mar=c(4,4,4,1), oma=c(0.5,0.5,0.5,0))
-```
 
 # Principal Coordinates Analysis (PCoA)
 
 Coloured by DMM community type
 
-```{r pcoa, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="33%", fig.show="hold", warning=FALSE}
+```{r pcoa, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold", warning=FALSE}
 method <- "PCoA"
 trans <- "compositional"
 distance <- "bray"
@@ -127,6 +110,17 @@ p <- plot_landscape(microbiome::transform(ps , "compositional"),
                     size = 3,
                     col = "CST",
                     shading = FALSE) +
+  labs(title = "CST") + 		    		    
+  scale_colour_brewer(palette = "Set1")		    
+print(p)
+
+p <- plot_landscape(microbiome::transform(ps , "compositional"),
+                    distance = distance,
+                    method = method,
+                    size = 3,
+                    col = "Geographical_location",
+                    shading = FALSE) +
+  labs(title = "Location") + 		    
   scale_colour_brewer(palette = "Set1")		    
 print(p)
 ```
