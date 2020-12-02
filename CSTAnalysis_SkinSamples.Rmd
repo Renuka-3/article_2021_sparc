@@ -92,7 +92,7 @@ ok <- ordinate(ps, method="NMDS", distance=braydist)
 ```
 ```{r NMDS, message=FALSE, message=FALSE, echo=FALSE, warning=FALSE, fig.show="hold", out.width="50%"}
 plot_ordination(ps, ok, color="CST") + CSTColorScale + ggtitle("NMDS -- bray -- CST")
-plot_ordination(ps, ok, color="Geographical_location") + CSTColorScale + ggtitle("NMDS -- bray -- Location")
+plot_ordination(ps, ok, color="Geographical_location") + ggtitle("NMDS -- bray -- Location")
 ```
 
 
@@ -100,7 +100,7 @@ plot_ordination(ps, ok, color="Geographical_location") + CSTColorScale + ggtitle
 
 Coloured by CST community type
 
-```{r pcoa, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold", warning=FALSE}
+```{r pcoa, echo=FALSE, message=FALSE, fig.width=7, fig.height=5, out.width="50%", fig.show="hold", warning=FALSE}
 method <- "PCoA"
 trans <- "compositional"
 distance <- "bray"
@@ -203,6 +203,7 @@ for (tax in rev(significant.taxa)) {
 Table of full names for the taxa:
 
 ```{r full_names}
+library(knitr)
 tab <- data.frame(ASV = significant.taxa, Full_name = full.names[significant.taxa])
 print(kable(tab))
 ```
