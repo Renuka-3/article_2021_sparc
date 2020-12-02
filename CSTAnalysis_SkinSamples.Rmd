@@ -242,8 +242,8 @@ df<- meta(pso)
 for (tax in rev(significant.taxa)) {
 
   # Pick the abundance values for the given taxonomic group ("tax")
-  # Let us use CLR transformed values
-  df$signal <- abundances(transform(pso, "clr"))[tax,]
+  # Let us use compositional transformed values
+  df$signal <- abundances(transform(pso, "compositional"))[tax,]
 
   # Retrieve the full name for this taxon
   tax.full.name <- full.names[tax]
@@ -252,7 +252,9 @@ for (tax in rev(significant.taxa)) {
   p <- ggplot(df, aes(x = CST, y = signal)) +
          labs(title = tax) +
          geom_boxplot() +
-	 geom_beeswarm()
+	 geom_beeswarm() +
+	 labs(y = "Relative abundance (%)") + 
+	 scale_y_log10(labels = scales::percent)
   print(p)
   
 }
@@ -264,7 +266,7 @@ Table of full names for the taxa:
 ```{r full_names, message=FALSE, echo=FALSE, warning=FALSE}
 tab <- data.frame(ASV = significant.taxa, Full_name = full.names[significant.taxa])
 rownames(tab) <- NULL
-kable(tab)
+print(kable(tab))
 ```
 
 
