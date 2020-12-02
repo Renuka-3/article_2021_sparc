@@ -203,7 +203,7 @@ pvs <- c()
 for (tax in taxa(ps)) {
   pvs[[tax]] <- kruskal.test(abundances(ps)[tax,] ~ meta(ps)$CST)$p.value
 }
-pvs <- sort(pvs)
+pvs <- sort(unlist(pvs))
 significant.taxa <- names(pvs)[which(as.numeric(p.adjust(pvs)) < 0.25)]
 
 # Pick full names for the taxa

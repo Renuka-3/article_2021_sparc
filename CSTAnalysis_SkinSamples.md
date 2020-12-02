@@ -52,11 +52,6 @@ Coloured by DMM community type
 
 Heatmaps for the community state types.
 
-
-```
-## Error in sort.int(x, na.last = na.last, decreasing = decreasing, ...): 'x' must be atomic
-```
-
 <img src="figure/clust-diverse_CLRleo-1.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="20%" /><img src="figure/clust-diverse_CLRleo-2.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="20%" /><img src="figure/clust-diverse_CLRleo-3.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="20%" />
 
 
