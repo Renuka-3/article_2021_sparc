@@ -203,7 +203,7 @@ for (tax in rev(significant.taxa)) {
 
 Table of full names for the taxa:
 
-```{r full_names, message=FALSE, warning=FALSE}
+```{r full_names}
 tab <- data_frame(ASV = significant.taxa, Full_name = full.names[significant.taxa])
 rownames(tab) <- NULL
 print(tab)
