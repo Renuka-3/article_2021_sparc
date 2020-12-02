@@ -15,17 +15,12 @@ set.seed(455423)
 default.par <- par(no.readonly = TRUE)
 options(stringsAsFactors = FALSE)
 theme_set(theme_bw())
-# EXCLUDEMARGINAL is a flag to exclude marginally preterm births (=37 weeks) in the later analysis
-#EXCLUDEMARGINAL = TRUE
 ```
 # Transform the data (proportions)
 ```{r transform-data_CLRleo, message=FALSE, echo=FALSE, warning=FALSE}
-#site <- "Vaginal_Swab"
 ps <- readRDS("data/processed/phyloseq/phy20.1.RDS")
 tt <- data.frame(tax_table(ps))
 ps <- transform_sample_counts(ps, function(OTU) OTU/sum(OTU))
-ps1<- prune_taxa(names(sort(taxa_sums(ps), T))[1:50], ps)
-taxa.order1<- taxa_names(ps1)
 ```
 
 # Cluster into CSTs
