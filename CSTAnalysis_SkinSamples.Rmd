@@ -190,8 +190,8 @@ print(p)
 
 Heatmaps for the community state types.
 
-```{r clust-diverse_CLRleo, eval= T, message=FALSE, echo=FALSE, warning=FALSE, out.width="20%", fig.show="hold", warning=FALSE}
-theme_set(theme_bw(base_size = 10))
+```{r clust-diverse_CLRleo, eval= T, message=FALSE, echo=FALSE, warning=FALSE, out.width="33%", fig.show="hold", warning=FALSE}
+theme_set(theme_bw(base_size = 20))
 library(BBmisc)
 library(reshape2)
 library("RColorBrewer")
