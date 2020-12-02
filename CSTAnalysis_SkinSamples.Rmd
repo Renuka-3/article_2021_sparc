@@ -16,7 +16,11 @@ default.par <- par(no.readonly = TRUE)
 options(stringsAsFactors = FALSE)
 theme_set(theme_bw())
 ```
+
+
+
 # Transform the data (proportions)
+
 ```{r transform-data_CLRleo, message=FALSE, echo=FALSE, warning=FALSE}
 ps <- readRDS("data/processed/phyloseq/phy20.1.RDS")
 tt <- data.frame(tax_table(ps))
@@ -24,6 +28,7 @@ ps <- transform_sample_counts(ps, function(OTU) OTU/sum(OTU))
 ```
 
 # Cluster into CSTs
+
 ```{r MDS_CLRleo, warning=FALSE, message=FALSE, echo=FALSE, warning=FALSE}
 braydist <- phyloseq::distance(ps, method="bray")
 ord = ordinate(ps, method = "MDS", distance = braydist)
@@ -33,14 +38,20 @@ print(evs[1:20])
 print(tail(evs))
 ```
 
+
 ## Denoise distance matrix
+
 ```{r PCoA-cutoff2_CLRleo, warning=FALSE, message=FALSE, echo=FALSE, warning=FALSE}
 h_sub5 <- hist(evs[6:length(evs)], 100)
 plot(h_sub5$mids, h_sub5$count, log="y", type='h', lwd=10, lend=2)
 ```
 
+
+
 ## Determine number of clusters
+
 We will use the gap statistic to indicate the number of clusters in this data:
+
 ```{r gap-stat_CLRleo, message=FALSE, echo=FALSE, warning=FALSE}
 NDIM <- 7
 x <- ord$vectors[,1:NDIM]  # rows=sample, cols=MDS axes, entries = value
@@ -51,9 +62,12 @@ gs = clusGap(x, FUN = pamPCoA, K.max = 12, B = 50)
 plot_clusgap(gs) + scale_x_continuous(breaks=c(seq(0, 12, 2)))
 ```
 
+
+
 ## Cluster into CSTs
 
 Perform PAM 3-fold clusters:
+
 
 ```{r pam-k5_CLRleo, message=FALSE, echo=FALSE, warning=FALSE}
 K <- 3
@@ -68,21 +82,23 @@ sample_data(ps)$CST <- clust
 CSTs <- as.character(seq(K))
 ```
 
+
+
 ## Evaluate clustering
+
+
 ```{r see-pam-k3_CLRleo,eval=T,results = 'hide',  message=FALSE, echo=FALSE, warning=FALSE}
-CSTColors <- brewer.pal(6,"Paired")[c(1,3,2,5,4,6)] # Length 6 for consistency with pre-revision CST+ coloration
+# Length 6 for consistency with pre-revision CST+ coloration
+CSTColors <- brewer.pal(6,"Paired")[c(1,3,2,5,4,6)] 
 names(CSTColors) <- CSTs
 CSTColorScale <- scale_colour_manual(name = "CST", values = CSTColors[1:5])
 CSTFillScale <- scale_fill_manual(name = "CST", values = CSTColors[1:5])
-#grid.arrange(phyloseq::plot_ordination(ps, ord, color="CST") + CSTColorScale,plot_ordination(ps, ord, axes=c(3,4), color="CST") + CSTColorScale, main="Ordination by Cluster")
-ok<-ordinate(ps, method="NMDS", distance=braydist)
-knitr::opts_chunk$set(results = "hide")
+ok <- ordinate(ps, method="NMDS", distance=braydist)
+# knitr::opts_chunk$set(results = "hide")
 ```
 ```{r see-pam-k5u_CLRleo, message=FALSE, message=FALSE, echo=FALSE, warning=FALSE}
 plot_ordination(ps,ok , color="CST") + CSTColorScale + ggtitle("NMDS -- bray -- By Cluster")
 ```
-
-
 
 
 
