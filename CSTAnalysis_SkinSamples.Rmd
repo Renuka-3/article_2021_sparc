@@ -98,13 +98,13 @@ plot_ordination(ps, ok, color="Geographical_location") + CSTColorScale + ggtitle
 
 # Principal Coordinates Analysis (PCoA)
 
-Coloured by DMM community type
+Coloured by CST community type
 
 ```{r pcoa, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold", warning=FALSE}
 method <- "PCoA"
 trans <- "compositional"
 distance <- "bray"
-p <- plot_landscape(microbiome::transform(ps , "compositional"),
+p1 <- plot_landscape(microbiome::transform(ps , "compositional"),
                     distance = distance,
                     method = method,
                     size = 3,
@@ -112,9 +112,9 @@ p <- plot_landscape(microbiome::transform(ps , "compositional"),
                     shading = FALSE) +
   labs(title = "CST") + 		    		    
   scale_colour_brewer(palette = "Set1")		    
-print(p)
+print(p1)
 
-p <- plot_landscape(microbiome::transform(ps , "compositional"),
+p2 <- plot_landscape(microbiome::transform(ps , "compositional"),
                     distance = distance,
                     method = method,
                     size = 3,
@@ -122,7 +122,7 @@ p <- plot_landscape(microbiome::transform(ps , "compositional"),
                     shading = FALSE) +
   labs(title = "Location") + 		    
   scale_colour_brewer(palette = "Set1")		    
-print(p)
+print(p2)
 ```
 
 ### Heatmap
