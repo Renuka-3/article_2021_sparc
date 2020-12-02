@@ -2,7 +2,7 @@
 title: "CSTAnalysis_SkinSamples.Rmd"
 author: "Renuka"
 date: "2020-12-03"
-output: html_document
+output: md_document
 ---
 
 
