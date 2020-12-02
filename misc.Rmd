@@ -1,3 +1,102 @@
+
+##### -----------------------------------------------------------------
+
+What is the purpose of this analysis? Some comments would help.
+
+```{r clust-diverse_table_CLR,eval=T, results='show', message=FALSE, echo=FALSE, warning=FALSE}
+gg<- meta(ps)
+df11<- subset(gg, CST==1 & Diet =="Veg")
+df12<- subset(gg, CST==1& Diet =="Mixed")
+df1<- subset(gg, CST==1); df1<- df1[, -seq(1:46)]
+df2<- subset(gg, CST==2); df2<- df2[, -seq(1:46)]
+df3<- subset(gg, CST==3); df3<- df3[, -seq(1:46)]
+ddddf1<- c(round(dim(df11)[1]/dim(df1)[1] *100,1))
+ddddf2<-c(round(dim(df12)[1]/dim(df1)[1]*100 ,1))
+          
+dfdf<- cbind(ddddf1, ddddf2)
+rownames(dfdf)<- c('Clust.1')
+colnames(dfdf)<- c('Veg','Mixed')
+library(knitr)
+kable(dfdf)
+```
+
+#### Fisher-exact test at the first and second visits between clusters
+
+Do we have first and second visits?
+
+```{r clust-diverse_table_CLR09,eval=T, results='show', message=FALSE, echo=FALSE, warning=FALSE}
+gh<- xtabs(~  CST +Diet, data = gg)
+addmargins(gh)
+ff<- fisher.test(gh)
+```
+
+```{r clust-diverse_table_CLR0977,eval=T, results='show', message=FALSE, echo=FALSE, warning=FALSE}
+print('Fisher exact test p-value is: ')
+print(ff$p.value)
+```
+
+
+#### Ordination plot for the Diet group
+
+```{r see-pam-k5Sampesl55_CLRleo11, message=FALSE, message=FALSE, echo=FALSE, warning=FALSE}
+theme_set(theme_bw(base_size = 15))
+o<- ordinate(ps, method = 'NMDS', distance = braydist)
+ps1<- prune_samples(sample_data(ps)$Diet == "Veg", ps)
+m1<- meta(ps1)
+oo1<- o$points[rownames(m1),]
+oo1<- as.data.frame(oo1)
+ps2<- prune_samples(sample_data(ps)$Diet == "Mixed", ps)
+m2<- meta(ps2)
+oo2<- o$points[rownames(m2),]
+oo2<- as.data.frame(oo2)
+knitr::opts_chunk$set(results = "hide")
+```
+
+```{r CLRleo2233, fig.height = 9, fig.width = 15, , message=FALSE, echo=FALSE, warning=FALSE}
+theme_set(theme_bw(base_size = 10))
+p1<- list()
+m1<-meta(ps)$Veg
+
+for(i in levels(m1)) {
+  pshm1 <- prune_samples(sample_data(ps1)$Diet == "Veg", ps1)
+  n<- rownames(meta(pshm1))
+  df1<-oo1[n,]
+  df<- cbind(df1, meta(pshm1))
+  p1[[i]] <- ggplot(df, aes(x = MDS1, y = MDS2, color = CST)) +
+    geom_point(size= 1.5) +
+    labs(title = paste0(i), subtitle = '') +
+    xlim(-1, 1) +
+    ylim(-.5, .5)
+}
+
+p2<- list()
+for(i in levels(m1)) {
+  pshm2 <- prune_samples(sample_data(ps2)$Diet == "Mixed", ps2)
+  n<- rownames(meta(pshm2))
+  df3<-oo2[n,]
+  df2<-cbind(df3, meta(pshm2))
+  p2[[i]] <- ggplot(df2, aes(x = MDS1, y = MDS2, color = CST)) +
+    geom_point(size= 1.5) +
+    labs(title = paste0(i), subtitle = '') +
+    xlim(-1, 1) +
+    ylim(-.5, .5)
+}
+```
+
+```{r CLRleo_panel, fig.height=5, fig.width=15, message=FALSE, echo=FALSE, warning=FALSE, error=F}
+theme_set(theme_bw(base_size = 10))
+library(cowplot)
+library(multipanelfigure)
+  #fill_panel(p2$`2nd group`, column = 2, row = 2) %<>%
+  #fill_panel(p2$`3rd group`, column = 3, row = 2) %<>%
+  #fill_panel(p2$`4th group`, column = 2, row = 2)
+#plot(figure1)
+#par(mfrow=c(1,3), mar=c(4,4,4,1), oma=c(0.5,0.5,0.5,0))
+#ppp<-grid.arrange(p1$`1st group`, p1$`2nd group`, p2$`1st group`, p2$`2nd group`)
+#pppp<-grid.arrange(p1$`3rd group`, p1$`4th group`, p2$`3rd group`, p2$`4th group`)
+#p<- grid.arrange(ppp, pppp, ncol=2)
+```
+
 ```{r DESeq2, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="33%", fig.show="hold"}
 library(phyloseq)
 library(reshape2)

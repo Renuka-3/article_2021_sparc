@@ -13,11 +13,28 @@ output: html_document
 # Cluster into CSTs
 ![plot of chunk MDS_CLRleo](figure/MDS_CLRleo-1.png)
 
+```
+##  [1] 5.9840548 3.7404996 2.0896780 1.3230250 1.1019674 0.9766566 0.9021602
+##  [8] 0.6464166 0.5868130 0.5087633 0.4418356 0.3914422 0.3474311 0.3149250
+## [15] 0.3031454 0.2890737 0.2568495 0.2294809 0.2250794 0.2010400
+```
+
+```
+## [1] -0.05442782 -0.06150271 -0.07856958 -0.09270186 -0.10894815 -0.12931259
+```
+
 ## Denoise distance matrix
 ![plot of chunk PCoA-cutoff2_CLRleo](figure/PCoA-cutoff2_CLRleo-1.png)![plot of chunk PCoA-cutoff2_CLRleo](figure/PCoA-cutoff2_CLRleo-2.png)
 
 ## Determine number of clusters
 We will use the gap statistic to indicate the number of clusters in this data:
+
+```
+## Clustering k = 1,2,..., K.max (= 12): .. done
+## Bootstrapping, b = 1,2,..., B (= 50)  [one "." per sample]:
+## .................................................. 50
+```
+
 ![plot of chunk gap-stat_CLRleo](figure/gap-stat_CLRleo-1.png)
 
 ## Cluster into CSTs
@@ -29,10 +46,6 @@ Perform PAM 3-fold clusters:
 ## Evaluate clustering
 
 ![plot of chunk see-pam-k5u_CLRleo](figure/see-pam-k5u_CLRleo-1.png)
-
-#### Ordination plot for the Diet group
-
-
 
 
 
@@ -64,35 +77,3 @@ Table of full names for the taxa:
 
 
 
-
-##### -----------------------------------------------------------------
-
-What is the purpose of this analysis? Some comments would help.
-
-
-|        |  Veg| Mixed|
-|:-------|----:|-----:|
-|Clust.1 | 53.3|  46.7|
-
-#### Fisher-exact test at the first and second visits between clusters
-
-Do we have first and second visits?
-
-
-```
-##      Diet
-## CST   Mixed Veg Sum
-##   1      14  16  30
-##   2       5   8  13
-##   3       9   6  15
-##   Sum    28  30  58
-```
-
-
-```
-## [1] "Fisher exact test p-value is: "
-```
-
-```
-## [1] 0.5411113
-```
