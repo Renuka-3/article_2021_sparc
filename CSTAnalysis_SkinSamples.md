@@ -77,8 +77,8 @@ Table of full names for the taxa:
 
 
 ```r
-tab <- data.frame(ASV = significant.taxa, Full_name = full.names[significant.taxa])
+tab <- data_frame(ASV = significant.taxa, Full_name = full.names[significant.taxa])
 rownames(tab) <- NULL
-kable(tab)
+print(kable(tab))
 ```
 
