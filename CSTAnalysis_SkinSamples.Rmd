@@ -104,7 +104,7 @@ plot_ordination(ps,ok , color="CST") + CSTColorScale + ggtitle("NMDS -- bray -- 
 
 ```{r see-pam-k3Sampesl_CLRleo, message=FALSE,, results="hide",  message=FALSE, echo=FALSE, warning=FALSE}
 o<- ordinate(ps, method="NMDS", distance=braydist)
-knitr::opts_chunk$set(results = "hide")
+# knitr::opts_chunk$set(results = "hide")
 ```
 
 ```{r see-pam-k3Sampesl55_CLRleo, message=FALSE, message=FALSE, echo=FALSE, warning=FALSE, fig.height=8, fig.width=12, out.width='50%', fig.show="hold"}
