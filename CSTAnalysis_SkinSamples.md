@@ -1,16 +1,11 @@
----
-title: "CSTAnalysis_SkinSamples.Rmd"
-author: "Renuka"
-date: "2020-12-03"
-output: md_document
----
 
 
 
-# Transform the data (proportions)
+
 
 
 # Cluster into CSTs
+
 ![plot of chunk MDS_CLRleo](figure/MDS_CLRleo-1.png)
 
 ```
@@ -23,11 +18,17 @@ output: md_document
 ## [1] -0.05442782 -0.06150271 -0.07856958 -0.09270186 -0.10894815 -0.12931259
 ```
 
+
 ## Denoise distance matrix
+
 ![plot of chunk PCoA-cutoff2_CLRleo](figure/PCoA-cutoff2_CLRleo-1.png)![plot of chunk PCoA-cutoff2_CLRleo](figure/PCoA-cutoff2_CLRleo-2.png)
 
+
+
 ## Determine number of clusters
+
 We will use the gap statistic to indicate the number of clusters in this data:
+
 
 ```
 ## Clustering k = 1,2,..., K.max (= 12): .. done
@@ -37,29 +38,28 @@ We will use the gap statistic to indicate the number of clusters in this data:
 
 ![plot of chunk gap-stat_CLRleo](figure/gap-stat_CLRleo-1.png)
 
+
+
 ## Cluster into CSTs
 
 Perform PAM 3-fold clusters:
 
 
 
+
+
 ## Evaluate clustering
 
-![plot of chunk see-pam-k5u_CLRleo](figure/see-pam-k5u_CLRleo-1.png)
 
 
+<img src="figure/NMDS-1.png" title="plot of chunk NMDS" alt="plot of chunk NMDS" width="50%" /><img src="figure/NMDS-2.png" title="plot of chunk NMDS" alt="plot of chunk NMDS" width="50%" />
 
-
-
-
-
-<img src="figure/see-pam-k3Sampesl55_CLRleo-1.png" title="plot of chunk see-pam-k3Sampesl55_CLRleo" alt="plot of chunk see-pam-k3Sampesl55_CLRleo" width="50%" />
 
 # Principal Coordinates Analysis (PCoA)
 
-Coloured by DMM community type
+Coloured by CST community type
 
-<img src="figure/pcoa-1.png" title="plot of chunk pcoa" alt="plot of chunk pcoa" width="33%" />
+<img src="figure/pcoa-1.png" title="plot of chunk pcoa" alt="plot of chunk pcoa" width="50%" /><img src="figure/pcoa-2.png" title="plot of chunk pcoa" alt="plot of chunk pcoa" width="50%" />
 
 ### Heatmap
 
@@ -79,5 +79,9 @@ Table of full names for the taxa:
 ```r
 tab <- data.frame(ASV = significant.taxa, Full_name = full.names[significant.taxa])
 print(kable(tab))
+```
+
+```
+## Error in kable(tab): could not find function "kable"
 ```
 
