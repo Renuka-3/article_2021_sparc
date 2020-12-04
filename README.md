@@ -58,6 +58,12 @@ are most abundant phyla present on the skin. (see coreanalysis.md)
 3. Age: No significant differences observed in Alpha diversity. Significant difference obseved 
 in PERMANOVA analysis (see ageanalysis.md)
 
-4. Location: 
+4. Location: Significant differences obserbved in specific taxonomic groups. No significant 
+differences observed in alpha diversity. (see locationanalysis.md)
+
+5. Joint analysis: Significant differences observed in bacterial community composition of geographical
+location by PERMANOVA analysis. (see jointanalysis.md)
+
+6. DMM analysis:
 
 
