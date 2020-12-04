@@ -11,8 +11,6 @@ Summary
 Taxonomic table and metadata of individuals.
 * Create the phyloseq object with: (create_phyloseq.R) (Create_phyloseq.Rmd)
 
-* [main.R](main.R)
-Fist run DM analysis to get results of CST analysis. (source file for CST analysis)
 
 ### Analysis files
 * [CSTAnalysis_SkinSamples](CSTAnalysis_SkinSamples.md): Here clustering was evaluated using CST values for 
