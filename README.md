@@ -7,18 +7,15 @@ Summary
 
 ### Data files
 
-* [phyloseq20.Rmd](phyloseq20.Rmd)
+* [phyloseq20.Rmd](phyloseq20.Rmd):Phyloseq file is made using OTU table, 
+Taxonomic table and metadata of individuals.
 * Create the phyloseq object with: (create_phyloseq.R) (Create_phyloseq.Rmd)
-
-Phyloseq needs to be created before analysing microbiome data. OTU
-table, Taxonomic table and metadata files required to creat phyloseq
-object.
 
 * [main.R](main.R)
 Fist run DM analysis to get results of CST analysis. (source file for CST analysis)
 
 ### Analysis files
-* [CSTAnalysis
+* [CSTAnalysis_SkinSamples](CSTAnalysis_SkinSamples.md):
 
 * [DirichletMultinominalanalysis](DirichletMultinominalanalysis.md): DMM analysis
 showed three clusters, cluster1 is mainly driven by Anderseniella, Frondihabitans, 
