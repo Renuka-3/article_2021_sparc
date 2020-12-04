@@ -64,4 +64,4 @@ location by PERMANOVA analysis. (see jointanalysis.md)
 Frondihabitans, Alkalibacillus and Agaribacter. Cluster2 with Frondihabitans and Alkalibacillus.
 cluster3 is maily driven by Alkalibacillus genus. (see DirichletMultinominalanalysis.md)
 
-7. CST analysis: Significant genera were plotted of different locations using CST values.
+7. CST analysis: Significant genera were plotted of different locations using CST values.(see CSTAnalysis_SkinSamples.md)
