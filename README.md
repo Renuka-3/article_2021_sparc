@@ -44,7 +44,7 @@ detail which taxonomic groups differ between locations.
 1. core_genera_heatmap
 2. phylum abundance distribution
 
-### Conclusion
+### Conclusions
 1. Core genera: Staphylococcus, Bacillus, Corynebacterium and Anaerococcus
 are most abundant genera. Firmicutes, Proteobacteria, Actinobacteria, and Bacteroidetes
 are most abundant phyla present on the skin. (see coreanalysis.md)
