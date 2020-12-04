@@ -17,10 +17,7 @@ Fist run DM analysis to get results of CST analysis. (source file for CST analys
 ### Analysis files
 * [CSTAnalysis_SkinSamples](CSTAnalysis_SkinSamples.md):
 
-* [DirichletMultinominalanalysis](DirichletMultinominalanalysis.md): DMM analysis
-showed three clusters, cluster1 is mainly driven by Anderseniella, Frondihabitans, 
-Alkalibacillus and Agaribacter. cluster2 with Frondihabitans and Alkalibacillus.
-cluster3 is maily driven by Alkalibacillus genus.
+* [DirichletMultinominalanalysis](DirichletMultinominalanalysis.md): heading towards community type analysis.
 
 
 * [Joint analysis](jointanalysis.md): this shows that only geographic
@@ -49,7 +46,7 @@ detail which taxonomic groups differ between locations.
 2. phylum abundance distribution
 
 ### Conclusion
-1. Core genera: It showes Staphylococcus, Bacillus, Corynebacterium and Anaerococcus
+1. Core genera: Staphylococcus, Bacillus, Corynebacterium and Anaerococcus
 are most abundant genera. Firmicutes, Proteobacteria, Actinobacteria, and Bacteroidetes
 are most abundant phyla present on the skin. (see coreanalysis.md)
 
