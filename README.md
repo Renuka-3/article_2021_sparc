@@ -15,7 +15,8 @@ Taxonomic table and metadata of individuals.
 Fist run DM analysis to get results of CST analysis. (source file for CST analysis)
 
 ### Analysis files
-* [CSTAnalysis_SkinSamples](CSTAnalysis_SkinSamples.md):
+* [CSTAnalysis_SkinSamples](CSTAnalysis_SkinSamples.md): Here clustering was evaluated using CST values for 
+significant genera observed in different locations.
 
 * [DirichletMultinominalanalysis](DirichletMultinominalanalysis.md): heading towards community type analysis.
 
@@ -65,5 +66,5 @@ location by PERMANOVA analysis. (see jointanalysis.md)
 Frondihabitans, Alkalibacillus and Agaribacter. Cluster2 with Frondihabitans and Alkalibacillus.
 cluster3 is maily driven by Alkalibacillus genus. (see DirichletMultinominalanalysis.md)
 
-7. CST analysis: 
+7. CST analysis: signifiant genera were plotted by CST values of three clustres
 
