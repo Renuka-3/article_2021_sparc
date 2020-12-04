@@ -19,7 +19,7 @@ Fist run DM analysis to get results of CST analysis. (source file for CST analys
 
 ### Analysis files
 
-[DirichletMultinominalanalysis](DirichletMultinominalanalysis.md): DMM analysis
+** [DirichletMultinominalanalysis](DirichletMultinominalanalysis.md): DMM analysis
 showed three clusters, cluster1 is mainly driven by Anderseniella, Frondihabitans, 
 Alkalibacillus and Agaribacter. cluster2 with Frondihabitans and Alkalibacillus.
 cluster3 is maily driven by Alkalibacillus genus.
