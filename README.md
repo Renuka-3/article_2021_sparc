@@ -64,6 +64,9 @@ differences observed in alpha diversity. (see locationanalysis.md)
 5. Joint analysis: Significant differences observed in bacterial community composition of geographical
 location by PERMANOVA analysis. (see jointanalysis.md)
 
-6. DMM analysis:
+6. DMM analysis: Three distinct clusters were observed, cluster1 is mainly driven by Anderseniella,
+Frondihabitans, Alkalibacillus and Agaribacter. Cluster2 with Frondihabitans and Alkalibacillus.
+cluster3 is maily driven by Alkalibacillus genus. (see DirichletMultinominalanalysis.md)
 
+7. CST analysis: 
 
