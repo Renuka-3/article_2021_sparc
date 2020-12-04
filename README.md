@@ -18,6 +18,7 @@ object.
 Fist run DM analysis to get results of CST analysis. (source file for CST analysis)
 
 ### Analysis files
+* [CSTAnalysis
 
 * [DirichletMultinominalanalysis](DirichletMultinominalanalysis.md): DMM analysis
 showed three clusters, cluster1 is mainly driven by Anderseniella, Frondihabitans, 
@@ -25,11 +26,11 @@ Alkalibacillus and Agaribacter. cluster2 with Frondihabitans and Alkalibacillus.
 cluster3 is maily driven by Alkalibacillus genus.
 
 
-[Joint analysis](jointanalysis.md): this shows that only geographic
+* [Joint analysis](jointanalysis.md): this shows that only geographic
 location has significant effect on the overall community composition.
 
 
-[Location analysis ](locationanalysis.md): Here we investigate in more
+* [Location analysis ](locationanalysis.md): Here we investigate in more
 detail which taxonomic groups differ between locations.
 
 
