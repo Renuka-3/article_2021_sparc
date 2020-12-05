@@ -31,7 +31,7 @@ location by PERMANOVA analysis.
 
 
 ### Analysis files
-* [CSTAnalysis_SkinSamples]: Here clustering was evaluated using CST values for 
+* CSTAnalysis_SkinSamples: Here clustering was evaluated using CST values for 
 significant genera observed in different locations.
 
 * [Joint analysis]: this shows that only geographiclocation has significant
