@@ -18,16 +18,16 @@ are most abundant phyla present on the skin.
 
 2. [Diet](dietanalysis.md): No significant differences obserbed in alpha and beta diversity.
 
-3. Age: No significant differences observed in Alpha diversity. Significant difference obseved 
-in PERMANOVA analysis (see ageanalysis.md)
+3. [Age](ageanalysis.md): No significant differences observed in Alpha diversity. Significant difference obseved 
+in PERMANOVA (Beta diversity) analysis.
 
-4. Location: Significant differences obserbved in specific taxonomic groups. No significant 
-differences observed in alpha diversity. (see locationanalysis.md)
+4. [Location](locationanalysis.md): Significant differences obserbved in specific taxonomic groups. No significant 
+differences observed in alpha diversity. 
 
-5. Joint analysis: Significant differences observed in bacterial community composition of geographical
-location by PERMANOVA analysis. (see jointanalysis.md)
+5. [Joint analysis](jointanalysis.md): Significant differences observed in bacterial community composition of geographical
+location by PERMANOVA analysis. 
 
-6. CST analysis: Significant genera were plotted of different locations using CST values.(see CSTAnalysis_SkinSamples.md)
+6. [CST analysis](CSTAnalysis_SkinSamples.md): Significant genera were plotted of different locations using CST values.
 
 
 ### Analysis files
