@@ -17,23 +17,37 @@ Core microbiota is here defined based on the following parameters:
   * Detection threshold (relative abundance): 0.1%
   * Prevalence threshold (above threshold in the population) 50%.
 
-The following taxonomic groups are in the core microbiota. Mean relative abundance and population prevalence (above detection threshold) are shown.
-
-Core phyla.
+The following taxonomic groups are in the core genera. Mean relative abundance and population prevalence (above detection threshold) are shown.
 
 
-|Taxon           | Relative abundance (%)| Prevalence (%)|
-|:---------------|----------------------:|--------------:|
-|Staphylococcus  |                   23.2|           89.7|
-|Bacillus        |                   21.7|           89.7|
-|Corynebacterium |                    7.1|           70.7|
-|Anaerococcus    |                    5.8|           55.2|
+```
+## Error: arrange() failed at implicit mutate() step. 
+## ✖ Could not create a temporary column for `..1`.
+## ℹ `..1` is `Abundance`.
+```
+
+
+
+|Taxon           | Mean Relative abundance (%)| Median Relative abundance (%)| Prevalence (%)|
+|:---------------|---------------------------:|-----------------------------:|--------------:|
+|Corynebacterium |                         7.1|                           1.0|           70.7|
+|Bacillus        |                        21.7|                           1.3|           89.7|
+|Staphylococcus  |                        23.2|                           3.4|           89.7|
+|Anaerococcus    |                         5.8|                           0.1|           55.2|
 Abundance variation across samples for each core taxa.
 
 ![plot of chunk core_rank_abundance](figure/core_rank_abundance-1.png)
 
 
 Core with varying detection and prevalence thresholds.
+
+
+```
+##  [1] "0.1%"               "0.180164823065441%" "0.324593634702017%"
+##  [4] "0.584803547642573%" "1.05361027689066%"  "1.89823509115937%" 
+##  [7] "3.41995189335339%"  "6.16155027758334%"  "11.1009461556962%" 
+## [10] "20%"
+```
 
 ![plot of chunk core_heatmap](figure/core_heatmap-1.png)
 ##Phylum abundance distributions
@@ -62,18 +76,18 @@ Phylum abundance table (relative abundance %):
 |Chlamydiae                 |  0.0|    0.0| 0.0|  0.0|
 |Chloroflexi                |  0.0|    0.0| 0.0|  0.1|
 |Chlorophyta                |  0.0|    0.0| 0.0|  0.1|
-|Coprothermobacterota       |  0.0|    0.0| 0.0|  0.0|
+|Coprothermobacterota       |  0.0|    0.0| 0.0|  0.0|
 |Cyanobacteria              |  0.0|    0.0| 0.0|  0.1|
 |Deinococcus-Thermus        |  0.0|    0.0| 0.0|  0.0|
 |Fibrobacteres              |  0.0|    0.0| 0.0|  0.7|
 |Gemmatimonadetes           |  0.0|    0.0| 0.0|  0.0|
-|Ignavibacteriae            |  0.0|    0.0| 0.0|  0.0|
+|Ignavibacteriae            |  0.0|    0.0| 0.0|  0.0|
 |Lentisphaerae              |  0.0|    0.0| 0.0|  0.0|
 |Nitrospirae                |  0.0|    0.0| 0.0|  0.1|
 |Pctinobacteria             |  0.0|    0.0| 0.0|  0.1|
 |Planctomycetes             |  0.0|    0.0| 0.0|  0.2|
 |Spirochaetes               |  0.0|    0.0| 0.0|  0.1|
-|Synergistetes              |  0.0|    0.0| 0.0|  0.1|
+|Synergistetes              |  0.0|    0.0| 0.0|  0.1|
 |Tenericutes                |  0.0|    0.0| 0.0|  0.4|
 |Verrucomicrobia            |  0.0|    0.0| 0.0|  0.1|
 |Viridiplantae              |  0.0|    0.0| 0.0|  0.0|

@@ -33,9 +33,7 @@ Core microbiota is here defined based on the following parameters:
   * Detection threshold (relative abundance): `r 100 * core_detection`%
   * Prevalence threshold (above threshold in the population) `r 100 * core_prevalence`%.
 
-The following taxonomic groups are in the core microbiota. Mean relative abundance and population prevalence (above detection threshold) are shown.
-
-Core phyla.
+The following taxonomic groups are in the core genera. Mean relative abundance and population prevalence (above detection threshold) are shown.
 
 ```{r core_phyla, echo=FALSE, message=FALSE, fig.width=10, fig.height=8, out.width="50%"}
 
@@ -43,11 +41,12 @@ ps <- aggregate_taxa(phy20.1, "genus")
 ps <- microbiome::transform(ps, "compositional")
 ps.core <- core(ps, detection = core_detection, prevalence = core_prevalence)
 m <- round(100 * rowMeans(abundances(ps.core)), 1)
+median <- round(100 * apply(abundances(ps.core), 1, median), 1)
 prev <- round(100 * prevalence(ps.core, detection = core_detection), 1)
-d <- as.data.frame(list(Taxon = names(m), Abundance = m, Prevalence = prev))
+d <- as.data.frame(list(Taxon = names(m), Abundance_mean = m, Abundance_median = median, Prevalence = prev))
 rownames(d) <- NULL
 d <- d %>% arrange(desc(Abundance), desc(Prevalence))
-colnames(d) <- c("Taxon", "Relative abundance (%)", "Prevalence (%)")
+colnames(d) <- c("Taxon", "Mean Relative abundance (%)", "Median Relative abundance (%)", "Prevalence (%)")
 kable(d)
 ```
 Abundance variation across samples for each core taxa.
