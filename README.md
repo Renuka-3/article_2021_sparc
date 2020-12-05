@@ -31,28 +31,27 @@ location by PERMANOVA analysis.
 
 
 ### Analysis files
-* [CSTAnalysis_SkinSamples](CSTAnalysis_SkinSamples.md): Here clustering was evaluated using CST values for 
+* [CSTAnalysis_SkinSamples]: Here clustering was evaluated using CST values for 
 significant genera observed in different locations.
 
-* [Joint analysis](jointanalysis.md): this shows that only geographic
-location has significant effect on the overall community composition.
+* [Joint analysis]: this shows that only geographiclocation has significant
+effect on the overall community composition.
 
-* [Location analysis ](locationanalysis.md): Here we investigate in more
-detail which taxonomic groups differ between locations.
+* [Location analysis ]: Here we investigate in more detail which taxonomic groups differ between locations.
 
-* [ageanalysis](ageanalysis.md)
+* [ageanalysis]
 1. alpha diversity analysis- shannon diversity analysis using wilcoxon test
 2. PCoA analysis
 3. DESeq2 analysis
 4. Investigate the top factors
 
-* [dietanalysis](dietanalysis.md)
+* [dietanalysis]
 1. alpha diversity analysis- shannon diversity analysis using Kruskal test
 2. Beta diversity analysis- PCoA analysis, PERMANOVA
 3. DESeq2 analysis
 4. Investigate the top factors
 
-* [coreanalysis](coreanalysis.md)
+* [coreanalysis]
 1. core_genera_heatmap
 2. phylum abundance distribution
 
