@@ -34,7 +34,7 @@ location by PERMANOVA analysis.
 * CSTAnalysis_SkinSamples: Here clustering was evaluated using CST values for 
 significant genera observed in different locations.
 
-* Joint analysis: this shows that only geographiclocation has significant
+* Joint analysis: This shows that only geographiclocation has significant
 effect on the overall community composition.
 
 * Location analysis: Here we investigate in more detail which taxonomic groups differ between locations.
