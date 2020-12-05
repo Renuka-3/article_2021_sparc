@@ -11,6 +11,28 @@ Summary
 Taxonomic table and metadata of individuals.
 * Create the phyloseq object with: (create_phyloseq.R) (Create_phyloseq.Rmd)
 
+### Conclusions
+1. Core genera: Staphylococcus, Bacillus, Corynebacterium and Anaerococcus
+are most abundant genera. Firmicutes, Proteobacteria, Actinobacteria, and Bacteroidetes
+are most abundant phyla present on the skin. (see coreanalysis.md)
+
+2. Diet: No significant differences obserbed in alpha and beta diversity. (see dietanalysis.md)
+
+3. Age: No significant differences observed in Alpha diversity. Significant difference obseved 
+in PERMANOVA analysis (see ageanalysis.md)
+
+4. Location: Significant differences obserbved in specific taxonomic groups. No significant 
+differences observed in alpha diversity. (see locationanalysis.md)
+
+5. Joint analysis: Significant differences observed in bacterial community composition of geographical
+location by PERMANOVA analysis. (see jointanalysis.md)
+
+6. DMM analysis: Three distinct clusters were observed, cluster1 is mainly driven by Anderseniella,
+Frondihabitans, Alkalibacillus and Agaribacter. Cluster2 with Frondihabitans and Alkalibacillus.
+cluster3 is maily driven by Alkalibacillus genus. (see DirichletMultinominalanalysis.md)
+
+7. CST analysis: Significant genera were plotted of different locations using CST values.(see CSTAnalysis_SkinSamples.md)
+
 
 ### Analysis files
 * [CSTAnalysis_SkinSamples](CSTAnalysis_SkinSamples.md): Here clustering was evaluated using CST values for 
@@ -44,24 +66,3 @@ detail which taxonomic groups differ between locations.
 1. core_genera_heatmap
 2. phylum abundance distribution
 
-### Conclusions
-1. Core genera: Staphylococcus, Bacillus, Corynebacterium and Anaerococcus
-are most abundant genera. Firmicutes, Proteobacteria, Actinobacteria, and Bacteroidetes
-are most abundant phyla present on the skin. (see coreanalysis.md)
-
-2. Diet: No significant differences obserbed in alpha and beta diversity. (see dietanalysis.md)
-
-3. Age: No significant differences observed in Alpha diversity. Significant difference obseved 
-in PERMANOVA analysis (see ageanalysis.md)
-
-4. Location: Significant differences obserbved in specific taxonomic groups. No significant 
-differences observed in alpha diversity. (see locationanalysis.md)
-
-5. Joint analysis: Significant differences observed in bacterial community composition of geographical
-location by PERMANOVA analysis. (see jointanalysis.md)
-
-6. DMM analysis: Three distinct clusters were observed, cluster1 is mainly driven by Anderseniella,
-Frondihabitans, Alkalibacillus and Agaribacter. Cluster2 with Frondihabitans and Alkalibacillus.
-cluster3 is maily driven by Alkalibacillus genus. (see DirichletMultinominalanalysis.md)
-
-7. CST analysis: Significant genera were plotted of different locations using CST values.(see CSTAnalysis_SkinSamples.md)
