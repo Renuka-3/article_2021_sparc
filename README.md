@@ -16,7 +16,7 @@ Taxonomic table and metadata of individuals.
 are most abundant genera. Firmicutes, Proteobacteria, Actinobacteria, and Bacteroidetes
 are most abundant phyla present on the skin.
 
-2. Diet: No significant differences obserbed in alpha and beta diversity. (see dietanalysis.md)
+2. [Diet](dietanalysis.md): No significant differences obserbed in alpha and beta diversity.
 
 3. Age: No significant differences observed in Alpha diversity. Significant difference obseved 
 in PERMANOVA analysis (see ageanalysis.md)
