@@ -58,11 +58,12 @@ dfm$Var1 <- factor(dfm$Var1, levels = rev(d$Taxon))
 
 dfm$Var_new = str_wrap(dfm$Var1, width = 40)
 
-p2 <- ggplot(dfm, aes(x = Var_new, y = value, color = 'pink')) +
+p2 <- ggplot(dfm, aes(x = Var_new, y = value)) +
        geom_boxplot() +
+       geom_jitter(width = 0.1) +       
        scale_y_log10(label = scales::percent) +
        coord_flip() + theme(legend.position="none") +
-       labs(y = "Relative abundance (%)", x = 'Taxa', title = "Core abundance variation")
+       labs(y = "Relative abundance (%)", x = '', title = "Core abundance variation")
 print(p2)
 ```
 
