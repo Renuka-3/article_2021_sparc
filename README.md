@@ -9,7 +9,7 @@ Summary
 
 * [phyloseq20.Rmd](phyloseq20.Rmd): Phyloseq file is made using OTU table, 
 Taxonomic table and metadata of individuals.
-* Create the phyloseq object with: (create_phyloseq.R) (Create_phyloseq.Rmd)
+* Create the phyloseq object with: [create_phyloseq.R](Create_phyloseq.R)
 
 ### Conclusions
 1. [Core genera](coreanalysis.md): Staphylococcus, Bacillus, Corynebacterium and Anaerococcus
