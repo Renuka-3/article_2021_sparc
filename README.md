@@ -1,9 +1,5 @@
 # Skin microbiome
-
-
-Summary
-* [phyloseq_optimization](phyloseq_optimization.md) 
-----------------------------------------------------------------------------
+Skin serves as a host for many microbial communities.
 
 ### Data files
 * [create_phyloseq.R](create_phyloseq.R):The phyloseq object is made 
