@@ -11,8 +11,9 @@ Taxonomic table and metadata of individuals.
 
 ### Conclusions
 1. [Core genera](coreanalysis.md): 
-* Most prevalent genera found on skin: Staphylococcus, Bacillus, Corynebacterium and Anaerococcus.
-* Most prevalent phyla found on skin: Firmicutes, Proteobacteria, Actinobacteria, and Bacteroidetes
+Following are the most prevalent genera and phyla found on human skin:
+* Most prevalent genera: Staphylococcus, Bacillus, Corynebacterium and Anaerococcus.
+* Most prevalent phyla: Firmicutes, Proteobacteria, Actinobacteria, and Bacteroidetes
 
 
 2. [Diet](dietanalysis.md): No significant differences obserbed in alpha and beta diversity.
