@@ -17,14 +17,10 @@ Following are the most prevalent genera and phyla found on human skin,
 
 
 2. [Diet](dietanalysis.md) and [Age](ageanalysis.md):
-* Alpha diversity analysis- No significant differences observed
-* Beta diversity analysis- No significant differences observed
-* DESeq2 analysis- 
-
-
-
-3. [Age](ageanalysis.md): No significant differences observed in Alpha diversity. Significant difference obseved 
-in PERMANOVA (Beta diversity) analysis.
+* Alpha diversity analysis- No significant differences observed in both groups.
+* Beta diversity analysis- No significant differences observed in diet, Significant differences obseved 
+in PERMANOVA analysis of age.
+* Differential abundance analysis (DESeq2)- Significant differences observed only in some genera in both gropus.
 
 4. [Location](locationanalysis.md): Significant differences obserbved in specific taxonomic groups. No significant 
 differences observed in alpha diversity. 
