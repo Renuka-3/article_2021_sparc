@@ -16,7 +16,7 @@ Following are the most prevalent genera and phyla found on human skin,
 * Most prevalent phyla: Firmicutes, Proteobacteria, Actinobacteria, and Bacteroidetes
 
 
-2. [Diet](dietanalysis.md), [Age])(ageanalysis.md):
+2. [Diet](dietanalysis.md) and [Age](ageanalysis.md):
 * Alpha diversity analysis- No significant differences observed
 * Beta diversity analysis- No significant differences observed
 * DESeq2 analysis- 
