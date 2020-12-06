@@ -6,15 +6,14 @@ Summary
 ----------------------------------------------------------------------------
 
 ### Data files
-
-* [phyloseq20.Rmd](phyloseq20.Rmd): Phyloseq file is made using OTU table, 
+* Create the phyloseq object with: [create_phyloseq.R](create_phyloseq.R) This phyloseq object is made using OTU table, 
 Taxonomic table and metadata of individuals.
-* Create the phyloseq object with: [create_phyloseq.R](create_phyloseq.R)
 
 ### Conclusions
-1. [Core genera](coreanalysis.md): Staphylococcus, Bacillus, Corynebacterium and Anaerococcus
-are most abundant genera. Firmicutes, Proteobacteria, Actinobacteria, and Bacteroidetes
-are most abundant phyla present on the skin.
+1. [Core genera](coreanalysis.md): 
+* Most prevalent genera found on skin: Staphylococcus, Bacillus, Corynebacterium and Anaerococcus.
+* Most prevalent phyla found on skin: Firmicutes, Proteobacteria, Actinobacteria, and Bacteroidetes
+
 
 2. [Diet](dietanalysis.md): No significant differences obserbed in alpha and beta diversity.
 
@@ -50,8 +49,3 @@ effect on the overall community composition.
 2. Beta diversity analysis- PCoA analysis, PERMANOVA
 3. DESeq2 analysis
 4. Investigate the top factors
-
-* coreanalysis
-1. core_genera_heatmap
-2. phylum abundance distribution
-
