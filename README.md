@@ -6,7 +6,7 @@ Summary
 ----------------------------------------------------------------------------
 
 ### Data files
-* Create the phyloseq object with: [create_phyloseq.R](create_phyloseq.R) This phyloseq object is made 
+* [create_phyloseq.R](create_phyloseq.R):The phyloseq object is made 
 using OTU table, Taxonomic table and metadata of individuals.
 
 ### Conclusions
@@ -29,7 +29,8 @@ has significant effect on the overall community composition.
 4. [CST analysis](CSTAnalysis_SkinSamples.md): Here we identified three community state type analysis.
 
 
-5. [Diet](dietanalysis.md) and [Age](ageanalysis.md):
+5. [Diet](dietanalysis.md) and [Age](ageanalysis.md): We have also perfomed some 
+additional analysis based on diet and age groups
 * Alpha diversity analysis- No significant differences observed in both groups.
 * Beta diversity analysis- No significant differences observed in diet, Significant differences obseved 
 in PERMANOVA analysis of age.
