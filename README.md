@@ -11,12 +11,17 @@ Taxonomic table and metadata of individuals.
 
 ### Conclusions
 1. [Core genera](coreanalysis.md): 
-Following are the most prevalent genera and phyla found on human skin:
+Following are the most prevalent genera and phyla found on human skin,
 * Most prevalent genera: Staphylococcus, Bacillus, Corynebacterium and Anaerococcus.
 * Most prevalent phyla: Firmicutes, Proteobacteria, Actinobacteria, and Bacteroidetes
 
 
-2. [Diet](dietanalysis.md): No significant differences obserbed in alpha and beta diversity.
+2. [Diet](dietanalysis.md) and [Age])(ageanalysis.md):
+* Alpha diversity analysis- No significant differences observed
+* Beta diversity analysis- No significant differences observed
+* DESeq2 analysis- 
+
+
 
 3. [Age](ageanalysis.md): No significant differences observed in Alpha diversity. Significant difference obseved 
 in PERMANOVA (Beta diversity) analysis.
@@ -45,8 +50,3 @@ effect on the overall community composition.
 3. DESeq2 analysis
 4. Investigate the top factors
 
-* dietanalysis
-1. alpha diversity analysis- shannon diversity analysis using Kruskal test
-2. Beta diversity analysis- PCoA analysis, PERMANOVA
-3. DESeq2 analysis
-4. Investigate the top factors
