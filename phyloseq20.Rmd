@@ -1,9 +1,3 @@
----
-title: "phyloseq"
-author: "Renuka"
-date: "13 October 2020"
-output: html_document
----
 
 ```{r phyloseq, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
