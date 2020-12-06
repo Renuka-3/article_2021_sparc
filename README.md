@@ -16,33 +16,21 @@ Following are the most prevalent genera and phyla found on human skin,
 * Most prevalent phyla: Firmicutes, Proteobacteria, Actinobacteria, and Bacteroidetes
 
 
-2. [Diet](dietanalysis.md) and [Age](ageanalysis.md):
+2. [Joint analysis](jointanalysis.md): PERMANOVA analysis showed that, only geographiclocation 
+has significant effect on the overall community composition.
+
+
+3. [Location](locationanalysis.md):  
+* Alpha diversity analysis- No significant differences observed.
+* Beta diversity analysis- Significant differences observed and this analysis is available in Joint analysis.
+* Differential abundance analysis (DESeq2)- Significant differences obserbved in some taxonomic groups.
+
+
+4. [CST analysis](CSTAnalysis_SkinSamples.md): Here we identified three community state type analysis.
+
+
+5. [Diet](dietanalysis.md) and [Age](ageanalysis.md):
 * Alpha diversity analysis- No significant differences observed in both groups.
 * Beta diversity analysis- No significant differences observed in diet, Significant differences obseved 
 in PERMANOVA analysis of age.
 * Differential abundance analysis (DESeq2)- Significant differences observed only in some genera in both gropus.
-
-4. [Location](locationanalysis.md): Significant differences obserbved in specific taxonomic groups. No significant 
-differences observed in alpha diversity. 
-
-5. [Joint analysis](jointanalysis.md): Significant differences observed in bacterial community composition of geographical
-location by PERMANOVA analysis. 
-
-6. [CST analysis](CSTAnalysis_SkinSamples.md): Significant genera were plotted of different locations using CST values.
-
-
-### Analysis files
-* CSTAnalysis_SkinSamples: Here clustering was evaluated using CST values for 
-significant genera observed in different locations.
-
-* Joint analysis: This shows that only geographiclocation has significant
-effect on the overall community composition.
-
-* Location analysis: Here we investigate in more detail which taxonomic groups differ between locations.
-
-* ageanalysis
-1. alpha diversity analysis- shannon diversity analysis using wilcoxon test
-2. PCoA analysis
-3. DESeq2 analysis
-4. Investigate the top factors
-
