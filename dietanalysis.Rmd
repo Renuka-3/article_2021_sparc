@@ -1,10 +1,3 @@
----
-title: "Diet analysis"
-author: "Renuka"
-date: "`r Sys.Date()`"
-output: html_document
----
-
 
 # Analysis
 
@@ -31,6 +24,7 @@ knitr::opts_chunk$set(fig.path="figure_diet/")
 # Was created with: source("create_phyloseq.R")
 phy <- readRDS("data/processed/phyloseq/phy20.1.RDS")
 ```
+
 # Alpha diversity analysis
 
 ```{r alpha1, echo=FALSE, message=FALSE, warning=FALSE}
@@ -93,9 +87,9 @@ p <- plot_landscape(microbiome::transform(phy , "compositional"),
 print(p)
 ```
 
-##DESeq2 analysis*
+## Differential abundance analysis 
 
-
+Differential abundance analysis is carriedout using DESeq2 method
 
 ```{r DESeq2, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold"}
 library(phyloseq)
@@ -147,8 +141,11 @@ for (tax in top.taxa) {
 }
 ```
 
-#PERMANOVA analysis
-```{r PERMANOVA}
+# PERMANOVA analysis
+
+p value for the effect of diet is (p=0.31), which is not significant.
+
+```{r PERMANOVA, echo= FALSE}
 library(microbiome)
 library(ggplot2)
 library(dplyr)
@@ -173,12 +170,11 @@ anova(betadisper(dist, meta$Diet))
 
 # Investigate the top factors
 
-```{r top_factors, fig.width=20, fig.height=10}
+```{r top_factors, echo=FALSE, fig.width=20, fig.height=10}
 library(vegan)
 coef1 <- coefficients(permanova)["Diet1", ]
 top.coef1 <- coef1[rev(order(abs(coef1)))[1:20]]
 names(top.coef1) <- full.names[names(top.coef1)]
 par(mar = c(3, 14, 2, 1))
 barplot(sort(top.coef1), horiz = T, las = 1, main = "Top taxa / 1")
-
 ```
