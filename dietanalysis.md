@@ -1,13 +1,10 @@
----
-title: "Diet analysis"
-author: "Renuka"
-date: "2020-12-07"
-output: html_document
----
-
 
 # Analysis
 
+
+```
+## Warning: package 'readxl' was built under R version 3.6.3
+```
 
 # Alpha diversity analysis
 
@@ -30,9 +27,9 @@ output: html_document
 
 <img src="figure_diet/pcoa-1.png" title="plot of chunk pcoa" alt="plot of chunk pcoa" width="50%" />
 
-##DESeq2 analysis*
+## Differential abundance analysis 
 
-
+Differential abundance analysis is carriedout using DESeq2 method
 
 
 | log2FoldChange|      padj|taxon   |full_name                                                                                             |
@@ -59,35 +56,13 @@ output: html_document
 
 <img src="figure_diet/DESeq2-1.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_diet/DESeq2-2.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_diet/DESeq2-3.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_diet/DESeq2-4.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_diet/DESeq2-5.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_diet/DESeq2-6.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_diet/DESeq2-7.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_diet/DESeq2-8.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_diet/DESeq2-9.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_diet/DESeq2-10.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_diet/DESeq2-11.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_diet/DESeq2-12.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_diet/DESeq2-13.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_diet/DESeq2-14.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_diet/DESeq2-15.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_diet/DESeq2-16.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_diet/DESeq2-17.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_diet/DESeq2-18.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" />
 
-#PERMANOVA analysis
+# PERMANOVA analysis
 
-```r
-library(microbiome)
-library(ggplot2)
-library(dplyr)
+p value for the effect of diet is (p=0.31), which is not significant.
 
-pseq <- phy# Rename the example data
-data = microbiome::meta(phy)
-# Pick relative abundances (compositional) and sample metadata 
-pseq.rel <- microbiome::transform(pseq, "compositional")
-otu <- abundances(pseq.rel)
-meta <- meta(pseq.rel)
-library(vegan)
-library(phyloseq)
-permanova <- adonis(t(otu) ~ Diet,
-               data = meta(phy), permutations=99, method = "bray")
-
-# P-value
-print(as.data.frame(permanova$aov.tab)["Diet", "Pr(>F)"])
-```
 
 ```
-## [1] 0.29
-```
-
-```r
-dist <- vegdist(t(otu))
-anova(betadisper(dist, meta$Diet))
+## [1] 0.3
 ```
 
 ```
@@ -100,15 +75,5 @@ anova(betadisper(dist, meta$Diet))
 ```
 
 # Investigate the top factors
-
-
-```r
-library(vegan)
-coef1 <- coefficients(permanova)["Diet1", ]
-top.coef1 <- coef1[rev(order(abs(coef1)))[1:20]]
-names(top.coef1) <- full.names[names(top.coef1)]
-par(mar = c(3, 14, 2, 1))
-barplot(sort(top.coef1), horiz = T, las = 1, main = "Top taxa / 1")
-```
 
 ![plot of chunk top_factors](figure_diet/top_factors-1.png)

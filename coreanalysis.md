@@ -1,5 +1,60 @@
 
 
+```
+## Warning: package 'knitr' was built under R version 3.6.3
+```
+
+```
+## Warning: package 'knitcitations' was built under R version 3.6.3
+```
+
+```
+## Warning: package 'ggplot2' was built under R version 3.6.3
+```
+
+```
+## Warning: package 'reshape2' was built under R version 3.6.3
+```
+
+```
+## Warning: package 'tidyverse' was built under R version 3.6.3
+```
+
+```
+## Warning: package 'tibble' was built under R version 3.6.3
+```
+
+```
+## Warning: package 'tidyr' was built under R version 3.6.3
+```
+
+```
+## Warning: package 'readr' was built under R version 3.6.3
+```
+
+```
+## Warning: package 'purrr' was built under R version 3.6.3
+```
+
+```
+## Warning: package 'dplyr' was built under R version 3.6.3
+```
+
+```
+## Warning: package 'stringr' was built under R version 3.6.3
+```
+
+```
+## Warning: package 'forcats' was built under R version 3.6.3
+```
+
+```
+## Warning: package 'dada2' was built under R version 3.6.2
+```
+
+```
+## Warning: package 'Rcpp' was built under R version 3.6.3
+```
 
 
 
@@ -27,10 +82,11 @@ Abundance variation across samples for each core taxa.
 Core with varying detection and prevalence thresholds.
 
 ![plot of chunk core_heatmap](figure/core_heatmap-1.png)
-# Phylum abundance distributions.
+# Phylum abundance distributions
 
 Abundance-prevalence plot per Phylum.
 <img src="figure/phyla-1.png" title="plot of chunk phyla" alt="plot of chunk phyla" width="80%" />
+
 Phylum abundance table (relative abundance %):
 
 

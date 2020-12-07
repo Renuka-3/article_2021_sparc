@@ -40,6 +40,8 @@ d <- d %>% arrange(desc(Abundance_mean), desc(Prevalence))
 colnames(d) <- c("Taxon", "Mean Relative abundance (%)", "Median Relative abundance (%)", "Prevalence (%)")
 kable(d)
 ```
+
+
 Abundance variation across samples for each core taxa.
 
 ```{r core_rank_abundance, echo=FALSE, message=FALSE, fig.width=6, fig.height=4, fig.show="hold"}
