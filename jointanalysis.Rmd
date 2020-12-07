@@ -66,7 +66,7 @@ print(p2)
 
 # PERMANOVA analysis
 
-```{r PERMANOVA, message=FALSE, echo=F}
+```{r PERMANOVA, echo=FALSE, message=FALSE, echo=F}
 res <- adonis(t(otu_table(phy)) ~ Diet + Geographical_location + age_group,
          data = meta(phy),
 	 permutations=99,
