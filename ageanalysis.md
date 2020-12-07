@@ -1,13 +1,55 @@
----
-title: "ageanalysis"
-author: "Renuka"
-date: "20 October 2020"
-output: html_document
----
 
+```
+## Warning: package 'dada2' was built under R version 3.6.2
+```
 
+```
+## Warning: package 'Rcpp' was built under R version 3.6.3
+```
 
+```
+## Warning: package 'readxl' was built under R version 3.6.3
+```
 
+```
+## Warning: package 'knitr' was built under R version 3.6.3
+```
+
+```
+## Warning: package 'knitcitations' was built under R version 3.6.3
+```
+
+```
+## Warning: package 'reshape2' was built under R version 3.6.3
+```
+
+```
+## Warning: package 'tidyverse' was built under R version 3.6.3
+```
+
+```
+## Warning: package 'tibble' was built under R version 3.6.3
+```
+
+```
+## Warning: package 'tidyr' was built under R version 3.6.3
+```
+
+```
+## Warning: package 'readr' was built under R version 3.6.3
+```
+
+```
+## Warning: package 'purrr' was built under R version 3.6.3
+```
+
+```
+## Warning: package 'stringr' was built under R version 3.6.3
+```
+
+```
+## Warning: package 'forcats' was built under R version 3.6.3
+```
 
 
 # Alpha diversity analysis
@@ -24,7 +66,7 @@ output: html_document
 
 
 
-## *Principal Coordinates Analysis (PCoA)*
+# Principal Coordinates Analysis (PCoA)
 
 * Ordination method: PCoA
 * Dissimilarity measure: jaccard
@@ -56,39 +98,12 @@ output: html_document
 |      -2.540264| 0.2464619|OTU1472 |Bacteria_Actinobacteria_Actinobacteria_Micrococcales_Microbacteriaceae_Micrococcus            |
 |      -1.712826| 0.2464619|OTU251  |Bacteria_Actinobacteria_Actinobacteria_Micrococcales_Micrococcaceae_Arthrobacter              |
 
-```
-## Error in eval(expr, envir, enclos): object 'top.taxa' not found
-```
+<img src="figure_age/DESeq2-1.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_age/DESeq2-2.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_age/DESeq2-3.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_age/DESeq2-4.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_age/DESeq2-5.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_age/DESeq2-6.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_age/DESeq2-7.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_age/DESeq2-8.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_age/DESeq2-9.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_age/DESeq2-10.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_age/DESeq2-11.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_age/DESeq2-12.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_age/DESeq2-13.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_age/DESeq2-14.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_age/DESeq2-15.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_age/DESeq2-16.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_age/DESeq2-17.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_age/DESeq2-18.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" />
 
-#PERMANOVA analysis
-
-```r
-library(microbiome)
-library(ggplot2)
-library(dplyr)
-
-pseq <- Q
-data = microbiome::meta(Q)
-# Pick relative abundances (compositional) and sample metadata 
-pseq.rel <- microbiome::transform(pseq, "compositional")
-otu <- abundances(pseq.rel)
-meta <- meta(pseq.rel)
-library(vegan)
-library(phyloseq)
-permanova <- adonis(t(otu) ~ age_group,
-               data = meta(Q), permutations=99, method = "bray")
-
-# P-value
-print(as.data.frame(permanova$aov.tab)["age_group", "Pr(>F)"])
-```
+# PERMANOVA analysis
 
 ```
-## [1] 0.03
-```
-
-```r
-dist <- vegdist(t(otu))
-anova(betadisper(dist, meta$age_group))
+## [1] 0.02
 ```
 
 ```
@@ -102,17 +117,5 @@ anova(betadisper(dist, meta$age_group))
 
 # Investigate the top factors
 
-
-```r
-library(vegan)
-coef <- coefficients(permanova)["age_group1", ]
-top.coef <- coef[rev(order(abs(coef)))[1:20]]
-names(top.coef) <- full.names[names(top.coef)]
-par(mar = c(3, 14, 2, 1))
-barplot(sort(top.coef), horiz = T, las = 1, main = "Top taxa / 1")
-```
-
 ![plot of chunk top_factors](figure_age/top_factors-1.png)
-```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
