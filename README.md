@@ -1,6 +1,6 @@
 # Skin microbiome
-Skin serves as a host for many microbial communities. Their distribution and abundance is 
-associated with multiple parameters such as, lifestyle, environment, age, geography etc.
+Skin serves as a host for many microbial communities. Their distribution and abundance are
+influenced by multiple parameters such as, lifestyle, environment, age, geography etc.
 Here we are investigating skin microbial community compostion along with its associated factors. 
 
 ### Data files
