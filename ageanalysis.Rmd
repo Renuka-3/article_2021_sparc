@@ -1,5 +1,5 @@
 ```{r alpha, message=F, echo=F, echo=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo =F)
 library(ggplot2)
 library(phyloseq)
 library(dada2)
@@ -92,6 +92,11 @@ p <- plot_landscape(microbiome::transform(Q , "compositional"),
 print(p)
 ```
 
+
+## Differential abundance analysis 
+
+Differential abundance analysis is carried out using DESeq2 method
+
 ```{r DESeq2, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold"}
 library(phyloseq)
 library(reshape2)
@@ -143,6 +148,9 @@ for (tax in top.taxa) {
 ```
 
 # PERMANOVA analysis
+
+effect of age on microbial community is observed to be significant (p=0.05)
+
 ```{r PERMANOVA, echo=FALSE}
 library(microbiome)
 library(ggplot2)

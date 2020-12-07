@@ -1,55 +1,4 @@
 
-```
-## Warning: package 'dada2' was built under R version 3.6.2
-```
-
-```
-## Warning: package 'Rcpp' was built under R version 3.6.3
-```
-
-```
-## Warning: package 'readxl' was built under R version 3.6.3
-```
-
-```
-## Warning: package 'knitr' was built under R version 3.6.3
-```
-
-```
-## Warning: package 'knitcitations' was built under R version 3.6.3
-```
-
-```
-## Warning: package 'reshape2' was built under R version 3.6.3
-```
-
-```
-## Warning: package 'tidyverse' was built under R version 3.6.3
-```
-
-```
-## Warning: package 'tibble' was built under R version 3.6.3
-```
-
-```
-## Warning: package 'tidyr' was built under R version 3.6.3
-```
-
-```
-## Warning: package 'readr' was built under R version 3.6.3
-```
-
-```
-## Warning: package 'purrr' was built under R version 3.6.3
-```
-
-```
-## Warning: package 'stringr' was built under R version 3.6.3
-```
-
-```
-## Warning: package 'forcats' was built under R version 3.6.3
-```
 
 
 # Alpha diversity analysis
@@ -103,7 +52,7 @@
 # PERMANOVA analysis
 
 ```
-## [1] 0.02
+## [1] 0.03
 ```
 
 ```
