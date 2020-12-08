@@ -106,7 +106,7 @@ for (tax in df$taxon) {
 
 
 
-```{r heatmaps, echo=FALSE, fig.width=10, fig.height=5}
+```{r heatmaps, echo=FALSE, fig.width=10, fig.height=5, warning=FALSE}
 
 #Initializing data frame
 otu_vs_sample <- data.frame(matrix(ncol = length(df$taxon),nrow = length(abundances(ps)[1,])))
@@ -165,4 +165,60 @@ heatmap_grid <- plot_grid(pune_heat + theme(legend.position="none"), ahmednagar_
 
 #Displaying the heatmaps and legend
 heatmap_grid + draw_grob(get_legend(pune_heat+ theme(legend.position="bottom", legend.key.width = unit(2, "cm"), legend.key.height = unit(0.2, "cm"))), 0.5, -0.38, 0, 1)
+```
+
+
+## Differential abundance analysis 
+
+Differential abundance analysis with DESeq2 method
+
+
+```{r DESeq2, echo=FALSE, message=FALSE, warning=FALSE ,fig.width=9, fig.height=5, out.width="50%", fig.show="hold"}
+library(phyloseq)
+library(reshape2)
+library(DESeq2)
+padj.th <- 0.25
+mypseq <- phy
+
+# Remove NAs
+group <- "Geographical_location"
+keep <- meta(phy)[, group] %>% complete.cases()
+
+df <- meta(mypseq)[keep, ]
+
+mygroup <- "Diet"
+df$group <- as.factor(df[[group]] == mygroup)
+sample_data(mypseq) <- sample_data(df)
+quiet(ds2 <- phyloseq_to_deseq2(mypseq, ~ Geographical_location))
+dds <- DESeq(ds2)
+res <- results(dds)
+df <- as.data.frame(res)
+df$taxon <- rownames(df)
+#df <- df %>% arrange(desc(abs(log2FoldChange)), padj) %>%
+#             filter(padj < padj.th) 
+df <- df %>% arrange(padj, desc(abs(log2FoldChange))) %>%
+             filter(padj < padj.th) 
+df <- subset(df, select= c(log2FoldChange, padj, taxon))
+rownames(df) <- NULL
+
+# WHat is the purpose of this one?
+#full.names <- apply(tax_table(phy), 1, function (x) {paste(x, collapse = "_")})
+# top.taxa <- as.character(df$taxon)
+# Add full phylogenetic name for this OTU
+df$full_name <- full.names[df$taxon]
+library(knitr)
+kable(df)
+
+
+df <- meta(phy)
+ps <- microbiome::transform(phy, "clr")
+for (tax in top.taxa) {
+  df$taxa <- abundances(ps)[tax, ]
+  p <- ggplot(df, aes(x = Diet, y = taxa)) +
+    geom_boxplot() + 
+    ggbeeswarm::geom_beeswarm() +
+    theme(axis.text.x = element_text(angle = 360, hjust = 1)) +
+    labs(x = "Diet", y = "Abundance", title = tax)
+  print(p)
+}
 ```

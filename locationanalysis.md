@@ -2,74 +2,12 @@
 # Analysis
 
 
-```
-## Warning: package 'knitr' was built under R version 3.6.3
-```
-
-```
-## Warning: package 'knitcitations' was built under R version 3.6.3
-```
-
-```
-## Warning: package 'ggplot2' was built under R version 3.6.3
-```
-
-```
-## Warning: package 'reshape2' was built under R version 3.6.3
-```
-
-```
-## Warning: package 'tidyverse' was built under R version 3.6.3
-```
-
-```
-## Warning: package 'tibble' was built under R version 3.6.3
-```
-
-```
-## Warning: package 'tidyr' was built under R version 3.6.3
-```
-
-```
-## Warning: package 'readr' was built under R version 3.6.3
-```
-
-```
-## Warning: package 'purrr' was built under R version 3.6.3
-```
-
-```
-## Warning: package 'dplyr' was built under R version 3.6.3
-```
-
-```
-## Warning: package 'stringr' was built under R version 3.6.3
-```
-
-```
-## Warning: package 'forcats' was built under R version 3.6.3
-```
-
-```
-## Warning: package 'dada2' was built under R version 3.6.2
-```
-
-```
-## Warning: package 'Rcpp' was built under R version 3.6.3
-```
-
-```
-## Warning: package 'vegan' was built under R version 3.6.3
-```
-
-```
-## Warning: package 'permute' was built under R version 3.6.3
-```
 
 
 ## Alpha diversity analysis
 
 Diversity index: diversity_shannon
+
 
 
 
