@@ -1,5 +1,7 @@
 # Skin microbiome
-Skin serves as a host for many microbial communities.
+Skin serves as a host for many microbial communities. The distribution and abundance of these microbes 
+are influenced by multiple parameters such as, lifestyle, environment, age, geography etc.
+Here we are investigating skin microbial community compostion along with its associated factors. 
 
 ### Data files
 * [create_phyloseq.R](create_phyloseq.R):The phyloseq object is made 
@@ -9,7 +11,7 @@ using OTU table, Taxonomic table and metadata of individuals.
 1. [Core genera](coreanalysis.md): 
 Following are the most prevalent genera and phyla found on human skin,
 * Most prevalent genera: Staphylococcus, Bacillus, Corynebacterium and Anaerococcus.
-* Most prevalent phyla: Firmicutes, Proteobacteria, Actinobacteria, and Bacteroidetes
+* Most prevalent phyla: Firmicutes, Proteobacteria, and Actinobacteria
 
 
 2. [Joint analysis](jointanalysis.md): PERMANOVA analysis showed that, only geographiclocation 
