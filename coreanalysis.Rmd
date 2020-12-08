@@ -1,5 +1,5 @@
 
-```{r core, message=F, echo=FALSE}
+```{r core, message=F, echo=FALSE, warning=FALSE}
 library(knitr)
 require(knitcitations)
 library(microbiome)
