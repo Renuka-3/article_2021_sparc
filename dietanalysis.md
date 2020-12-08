@@ -2,9 +2,6 @@
 # Analysis
 
 
-```
-## Warning: package 'readxl' was built under R version 3.6.3
-```
 
 # Alpha diversity analysis
 
@@ -62,7 +59,7 @@ p value for the effect of diet is (p=0.31), which is not significant.
 
 
 ```
-## [1] 0.3
+## [1] 0.33
 ```
 
 ```
