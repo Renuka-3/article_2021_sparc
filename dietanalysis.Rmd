@@ -1,7 +1,7 @@
 
 # Analysis
 
-```{r alpha, message=F, echo=F, echo=FALSE, warning=FALSE}
+```{r alpha, message=F, echo=F, echo=FALSE, warning=FALSE }
 knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
 library(phyloseq)
