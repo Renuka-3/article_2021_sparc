@@ -24,32 +24,32 @@ Here, we investigate individual taxonomic groups in more detail.
 Significant (or marginally significant) taxa between geographical locations.
 
 
-|taxon   |      padj|full_name                                                                                            |
-|:-------|---------:|:----------------------------------------------------------------------------------------------------|
-|OTU2371 | 0.0150093|Bacteria_Firmicutes_Bacilli_Bacillales_Thermoactinomycetaceae_Polycladomyces                         |
-|OTU1278 | 0.0532573|Bacteria_Planctomycetes_Planctomycetia_Pirellulales_Lacipirellulaceae_Bythopirellula                 |
-|OTU1117 | 0.0582690|Bacteria_Proteobacteria_Alphaproteobacteria_Rhodobacterales_Rhodobacteraceae_Amaricoccus             |
-|OTU1052 | 0.0763694|Bacteria_Actinobacteria_Actinobacteria_Actinopolysporales_Actinopolysporaceae_Actinopolyspora        |
-|OTU1464 | 0.0763694|Bacteria_Proteobacteria_Deltaproteobacteria_DesulfoVibrionales_Desulfohalobiaceae_Desulfohalobium    |
-|OTU2361 | 0.0794871|Bacteria_Proteobacteria_Deltaproteobacteria_Myxococcales_Nannocystaceae_Plesiocystis                 |
-|OTU1197 | 0.0922708|Bacteria_Actinobacteria_Actinobacteria_Micrococcales_Micrococcaceae_Arthrobacter                     |
-|OTU773  | 0.1175187|Bacteria_Actinobacteria_Actinobacteria_Micrococcales_Intrasporangiaceae_Tetrasphaera                 |
-|OTU798  | 0.1422688|Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Thalassobacillus                                  |
-|OTU1002 | 0.1501257|Bacteria_Firmicutes_Clostridia_Clostridiales_Eubacteriaceae_Acetobacterium                           |
-|OTU1449 | 0.1526400|Bacteria_Firmicutes_Clostridia_Clostridiales_Peptococcaceae_Desulfitibacter                          |
-|OTU2399 | 0.1549577|Bacteria_Proteobacteria_Gammaproteobacteria_Enterobacterales _Morganellaceae_Proteocatella           |
-|OTU1034 | 0.1802795|Bacteria_Proteobacteria_Acidithiobacillia_AcidithioBacillales_Acidithiobacillaceae_Acidithiobacillus |
-|OTU2302 | 0.1930876|Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Paucisalibacillus                                 |
-|OTU1987 | 0.1961432|Bacteria_Bacteroidetes_Bacteroidia_Bacteroidales_Porphyromonadaceae_Lascolabacillus                  |
-|OTU179  | 0.1973502|Bacteria_Actinobacteria_Actinobacteria_Micrococcales_Ruaniaceae_Haloactinobacterium                  |
-|OTU154  | 0.1987752|Bacteria_Proteobacteria_Alphaproteobacteria_Rhizobiales_Rhizobiaceae_Ensifer                         |
-|OTU1044 | 0.2098130|Bacteria_Actinobacteria_Actinobacteria_Streptosporangiales_Thermomonosporaceae_Actinocorallia        |
-|OTU1194 | 0.2156831|Bacteria_Actinobacteria_Actinobacteria_Micrococcales_Intrasporangiaceae_Arsenicicoccus               |
-|OTU623  | 0.2209866|Bacteria_Proteobacteria_Gammaproteobacteria_Aeromonadales_Succinivibrionaceae_Succinatimonas         |
-|OTU1992 | 0.2330126|Bacteria_Proteobacteria_Gammaproteobacteria_Legionellales_Legionellaceae_Legionella                  |
-|OTU1445 | 0.2334239|Bacteria_Firmicutes_Bacilli_Lactobacillales_Carnobacteriaceae_Desemzia                               |
-|OTU570  | 0.2452140|Bacteria_Proteobacteria_Alphaproteobacteria_Rhodobacterales_Rhodobacteraceae_Siccibacter             |
-|OTU272  | 0.2490892|Bacteria_Proteobacteria_Alphaproteobacteria_Rhodospirillales_Rhodospirillaceae_Rhodospirillaceae     |
+|taxon   |      padj|full_name                                                                                         |
+|:-------|---------:|:-------------------------------------------------------------------------------------------------|
+|OTU2371 | 0.0150093|Bacteria_Proteobacteria_Gammaproteobacteria_Chromatiales_Chromatiaceae_Thiohalocapsa              |
+|OTU1278 | 0.0532573|Bacteria_Proteobacteria_Gammaproteobacteria_Enterobacterales _Enterobacteriaceae_Kosakonia        |
+|OTU1117 | 0.0582690|Bacteria_Actinobacteria_Actinobacteria_Micrococcales_Microbacteriaceae_Gulosibacter               |
+|OTU1052 | 0.0763694|Bacteria_Actinobacteria_Actinobacteria_Micrococcales_Microbacteriaceae_Frondihabitans             |
+|OTU1464 | 0.0763694|Bacteria_Proteobacteria_Gammaproteobacteria_CellVibrionales_Microbulbiferaceae_Microbulbifer      |
+|OTU2361 | 0.0794871|Bacteria_Proteobacteria_Gammaproteobacteria_Chromatiales_Thioalkalispiraceae_Thioalkalispira      |
+|OTU1197 | 0.0922708|Bacteria_Actinobacteria_Actinobacteria_Micrococcales_Microbacteriaceae_Herbiconiux                |
+|OTU773  | 0.1175187|Bacteria_Actinobacteria_Actinobacteria_Corynebacteriales_Corynebacteriaceae_Corynebacterium       |
+|OTU798  | 0.1422688|Bacteria_Chlamydiae_Chlamydiia_Parachlamydiales_Criblamydiaceae_Criblamydia                       |
+|OTU1002 | 0.1501257|Bacteria_Proteobacteria_Gammaproteobacteria_Enterobacterales _Yersiniaceae_Ewingella              |
+|OTU1449 | 0.1526400|Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Microaerobacter                                |
+|OTU2399 | 0.1549577|Bacteria_Actinobacteria_Actinobacteria_Corynebacteriales_Corynebacteriaceae_Turicella             |
+|OTU1034 | 0.1802795|Bacteria_Firmicutes_Tissierellia_Tissierellales_Peptoniphilaceae_Finegoldia                       |
+|OTU2302 | 0.1930876|Bacteria_Actinobacteria_Actinobacteria_Micrococcales_Micrococcaceae_Tersicoccus                   |
+|OTU1987 | 0.1961432|Bacteria_Proteobacteria_Betaproteobacteria_Burkholderiales_Burkholderiaceae_Ralstonia             |
+|OTU179  | 0.1973502|Bacteria_Proteobacteria_Gammaproteobacteria_Oceanospirillales_Oceanospirillaceae_Amphritea        |
+|OTU154  | 0.1987752|Bacteria_Proteobacteria_Gammaproteobacteria_Alteromonadales _Alteromonadaceae_Alkalimarinus       |
+|OTU1044 | 0.2098130|Bacteria_Actinobacteria_Actinobacteria_Micrococcales_Dermacoccaceae_Flexivirga                    |
+|OTU1194 | 0.2156831|Bacteria_Firmicutes_Tissierellia_Tissierellales_Peptoniphilaceae_Helcococcus                      |
+|OTU623  | 0.2209866|Bacteria_Firmicutes_Bacilli_Lactobacillales_NA_Chungangia                                         |
+|OTU1992 | 0.2330126|Bacteria_Actinobacteria_Coriobacteriia_Eggerthellales_Eggerthellaceae_Raoultibacter               |
+|OTU1445 | 0.2334239|Bacteria_Proteobacteria_Gammaproteobacteria_Thiotrichales_Piscirickettsiaceae_Methylophaga        |
+|OTU570  | 0.2452140|Bacteria_Proteobacteria_Epsilonproteobacteria _Campylobacterales_Campylobacteraceae_Campylobacter |
+|OTU272  | 0.2490892|Bacteria_Proteobacteria_Alphaproteobacteria_Rhizobiales_Aurantimonadaceae_Aurantimonas            |
 
 <img src="figure_location/diffab-1.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-2.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-3.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-4.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-5.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-6.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-7.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-8.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-9.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-10.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-11.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-12.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-13.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-14.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-15.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-16.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-17.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-18.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-19.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-20.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-21.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-22.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-23.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-24.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" />
 
@@ -96,6 +96,27 @@ Significant (or marginally significant) taxa between geographical locations.
 ## 36: I36  1.0868139 -1.0962524 -1.0962524 -1.0962524 -1.0962524 -1.0962524
 ## 37: I37 -0.9057741 -0.9057741 -0.9057741 -0.9057741 -0.9057741 -0.9057741
 ## 38: I38 -1.3287797 -1.3287797 -1.3287797 -1.3287797 -1.3287797 -1.3287797
+## 39: I39 -0.4367799 -0.4367799 -0.4367799 -0.4367799 -0.4367799 -0.4367799
+## 40: I40 -0.3709588 -0.3709588 -0.3709588 -0.3709588 -0.3709588 -0.3709588
+## 41: I41  1.2802651  4.2701747  6.2037362  1.8999587 -0.6741902 -0.6741902
+## 42: I42 -0.1110153 -0.1110153 -0.1110153 -0.1110153 -0.1110153 -0.1110153
+## 43: I43 -0.5853386 -0.5853386  5.1435011 -0.5853386  3.7669120 -0.5853386
+## 44: I44 -0.3045288 -0.3045288 -0.3045288 -0.3045288 -0.3045288  2.8473713
+## 45: I45  3.8508015  1.4937675 -1.6288568 -1.6288568  1.4937675 -1.6288568
+## 46: I46 -0.9461054 -0.9461054 -0.9461054 -0.9461054 -0.9461054  2.5663885
+## 47: I47  2.3491780 -1.3481609 -1.3481609 -1.3481609 -1.3481609 -1.3481609
+## 48: I48 -0.2622927 -0.2622927 -0.2622927 -0.2622927 -0.2622927 -0.2622927
+## 49: I49 -0.2436647 -0.2436647 -0.2436647 -0.2436647 -0.2436647  3.6548981
+## 50: I50 -0.3518449 -0.3518449 -0.3518449 -0.3518449 -0.3518449 -0.3518449
+## 51: I51 -0.4261377 -0.4261377 -0.4261377 -0.4261377 -0.4261377 -0.4261377
+## 52: I52  3.3078170 -0.8954698 -0.8954698 -0.8954698  2.6295056 -0.8954698
+## 53: I53 -0.5612681  2.4464723 -0.5612681 -0.5612681 -0.5612681 -0.5612681
+## 54: I54  3.8281793 -0.7833469 -0.7833469 -0.7833469 -0.7833469 -0.7833469
+## 55: I55  3.8147397 -0.7118557 -0.7118557 -0.7118557 -0.7118557 -0.7118557
+## 56: I56 -0.5385914 -0.5385914 -0.5385914 -0.5385914  2.2029620 -0.5385914
+## 57: I57 -0.5541859 -0.5541859 -0.5541859 -0.5541859 -0.5541859 -0.5541859
+## 58: I58 -0.7037993 -0.7037993 -0.7037993 -0.7037993 -0.7037993 -0.7037993
+##      rn    OTU2371    OTU1278    OTU1117    OTU1052    OTU1464    OTU2361
 ##        OTU1197     OTU773     OTU798    OTU1002    OTU1449    OTU2399
 ##  1: -0.5072724  9.0536222 -0.5072724 -0.5072724 -0.5072724 -0.5072724
 ##  2: -0.3637324  6.7709271 -0.3637324 -0.3637324 -0.3637324 -0.3637324
@@ -135,6 +156,27 @@ Significant (or marginally significant) taxa between geographical locations.
 ## 36: -1.0962524  3.9693095 -1.0962524 -1.0962524 -1.0962524 -1.0962524
 ## 37: -0.9057741  4.0262694 -0.9057741 -0.9057741 -0.9057741 -0.9057741
 ## 38: -1.3287797 -1.3287797 -1.3287797 -1.3287797 -1.3287797 -1.3287797
+## 39: -0.4367799  9.8024864 -0.4367799 -0.4367799 -0.4367799 -0.4367799
+## 40: -0.3709588  3.8944239 -0.3709588 -0.3709588 -0.3709588 -0.3709588
+## 41:  3.7050945  7.1489554 -0.6741902 -0.6741902 -0.6741902  1.8999587
+## 42: -0.1110153  4.5700961 -0.1110153 -0.1110153 -0.1110153 -0.1110153
+## 43: -0.5853386 10.3206413 -0.5853386 -0.5853386 -0.5853386 -0.5853386
+## 44: -0.3045288  8.6297908 -0.3045288 -0.3045288 -0.3045288 -0.3045288
+## 45: -1.6288568  1.4937675 -1.6288568 -1.6288568 -1.6288568 -1.6288568
+## 46: -0.9461054  6.6392637 -0.9461054 -0.9461054 -0.9461054 -0.9461054
+## 47: -1.3481609  8.2695634 -1.3481609 -1.3481609 -1.3481609 -1.3481609
+## 48: -0.2622927  7.5214426 -0.2622927 -0.2622927 -0.2622927 -0.2622927
+## 49: -0.2436647 11.8119405 -0.2436647 -0.2436647 -0.2436647 -0.2436647
+## 50: -0.3518449 11.1852758 -0.3518449 -0.3518449 -0.3518449 -0.3518449
+## 51: -0.4261377  9.0862482 -0.4261377 -0.4261377 -0.4261377  1.6712499
+## 52: -0.8954698  8.3459108 -0.8954698  2.6295056 -0.8954698 -0.8954698
+## 53: -0.5612681  9.2037994 -0.5612681 -0.5612681 -0.5612681 -0.5612681
+## 54: -0.7833469  9.1363621 -0.7833469 -0.7833469  3.8281793 -0.7833469
+## 55: -0.7118557  9.0134092 -0.7118557 -0.7118557 -0.7118557 -0.7118557
+## 56: -0.5385914 10.8141969 -0.5385914 -0.5385914 -0.5385914 -0.5385914
+## 57: -0.5541859  5.2553699 -0.5541859 -0.5541859 -0.5541859 -0.5541859
+## 58: -0.7037993  8.8112927 -0.7037993 -0.7037993 -0.7037993 -0.7037993
+##        OTU1197     OTU773     OTU798    OTU1002    OTU1449    OTU2399
 ##        OTU1034    OTU2302    OTU1987     OTU179     OTU154    OTU1044
 ##  1:  2.3861006 -0.5072724 -0.5072724 -0.5072724 -0.5072724 -0.5072724
 ##  2:  1.8845033 -0.3637324 -0.3637324 -0.3637324 -0.3637324 -0.3637324
@@ -174,6 +216,27 @@ Significant (or marginally significant) taxa between geographical locations.
 ## 36: -1.0962524 -1.0962524 -1.0962524 -1.0962524 -1.0962524 -1.0962524
 ## 37: -0.9057741 -0.9057741 -0.9057741 -0.9057741 -0.9057741 -0.9057741
 ## 38: -1.3287797 -1.3287797 -1.3287797  4.9402969 -1.3287797 -1.3287797
+## 39: -0.4367799 -0.4367799 -0.4367799 -0.4367799  4.9472381 -0.4367799
+## 40: -0.3709588 -0.3709588 -0.3709588 -0.3709588 -0.3709588 -0.3709588
+## 41:  6.1325848 -0.6741902 -0.6741902 -0.6741902  1.2802651  2.9464221
+## 42: -0.1110153 -0.1110153 -0.1110153 -0.1110153 -0.1110153 -0.1110153
+## 43:  5.3659942 -0.5853386 -0.5853386 -0.5853386 -0.5853386 -0.5853386
+## 44: -0.3045288 -0.3045288 -0.3045288 -0.3045288 -0.3045288 -0.3045288
+## 45:  4.1598436 -1.6288568 -1.6288568  6.4988780  3.4011968 -1.6288568
+## 46:  1.9026278 -0.9461054 -0.9461054 -0.9461054 -0.9461054 -0.9461054
+## 47: -1.3481609 -1.3481609 -1.3481609  3.0298531  3.0298531 -1.3481609
+## 48:  2.7025962 -0.2622927 -0.2622927 -0.2622927 -0.2622927 -0.2622927
+## 49: -0.2436647 -0.2436647 -0.2436647 -0.2436647 -0.2436647 -0.2436647
+## 50:  8.3592542 -0.3518449 -0.3518449 -0.3518449 -0.3518449 -0.3518449
+## 51:  2.3010436 -0.4261377 -0.4261377 -0.4261377 -0.4261377 -0.4261377
+## 52:  2.6295056  2.6295056 -0.8954698  2.6295056  2.6295056 -0.8954698
+## 53: -0.5612681  2.4464723 -0.5612681 -0.5612681 -0.5612681 -0.5612681
+## 54:  3.8281793 -0.7833469 -0.7833469  3.8281793  3.8281793 -0.7833469
+## 55:  3.8147397 -0.7118557 -0.7118557  5.1928879 -0.7118557 -0.7118557
+## 56:  6.5254327 -0.5385914  3.2576432 -0.5385914 -0.5385914 -0.5385914
+## 57:  1.6997232 -0.5541859 -0.5541859 -0.5541859 -0.5541859 -0.5541859
+## 58: -0.7037993 -0.7037993 -0.7037993 -0.7037993 -0.7037993 -0.7037993
+##        OTU1034    OTU2302    OTU1987     OTU179     OTU154    OTU1044
 ##        OTU1194     OTU623    OTU1992    OTU1445     OTU570     OTU272
 ##  1: -0.5072724 -0.5072724 -0.5072724 -0.5072724 -0.5072724 -0.5072724
 ##  2: -0.3637324 -0.3637324 -0.3637324 -0.3637324 -0.3637324 -0.3637324
@@ -213,6 +276,27 @@ Significant (or marginally significant) taxa between geographical locations.
 ## 36: -1.0962524 -1.0962524 -1.0962524 -1.0962524 -1.0962524 -1.0962524
 ## 37: -0.9057741 -0.9057741 -0.9057741 -0.9057741 -0.9057741 -0.9057741
 ## 38: -1.3287797 -1.3287797 -1.3287797 -1.3287797 -1.3287797 -1.3287797
+## 39: -0.4367799 -0.4367799 -0.4367799 -0.4367799 -0.4367799  6.0427862
+## 40: -0.3709588 -0.3709588 -0.3709588 -0.3709588 -0.3709588 -0.3709588
+## 41:  2.5542513 -0.6741902 -0.6741902  1.2802651 -0.6741902 -0.6741902
+## 42: -0.1110153 -0.1110153 -0.1110153 -0.1110153 -0.1110153 -0.1110153
+## 43: -0.5853386 -0.5853386 -0.5853386 -0.5853386 -0.5853386 -0.5853386
+## 44: -0.3045288 -0.3045288 -0.3045288 -0.3045288 -0.3045288 -0.3045288
+## 45: -1.6288568 -1.6288568 -1.6288568  1.4937675 -1.6288568 -1.6288568
+## 46:  2.9618631 -0.9461054 -0.9461054 -0.9461054  1.9026278 -0.9461054
+## 47: -1.3481609 -1.3481609 -1.3481609  2.3491780 -1.3481609 -1.3481609
+## 48: -0.2622927 -0.2622927 -0.2622927 -0.2622927 -0.2622927 -0.2622927
+## 49: -0.2436647 -0.2436647 -0.2436647 -0.2436647 -0.2436647 -0.2436647
+## 50: -0.3518449 -0.3518449 -0.3518449 -0.3518449  6.3387851 -0.3518449
+## 51: -0.4261377 -0.4261377 -0.4261377 -0.4261377 -0.4261377 -0.4261377
+## 52: -0.8954698 -0.8954698 -0.8954698 -0.8954698 -0.8954698  2.6295056
+## 53: -0.5612681  2.4464723 -0.5612681 -0.5612681 -0.5612681 -0.5612681
+## 54: -0.7833469 -0.7833469 -0.7833469 -0.7833469 -0.7833469 -0.7833469
+## 55: -0.7118557 -0.7118557 -0.7118557 -0.7118557 -0.7118557 -0.7118557
+## 56:  2.2029620 -0.5385914  1.5722919  1.5722919 -0.5385914 -0.5385914
+## 57: -0.5541859 -0.5541859 -0.5541859 -0.5541859 -0.5541859 -0.5541859
+## 58: -0.7037993 -0.7037993 -0.7037993 -0.7037993 -0.7037993 -0.7037993
+##        OTU1194     OTU623    OTU1992    OTU1445     OTU570     OTU272
 ##       location
 ##  1: Ahmednagar
 ##  2: Ahmednagar
@@ -252,7 +336,27 @@ Significant (or marginally significant) taxa between geographical locations.
 ## 36:     Nashik
 ## 37:     Nashik
 ## 38:     Nashik
-##  [ reached getOption("max.print") -- omitted 21 rows ]
+## 39:       Pune
+## 40:       Pune
+## 41:       Pune
+## 42:       Pune
+## 43:       Pune
+## 44:       Pune
+## 45: Ahmednagar
+## 46:       Pune
+## 47: Ahmednagar
+## 48:       Pune
+## 49:       Pune
+## 50:       Pune
+## 51:       Pune
+## 52:       Pune
+## 53:       Pune
+## 54:       Pune
+## 55: Ahmednagar
+## 56:       Pune
+## 57:     Nashik
+## 58:     Nashik
+##       location
 ```
 
 ![plot of chunk heatmaps](figure_location/heatmaps-1.png)
@@ -264,13 +368,87 @@ Differential abundance analysis with DESeq2 method
 
 
 
-| log2FoldChange|      padj|taxon   |full_name                                                                        |
-|--------------:|---------:|:-------|:--------------------------------------------------------------------------------|
-|       5.890011| 0.0000000|OTU2172 |Bacteria_Firmicutes_Bacilli_Bacillales_Staphylococcaceae_Staphylococcus          |
-|      -3.154752| 0.0070619|OTU367  |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Bacillus                      |
-|      -3.199304| 0.0085109|OTU2529 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Virgibacillus                 |
-|      -2.511998| 0.0085109|OTU1680 |Bacteria_Firmicutes_Bacilli_Bacillales_Paenibacillaceae _Paenibacillus           |
-|      -3.175628| 0.1176826|OTU251  |Bacteria_Actinobacteria_Actinobacteria_Micrococcales_Micrococcaceae_Arthrobacter |
-|      -2.581503| 0.1319555|OTU1075 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Geobacillus                   |
+```
+## Error in checkSlotAssignment(object, name, value): assignment of an object of class "DFrame" is not valid for slot 'elementMetadata' in an object of class "DESeqResults"; is(value, "DataTable_OR_NULL") is not TRUE
+```
 
-<img src="figure_location/DESeq2-1.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_location/DESeq2-2.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_location/DESeq2-3.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_location/DESeq2-4.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_location/DESeq2-5.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_location/DESeq2-6.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_location/DESeq2-7.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_location/DESeq2-8.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_location/DESeq2-9.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_location/DESeq2-10.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_location/DESeq2-11.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_location/DESeq2-12.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_location/DESeq2-13.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_location/DESeq2-14.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_location/DESeq2-15.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_location/DESeq2-16.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_location/DESeq2-17.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" /><img src="figure_location/DESeq2-18.png" title="plot of chunk DESeq2" alt="plot of chunk DESeq2" width="50%" />
+```
+## Error in as.data.frame(res): object 'res' not found
+```
+
+```
+## Error: arrange() failed at implicit mutate() step. 
+## ✖ Could not create a temporary column for `..1`.
+## ℹ `..1` is `padj`.
+```
+
+```
+## Error in eval(substitute(select), nl, parent.frame()): object 'log2FoldChange' not found
+```
+
+
+
+|Sample |H.W |Geographical_location |Gender |Religen   | Age|Occupation       |Soap                   |Diet  | Height| Weight|Mdical.conditions |  BMI|group |taxon |full_name |
+|:------|:---|:---------------------|:------|:---------|---:|:----------------|:----------------------|:-----|------:|------:|:-----------------|----:|:-----|:-----|:---------|
+|I1     |H1  |Ahmednagar            |M      |Hindu     |  54|Stenographer     |Lifeboy                |Veg   |  158.0|     62|NA                | 26.0|FALSE |I1    |NA        |
+|I2     |W1  |Ahmednagar            |F      |Hindu     |  46|House wife       |Lifeboy                |Veg   |  156.0|     61|NA                | 25.1|FALSE |I2    |NA        |
+|I3     |-   |Ahmednagar            |M      |Hindu     |  27|Student          |Lux                    |Veg   |  170.0|     71|NA                | 24.6|FALSE |I3    |NA        |
+|I4     |H2  |Pune                  |M      |Hindu     |  87|Retired          |Patanjali              |Veg   |  167.0|     49|BP                | 17.6|FALSE |I4    |NA        |
+|I5     |W2  |Pune                  |F      |Hindu     |  81|House wife       |Patanjali              |Veg   |  146.0|     52|NA                | 24.4|FALSE |I5    |NA        |
+|I6     |-   |Pune                  |F      |Hindu     |  44|Teacher          |Patanjali              |Veg   |  158.0|     77|NA                | 30.8|FALSE |I6    |NA        |
+|I7     |-   |Ahmednagar            |F      |Hindu     |  26|Private Service  |Jonson and jonson baby |Veg   |  173.7|     60|NA                | 19.9|FALSE |I7    |NA        |
+|I8     |-   |Ahmednagar            |M      |Christian |  91|Retired          |Cinthol                |Mixed |  167.6|     72|BP                | 25.6|FALSE |I8    |NA        |
+|I9     |-   |Ahmednagar            |F      |Christian |  54|Nurse            |Santoor                |Mixed |  161.5|     88|BP                | 33.7|FALSE |I9    |NA        |
+|I10    |H3  |Pune                  |M      |Hindu     |  53|Private survice  |Cinthol                |Mixed |  168.0|     78|NA                | 27.6|FALSE |I10   |NA        |
+|I11    |W3  |Pune                  |F      |Hindu     |  51|Professor        |Sinthol                |Mixed |  157.0|     70|NA                | 28.4|FALSE |I11   |NA        |
+|I12    |-   |Nashik                |F      |Muslim    |  17|Student          |Dove                   |Mixed |     NA|     NA|NA                |   NA|FALSE |I12   |NA        |
+|I13    |-   |Nashik                |F      |Muslim    |  35|Housewife        |Lifebuoy               |Mixed |     NA|     NA|NA                |   NA|FALSE |I13   |NA        |
+|I14    |H4  |Pune                  |M      |Hindu     |  73|Retired          |Godrej no. 1           |Veg   |  161.0|     65|BP, Diabetes      | 25.1|FALSE |I14   |NA        |
+|I15    |W4  |Pune                  |F      |Hindu     |  71|Retired          |Dettol                 |Veg   |  125.0|     60|BP, Diabetes      | 38.4|FALSE |I15   |NA        |
+|I16    |-   |Pune                  |M      |Hindu     |  48|Doctor           |Godrej no. 2           |Veg   |  155.0|     74|NA                | 30.8|FALSE |I16   |NA        |
+|I17    |H5  |Pune                  |M      |Hindu     |  80|Retired          |Dove                   |Veg   |  142.0|     56|Diabetes          | 27.8|FALSE |I17   |NA        |
+|I18    |W5  |Pune                  |F      |Hindu     |  74|House wife       |Dove                   |Veg   |  137.0|     46|BP                | 24.5|FALSE |I18   |NA        |
+|I19    |-   |Pune                  |F      |Hindu     |  42|House wife       |Dove                   |Veg   |  140.0|     55|Thyroid           | 28.1|FALSE |I19   |NA        |
+|I20    |H6  |Pune                  |M      |Hindu     |  74|Retired          |Dove                   |Mixed |  182.0|     90|BP                | 27.2|FALSE |I20   |NA        |
+|I21    |W6  |Pune                  |F      |Hindu     |  69|House wife       |Dove                   |Mixed |  161.5|     60|BP Diabetes       | 23.0|FALSE |I21   |NA        |
+|I22    |-   |Pune                  |F      |Hindu     |  45|House wife       |Dove                   |Mixed |  167.6|     90|NA                | 32.0|FALSE |I22   |NA        |
+|I23    |H7  |Pune                  |M      |Muslim    |  76|Retired          |Cinthol                |Mixed |  165.0|     72|NA                | 26.4|FALSE |I23   |NA        |
+|I24    |W7  |Pune                  |F      |Muslim    |  62|House wife       |Cinthol                |Mixed |  155.0|     75|BP                | 31.2|FALSE |I24   |NA        |
+|I25    |-   |Pune                  |F      |Muslim    |  43|House wife       |Cinthol                |Mixed |  155.0|     76|NA                | 31.6|FALSE |I25   |NA        |
+|I26    |H8  |Ahmednagar            |M      |Hindu     |  63|Retired          |Dettol                 |Veg   |  155.0|     70|NA                | 29.1|FALSE |I26   |NA        |
+|I27    |W8  |Ahmednagar            |F      |Hindu     |  49|House wife       |Dettol                 |Veg   |  170.0|     60|NA                | 20.8|FALSE |I27   |NA        |
+|I28    |H9  |Pune                  |M      |Hindu     |  52|Auto Driver      |Lifeboy                |Veg   |  168.0|     69|NA                | 24.4|FALSE |I28   |NA        |
+|I29    |W9  |Pune                  |F      |Hindu     |  46|House wife       |Dove                   |Veg   |  150.0|     43|NA                | 19.1|FALSE |I29   |NA        |
+|I30    |-   |Pune                  |F      |Hindu     |  75|House wife       |Lux                    |Veg   |  157.0|     75|BP, Diabetes      | 30.4|FALSE |I30   |NA        |
+|I31    |-   |Pune                  |F      |Hindu     |  50|House wife       |Lux                    |Veg   |  157.0|     76|NA                | 30.8|FALSE |I31   |NA        |
+|I32    |-   |Nashik                |M      |Muslim    |  14|Student          |Liril                  |Mixed |     NA|     NA|NA                |   NA|FALSE |I32   |NA        |
+|I33    |-   |Nashik                |M      |Muslim    |  27|Student          |Godrej no. 1           |Mixed |     NA|     NA|NA                |   NA|FALSE |I33   |NA        |
+|I34    |-   |Nashik                |M      |Muslim    |  56|Business         |Godrej no. 1           |Mixed |     NA|     NA|NA                |   NA|FALSE |I34   |NA        |
+|I35    |-   |Nashik                |M      |Muslim    |  20|Student          |Godrej no. 1           |Mixed |     NA|     NA|NA                |   NA|FALSE |I35   |NA        |
+|I36    |-   |Nashik                |M      |Muslim    |  38|Accountaant      |Lifebuoy               |Mixed |     NA|     NA|NA                |   NA|FALSE |I36   |NA        |
+|I37    |-   |Nashik                |M      |Muslim    |  37|Auto consultancy |Cinthol                |Mixed |     NA|     NA|NA                |   NA|FALSE |I37   |NA        |
+|I38    |-   |Nashik                |M      |Muslim    |  36|Broker           |Lux                    |Mixed |     NA|     NA|NA                |   NA|FALSE |I38   |NA        |
+|I39    |-   |Pune                  |F      |Hindu     |  74|House wife       |Lux                    |Veg   |  157.0|     66|BP                | 26.8|FALSE |I39   |NA        |
+|I40    |-   |Pune                  |F      |Hindu     |  48|Private survice  |Lux                    |Veg   |  150.0|     61|NA                | 27.1|FALSE |I40   |NA        |
+|I41    |H10 |Pune                  |M      |Hindu     |  74|Retired          |Sandle                 |Veg   |  167.0|     79|Diabetes          | 28.3|FALSE |I41   |NA        |
+|I42    |W10 |Pune                  |F      |Hindu     |  65|House wife       |Lux                    |Veg   |  164.4|     91|Diabetes          | 33.7|FALSE |I42   |NA        |
+|I43    |H11 |Pune                  |M      |Hindu     |  74|Retired          |Lux                    |Veg   |  154.4|     75|bp                | 31.5|FALSE |I43   |NA        |
+|I44    |W11 |Pune                  |F      |Hindu     |  69|House wife       |Hammam                 |Veg   |  150.4|     45|Diabetes          | 19.9|FALSE |I44   |NA        |
+|I45    |-   |Ahmednagar            |M      |Hindu     |  28|Survice          |Lux                    |Veg   |  163.0|     55|NA                | 20.7|FALSE |I45   |NA        |
+|I46    |-   |Pune                  |F      |Hindu     |  20|Student          |Medical                |Mixed |  164.0|     43|NA                | 16.0|FALSE |I46   |NA        |
+|I47    |-   |Ahmednagar            |F      |Hindu     |  20|Student          |Lux                    |Mixed |  153.0|     40|NA                | 17.1|FALSE |I47   |NA        |
+|I48    |-   |Pune                  |F      |Hindu     |  26|Student          |Lux                    |Veg   |  164.5|     65|NA                | 24.0|FALSE |I48   |NA        |
+|I49    |-   |Pune                  |M      |Hindu     |  23|Student          |Medimix                |Mixed |  170.0|     45|NA                | 15.6|FALSE |I49   |NA        |
+|I50    |-   |Pune                  |M      |Hindu     |  22|Shopkeeper       |Dettol                 |Veg   |  173.7|     81|NA                | 16.8|FALSE |I50   |NA        |
+|I51    |-   |Pune                  |M      |Hindu     |  16|Student          |Patanjali              |Veg   |  173.7|     54|NA                | 18.0|FALSE |I51   |NA        |
+|I52    |-   |Pune                  |M      |Hindu     |  23|Fitness Trainer  |Dettol                 |Mixed |  167.6|     61|NA                | 21.7|FALSE |I52   |NA        |
+|I53    |-   |Pune                  |M      |Hindu     |  23|Student          |Lux                    |Mixed |  176.7|     58|NA                | 18.6|FALSE |I53   |NA        |
+|I54    |-   |Pune                  |F      |Hindu     |  20|Student          |Camey                  |Mixed |  161.5|     52|NA                | 19.9|FALSE |I54   |NA        |
+|I55    |-   |Ahmednagar            |M      |Hindu     |  26|Private survice  |Santoor                |Mixed |  180.0|     67|NA                | 20.7|FALSE |I55   |NA        |
+|I56    |-   |Pune                  |M      |Hindu     |  22|Student          |Dove                   |Mixed |  161.5|     53|NA                | 20.3|FALSE |I56   |NA        |
+|I57    |-   |Nashik                |M      |Hindu     |  18|Student          |Dove                   |Mixed |  172.0|     50|NA                | 15.2|FALSE |I57   |NA        |
+|I58    |-   |Nashik                |F      |Hindu     |  20|Student          |Lux                    |Veg   |  151.0|     48|NA                | 21.1|FALSE |I58   |NA        |
+
+```
+## Error in eval(expr, envir, enclos): object 'top.taxa' not found
+```
