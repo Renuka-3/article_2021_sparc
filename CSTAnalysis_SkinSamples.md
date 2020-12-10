@@ -83,29 +83,25 @@ Heatmaps for the community state types.
 Table of full names for the taxa:
 
 
-```
-## 
-## 
-## |ASV     |Full_name                                                                                         |
-## |:-------|:-------------------------------------------------------------------------------------------------|
-## |OTU2172 |Bacteria_Firmicutes_Bacilli_Bacillales_Staphylococcaceae_Staphylococcus                           |
-## |OTU2125 |Bacteria_Proteobacteria_Gammaproteobacteria_Enterobacterales _Enterobacteriaceae_Shimwellia       |
-## |OTU367  |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Bacillus                                       |
-## |OTU184  |Bacteria_Actinobacteria_Actinobacteria_Pseudonocardiales_Pseudonocardiaceae_Amycolatopsis         |
-## |OTU2388 |Bacteria_Actinobacteria_Actinobacteria_Corynebacteriales_NA_Tomitella                             |
-## |OTU1075 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Geobacillus                                    |
-## |OTU985  |Bacteria_Proteobacteria_Gammaproteobacteria_Enterobacterales _Enterobacteriaceae_Escherichia      |
-## |OTU2021 |Bacteria_Proteobacteria_Alphaproteobacteria_Rhodospirillales_Acetobacteraceae_Roseomonas          |
-## |OTU1137 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Halobacillus                                   |
-## |OTU2151 |Bacteria_Proteobacteria_Gammaproteobacteria_Chromatiales_Ectothiorhodospiraceae_Spiribacter       |
-## |OTU497  |Bacteria_Proteobacteria_Alphaproteobacteria_Rhizobiales_Bradyrhizobiaceae_Bosea                   |
-## |OTU2390 |Bacteria_Spirochaetes_Spirochaetia_Spirochaetales_Spirochaetaceae_Treponema                       |
-## |OTU2267 |Bacteria_Actinobacteria_Actinobacteria_Streptosporangiales_Streptosporangiaceae_Streptosporangium |
-## |OTU1130 |Bacteria_Proteobacteria_Deltaproteobacteria_Myxococcales_Kofleriaceae_Haliangium                  |
-## |OTU2093 |Bacteria_Firmicutes_Bacilli_Bacillales_Sporolactobacillaceae_Scopulibacillus                      |
-## |OTU1336 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Lentibacillus                                  |
-## |OTU860  |Bacteria_Firmicutes_Negativicutes_Selenomonadales_Sporomusaceae_Desulfosporomusa                  |
-## |OTU629  |Bacteria_Proteobacteria_Gammaproteobacteria_Enterobacterales _Enterobacteriaceae_Citrobacter      |
-## |OTU2081 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Salsuginibacillus                              |
-```
+|ASV     |Full_name                                                                                         |
+|:-------|:-------------------------------------------------------------------------------------------------|
+|OTU2172 |Bacteria_Firmicutes_Bacilli_Bacillales_Staphylococcaceae_Staphylococcus                           |
+|OTU2125 |Bacteria_Proteobacteria_Gammaproteobacteria_Enterobacterales _Enterobacteriaceae_Shimwellia       |
+|OTU367  |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Bacillus                                       |
+|OTU184  |Bacteria_Actinobacteria_Actinobacteria_Pseudonocardiales_Pseudonocardiaceae_Amycolatopsis         |
+|OTU2388 |Bacteria_Actinobacteria_Actinobacteria_Corynebacteriales_NA_Tomitella                             |
+|OTU1075 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Geobacillus                                    |
+|OTU985  |Bacteria_Proteobacteria_Gammaproteobacteria_Enterobacterales _Enterobacteriaceae_Escherichia      |
+|OTU2021 |Bacteria_Proteobacteria_Alphaproteobacteria_Rhodospirillales_Acetobacteraceae_Roseomonas          |
+|OTU1137 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Halobacillus                                   |
+|OTU2151 |Bacteria_Proteobacteria_Gammaproteobacteria_Chromatiales_Ectothiorhodospiraceae_Spiribacter       |
+|OTU497  |Bacteria_Proteobacteria_Alphaproteobacteria_Rhizobiales_Bradyrhizobiaceae_Bosea                   |
+|OTU2390 |Bacteria_Spirochaetes_Spirochaetia_Spirochaetales_Spirochaetaceae_Treponema                       |
+|OTU2267 |Bacteria_Actinobacteria_Actinobacteria_Streptosporangiales_Streptosporangiaceae_Streptosporangium |
+|OTU1130 |Bacteria_Proteobacteria_Deltaproteobacteria_Myxococcales_Kofleriaceae_Haliangium                  |
+|OTU2093 |Bacteria_Firmicutes_Bacilli_Bacillales_Sporolactobacillaceae_Scopulibacillus                      |
+|OTU1336 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Lentibacillus                                  |
+|OTU860  |Bacteria_Firmicutes_Negativicutes_Selenomonadales_Sporomusaceae_Desulfosporomusa                  |
+|OTU629  |Bacteria_Proteobacteria_Gammaproteobacteria_Enterobacterales _Enterobacteriaceae_Citrobacter      |
+|OTU2081 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Salsuginibacillus                              |
 

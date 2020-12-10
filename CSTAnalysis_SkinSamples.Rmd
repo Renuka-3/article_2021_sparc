@@ -170,10 +170,10 @@ print(p[[CST]])
 
 Table of full names for the taxa:
 
-```{r full_names, echo=FALSE, results="as.is"}
+```{r full_names, echo=FALSE}
 library(knitr)
 tab <- data.frame(ASV = significant.taxa, Full_name = full.names[significant.taxa])
 rownames(tab) <- NULL
-print(kable(tab))
+kable(tab)
 ```
 
