@@ -172,7 +172,6 @@ heatmap_grid + draw_grob(get_legend(pune_heat+ theme(legend.position="bottom", l
 
 Differential abundance analysis with DESeq2 method
 
-
 ```{r DESeq2, echo=FALSE, message=FALSE, warning=FALSE ,fig.width=9, fig.height=5, out.width="50%", fig.show="hold"}
 library(phyloseq)
 library(reshape2)

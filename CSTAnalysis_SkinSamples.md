@@ -2,6 +2,9 @@
 
 
 
+```
+## Error in as.data.frame.default(x[[i]], optional = TRUE): cannot coerce class 'structure("phyloseq", package = "phyloseq")' to a data.frame
+```
 
 
 # Cluster into CSTs
@@ -9,13 +12,13 @@
 ![plot of chunk MDS_CLRleo](figure/MDS_CLRleo-1.png)
 
 ```
-##  [1] 5.9840548 3.7404996 2.0896780 1.3230250 1.1019674 0.9766566 0.9021602
-##  [8] 0.6464166 0.5868130 0.5087633 0.4418356 0.3914422 0.3474311 0.3149250
-## [15] 0.3031454 0.2890737 0.2568495 0.2294809 0.2250794 0.2010400
+##  [1] 3.7713973 2.9522877 2.3623454 1.9879696 1.4780915 1.4019418 1.0325943
+##  [8] 0.9159503 0.6976916 0.6490130 0.6113887 0.5096734 0.5014806 0.4718493
+## [15] 0.4436903 0.4410315 0.3809519 0.3695511 0.3207295 0.3036129
 ```
 
 ```
-## [1] -0.05442782 -0.06150271 -0.07856958 -0.09270186 -0.10894815 -0.12931259
+## [1] -0.03871145 -0.04200195 -0.05245575 -0.07669412 -0.08421908 -0.11034026
 ```
 
 
@@ -45,13 +48,27 @@ We will use the gap statistic to indicate the number of clusters in this data:
 Perform PAM 3-fold clusters:
 
 
+```
+## 
+## 	Fisher's Exact Test for Count Data
+## 
+## data:  table(sample_data(ps)[, c("CST", "Geographical_location")])
+## p-value = 0.03092
+## alternative hypothesis: two.sided
+```
 
 
 
 ## Evaluate clustering
 
 
+```
+## Error in discrete_scale(aesthetics, "hue", hue_pal(h, c, l, h.start, direction), : unused argument (values = c("#A6CEE3", "#B2DF8A", "#1F78B4", "#FB9A99", "#33A02C", "#E31A1C"))
+```
 
+```
+## Error in discrete_scale(aesthetics, "hue", hue_pal(h, c, l, h.start, direction), : unused argument (values = c("#A6CEE3", "#B2DF8A", "#1F78B4", "#FB9A99", "#33A02C", "#E31A1C"))
+```
 <img src="figure/NMDS-1.png" title="plot of chunk NMDS" alt="plot of chunk NMDS" width="50%" /><img src="figure/NMDS-2.png" title="plot of chunk NMDS" alt="plot of chunk NMDS" width="50%" />
 
 
@@ -65,12 +82,20 @@ Coloured by CST community type
 
 Heatmaps for the community state types.
 
-<img src="figure/clust-diverse_CLRleo-1.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="33%" /><img src="figure/clust-diverse_CLRleo-2.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="33%" /><img src="figure/clust-diverse_CLRleo-3.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="33%" />
+
+```
+## Error in monoMDS(dist, y = cmdscale(dist, k = k), k = k, maxit = maxit, : 'dist' cannot be all zero (all points are identical)
+```
+
+<img src="figure/clust-diverse_CLRleo-1.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="33%" /><img src="figure/clust-diverse_CLRleo-2.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="33%" /><img src="figure/clust-diverse_CLRleo-3.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="33%" /><img src="figure/clust-diverse_CLRleo-4.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="33%" />
 
 
 ### Boxplots for each genus in the three clusters
 
-<img src="figure/clust-diverse_boxplot_CLRleo-1.png" title="plot of chunk clust-diverse_boxplot_CLRleo" alt="plot of chunk clust-diverse_boxplot_CLRleo" width="25%" /><img src="figure/clust-diverse_boxplot_CLRleo-2.png" title="plot of chunk clust-diverse_boxplot_CLRleo" alt="plot of chunk clust-diverse_boxplot_CLRleo" width="25%" /><img src="figure/clust-diverse_boxplot_CLRleo-3.png" title="plot of chunk clust-diverse_boxplot_CLRleo" alt="plot of chunk clust-diverse_boxplot_CLRleo" width="25%" /><img src="figure/clust-diverse_boxplot_CLRleo-4.png" title="plot of chunk clust-diverse_boxplot_CLRleo" alt="plot of chunk clust-diverse_boxplot_CLRleo" width="25%" /><img src="figure/clust-diverse_boxplot_CLRleo-5.png" title="plot of chunk clust-diverse_boxplot_CLRleo" alt="plot of chunk clust-diverse_boxplot_CLRleo" width="25%" /><img src="figure/clust-diverse_boxplot_CLRleo-6.png" title="plot of chunk clust-diverse_boxplot_CLRleo" alt="plot of chunk clust-diverse_boxplot_CLRleo" width="25%" /><img src="figure/clust-diverse_boxplot_CLRleo-7.png" title="plot of chunk clust-diverse_boxplot_CLRleo" alt="plot of chunk clust-diverse_boxplot_CLRleo" width="25%" /><img src="figure/clust-diverse_boxplot_CLRleo-8.png" title="plot of chunk clust-diverse_boxplot_CLRleo" alt="plot of chunk clust-diverse_boxplot_CLRleo" width="25%" /><img src="figure/clust-diverse_boxplot_CLRleo-9.png" title="plot of chunk clust-diverse_boxplot_CLRleo" alt="plot of chunk clust-diverse_boxplot_CLRleo" width="25%" /><img src="figure/clust-diverse_boxplot_CLRleo-10.png" title="plot of chunk clust-diverse_boxplot_CLRleo" alt="plot of chunk clust-diverse_boxplot_CLRleo" width="25%" />
+
+```
+## Error in as.data.frame.default(x[[i]], optional = TRUE): cannot coerce class 'structure("phyloseq", package = "phyloseq")' to a data.frame
+```
 
 
 Table of full names for the taxa:
@@ -79,17 +104,26 @@ Table of full names for the taxa:
 ```
 ## 
 ## 
-## |ASV     |Full_name                                                                        |
-## |:-------|:--------------------------------------------------------------------------------|
-## |OTU2172 |Bacteria_Firmicutes_Bacilli_Bacillales_Staphylococcaceae_Staphylococcus          |
-## |OTU367  |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Bacillus                      |
-## |OTU1075 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Geobacillus                   |
-## |OTU2398 |Bacteria_Firmicutes_Bacilli_Bacillales_Sporolactobacillaceae_Tuberibacillus      |
-## |OTU1137 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Halobacillus                  |
-## |OTU2390 |Bacteria_Spirochaetes_Spirochaetia_Spirochaetales_Spirochaetaceae_Treponema      |
-## |OTU194  |Bacteria_Firmicutes_Tissierellia_Tissierellales_Peptoniphilaceae_Anaerococcus    |
-## |OTU860  |Bacteria_Firmicutes_Negativicutes_Selenomonadales_Sporomusaceae_Desulfosporomusa |
-## |OTU1980 |Bacteria_Firmicutes_Bacilli_Bacillales_Sporolactobacillaceae_Pullulanibacillus   |
-## |OTU211  |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Anoxybacillus                 |
+## |ASV     |Full_name                                                                                         |
+## |:-------|:-------------------------------------------------------------------------------------------------|
+## |OTU2172 |Bacteria_Firmicutes_Bacilli_Bacillales_Staphylococcaceae_Staphylococcus                           |
+## |OTU2125 |Bacteria_Proteobacteria_Gammaproteobacteria_Enterobacterales _Enterobacteriaceae_Shimwellia       |
+## |OTU367  |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Bacillus                                       |
+## |OTU184  |Bacteria_Actinobacteria_Actinobacteria_Pseudonocardiales_Pseudonocardiaceae_Amycolatopsis         |
+## |OTU2388 |Bacteria_Actinobacteria_Actinobacteria_Corynebacteriales_NA_Tomitella                             |
+## |OTU1075 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Geobacillus                                    |
+## |OTU985  |Bacteria_Proteobacteria_Gammaproteobacteria_Enterobacterales _Enterobacteriaceae_Escherichia      |
+## |OTU2021 |Bacteria_Proteobacteria_Alphaproteobacteria_Rhodospirillales_Acetobacteraceae_Roseomonas          |
+## |OTU1137 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Halobacillus                                   |
+## |OTU2151 |Bacteria_Proteobacteria_Gammaproteobacteria_Chromatiales_Ectothiorhodospiraceae_Spiribacter       |
+## |OTU497  |Bacteria_Proteobacteria_Alphaproteobacteria_Rhizobiales_Bradyrhizobiaceae_Bosea                   |
+## |OTU2390 |Bacteria_Spirochaetes_Spirochaetia_Spirochaetales_Spirochaetaceae_Treponema                       |
+## |OTU2267 |Bacteria_Actinobacteria_Actinobacteria_Streptosporangiales_Streptosporangiaceae_Streptosporangium |
+## |OTU1130 |Bacteria_Proteobacteria_Deltaproteobacteria_Myxococcales_Kofleriaceae_Haliangium                  |
+## |OTU2093 |Bacteria_Firmicutes_Bacilli_Bacillales_Sporolactobacillaceae_Scopulibacillus                      |
+## |OTU1336 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Lentibacillus                                  |
+## |OTU860  |Bacteria_Firmicutes_Negativicutes_Selenomonadales_Sporomusaceae_Desulfosporomusa                  |
+## |OTU629  |Bacteria_Proteobacteria_Gammaproteobacteria_Enterobacterales _Enterobacteriaceae_Citrobacter      |
+## |OTU2081 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Salsuginibacillus                              |
 ```
 

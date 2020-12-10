@@ -49,7 +49,7 @@ plot(h_sub5$mids, h_sub5$count, log="y", type='h', lwd=10, lend=2)
 We will use the gap statistic to indicate the number of clusters in this data:
 
 ```{r gap-stat_CLRleo, message=FALSE, echo=FALSE, warning=FALSE}
-NDIM <- 7
+NDIM <- which(cumsum(evs^2/sum(evs^2)) > 0.9) - 1 # Pick components so that we reach 90% information
 x <- ord$vectors[,1:NDIM]  # rows=sample, cols=MDS axes, entries = value
 pamPCoA = function(x, k) {
   list(cluster = pam(x[,1:2], k, cluster.only = TRUE))
@@ -65,34 +65,29 @@ plot_clusgap(gs) + scale_x_continuous(breaks=c(seq(0, 12, 2)))
 Perform PAM 3-fold clusters:
 
 ```{r pam-k5_CLRleo, message=FALSE, echo=FALSE, warning=FALSE}
-K <- 3
+K <- 6
 x <- ord$vectors[,1:NDIM]
 clust <- as.factor(pam(x, k=K, cluster.only=T))
-
-# SWAPPING THE ASSIGNMENT OF 2 AND 3 TO MATCH RAVEL CST ENUMERATION
-clust[clust==2] <- NA
-clust[clust==3] <- 2
-clust[is.na(clust)] <- 3
 sample_data(ps)$CST <- clust
 CSTs <- as.character(seq(K))
+fisher.test(table(sample_data(ps)[, c("CST", "Geographical_location")]))
 ```
 
 
 
 ## Evaluate clustering
 
-
 ```{r see-pam-k3_CLRleo,eval=T,results = 'hide',  message=FALSE, echo=FALSE, warning=FALSE}
 # Length 6 for consistency with pre-revision CST+ coloration
 CSTColors <- brewer.pal(6,"Paired")[c(1,3,2,5,4,6)] 
 names(CSTColors) <- CSTs
-CSTColorScale <- scale_colour_manual(name = "CST", values = CSTColors[1:5])
-CSTFillScale <- scale_fill_manual(name = "CST", values = CSTColors[1:5])
+CSTColorScale <- scale_colour_discrete(name = "CST", values = CSTColors[1:K])
+CSTFillScale <- scale_fill_discrete(name = "CST", values = CSTColors[1:K])
 ok <- ordinate(ps, method="NMDS", distance=braydist)
 ```
 ```{r NMDS, message=FALSE, message=FALSE, echo=FALSE, warning=FALSE, fig.show="hold", out.width="50%"}
-plot_ordination(ps, ok, color="CST") + CSTColorScale + ggtitle("NMDS -- bray -- CST")
-plot_ordination(ps, ok, color="Geographical_location") + ggtitle("NMDS -- bray -- Location")
+plot_ordination(ps, ok, color="CST") #+ CSTColorScale + ggtitle("NMDS -- bray -- CST")
+plot_ordination(ps, ok, color="Geographical_location") # + ggtitle("NMDS -- bray -- Location")
 ```
 
 
