@@ -1,3 +1,32 @@
+### Boxplots for each genus in the three clusters
+
+```{r clust-diverse_boxplot_CLRleo, message=FALSE, echo=FALSE, warning=FALSE, out.width="25%", fig.height=5, fig.width=6}
+theme_set(theme_bw(base_size = 20))
+library(ggbeeswarm)
+df<- meta(pso)
+
+for (tax in rev(significant.taxa)) {
+
+  # Pick the abundance values for the given taxonomic group ("tax")
+  # Let us use compositional transformed values
+  df$signal <- abundances(transform(pso, "compositional"))[tax,]
+
+  # Retrieve the full name for this taxon
+  tax.full.name <- full.names[tax]
+
+  # Plot taxon abundance (signal) against the cluster (CST) as a boxplot
+  p <- ggplot(df, aes(x = CST, y = signal)) +
+         labs(title = tax) +
+         geom_boxplot() +
+	 geom_beeswarm() +
+	 labs(y = "Relative abundance (%)") + 
+	 scale_y_log10(labels = scales::percent)
+  print(p)
+  
+}
+```
+
+
 library(nlme)
 library(tidyverse)
 library(ggplot2)
