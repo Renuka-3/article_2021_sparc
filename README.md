@@ -4,13 +4,13 @@ are influenced by multiple parameters such as, lifestyle, environment, age, geog
 Here we are investigating skin microbial community compostion along with its associated factors. 
 
 ### Data files
-* [create_phyloseq.R](create_phyloseq.R):The phyloseq object is made 
+* [create_phyloseq.R](create_phyloseq.R):The phyloseq object is created 
 using OTU table, Taxonomic table and metadata of individuals.
 
 ### Conclusions
 1. [Core genera](coreanalysis.md): 
 Following are the most prevalent genera and phyla found on human skin,
-* Most prevalent genera: Staphylococcus, Bacillus, Corynebacterium and Anaerococcus.
+* Most prevalent genera: Staphylococcus, Bacillus, Corynebacterium, and Anaerococcus.
 * Most prevalent phyla: Firmicutes, Proteobacteria, and Actinobacteria
 
 
