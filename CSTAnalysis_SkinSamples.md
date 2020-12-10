@@ -76,26 +76,20 @@ Heatmaps for the community state types.
 Table of full names for the taxa:
 
 
-```r
-library(knitr)
-tab <- data.frame(ASV = significant.taxa, Full_name = full.names[significant.taxa])
-print(kable(tab))
-```
-
 ```
 ## 
 ## 
-## |        |ASV     |Full_name                                                                        |
-## |:-------|:-------|:--------------------------------------------------------------------------------|
-## |OTU2172 |OTU2172 |Bacteria_Firmicutes_Bacilli_Bacillales_Staphylococcaceae_Staphylococcus          |
-## |OTU367  |OTU367  |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Bacillus                      |
-## |OTU1075 |OTU1075 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Geobacillus                   |
-## |OTU2398 |OTU2398 |Bacteria_Firmicutes_Bacilli_Bacillales_Sporolactobacillaceae_Tuberibacillus      |
-## |OTU1137 |OTU1137 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Halobacillus                  |
-## |OTU2390 |OTU2390 |Bacteria_Spirochaetes_Spirochaetia_Spirochaetales_Spirochaetaceae_Treponema      |
-## |OTU194  |OTU194  |Bacteria_Firmicutes_Tissierellia_Tissierellales_Peptoniphilaceae_Anaerococcus    |
-## |OTU860  |OTU860  |Bacteria_Firmicutes_Negativicutes_Selenomonadales_Sporomusaceae_Desulfosporomusa |
-## |OTU1980 |OTU1980 |Bacteria_Firmicutes_Bacilli_Bacillales_Sporolactobacillaceae_Pullulanibacillus   |
-## |OTU211  |OTU211  |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Anoxybacillus                 |
+## |ASV     |Full_name                                                                        |
+## |:-------|:--------------------------------------------------------------------------------|
+## |OTU2172 |Bacteria_Firmicutes_Bacilli_Bacillales_Staphylococcaceae_Staphylococcus          |
+## |OTU367  |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Bacillus                      |
+## |OTU1075 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Geobacillus                   |
+## |OTU2398 |Bacteria_Firmicutes_Bacilli_Bacillales_Sporolactobacillaceae_Tuberibacillus      |
+## |OTU1137 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Halobacillus                  |
+## |OTU2390 |Bacteria_Spirochaetes_Spirochaetia_Spirochaetales_Spirochaetaceae_Treponema      |
+## |OTU194  |Bacteria_Firmicutes_Tissierellia_Tissierellales_Peptoniphilaceae_Anaerococcus    |
+## |OTU860  |Bacteria_Firmicutes_Negativicutes_Selenomonadales_Sporomusaceae_Desulfosporomusa |
+## |OTU1980 |Bacteria_Firmicutes_Bacilli_Bacillales_Sporolactobacillaceae_Pullulanibacillus   |
+## |OTU211  |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Anoxybacillus                 |
 ```
 
