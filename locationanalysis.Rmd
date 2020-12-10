@@ -114,7 +114,7 @@ head(res$out)
 res.sorted <- res$out %>% arrange(desc(W))
 top.taxa <- res.sorted[which(res.sorted[,3]), "taxa_id"]
 
-ps <- microbiome::transform(phy, "clr")
+ps <- microbiome::transform(phy, "compositional")
 d <- meta(ps)
 
 for (tax in top.taxa) {
@@ -124,6 +124,7 @@ for (tax in top.taxa) {
   p <- ggplot(d, aes(x = Geographical_location, y = taxa)) +
     geom_boxplot() + 
     ggbeeswarm::geom_beeswarm() +
+    scale_y_log10()+
     theme(axis.text.x = element_text(angle = 360, hjust = 1)) +
     labs(x = "Location", y = "Abundance (CLR)", title = tax)
   print(p)

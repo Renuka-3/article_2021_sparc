@@ -62,13 +62,6 @@ Perform PAM 3-fold clusters:
 ## Evaluate clustering
 
 
-```
-## Error in discrete_scale(aesthetics, "hue", hue_pal(h, c, l, h.start, direction), : unused argument (values = c("#A6CEE3", "#B2DF8A", "#1F78B4", "#FB9A99", "#33A02C", "#E31A1C"))
-```
-
-```
-## Error in discrete_scale(aesthetics, "hue", hue_pal(h, c, l, h.start, direction), : unused argument (values = c("#A6CEE3", "#B2DF8A", "#1F78B4", "#FB9A99", "#33A02C", "#E31A1C"))
-```
 <img src="figure/NMDS-1.png" title="plot of chunk NMDS" alt="plot of chunk NMDS" width="50%" /><img src="figure/NMDS-2.png" title="plot of chunk NMDS" alt="plot of chunk NMDS" width="50%" />
 
 

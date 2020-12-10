@@ -81,13 +81,13 @@ fisher.test(table(sample_data(ps)[, c("CST", "Geographical_location")]))
 # Length 6 for consistency with pre-revision CST+ coloration
 CSTColors <- brewer.pal(6,"Paired")[c(1,3,2,5,4,6)] 
 names(CSTColors) <- CSTs
-CSTColorScale <- scale_colour_discrete(name = "CST", values = CSTColors[1:K])
-CSTFillScale <- scale_fill_discrete(name = "CST", values = CSTColors[1:K])
+#CSTColorScale <- scale_colour_discrete(name = "CST", values = CSTColors[1:K])
+#CSTFillScale <- scale_fill_discrete(name = "CST", values = CSTColors[1:K])
 ok <- ordinate(ps, method="NMDS", distance=braydist)
 ```
 ```{r NMDS, message=FALSE, message=FALSE, echo=FALSE, warning=FALSE, fig.show="hold", out.width="50%"}
-plot_ordination(ps, ok, color="CST") #+ CSTColorScale + ggtitle("NMDS -- bray -- CST")
-plot_ordination(ps, ok, color="Geographical_location") # + ggtitle("NMDS -- bray -- Location")
+plot_ordination(ps, ok, color="CST") + ggtitle("NMDS -- bray -- CST")
+plot_ordination(ps, ok, color="Geographical_location") + ggtitle("NMDS -- bray -- Location")
 ```
 
 
