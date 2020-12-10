@@ -109,10 +109,12 @@ rand_formula <- NULL
 res <- ANCOM(feature_table, meta_data, struc_zero,
              main_var, p_adj_method, 
              alpha, adj_formula, rand_formula)
-head(res$out)
+
 
 res.sorted <- res$out %>% arrange(desc(W))
 top.taxa <- res.sorted[which(res.sorted[,3]), "taxa_id"]
+
+head(res.sorted)
 
 ps <- microbiome::transform(phy, "compositional")
 d <- meta(ps)
@@ -135,8 +137,7 @@ for (tax in top.taxa) {
 
 
 ```{r heatmaps, echo=FALSE, fig.width=10, fig.height=5, warning=FALSE}
-
-#Initializing data frame
+# Initializing data frame
 otu_vs_sample <- data.frame(matrix(ncol = length(df$taxon),nrow = length(abundances(ps)[1,])))
 colnames(otu_vs_sample) <- df$taxon
 rownames(otu_vs_sample) <- colnames(abundances(ps))

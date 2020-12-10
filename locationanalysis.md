@@ -26,12 +26,12 @@ Significant (or marginally significant) taxa between geographical locations.
 
 ```
 ##   taxa_id   W detected_0.9 detected_0.8 detected_0.7 detected_0.6
-## 1    OTU1  22        FALSE        FALSE        FALSE        FALSE
-## 2    OTU2   8        FALSE        FALSE        FALSE        FALSE
-## 3   OTU15 234        FALSE         TRUE         TRUE         TRUE
-## 4   OTU22  84        FALSE        FALSE        FALSE        FALSE
-## 5   OTU53   0        FALSE        FALSE        FALSE        FALSE
-## 6   OTU69   3        FALSE        FALSE        FALSE        FALSE
+## 1 OTU1075 273         TRUE         TRUE         TRUE         TRUE
+## 2 OTU2529 271         TRUE         TRUE         TRUE         TRUE
+## 3  OTU773 267         TRUE         TRUE         TRUE         TRUE
+## 4 OTU1235 267         TRUE         TRUE         TRUE         TRUE
+## 5 OTU2172 265         TRUE         TRUE         TRUE         TRUE
+## 6 OTU1893 263         TRUE         TRUE         TRUE         TRUE
 ```
 
 <img src="figure_location/diffab-1.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-2.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-3.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-4.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-5.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-6.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-7.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-8.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-9.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-10.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-11.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-12.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" />

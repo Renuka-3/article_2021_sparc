@@ -45,7 +45,7 @@ We will use the gap statistic to indicate the number of clusters in this data:
 
 ## Cluster into CSTs
 
-Perform PAM 3-fold clusters:
+Perform PAM K-fold clusters and assess significance of CST vs. location (p-value)
 
 
 ```
@@ -73,14 +73,14 @@ Coloured by CST community type
 
 ### Heatmap
 
-Heatmaps for the community state types.
+Heatmaps for the community state types. The most different OTUs are shown.
 
 <img src="figure/clust-diverse_CLRleo-1.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="33%" /><img src="figure/clust-diverse_CLRleo-2.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="33%" /><img src="figure/clust-diverse_CLRleo-3.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="33%" /><img src="figure/clust-diverse_CLRleo-4.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="33%" /><img src="figure/clust-diverse_CLRleo-5.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="33%" /><img src="figure/clust-diverse_CLRleo-6.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="33%" />
 
 
 
 
-Table of full names for the taxa:
+Table of full names for the heatmap taxa:
 
 
 |ASV     |Full_name                                                                                         |
