@@ -132,7 +132,7 @@ library("RColorBrewer")
 library(tidyr)
 set.seed(1234)
 
-# Identify ASVs that are potentially different between CSTs
+# Identify ASVs that are most different between CSTs
 pvs <- c()
 for (tax in taxa(ps)) {
   pvs[[tax]] <- kruskal.test(abundances(ps)[tax,] ~ meta(ps)$CST)$p.value
@@ -157,7 +157,7 @@ for(CST in CSTs) {
   dfm <- melt(abundances(pshm))
   colnames(dfm) <- c("Taxa", "Sample", "value")
   dfm$Taxa <- factor(dfm$Taxa, levels = sort.taxa)
-  dfm$Sample <- factor(dfm$Sample, levels = neatsort(pshm, "cols"))
+  # dfm$Sample <- factor(dfm$Sample, levels = neatsort(pshm, "cols"))
   p[[CST]]<- heat((dfm), "Sample","Taxa", "value", legend.text = "Abundance", order.rows = F, 
                 order.cols = F, limits= c(-5,5), step = 0.5) +
 		ggtitle(paste("CST:", CST))
