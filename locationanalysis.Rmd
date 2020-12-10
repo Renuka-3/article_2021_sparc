@@ -186,7 +186,7 @@ keep <- meta(phy)[, group] %>% complete.cases()
 
 df <- meta(mypseq)[keep, ]
 
-mygroup <- "Diet"
+mygroup <- "Geographical_location"
 df$group <- as.factor(df[[group]] == mygroup)
 sample_data(mypseq) <- sample_data(df)
 quiet(ds2 <- phyloseq_to_deseq2(mypseq, ~ Geographical_location))
@@ -214,11 +214,11 @@ df <- meta(phy)
 ps <- microbiome::transform(phy, "clr")
 for (tax in top.taxa) {
   df$taxa <- abundances(ps)[tax, ]
-  p <- ggplot(df, aes(x = Diet, y = taxa)) +
+  p <- ggplot(df, aes(x = Geographical_location, y = taxa)) +
     geom_boxplot() + 
     ggbeeswarm::geom_beeswarm() +
     theme(axis.text.x = element_text(angle = 360, hjust = 1)) +
-    labs(x = "Diet", y = "Abundance", title = tax)
+    labs(x = "Geographical location", y = "Abundance", title = tax)
   print(p)
 }
 ```
