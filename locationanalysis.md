@@ -15,440 +15,121 @@ Diversity index: diversity_shannon
 
 
 
-## Differential abundance analysis (with Kruskal-Wallis test)
+## Differential abundance analysis (with ANCOM)
 
-In (jointanalysis.md) it was shown that geographical location has a significant effect.
+In [jointanalysis.md] it was shown that geographical location has a significant effect.
 
 Here, we investigate individual taxonomic groups in more detail.
 
 Significant (or marginally significant) taxa between geographical locations.
 
 
-|taxon   |      padj|full_name                                                                                         |
-|:-------|---------:|:-------------------------------------------------------------------------------------------------|
-|OTU2371 | 0.0150093|Bacteria_Proteobacteria_Gammaproteobacteria_Chromatiales_Chromatiaceae_Thiohalocapsa              |
-|OTU1278 | 0.0532573|Bacteria_Proteobacteria_Gammaproteobacteria_Enterobacterales _Enterobacteriaceae_Kosakonia        |
-|OTU1117 | 0.0582690|Bacteria_Actinobacteria_Actinobacteria_Micrococcales_Microbacteriaceae_Gulosibacter               |
-|OTU1052 | 0.0763694|Bacteria_Actinobacteria_Actinobacteria_Micrococcales_Microbacteriaceae_Frondihabitans             |
-|OTU1464 | 0.0763694|Bacteria_Proteobacteria_Gammaproteobacteria_CellVibrionales_Microbulbiferaceae_Microbulbifer      |
-|OTU2361 | 0.0794871|Bacteria_Proteobacteria_Gammaproteobacteria_Chromatiales_Thioalkalispiraceae_Thioalkalispira      |
-|OTU1197 | 0.0922708|Bacteria_Actinobacteria_Actinobacteria_Micrococcales_Microbacteriaceae_Herbiconiux                |
-|OTU773  | 0.1175187|Bacteria_Actinobacteria_Actinobacteria_Corynebacteriales_Corynebacteriaceae_Corynebacterium       |
-|OTU798  | 0.1422688|Bacteria_Chlamydiae_Chlamydiia_Parachlamydiales_Criblamydiaceae_Criblamydia                       |
-|OTU1002 | 0.1501257|Bacteria_Proteobacteria_Gammaproteobacteria_Enterobacterales _Yersiniaceae_Ewingella              |
-|OTU1449 | 0.1526400|Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Microaerobacter                                |
-|OTU2399 | 0.1549577|Bacteria_Actinobacteria_Actinobacteria_Corynebacteriales_Corynebacteriaceae_Turicella             |
-|OTU1034 | 0.1802795|Bacteria_Firmicutes_Tissierellia_Tissierellales_Peptoniphilaceae_Finegoldia                       |
-|OTU2302 | 0.1930876|Bacteria_Actinobacteria_Actinobacteria_Micrococcales_Micrococcaceae_Tersicoccus                   |
-|OTU1987 | 0.1961432|Bacteria_Proteobacteria_Betaproteobacteria_Burkholderiales_Burkholderiaceae_Ralstonia             |
-|OTU179  | 0.1973502|Bacteria_Proteobacteria_Gammaproteobacteria_Oceanospirillales_Oceanospirillaceae_Amphritea        |
-|OTU154  | 0.1987752|Bacteria_Proteobacteria_Gammaproteobacteria_Alteromonadales _Alteromonadaceae_Alkalimarinus       |
-|OTU1044 | 0.2098130|Bacteria_Actinobacteria_Actinobacteria_Micrococcales_Dermacoccaceae_Flexivirga                    |
-|OTU1194 | 0.2156831|Bacteria_Firmicutes_Tissierellia_Tissierellales_Peptoniphilaceae_Helcococcus                      |
-|OTU623  | 0.2209866|Bacteria_Firmicutes_Bacilli_Lactobacillales_NA_Chungangia                                         |
-|OTU1992 | 0.2330126|Bacteria_Actinobacteria_Coriobacteriia_Eggerthellales_Eggerthellaceae_Raoultibacter               |
-|OTU1445 | 0.2334239|Bacteria_Proteobacteria_Gammaproteobacteria_Thiotrichales_Piscirickettsiaceae_Methylophaga        |
-|OTU570  | 0.2452140|Bacteria_Proteobacteria_Epsilonproteobacteria _Campylobacterales_Campylobacteraceae_Campylobacter |
-|OTU272  | 0.2490892|Bacteria_Proteobacteria_Alphaproteobacteria_Rhizobiales_Aurantimonadaceae_Aurantimonas            |
+```
+##   taxa_id   W detected_0.9 detected_0.8 detected_0.7 detected_0.6
+## 1    OTU1  22        FALSE        FALSE        FALSE        FALSE
+## 2    OTU2   8        FALSE        FALSE        FALSE        FALSE
+## 3   OTU15 234        FALSE         TRUE         TRUE         TRUE
+## 4   OTU22  84        FALSE        FALSE        FALSE        FALSE
+## 5   OTU53   0        FALSE        FALSE        FALSE        FALSE
+## 6   OTU69   3        FALSE        FALSE        FALSE        FALSE
+```
 
-<img src="figure_location/diffab-1.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-2.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-3.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-4.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-5.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-6.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-7.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-8.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-9.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-10.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-11.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-12.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-13.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-14.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-15.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-16.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-17.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-18.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-19.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-20.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-21.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-22.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-23.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-24.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" />
+<img src="figure_location/diffab-1.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-2.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-3.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-4.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-5.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-6.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-7.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-8.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-9.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-10.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-11.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" /><img src="figure_location/diffab-12.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="25%" />
 
 
 
 
 ```
-##      rn    OTU2371    OTU1278    OTU1117    OTU1052    OTU1464    OTU2361
-##  1:  I1 -0.5072724 -0.5072724 -0.5072724 -0.5072724 -0.5072724 -0.5072724
-##  2:  I2 -0.3637324 -0.3637324 -0.3637324 -0.3637324 -0.3637324 -0.3637324
-##  3:  I3  4.1605822 -0.5986695 -0.5986695 -0.5986695 -0.5986695 -0.5986695
-##  4:  I4 -0.3222889 -0.3222889 -0.3222889 -0.3222889 -0.3222889 -0.3222889
-##  5:  I5  2.4406429  2.4406429 -0.4481249 -0.4481249 -0.4481249 -0.4481249
-##  6:  I6 -0.1912751 -0.1912751 -0.1912751 -0.1912751 -0.1912751 -0.1912751
-##  7:  I7  3.5036941 -0.8632492 -0.8632492 -0.8632492 -0.8632492 -0.8632492
-##  8:  I8 -0.2283286 -0.2283286 -0.2283286 -0.2283286 -0.2283286  0.8702837
-##  9:  I9  4.4915919 -0.5648110 -0.5648110 -0.5648110 -0.5648110 -0.5648110
-## 10: I10  3.3697020  4.2564954 -0.3851798 -0.3851798 -0.3851798  1.0522677
-## 11: I11  3.3495187  3.3495187 -0.3432811 -0.3432811 -0.3432811 -0.3432811
-## 12: I12 -0.4951364 -0.4951364 -0.4951364 -0.4951364 -0.4951364 -0.4951364
-## 13: I13 -0.7836849 -0.7836849 -0.7836849 -0.7836849 -0.7836849 -0.7836849
-## 14: I14  1.1201296 -0.2205354 -0.2205354 -0.2205354 -0.2205354 -0.2205354
-## 15: I15  2.8788054  1.2227999  5.5255063  1.2227999 -0.6588991  1.2227999
-## 16: I16 -0.2166252 -0.2166252 -0.2166252 -0.2166252 -0.2166252 -0.2166252
-## 17: I17  2.9194937 -0.3473824 -0.3473824 -0.3473824 -0.3473824 -0.3473824
-## 18: I18 -0.5062156 -0.5062156 -0.5062156 -0.5062156 -0.5062156 -0.5062156
-## 19: I19 -0.4884266 -0.4884266 -0.4884266 -0.4884266 -0.4884266 -0.4884266
-## 20: I20  4.0610140 -0.3468212 -0.3468212 -0.3468212 -0.3468212 -0.3468212
-## 21: I21 -0.4956468 -0.4956468 -0.4956468  3.6774762 -0.4956468 -0.4956468
-## 22: I22  4.5212284  3.1522292 -0.6260548 -0.6260548 -0.6260548  2.7581302
-## 23: I23  5.7277886  3.9416853 -1.0538155 -1.0538155  3.9416853 -1.0538155
-## 24: I24 -0.2435970 -0.2435970 -0.2435970 -0.2435970 -0.2435970 -0.2435970
-## 25: I25 -0.2846552 -0.2846552 -0.2846552 -0.2846552 -0.2846552 -0.2846552
-## 26: I26  4.6366064 -0.9626315 -0.9626315 -0.9626315 -0.9626315 -0.9626315
-## 27: I27  3.5562304  2.0048247 -0.6476661 -0.6476661 -0.6476661 -0.6476661
-## 28: I28  4.2118677  2.8443835 -0.8506831 -0.8506831 -0.8506831 -0.8506831
-## 29: I29  3.2288595  3.9105735 -0.5549439 -0.5549439 -0.5549439 -0.5549439
-## 30: I30  3.9563259 -0.7948374  8.6984345  3.9563259  2.8748492 -0.7948374
-## 31: I31 -0.3962466 -0.3962466 -0.3962466 -0.3962466 -0.3962466 -0.3962466
-## 32: I32 -1.1134453 -1.1134453 -1.1134453 -1.1134453 -1.1134453 -1.1134453
-## 33: I33 -0.6198265 -0.6198265 -0.6198265 -0.6198265 -0.6198265 -0.6198265
-## 34: I34 -0.5229104 -0.5229104 -0.5229104 -0.5229104 -0.5229104 -0.5229104
-## 35: I35 -0.8801716 -0.8801716 -0.8801716 -0.8801716 -0.8801716 -0.8801716
-## 36: I36  1.0868139 -1.0962524 -1.0962524 -1.0962524 -1.0962524 -1.0962524
-## 37: I37 -0.9057741 -0.9057741 -0.9057741 -0.9057741 -0.9057741 -0.9057741
-## 38: I38 -1.3287797 -1.3287797 -1.3287797 -1.3287797 -1.3287797 -1.3287797
-## 39: I39 -0.4367799 -0.4367799 -0.4367799 -0.4367799 -0.4367799 -0.4367799
-## 40: I40 -0.3709588 -0.3709588 -0.3709588 -0.3709588 -0.3709588 -0.3709588
-## 41: I41  1.2802651  4.2701747  6.2037362  1.8999587 -0.6741902 -0.6741902
-## 42: I42 -0.1110153 -0.1110153 -0.1110153 -0.1110153 -0.1110153 -0.1110153
-## 43: I43 -0.5853386 -0.5853386  5.1435011 -0.5853386  3.7669120 -0.5853386
-## 44: I44 -0.3045288 -0.3045288 -0.3045288 -0.3045288 -0.3045288  2.8473713
-## 45: I45  3.8508015  1.4937675 -1.6288568 -1.6288568  1.4937675 -1.6288568
-## 46: I46 -0.9461054 -0.9461054 -0.9461054 -0.9461054 -0.9461054  2.5663885
-## 47: I47  2.3491780 -1.3481609 -1.3481609 -1.3481609 -1.3481609 -1.3481609
-## 48: I48 -0.2622927 -0.2622927 -0.2622927 -0.2622927 -0.2622927 -0.2622927
-## 49: I49 -0.2436647 -0.2436647 -0.2436647 -0.2436647 -0.2436647  3.6548981
-## 50: I50 -0.3518449 -0.3518449 -0.3518449 -0.3518449 -0.3518449 -0.3518449
-## 51: I51 -0.4261377 -0.4261377 -0.4261377 -0.4261377 -0.4261377 -0.4261377
-## 52: I52  3.3078170 -0.8954698 -0.8954698 -0.8954698  2.6295056 -0.8954698
-## 53: I53 -0.5612681  2.4464723 -0.5612681 -0.5612681 -0.5612681 -0.5612681
-## 54: I54  3.8281793 -0.7833469 -0.7833469 -0.7833469 -0.7833469 -0.7833469
-## 55: I55  3.8147397 -0.7118557 -0.7118557 -0.7118557 -0.7118557 -0.7118557
-## 56: I56 -0.5385914 -0.5385914 -0.5385914 -0.5385914  2.2029620 -0.5385914
-## 57: I57 -0.5541859 -0.5541859 -0.5541859 -0.5541859 -0.5541859 -0.5541859
-## 58: I58 -0.7037993 -0.7037993 -0.7037993 -0.7037993 -0.7037993 -0.7037993
-##      rn    OTU2371    OTU1278    OTU1117    OTU1052    OTU1464    OTU2361
-##        OTU1197     OTU773     OTU798    OTU1002    OTU1449    OTU2399
-##  1: -0.5072724  9.0536222 -0.5072724 -0.5072724 -0.5072724 -0.5072724
-##  2: -0.3637324  6.7709271 -0.3637324 -0.3637324 -0.3637324 -0.3637324
-##  3: -0.5986695  7.9133744 -0.5986695  2.4107898 -0.5986695 -0.5986695
-##  4: -0.3222889 10.5974151 -0.3222889 -0.3222889 -0.3222889 -0.3222889
-##  5: -0.4481249  7.8085996 -0.4481249 -0.4481249 -0.4481249 -0.4481249
-##  6: -0.1912751  5.0455496 -0.1912751 -0.1912751 -0.1912751 -0.1912751
-##  7: -0.8632492  4.1904761 -0.8632492 -0.8632492 -0.8632492 -0.8632492
-##  8: -0.2283286  3.8825452 -0.2283286 -0.2283286 -0.2283286 -0.2283286
-##  9: -0.5648110  6.7884289 -0.5648110 -0.5648110 -0.5648110 -0.5648110
-## 10: -0.3851798  5.4934041 -0.3851798 -0.3851798 -0.3851798 -0.3851798
-## 11: -0.3432811  5.2738530 -0.3432811 -0.3432811 -0.3432811 -0.3432811
-## 12: -0.4951364  4.1084518 -0.4951364 -0.4951364 -0.4951364 -0.4951364
-## 13: -0.7836849 -0.7836849 -0.7836849 -0.7836849 -0.7836849 -0.7836849
-## 14: -0.2205354  3.8300607 -0.2205354 -0.2205354 -0.2205354 -0.2205354
-## 15:  1.8367247  6.5595262 -0.6588991 -0.6588991 -0.6588991 -0.6588991
-## 16: -0.2166252  8.3330796 -0.2166252 -0.2166252 -0.2166252 -0.2166252
-## 17: -0.3473824  7.0083960 -0.3473824 -0.3473824 -0.3473824 -0.3473824
-## 18: -0.5062156 10.7971219 -0.5062156 -0.5062156 -0.5062156 -0.5062156
-## 19: -0.4884266  8.9091121 -0.4884266 -0.4884266 -0.4884266 -0.4884266
-## 20: -0.3468212  9.2277978 -0.3468212 -0.3468212 -0.3468212 -0.3468212
-## 21: -0.4956468  7.7893390 -0.4956468 -0.4956468 -0.4956468 -0.4956468
-## 22: -0.6260548  5.9636906 -0.6260548 -0.6260548 -0.6260548 -0.6260548
-## 23: -1.0538155  6.3334086 -1.0538155  4.6314426 -1.0538155 -1.0538155
-## 24: -0.2435970  5.0320796 -0.2435970 -0.2435970 -0.2435970 -0.2435970
-## 25: -0.2846552  8.7026426 -0.2846552 -0.2846552 -0.2846552 -0.2846552
-## 26: -0.9626315  8.7707878 -0.9626315 -0.9626315 -0.9626315 -0.9626315
-## 27: -0.6476661  3.3368143 -0.6476661 -0.6476661 -0.6476661 -0.6476661
-## 28: -0.8506831  5.0192754  2.8443835 -0.8506831  2.8443835 -0.8506831
-## 29: -0.5549439  8.5578294 -0.5549439 -0.5549439 -0.5549439 -0.5549439
-## 30:  3.9563259  9.3089798  2.8748492  2.8748492 -0.7948374  2.8748492
-## 31: -0.3962466  7.1989160 -0.3962466  2.0972604 -0.3962466 -0.3962466
-## 32: -1.1134453  4.4307925 -1.1134453 -1.1134453 -1.1134453 -1.1134453
-## 33: -0.6198265  1.7601762 -0.6198265 -0.6198265 -0.6198265 -0.6198265
-## 34: -0.5229104 -0.5229104 -0.5229104 -0.5229104 -0.5229104 -0.5229104
-## 35: -0.8801716 -0.8801716 -0.8801716 -0.8801716 -0.8801716 -0.8801716
-## 36: -1.0962524  3.9693095 -1.0962524 -1.0962524 -1.0962524 -1.0962524
-## 37: -0.9057741  4.0262694 -0.9057741 -0.9057741 -0.9057741 -0.9057741
-## 38: -1.3287797 -1.3287797 -1.3287797 -1.3287797 -1.3287797 -1.3287797
-## 39: -0.4367799  9.8024864 -0.4367799 -0.4367799 -0.4367799 -0.4367799
-## 40: -0.3709588  3.8944239 -0.3709588 -0.3709588 -0.3709588 -0.3709588
-## 41:  3.7050945  7.1489554 -0.6741902 -0.6741902 -0.6741902  1.8999587
-## 42: -0.1110153  4.5700961 -0.1110153 -0.1110153 -0.1110153 -0.1110153
-## 43: -0.5853386 10.3206413 -0.5853386 -0.5853386 -0.5853386 -0.5853386
-## 44: -0.3045288  8.6297908 -0.3045288 -0.3045288 -0.3045288 -0.3045288
-## 45: -1.6288568  1.4937675 -1.6288568 -1.6288568 -1.6288568 -1.6288568
-## 46: -0.9461054  6.6392637 -0.9461054 -0.9461054 -0.9461054 -0.9461054
-## 47: -1.3481609  8.2695634 -1.3481609 -1.3481609 -1.3481609 -1.3481609
-## 48: -0.2622927  7.5214426 -0.2622927 -0.2622927 -0.2622927 -0.2622927
-## 49: -0.2436647 11.8119405 -0.2436647 -0.2436647 -0.2436647 -0.2436647
-## 50: -0.3518449 11.1852758 -0.3518449 -0.3518449 -0.3518449 -0.3518449
-## 51: -0.4261377  9.0862482 -0.4261377 -0.4261377 -0.4261377  1.6712499
-## 52: -0.8954698  8.3459108 -0.8954698  2.6295056 -0.8954698 -0.8954698
-## 53: -0.5612681  9.2037994 -0.5612681 -0.5612681 -0.5612681 -0.5612681
-## 54: -0.7833469  9.1363621 -0.7833469 -0.7833469  3.8281793 -0.7833469
-## 55: -0.7118557  9.0134092 -0.7118557 -0.7118557 -0.7118557 -0.7118557
-## 56: -0.5385914 10.8141969 -0.5385914 -0.5385914 -0.5385914 -0.5385914
-## 57: -0.5541859  5.2553699 -0.5541859 -0.5541859 -0.5541859 -0.5541859
-## 58: -0.7037993  8.8112927 -0.7037993 -0.7037993 -0.7037993 -0.7037993
-##        OTU1197     OTU773     OTU798    OTU1002    OTU1449    OTU2399
-##        OTU1034    OTU2302    OTU1987     OTU179     OTU154    OTU1044
-##  1:  2.3861006 -0.5072724 -0.5072724 -0.5072724 -0.5072724 -0.5072724
-##  2:  1.8845033 -0.3637324 -0.3637324 -0.3637324 -0.3637324 -0.3637324
-##  3:  7.3441757 -0.5986695 -0.5986695  2.4107898  2.4107898 -0.5986695
-##  4: -0.3222889 -0.3222889 -0.3222889 -0.3222889 -0.3222889 -0.3222889
-##  5:  3.1055733 -0.4481249 -0.4481249 -0.4481249 -0.4481249 -0.4481249
-##  6:  2.0809561 -0.1912751 -0.1912751 -0.1912751 -0.1912751 -0.1912751
-##  7: -0.8632492 -0.8632492 -0.8632492  4.8804254 -0.8632492 -0.8632492
-##  8: -0.2283286 -0.2283286 -0.2283286  0.8702837  1.3811093 -0.2283286
-##  9: -0.5648110 -0.5648110 -0.5648110 -0.5648110 -0.5648110 -0.5648110
-## 10:  1.0522677 -0.3851798 -0.3851798 -0.3851798 -0.3851798 -0.3851798
-## 11:  4.0301366 -0.3432811 -0.3432811 -0.3432811 -0.3432811 -0.3432811
-## 12: -0.4951364 -0.4951364 -0.4951364 -0.4951364 -0.4951364 -0.4951364
-## 13: -0.7836849 -0.7836849 -0.7836849 -0.7836849 -0.7836849 -0.7836849
-## 14: -0.2205354 -0.2205354 -0.2205354 -0.2205354 -0.2205354 -0.2205354
-## 15: -0.6588991 -0.6588991 -0.6588991  1.2227999 -0.6588991  1.2227999
-## 16: -0.2166252 -0.2166252 -0.2166252 -0.2166252 -0.2166252 -0.2166252
-## 17: -0.3473824 -0.3473824 -0.3473824 -0.3473824 -0.3473824 -0.3473824
-## 18: -0.5062156 -0.5062156  5.6781897  5.6781897 -0.5062156 -0.5062156
-## 19: -0.4884266 -0.4884266 -0.4884266 -0.4884266 -0.4884266 -0.4884266
-## 20: -0.3468212 -0.3468212 -0.3468212 -0.3468212 -0.3468212 -0.3468212
-## 21: -0.4956468 -0.4956468 -0.4956468 -0.4956468 -0.4956468 -0.4956468
-## 22:  3.1522292 -0.6260548 -0.6260548 -0.6260548 -0.6260548 -0.6260548
-## 23: -1.0538155 -1.0538155 -1.0538155  6.9309669  5.0357752 -1.0538155
-## 24:  2.8067674 -0.2435970 -0.2435970 -0.2435970 -0.2435970 -0.2435970
-## 25: -0.2846552 -0.2846552 -0.2846552 -0.2846552 -0.2846552 -0.2846552
-## 26:  3.5453682 -0.9626315 -0.9626315  3.5453682 -0.9626315 -0.9626315
-## 27: -0.6476661 -0.6476661 -0.6476661  2.0048247 -0.6476661 -0.6476661
-## 28:  3.5250300 -0.8506831  2.8443835  4.7687672  3.5250300 -0.8506831
-## 29:  3.9105735 -0.5549439 -0.5549439 -0.5549439 -0.5549439 -0.5549439
-## 30:  4.2418452 -0.7948374 -0.7948374 -0.7948374 -0.7948374 -0.7948374
-## 31:  4.9601950 -0.3962466 -0.3962466 -0.3962466 -0.3962466 -0.3962466
-## 32: -1.1134453 -1.1134453 -1.1134453 -1.1134453 -1.1134453 -1.1134453
-## 33: -0.6198265 -0.6198265 -0.6198265 -0.6198265 -0.6198265 -0.6198265
-## 34: -0.5229104 -0.5229104 -0.5229104 -0.5229104 -0.5229104 -0.5229104
-## 35: -0.8801716 -0.8801716 -0.8801716 -0.8801716 -0.8801716 -0.8801716
-## 36: -1.0962524 -1.0962524 -1.0962524 -1.0962524 -1.0962524 -1.0962524
-## 37: -0.9057741 -0.9057741 -0.9057741 -0.9057741 -0.9057741 -0.9057741
-## 38: -1.3287797 -1.3287797 -1.3287797  4.9402969 -1.3287797 -1.3287797
-## 39: -0.4367799 -0.4367799 -0.4367799 -0.4367799  4.9472381 -0.4367799
-## 40: -0.3709588 -0.3709588 -0.3709588 -0.3709588 -0.3709588 -0.3709588
-## 41:  6.1325848 -0.6741902 -0.6741902 -0.6741902  1.2802651  2.9464221
-## 42: -0.1110153 -0.1110153 -0.1110153 -0.1110153 -0.1110153 -0.1110153
-## 43:  5.3659942 -0.5853386 -0.5853386 -0.5853386 -0.5853386 -0.5853386
-## 44: -0.3045288 -0.3045288 -0.3045288 -0.3045288 -0.3045288 -0.3045288
-## 45:  4.1598436 -1.6288568 -1.6288568  6.4988780  3.4011968 -1.6288568
-## 46:  1.9026278 -0.9461054 -0.9461054 -0.9461054 -0.9461054 -0.9461054
-## 47: -1.3481609 -1.3481609 -1.3481609  3.0298531  3.0298531 -1.3481609
-## 48:  2.7025962 -0.2622927 -0.2622927 -0.2622927 -0.2622927 -0.2622927
-## 49: -0.2436647 -0.2436647 -0.2436647 -0.2436647 -0.2436647 -0.2436647
-## 50:  8.3592542 -0.3518449 -0.3518449 -0.3518449 -0.3518449 -0.3518449
-## 51:  2.3010436 -0.4261377 -0.4261377 -0.4261377 -0.4261377 -0.4261377
-## 52:  2.6295056  2.6295056 -0.8954698  2.6295056  2.6295056 -0.8954698
-## 53: -0.5612681  2.4464723 -0.5612681 -0.5612681 -0.5612681 -0.5612681
-## 54:  3.8281793 -0.7833469 -0.7833469  3.8281793  3.8281793 -0.7833469
-## 55:  3.8147397 -0.7118557 -0.7118557  5.1928879 -0.7118557 -0.7118557
-## 56:  6.5254327 -0.5385914  3.2576432 -0.5385914 -0.5385914 -0.5385914
-## 57:  1.6997232 -0.5541859 -0.5541859 -0.5541859 -0.5541859 -0.5541859
-## 58: -0.7037993 -0.7037993 -0.7037993 -0.7037993 -0.7037993 -0.7037993
-##        OTU1034    OTU2302    OTU1987     OTU179     OTU154    OTU1044
-##        OTU1194     OTU623    OTU1992    OTU1445     OTU570     OTU272
-##  1: -0.5072724 -0.5072724 -0.5072724 -0.5072724 -0.5072724 -0.5072724
-##  2: -0.3637324 -0.3637324 -0.3637324 -0.3637324 -0.3637324 -0.3637324
-##  3:  3.0789687 -0.5986695 -0.5986695 -0.5986695 -0.5986695 -0.5986695
-##  4: -0.3222889 -0.3222889 -0.3222889 -0.3222889 -0.3222889 -0.3222889
-##  5: -0.4481249 -0.4481249 -0.4481249 -0.4481249 -0.4481249 -0.4481249
-##  6: -0.1912751 -0.1912751 -0.1912751 -0.1912751 -0.1912751 -0.1912751
-##  7: -0.8632492 -0.8632492 -0.8632492 -0.8632492 -0.8632492 -0.8632492
-##  8: -0.2283286 -0.2283286 -0.2283286 -0.2283286 -0.2283286 -0.2283286
-##  9: -0.5648110 -0.5648110 -0.5648110 -0.5648110 -0.5648110 -0.5648110
-## 10: -0.3851798 -0.3851798 -0.3851798 -0.3851798 -0.3851798 -0.3851798
-## 11: -0.3432811 -0.3432811 -0.3432811 -0.3432811 -0.3432811 -0.3432811
-## 12: -0.4951364 -0.4951364 -0.4951364 -0.4951364 -0.4951364 -0.4951364
-## 13: -0.7836849 -0.7836849 -0.7836849 -0.7836849 -0.7836849 -0.7836849
-## 14: -0.2205354 -0.2205354 -0.2205354 -0.2205354 -0.2205354  3.7266330
-## 15:  3.0287931  2.2143234 -0.6588991 -0.6588991 -0.6588991 -0.6588991
-## 16: -0.2166252 -0.2166252 -0.2166252 -0.2166252 -0.2166252 -0.2166252
-## 17: -0.3473824 -0.3473824 -0.3473824 -0.3473824 -0.3473824 -0.3473824
-## 18: -0.5062156 -0.5062156 -0.5062156 -0.5062156 -0.5062156 -0.5062156
-## 19: -0.4884266 -0.4884266 -0.4884266 -0.4884266 -0.4884266 -0.4884266
-## 20: -0.3468212 -0.3468212 -0.3468212 -0.3468212 -0.3468212 -0.3468212
-## 21: -0.4956468  3.6774762 -0.4956468  3.6774762 -0.4956468 -0.4956468
-## 22: -0.6260548 -0.6260548 -0.6260548 -0.6260548 -0.6260548 -0.6260548
-## 23: -1.0538155 -1.0538155 -1.0538155 -1.0538155 -1.0538155 -1.0538155
-## 24: -0.2435970 -0.2435970 -0.2435970 -0.2435970 -0.2435970 -0.2435970
-## 25:  2.3919768 -0.2846552 -0.2846552  2.3919768 -0.2846552 -0.2846552
-## 26: -0.9626315 -0.9626315 -0.9626315 -0.9626315 -0.9626315 -0.9626315
-## 27: -0.6476661 -0.6476661 -0.6476661 -0.6476661 -0.6476661 -0.6476661
-## 28: -0.8506831 -0.8506831  2.8443835  2.8443835 -0.8506831 -0.8506831
-## 29: -0.5549439 -0.5549439 -0.5549439  2.5581938 -0.5549439 -0.5549439
-## 30: -0.7948374 -0.7948374 -0.7948374  2.8748492 -0.7948374 -0.7948374
-## 31:  2.0972604 -0.3962466 -0.3962466 -0.3962466 -0.3962466 -0.3962466
-## 32: -1.1134453 -1.1134453 -1.1134453 -1.1134453 -1.1134453 -1.1134453
-## 33: -0.6198265 -0.6198265 -0.6198265 -0.6198265 -0.6198265 -0.6198265
-## 34: -0.5229104 -0.5229104 -0.5229104 -0.5229104 -0.5229104 -0.5229104
-## 35: -0.8801716 -0.8801716 -0.8801716 -0.8801716 -0.8801716 -0.8801716
-## 36: -1.0962524 -1.0962524 -1.0962524 -1.0962524 -1.0962524 -1.0962524
-## 37: -0.9057741 -0.9057741 -0.9057741 -0.9057741 -0.9057741 -0.9057741
-## 38: -1.3287797 -1.3287797 -1.3287797 -1.3287797 -1.3287797 -1.3287797
-## 39: -0.4367799 -0.4367799 -0.4367799 -0.4367799 -0.4367799  6.0427862
-## 40: -0.3709588 -0.3709588 -0.3709588 -0.3709588 -0.3709588 -0.3709588
-## 41:  2.5542513 -0.6741902 -0.6741902  1.2802651 -0.6741902 -0.6741902
-## 42: -0.1110153 -0.1110153 -0.1110153 -0.1110153 -0.1110153 -0.1110153
-## 43: -0.5853386 -0.5853386 -0.5853386 -0.5853386 -0.5853386 -0.5853386
-## 44: -0.3045288 -0.3045288 -0.3045288 -0.3045288 -0.3045288 -0.3045288
-## 45: -1.6288568 -1.6288568 -1.6288568  1.4937675 -1.6288568 -1.6288568
-## 46:  2.9618631 -0.9461054 -0.9461054 -0.9461054  1.9026278 -0.9461054
-## 47: -1.3481609 -1.3481609 -1.3481609  2.3491780 -1.3481609 -1.3481609
-## 48: -0.2622927 -0.2622927 -0.2622927 -0.2622927 -0.2622927 -0.2622927
-## 49: -0.2436647 -0.2436647 -0.2436647 -0.2436647 -0.2436647 -0.2436647
-## 50: -0.3518449 -0.3518449 -0.3518449 -0.3518449  6.3387851 -0.3518449
-## 51: -0.4261377 -0.4261377 -0.4261377 -0.4261377 -0.4261377 -0.4261377
-## 52: -0.8954698 -0.8954698 -0.8954698 -0.8954698 -0.8954698  2.6295056
-## 53: -0.5612681  2.4464723 -0.5612681 -0.5612681 -0.5612681 -0.5612681
-## 54: -0.7833469 -0.7833469 -0.7833469 -0.7833469 -0.7833469 -0.7833469
-## 55: -0.7118557 -0.7118557 -0.7118557 -0.7118557 -0.7118557 -0.7118557
-## 56:  2.2029620 -0.5385914  1.5722919  1.5722919 -0.5385914 -0.5385914
-## 57: -0.5541859 -0.5541859 -0.5541859 -0.5541859 -0.5541859 -0.5541859
-## 58: -0.7037993 -0.7037993 -0.7037993 -0.7037993 -0.7037993 -0.7037993
-##        OTU1194     OTU623    OTU1992    OTU1445     OTU570     OTU272
-##       location
-##  1: Ahmednagar
-##  2: Ahmednagar
-##  3: Ahmednagar
-##  4:       Pune
-##  5:       Pune
-##  6:       Pune
-##  7: Ahmednagar
-##  8: Ahmednagar
-##  9: Ahmednagar
-## 10:       Pune
-## 11:       Pune
-## 12:     Nashik
-## 13:     Nashik
-## 14:       Pune
-## 15:       Pune
-## 16:       Pune
-## 17:       Pune
-## 18:       Pune
-## 19:       Pune
-## 20:       Pune
-## 21:       Pune
-## 22:       Pune
-## 23:       Pune
-## 24:       Pune
-## 25:       Pune
-## 26: Ahmednagar
-## 27: Ahmednagar
-## 28:       Pune
-## 29:       Pune
-## 30:       Pune
-## 31:       Pune
-## 32:     Nashik
-## 33:     Nashik
-## 34:     Nashik
-## 35:     Nashik
-## 36:     Nashik
-## 37:     Nashik
-## 38:     Nashik
-## 39:       Pune
-## 40:       Pune
-## 41:       Pune
-## 42:       Pune
-## 43:       Pune
-## 44:       Pune
-## 45: Ahmednagar
-## 46:       Pune
-## 47: Ahmednagar
-## 48:       Pune
-## 49:       Pune
-## 50:       Pune
-## 51:       Pune
-## 52:       Pune
-## 53:       Pune
-## 54:       Pune
-## 55: Ahmednagar
-## 56:       Pune
-## 57:     Nashik
-## 58:     Nashik
-##       location
+## Error in abundances(ps)[colnames(otu_vs_sample)[i], rownames(otu_vs_sample)[j]]: subscript out of bounds
+```
+
+```
+##      rn location
+##  1:  I1       NA
+##  2:  I2       NA
+##  3:  I3       NA
+##  4:  I4       NA
+##  5:  I5       NA
+##  6:  I6       NA
+##  7:  I7       NA
+##  8:  I8       NA
+##  9:  I9       NA
+## 10: I10       NA
+## 11: I11       NA
+## 12: I12       NA
+## 13: I13       NA
+## 14: I14       NA
+## 15: I15       NA
+## 16: I16       NA
+## 17: I17       NA
+## 18: I18       NA
+## 19: I19       NA
+## 20: I20       NA
+## 21: I21       NA
+## 22: I22       NA
+## 23: I23       NA
+## 24: I24       NA
+## 25: I25       NA
+## 26: I26       NA
+## 27: I27       NA
+## 28: I28       NA
+## 29: I29       NA
+## 30: I30       NA
+## 31: I31       NA
+## 32: I32       NA
+## 33: I33       NA
+## 34: I34       NA
+## 35: I35       NA
+## 36: I36       NA
+## 37: I37       NA
+## 38: I38       NA
+## 39: I39       NA
+## 40: I40       NA
+## 41: I41       NA
+## 42: I42       NA
+## 43: I43       NA
+## 44: I44       NA
+## 45: I45       NA
+## 46: I46       NA
+## 47: I47       NA
+## 48: I48       NA
+## 49: I49       NA
+## 50: I50       NA
+## 51: I51       NA
+## 52: I52       NA
+## 53: I53       NA
+## 54: I54       NA
+## 55: I55       NA
+## 56: I56       NA
+## 57: I57       NA
+## 58: I58       NA
+##      rn location
+```
+
+```
+## Error in setnames(x, value): Can't assign 3 names to a 1 column data.table
+```
+
+```
+## Error in setnames(x, value): Can't assign 3 names to a 1 column data.table
+```
+
+```
+## Error in setnames(x, value): Can't assign 3 names to a 1 column data.table
+```
+
+```
+## Error in `[<-.data.frame`(x, i, j, value): replacement has 1 row, data has 0
+```
+
+```
+## Error in `[<-.data.frame`(x, i, j, value): replacement has 1 row, data has 0
+```
+
+```
+## Error in `[<-.data.frame`(x, i, j, value): replacement has 1 row, data has 0
 ```
 
 ![plot of chunk heatmaps](figure_location/heatmaps-1.png)
 
 
-## Differential abundance analysis 
-
-Differential abundance analysis with DESeq2 method
-
-
-
-```
-## Error in checkSlotAssignment(object, name, value): assignment of an object of class "DFrame" is not valid for slot 'elementMetadata' in an object of class "DESeqResults"; is(value, "DataTable_OR_NULL") is not TRUE
-```
-
-```
-## Error in as.data.frame(res): object 'res' not found
-```
-
-```
-## Error: arrange() failed at implicit mutate() step. 
-## ✖ Could not create a temporary column for `..1`.
-## ℹ `..1` is `padj`.
-```
-
-```
-## Error in eval(substitute(select), nl, parent.frame()): object 'log2FoldChange' not found
-```
-
-
-
-|Sample |H.W |Geographical_location |Gender |Religen   | Age|Occupation       |Soap                   |Diet  | Height| Weight|Mdical.conditions |  BMI|group |taxon |full_name |
-|:------|:---|:---------------------|:------|:---------|---:|:----------------|:----------------------|:-----|------:|------:|:-----------------|----:|:-----|:-----|:---------|
-|I1     |H1  |Ahmednagar            |M      |Hindu     |  54|Stenographer     |Lifeboy                |Veg   |  158.0|     62|NA                | 26.0|FALSE |I1    |NA        |
-|I2     |W1  |Ahmednagar            |F      |Hindu     |  46|House wife       |Lifeboy                |Veg   |  156.0|     61|NA                | 25.1|FALSE |I2    |NA        |
-|I3     |-   |Ahmednagar            |M      |Hindu     |  27|Student          |Lux                    |Veg   |  170.0|     71|NA                | 24.6|FALSE |I3    |NA        |
-|I4     |H2  |Pune                  |M      |Hindu     |  87|Retired          |Patanjali              |Veg   |  167.0|     49|BP                | 17.6|FALSE |I4    |NA        |
-|I5     |W2  |Pune                  |F      |Hindu     |  81|House wife       |Patanjali              |Veg   |  146.0|     52|NA                | 24.4|FALSE |I5    |NA        |
-|I6     |-   |Pune                  |F      |Hindu     |  44|Teacher          |Patanjali              |Veg   |  158.0|     77|NA                | 30.8|FALSE |I6    |NA        |
-|I7     |-   |Ahmednagar            |F      |Hindu     |  26|Private Service  |Jonson and jonson baby |Veg   |  173.7|     60|NA                | 19.9|FALSE |I7    |NA        |
-|I8     |-   |Ahmednagar            |M      |Christian |  91|Retired          |Cinthol                |Mixed |  167.6|     72|BP                | 25.6|FALSE |I8    |NA        |
-|I9     |-   |Ahmednagar            |F      |Christian |  54|Nurse            |Santoor                |Mixed |  161.5|     88|BP                | 33.7|FALSE |I9    |NA        |
-|I10    |H3  |Pune                  |M      |Hindu     |  53|Private survice  |Cinthol                |Mixed |  168.0|     78|NA                | 27.6|FALSE |I10   |NA        |
-|I11    |W3  |Pune                  |F      |Hindu     |  51|Professor        |Sinthol                |Mixed |  157.0|     70|NA                | 28.4|FALSE |I11   |NA        |
-|I12    |-   |Nashik                |F      |Muslim    |  17|Student          |Dove                   |Mixed |     NA|     NA|NA                |   NA|FALSE |I12   |NA        |
-|I13    |-   |Nashik                |F      |Muslim    |  35|Housewife        |Lifebuoy               |Mixed |     NA|     NA|NA                |   NA|FALSE |I13   |NA        |
-|I14    |H4  |Pune                  |M      |Hindu     |  73|Retired          |Godrej no. 1           |Veg   |  161.0|     65|BP, Diabetes      | 25.1|FALSE |I14   |NA        |
-|I15    |W4  |Pune                  |F      |Hindu     |  71|Retired          |Dettol                 |Veg   |  125.0|     60|BP, Diabetes      | 38.4|FALSE |I15   |NA        |
-|I16    |-   |Pune                  |M      |Hindu     |  48|Doctor           |Godrej no. 2           |Veg   |  155.0|     74|NA                | 30.8|FALSE |I16   |NA        |
-|I17    |H5  |Pune                  |M      |Hindu     |  80|Retired          |Dove                   |Veg   |  142.0|     56|Diabetes          | 27.8|FALSE |I17   |NA        |
-|I18    |W5  |Pune                  |F      |Hindu     |  74|House wife       |Dove                   |Veg   |  137.0|     46|BP                | 24.5|FALSE |I18   |NA        |
-|I19    |-   |Pune                  |F      |Hindu     |  42|House wife       |Dove                   |Veg   |  140.0|     55|Thyroid           | 28.1|FALSE |I19   |NA        |
-|I20    |H6  |Pune                  |M      |Hindu     |  74|Retired          |Dove                   |Mixed |  182.0|     90|BP                | 27.2|FALSE |I20   |NA        |
-|I21    |W6  |Pune                  |F      |Hindu     |  69|House wife       |Dove                   |Mixed |  161.5|     60|BP Diabetes       | 23.0|FALSE |I21   |NA        |
-|I22    |-   |Pune                  |F      |Hindu     |  45|House wife       |Dove                   |Mixed |  167.6|     90|NA                | 32.0|FALSE |I22   |NA        |
-|I23    |H7  |Pune                  |M      |Muslim    |  76|Retired          |Cinthol                |Mixed |  165.0|     72|NA                | 26.4|FALSE |I23   |NA        |
-|I24    |W7  |Pune                  |F      |Muslim    |  62|House wife       |Cinthol                |Mixed |  155.0|     75|BP                | 31.2|FALSE |I24   |NA        |
-|I25    |-   |Pune                  |F      |Muslim    |  43|House wife       |Cinthol                |Mixed |  155.0|     76|NA                | 31.6|FALSE |I25   |NA        |
-|I26    |H8  |Ahmednagar            |M      |Hindu     |  63|Retired          |Dettol                 |Veg   |  155.0|     70|NA                | 29.1|FALSE |I26   |NA        |
-|I27    |W8  |Ahmednagar            |F      |Hindu     |  49|House wife       |Dettol                 |Veg   |  170.0|     60|NA                | 20.8|FALSE |I27   |NA        |
-|I28    |H9  |Pune                  |M      |Hindu     |  52|Auto Driver      |Lifeboy                |Veg   |  168.0|     69|NA                | 24.4|FALSE |I28   |NA        |
-|I29    |W9  |Pune                  |F      |Hindu     |  46|House wife       |Dove                   |Veg   |  150.0|     43|NA                | 19.1|FALSE |I29   |NA        |
-|I30    |-   |Pune                  |F      |Hindu     |  75|House wife       |Lux                    |Veg   |  157.0|     75|BP, Diabetes      | 30.4|FALSE |I30   |NA        |
-|I31    |-   |Pune                  |F      |Hindu     |  50|House wife       |Lux                    |Veg   |  157.0|     76|NA                | 30.8|FALSE |I31   |NA        |
-|I32    |-   |Nashik                |M      |Muslim    |  14|Student          |Liril                  |Mixed |     NA|     NA|NA                |   NA|FALSE |I32   |NA        |
-|I33    |-   |Nashik                |M      |Muslim    |  27|Student          |Godrej no. 1           |Mixed |     NA|     NA|NA                |   NA|FALSE |I33   |NA        |
-|I34    |-   |Nashik                |M      |Muslim    |  56|Business         |Godrej no. 1           |Mixed |     NA|     NA|NA                |   NA|FALSE |I34   |NA        |
-|I35    |-   |Nashik                |M      |Muslim    |  20|Student          |Godrej no. 1           |Mixed |     NA|     NA|NA                |   NA|FALSE |I35   |NA        |
-|I36    |-   |Nashik                |M      |Muslim    |  38|Accountaant      |Lifebuoy               |Mixed |     NA|     NA|NA                |   NA|FALSE |I36   |NA        |
-|I37    |-   |Nashik                |M      |Muslim    |  37|Auto consultancy |Cinthol                |Mixed |     NA|     NA|NA                |   NA|FALSE |I37   |NA        |
-|I38    |-   |Nashik                |M      |Muslim    |  36|Broker           |Lux                    |Mixed |     NA|     NA|NA                |   NA|FALSE |I38   |NA        |
-|I39    |-   |Pune                  |F      |Hindu     |  74|House wife       |Lux                    |Veg   |  157.0|     66|BP                | 26.8|FALSE |I39   |NA        |
-|I40    |-   |Pune                  |F      |Hindu     |  48|Private survice  |Lux                    |Veg   |  150.0|     61|NA                | 27.1|FALSE |I40   |NA        |
-|I41    |H10 |Pune                  |M      |Hindu     |  74|Retired          |Sandle                 |Veg   |  167.0|     79|Diabetes          | 28.3|FALSE |I41   |NA        |
-|I42    |W10 |Pune                  |F      |Hindu     |  65|House wife       |Lux                    |Veg   |  164.4|     91|Diabetes          | 33.7|FALSE |I42   |NA        |
-|I43    |H11 |Pune                  |M      |Hindu     |  74|Retired          |Lux                    |Veg   |  154.4|     75|bp                | 31.5|FALSE |I43   |NA        |
-|I44    |W11 |Pune                  |F      |Hindu     |  69|House wife       |Hammam                 |Veg   |  150.4|     45|Diabetes          | 19.9|FALSE |I44   |NA        |
-|I45    |-   |Ahmednagar            |M      |Hindu     |  28|Survice          |Lux                    |Veg   |  163.0|     55|NA                | 20.7|FALSE |I45   |NA        |
-|I46    |-   |Pune                  |F      |Hindu     |  20|Student          |Medical                |Mixed |  164.0|     43|NA                | 16.0|FALSE |I46   |NA        |
-|I47    |-   |Ahmednagar            |F      |Hindu     |  20|Student          |Lux                    |Mixed |  153.0|     40|NA                | 17.1|FALSE |I47   |NA        |
-|I48    |-   |Pune                  |F      |Hindu     |  26|Student          |Lux                    |Veg   |  164.5|     65|NA                | 24.0|FALSE |I48   |NA        |
-|I49    |-   |Pune                  |M      |Hindu     |  23|Student          |Medimix                |Mixed |  170.0|     45|NA                | 15.6|FALSE |I49   |NA        |
-|I50    |-   |Pune                  |M      |Hindu     |  22|Shopkeeper       |Dettol                 |Veg   |  173.7|     81|NA                | 16.8|FALSE |I50   |NA        |
-|I51    |-   |Pune                  |M      |Hindu     |  16|Student          |Patanjali              |Veg   |  173.7|     54|NA                | 18.0|FALSE |I51   |NA        |
-|I52    |-   |Pune                  |M      |Hindu     |  23|Fitness Trainer  |Dettol                 |Mixed |  167.6|     61|NA                | 21.7|FALSE |I52   |NA        |
-|I53    |-   |Pune                  |M      |Hindu     |  23|Student          |Lux                    |Mixed |  176.7|     58|NA                | 18.6|FALSE |I53   |NA        |
-|I54    |-   |Pune                  |F      |Hindu     |  20|Student          |Camey                  |Mixed |  161.5|     52|NA                | 19.9|FALSE |I54   |NA        |
-|I55    |-   |Ahmednagar            |M      |Hindu     |  26|Private survice  |Santoor                |Mixed |  180.0|     67|NA                | 20.7|FALSE |I55   |NA        |
-|I56    |-   |Pune                  |M      |Hindu     |  22|Student          |Dove                   |Mixed |  161.5|     53|NA                | 20.3|FALSE |I56   |NA        |
-|I57    |-   |Nashik                |M      |Hindu     |  18|Student          |Dove                   |Mixed |  172.0|     50|NA                | 15.2|FALSE |I57   |NA        |
-|I58    |-   |Nashik                |F      |Hindu     |  20|Student          |Lux                    |Veg   |  151.0|     48|NA                | 21.1|FALSE |I58   |NA        |
-
-```
-## Error in eval(expr, envir, enclos): object 'top.taxa' not found
-```

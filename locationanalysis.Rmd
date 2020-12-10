@@ -60,38 +60,65 @@ print(p1)
 
 
 
-## Differential abundance analysis (with Kruskal-Wallis test)
+## Differential abundance analysis (with ANCOM)
 
-In (jointanalysis.md) it was shown that geographical location has a significant effect.
+In [jointanalysis.md] it was shown that geographical location has a significant effect.
 
 Here, we investigate individual taxonomic groups in more detail.
 
 Significant (or marginally significant) taxa between geographical locations.
 
 ```{r diffab, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="25%", fig.show="hold"}
-location <- meta(phy)$Geographical_location
+library(readr)
+library(tidyverse)
+otu_data <- abundances(phy)
+meta_data <- meta(phy)
 
-#Clr-transformation
-A <- abundances(microbiome::transform(phy, "clr"))
+# To get this, clone
+# https://github.com/FrederickHuangLin/ANCOM.git
+source("ANCOM/scripts/ancom_v2.1.R")
 
-pv <- apply(A, 1, function (x) {kruskal.test(x ~ location)$p.value});
-padj <- p.adjust(pv);
+# Step 1: Data preprocessing
+feature_table = otu_data;
+sample_var = "Sample";
+group_var = NULL
+out_cut = 0.05;
+zero_cut = 0.90;
+lib_cut = 1000;
+neg_lb = FALSE
+prepro = feature_table_pre_process(feature_table,
+                                   meta_data,
+				   sample_var,
+				   group_var, 
+                                   out_cut,
+				   zero_cut,
+				   lib_cut,
+				   neg_lb)
 
-df <- data.frame(taxon = names(padj), padj = padj)
-# Add full names for the taxa
-full.names <- apply(tax_table(phy), 1, function (x) {paste(x, collapse = "_")})
-df$full_name <- full.names[df$taxon]
-df <- df %>% filter(padj < 0.25) %>% arrange(padj)
-rownames(df) <- NULL
+feature_table = prepro$feature_table # Preprocessed feature table
+meta_data = prepro$meta_data # Preprocessed metadata
+struc_zero = prepro$structure_zeros # Structural zero info
 
-library(knitr)
-kable(df)
+# Step 2: ANCOM
+main_var <- "Geographical_location";
+p_adj_method <- "BH";
+alpha <- 0.05
+adj_formula <- NULL;
+rand_formula <- NULL
+
+res <- ANCOM(feature_table, meta_data, struc_zero,
+             main_var, p_adj_method, 
+             alpha, adj_formula, rand_formula)
+head(res$out)
+
+res.sorted <- res$out %>% arrange(desc(W))
+top.taxa <- res.sorted[which(res.sorted[,3]), "taxa_id"]
 
 ps <- microbiome::transform(phy, "clr")
 d <- meta(ps)
 
+for (tax in top.taxa) {
 
-for (tax in df$taxon) {
   d$taxa <- abundances(ps)[tax, ]
   
   p <- ggplot(d, aes(x = Geographical_location, y = taxa)) +
@@ -100,8 +127,8 @@ for (tax in df$taxon) {
     theme(axis.text.x = element_text(angle = 360, hjust = 1)) +
     labs(x = "Location", y = "Abundance (CLR)", title = tax)
   print(p)
-}
 
+}
 ```
 
 
@@ -168,56 +195,3 @@ heatmap_grid + draw_grob(get_legend(pune_heat+ theme(legend.position="bottom", l
 ```
 
 
-## Differential abundance analysis 
-
-Differential abundance analysis with DESeq2 method
-
-```{r DESeq2, echo=FALSE, message=FALSE, warning=FALSE ,fig.width=9, fig.height=5, out.width="50%", fig.show="hold"}
-library(phyloseq)
-library(reshape2)
-library(DESeq2)
-padj.th <- 0.25
-mypseq <- phy
-
-# Remove NAs
-group <- "Geographical_location"
-keep <- meta(phy)[, group] %>% complete.cases()
-
-df <- meta(mypseq)[keep, ]
-
-mygroup <- "Geographical_location"
-df$group <- as.factor(df[[group]] == mygroup)
-sample_data(mypseq) <- sample_data(df)
-quiet(ds2 <- phyloseq_to_deseq2(mypseq, ~ Geographical_location))
-dds <- DESeq(ds2)
-res <- results(dds)
-df <- as.data.frame(res)
-df$taxon <- rownames(df)
-#df <- df %>% arrange(desc(abs(log2FoldChange)), padj) %>%
-#             filter(padj < padj.th) 
-df <- df %>% arrange(padj, desc(abs(log2FoldChange))) %>%
-             filter(padj < padj.th) 
-df <- subset(df, select= c(log2FoldChange, padj, taxon))
-rownames(df) <- NULL
-
-# WHat is the purpose of this one?
-#full.names <- apply(tax_table(phy), 1, function (x) {paste(x, collapse = "_")})
-# top.taxa <- as.character(df$taxon)
-# Add full phylogenetic name for this OTU
-df$full_name <- full.names[df$taxon]
-library(knitr)
-kable(df)
-
-
-df <- meta(phy)
-ps <- microbiome::transform(phy, "clr")
-for (tax in top.taxa) {
-  df$taxa <- abundances(ps)[tax, ]
-  p <- ggplot(df, aes(x = Geographical_location, y = taxa)) +
-    geom_boxplot() + 
-    ggbeeswarm::geom_beeswarm() +
-    theme(axis.text.x = element_text(angle = 360, hjust = 1)) +
-    labs(x = "Geographical location", y = "Abundance", title = tax)
-  print(p)
-}
-```
