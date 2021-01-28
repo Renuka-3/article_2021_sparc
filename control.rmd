@@ -1,0 +1,66 @@
+---
+title: "control_sample"
+author: "Renuka"
+date: "28 January 2021"
+output: html_document
+---
+
+```{r setup, include=FALSE, message=F, echo=F, echo=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(knitcitations) 
+library(microbiome)
+library(phyloseq)
+library(ggplot2)
+library(reshape2)
+library(tidyverse)
+library(dada2)
+library(dplyr)
+library(microbiome)
+library(microbiome)
+library(phyloseq)
+library(vegan)
+
+theme_set(theme_bw(20))
+knitr::opts_chunk$set(fig.width=10, fig.height=10, message=FALSE, warning=FALSE)
+knitr::opts_chunk$set(fig.path="figure_location/")
+opts_chunk$set(dev="CairoPNG")
+
+# Was created with: source("create_phyloseq.R")
+cphy <- readRDS("data/with_control/phyloseq/cphy.RDS")
+```
+
+## Principal Coordinates Analysis (PCoA)
+
+* Ordination method: `r method`
+* Dissimilarity measure: `r distance`
+
+```{r pcoa, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold"}
+theme_set(theme_bw(15))
+library(microbiome)
+method <- "PCoA"
+trans <- "compositional"
+distance <- "bray"
+#index <- "diversity_shannon"
+
+p <- plot_landscape(microbiome::transform(cphy , "compositional"),
+                    distance = "bray",
+                    method = "PCoA",
+                    size = 3,
+                    col = "Sample",
+                    shading = FALSE)
+print(p)
+
+#cols <- meta$Sample
+#cols[which(cols %in% "NC")] <- "red"
+
+#p <- plot_landscape(microbiome::transform(phy , "compositional"),
+#                        distance = "bray",
+# 
+#                      method = "PCoA",
+#                        size = 3,
+#                        col = control,
+#                       shading = FALSE)
+#sample_data(cphy)$control <- cols
+```
+
