@@ -28,6 +28,9 @@ opts_chunk$set(dev="CairoPNG")
 
 # Was created with: source("create_phyloseq.R")
 cphy <- readRDS("data/with_control/phyloseq/cphy.RDS")
+#df$newcolumn <- (df$Sample == "NC")
+sample_data(cphy)$control =="NC"
+sample_data(cphy)$nc <- sample_data(cphy)$control =="NC"
 ```
 
 ## Principal Coordinates Analysis (PCoA)
