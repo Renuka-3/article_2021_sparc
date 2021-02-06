@@ -56,7 +56,7 @@ p1 <- ggplot(df, aes(x = Geographical_location, y = index, fill = Geographical_l
 	     title = paste0("Kruskal test p=", round(pv, 2)))
 
 print(p1)
-```
+```  
 
 
 
@@ -124,15 +124,20 @@ d <- meta(ps)
 for (tax in top.taxa) {
 
   d$taxa <- abundances(ps)[tax, ]
+  d$gen <- taxa(ps)["genus", ]
   
   p <- ggplot(d, aes(x = Geographical_location, y = taxa)) +
     geom_boxplot() + 
     ggbeeswarm::geom_beeswarm() +
     scale_y_log10()+
     theme(axis.text.x = element_text(angle = 360, hjust = 1)) +
-    labs(x = "Location", y = "Abundance (CLR)", title = tax)
+    labs(x = "Location", y = "Abundance (CLR)", title = map_levels(tax, from='tax', to='genus',ps))
   print(p)
-
+title = map_levels(tax, from='tax', to='genus',ps)
 }
 ```
+  
+
+
+
 
