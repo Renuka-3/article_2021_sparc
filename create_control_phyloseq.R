@@ -1,3 +1,6 @@
+
+## create phyloseq with control sample
+
 library(ggplot2)
 library(microbiome)
 library(phyloseq)
@@ -5,9 +8,9 @@ library(dada2)
 library(readxl)
 library(dplyr)
 
-otu_mat    <- as.data.frame(read_excel("data/processed/original_tables/otu.xlsx"))
-tax_mat    <- as.data.frame(read_excel("data/processed/original_tables/taxa.xlsx"))
-samples_df <- as.data.frame(read_excel("data/processed/original_tables/meta.xlsx"))
+otu_mat    <- as.data.frame(read_excel("data/with_control/Tables_control/otu_with_control.xlsx"))
+tax_mat    <- as.data.frame(read_excel("data/with_control/Tables_control/taxa_with_control.xlsx"))
+samples_df <- as.data.frame(read_excel("data/with_control/Tables_control/meta_with_control.xlsx"))
 
 row.names(otu_mat) <- otu_mat$OTUU
 otu_mat <- otu_mat %>% select (-OTUU)
@@ -23,9 +26,5 @@ TAX = tax_table(tax_mat)
 sam = sample_data(as.data.frame(samples_df))
 
 # Add age group information also
-phy <- phyloseq(OTU, TAX, sam)
-
-sample_data(phy)$age_group <- cut(meta(phy)$Age, breaks = c(0, 40, 59, Inf), labels = c("adult", "middle_age", "elderly"))
-
-saveRDS(phy, file = "data/processed/phyloseq/phy20.1.RDS")
-
+cphy <- phyloseq(OTU, TAX, sam)
+saveRDS(cphy, file = "data/with_control/phyloseq/cphy.RDS")
