@@ -7,6 +7,8 @@ Here we are investigating skin microbial community compostion along with its ass
 * [create_phyloseq.R](create_phyloseq.R):The phyloseq object is created 
 using OTU table, Taxonomic table and metadata of individuals.
 
+* [create_control_phyloseq.R](create_control_phyloseq.R)
+
 ### Conclusions
 1. [Core genera](coreanalysis.md): 
 Following are the most prevalent genera and phyla found on human skin,
