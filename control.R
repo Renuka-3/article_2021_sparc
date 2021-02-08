@@ -1,4 +1,5 @@
-{r alpha, message=F, echo=F, echo=FALSE, warning=FALSE}
+## ----setup, include=FALSE, message=F, echo=F, echo=FALSE, warning=FALSE-------
+knitr::opts_chunk$set(echo = TRUE)
 library(knitr)
 library(knitcitations) 
 library(microbiome)
@@ -20,16 +21,12 @@ opts_chunk$set(dev="CairoPNG")
 
 # Was created with: source("create_phyloseq.R")
 cphy <- readRDS("data/with_control/phyloseq/cphy.RDS")
+#df$newcolumn <- (df$Sample == "NC")
+sample_data(cphy)$control =="NC"
+sample_data(cphy)$nc <- sample_data(cphy)$control =="NC"
 
 
-
-
-## *Principal Coordinates Analysis (PCoA)*
-
-* Ordination method: `r method`
-* Dissimilarity measure: `r distance`
-
-{r pcoa, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold"}
+## ----pcoa, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold"----
 theme_set(theme_bw(15))
 library(microbiome)
 method <- "PCoA"
@@ -45,21 +42,15 @@ p <- plot_landscape(microbiome::transform(cphy , "compositional"),
                     shading = FALSE)
 print(p)
 
-
 #cols <- meta$Sample
 #cols[which(cols %in% "NC")] <- "red"
 
 #p <- plot_landscape(microbiome::transform(phy , "compositional"),
-                        distance = "bray",
-                        method = "PCoA",
-                        size = 3,
-                        col = control,
-                        shading = FALSE)
-
-
+#                        distance = "bray",
+# 
+#                      method = "PCoA",
+#                        size = 3,
+#                        col = control,
+#                       shading = FALSE)
 #sample_data(cphy)$control <- cols
-
-
-
-
 
