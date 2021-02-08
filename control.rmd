@@ -52,7 +52,7 @@ p <- plot_landscape(microbiome::transform(cphy , "compositional"),
                     distance = "bray",
                     method = "PCoA",
                     size = 3,
-                    col = "Sample",
+                    col = "Control",
                     shading = FALSE)
 print(p)
 
