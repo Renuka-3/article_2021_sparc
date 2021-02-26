@@ -114,3 +114,19 @@ d <- d %>% arrange(desc(Abundance_mean), desc(Prevalence))
 colnames(d) <- c("Taxon", "Mean Relative abundance (%)", "Median Relative abundance (%)", "Prevalence (%)")
 kable(d)
 ```
+
+```{r phylum_table, echo=FALSE, message=FALSE, fig.width=12, fig.height=6, fig.show="keep", out.width="100%"}
+library(knitr)
+a <- aggregate_taxa(phy20.1, level = "genus")
+xc <- abundances(transform(a, "compositional"))
+df <- melt(xc)
+names(df) <- c("Genus", "sample", "value")
+dfm <- df %>% group_by(Genus) %>% 
+         summarise(mean = round(100 * mean(value), 1),
+	           median = round(100 * median(value), 1),
+		   min = round(100 * min(value), 1),
+		   max = round(100 * max(value), 1)) %>%
+	 arrange(desc(mean))
+kable(dfm)
+write.csv(dfm, file="genus table.csv")
+```

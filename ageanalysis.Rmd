@@ -20,9 +20,10 @@ knitr::opts_chunk$set(fig.path="figure_age/")
 
 # Was created with: source("create_phyloseq.R")
 phy<- readRDS("data/processed/phyloseq/phy20.1.RDS")
+w <- sample_data(phy)$age_group <- cut(meta(phy)$Age, breaks = c(0, 40, 59, Inf), labels = c("adult", "middle_age", "elderly"))
 
 # Exclude middle-aged group
-Q <- subset_samples(phy, age_group %in% "middle_age")
+#Q <- subset_samples(phy, age_group %in% "middle_age")
 # Old code
 # Remove <- c("I1", "I2", "I6", "I9", "I10", "I11", "I16", "I19", "I22", "I25", "I27","I28", "I29", "I31","I34", "I40")
 #subset_samples(phy20.1, Sample %in% Remove)
@@ -37,7 +38,7 @@ library(microbiome)
 opts_chunk$set(dev="CairoPNG")
 
 # Estimate alpha diversities
-A <- alpha(Q)
+A <- alpha(phy)
 index <- "diversity_shannon"
 ```
 
@@ -46,17 +47,19 @@ index <- "diversity_shannon"
 
 ```{r group_comp, echo=FALSE, echo=FALSE, message=FALSE, fig.width=10, fig.height=8, fig.show="keep", out.width="50%"}
 library(Cairo)
-df <- meta(Q)
+df <- meta(phy)
 df <- bind_cols(df, A)
 df$index <- df[[index]]
-pv <- wilcox.test(data = df, index ~ factor(age_group))$p.value
+pv <- kruskal.test(data = df, index ~ factor(age_group))$p.value
+kruskal.test(data = df, index ~ factor(age_group))
+
 library(ggbeeswarm)
 p1 <- ggplot(df, aes(x = age_group, y = index, fill = age_group)) +
         ggbeeswarm::geom_beeswarm() +
 	theme(axis.text.x = element_text(angle = 0, hjust = 1)) +
         labs(y = "Shannon Diversity",
 	     x = "",
-	     title = paste0("wilcoxon tast p=", round(pv, 2)))
+	     title = paste0("kruskal tast p=", round(pv, 2)))
 
 print(p1)
 ```
@@ -71,7 +74,7 @@ library(vegan)
 opts_chunk$set(dev="CairoPNG")
 method <- "PCoA"
 trans <- "compositional"
-distance <- "jaccard"
+distance <- "bray"
 ```
 
 # Principal Coordinates Analysis (PCoA)
@@ -83,7 +86,7 @@ distance <- "jaccard"
 theme_set(theme_bw(15))
 library(microbiome)
 p <- plot_landscape(microbiome::transform(Q , "compositional"),
-                    distance = "jaccard",
+                    distance = "bray",
                     method = "PCoA",
                     size = 3,
                     col = "age_group",

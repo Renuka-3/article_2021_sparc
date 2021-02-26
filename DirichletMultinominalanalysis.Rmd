@@ -61,6 +61,7 @@ The optimal number of clusters is: `r which.min(unlist(lplc))`
 The (main) drivers per component are visualized.
 
 ```{r DMM, out.width="100%", echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold", fig.width=20, fig.height=10}
+library(dplyr)
 ass <- apply(mixture(best), 1, which.max)
 
 full.names <- apply(tax_table(phy), 1, function (x) {paste(x, collapse = "_")})
@@ -70,6 +71,13 @@ colnames(dd) <- c("OTU", "cluster", "value")
 # Add full names
 dd$full_name <- gsub("Bacteria_", "", full.names[dd$OTU])
 ncomp <- ncol(fitted(best))
+#x <- full.names %>% strsplit("_" ) %>% sapply(tail, 1 )   
+#r <- c("my_test_string", "and_another_one") %>% strsplit("_" ) %>% sapply(tail, 1 )  
+#x <- some.manipulation(df$old); df$new <- x
+
+dd$short_name <- dd$full_name %>% strsplit("_" ) %>% sapply(tail, 1 )
+#dd$short_name <- x
+
 
 for (k in seq(ncomp)) {
 
@@ -79,13 +87,14 @@ for (k in seq(ncomp)) {
     # Arrange OTUs by assignment strength    
     arrange(value) %>%
     mutate(OTU = factor(OTU, levels = unique(OTU))) %>%
-    mutate(full_name = factor(full_name, levels = unique(full_name)))    
+    #mutate(short_name = factor(r, levels = unique(r))) 
+    mutate(short_name = factor(short_name, levels = unique(short_name)))
     
-  p <- ggplot(d, aes(x = full_name, y = value)) +
+  p <- ggplot(d, aes(x = short_name, y = value)) +
     geom_bar(stat = "identity") +
     coord_flip() +    
-    labs(title = paste("Top drivers: community type", k))
-    
+    labs(x= "", title = paste("Top drivers: community type", k))
+
   print(p)
 
 }  
