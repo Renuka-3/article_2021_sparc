@@ -1,7 +1,4 @@
-
-# Analysis
-
-```{r alpha, message=F, echo=F, echo=FALSE, warning=FALSE}
+## ----alpha, message=F, echo=F, echo=FALSE, warning=FALSE----------------------
 library(knitr)
 library(knitcitations) 
 library(microbiome)
@@ -15,30 +12,27 @@ library(microbiome)
 library(microbiome)
 library(phyloseq)
 library(vegan)
+
 theme_set(theme_bw(20))
 knitr::opts_chunk$set(fig.width=10, fig.height=10, message=FALSE, warning=FALSE)
 knitr::opts_chunk$set(fig.path="figure_location/")
 opts_chunk$set(dev="CairoPNG")
+
 # Was created with: source("create_phyloseq.R")
 phy <- readRDS("data/processed/phyloseq/phy20.1.RDS")
+
 method <- "PCoA"
 trans <- "compositional"
 distance <- "bray"
 index <- "diversity_shannon"
-```
 
 
-## Alpha diversity analysis
-
-Diversity index: `r index`
-
-```{r alpha1, echo=FALSE, message=FALSE, warning=FALSE}
+## ----alpha1, echo=FALSE, message=FALSE, warning=FALSE-------------------------
 # Estimate alpha diversities
 A <- alpha(phy)
-```
 
 
-```{r group_comp, echo=FALSE, echo=FALSE, message=FALSE, fig.width=10, fig.height=6, fig.show="keep", out.width="50%"}
+## ----group_comp, echo=FALSE, echo=FALSE, message=FALSE, fig.width=10, fig.height=6, fig.show="keep", out.width="50%"----
 library(Cairo)
 df <- meta(phy)
 df <- bind_cols(df, A)
@@ -51,29 +45,20 @@ p1 <- ggplot(df, aes(x = Geographical_location, y = index, fill = Geographical_l
         labs(y = "Shannon Diversity",
 	     x = "",
 	     title = paste0("Kruskal test p=", round(pv, 2)))
+
 print(p1)
-```  
 
 
-
-## Differential abundance analysis (with ANCOM)
-
-In [jointanalysis.md](jointanalysis.md) it was shown that geographical location has a significant effect.
-
-Here, we investigate individual taxonomic groups in more detail.
-
-For community comparison, see [CSTAnalysis_SkinSamples.md](CSTAnalysis_SkinSamples.md)
-
-Significant (or marginally significant) taxa between geographical locations.
-
-```{r diffab, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="25%", fig.show="hold"}
+## ----diffab, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="25%", fig.show="hold"----
 library(readr)
 library(tidyverse)
 otu_data <- abundances(phy)
 meta_data <- meta(phy)
+
 # To get this, clone
 # https://github.com/FrederickHuangLin/ANCOM.git
 source("ANCOM/scripts/ancom_v2.1.R")
+
 # Step 1: Data preprocessing
 feature_table = otu_data;
 sample_var = "Sample";
@@ -90,26 +75,35 @@ prepro = feature_table_pre_process(feature_table,
 				   zero_cut,
 				   lib_cut,
 				   neg_lb)
+
 feature_table = prepro$feature_table # Preprocessed feature table
 meta_data = prepro$meta_data # Preprocessed metadata
 struc_zero = prepro$structure_zeros # Structural zero info
+
 # Step 2: ANCOM
 main_var <- "Geographical_location";
 p_adj_method <- "BH";
 alpha <- 0.05
 adj_formula <- NULL;
 rand_formula <- NULL
+
 res <- ANCOM(feature_table, meta_data, struc_zero,
              main_var, p_adj_method, 
              alpha, adj_formula, rand_formula)
+
+
 res.sorted <- res$out %>% arrange(desc(W))
 top.taxa <- res.sorted[which(res.sorted[,3]), "taxa_id"]
+
 head(res.sorted)
+
 ps <- microbiome::transform(phy, "compositional")
 d <- meta(ps)
+
 for (tax in top.taxa) {
-  d$taxa <- abundances(ps)[tax, ]
-  # d$gen <- taxa(ps)["genus", ]
+
+  #d$taxa <- abundances(ps)[tax, ]
+  #d$gen <- taxa(ps)["genus", ]
   
   p <- ggplot(d, aes(x = Geographical_location, y = taxa)) +
     geom_boxplot() + 
@@ -117,7 +111,7 @@ for (tax in top.taxa) {
     scale_y_log10()+
     theme(axis.text.x = element_text(angle = 360, hjust = 1)) +
     #labs(x = "Location", y = "Abundance (CLR)", title = map_levels(tax, from='tax', to='genus',ps))
-    labs(x = "Location", y = "Abundance (CLR)", title = as.vector(tax_table(ps)[tax, "genus"]))
   print(p)
+#title = map_levels(tax, from='tax', to='genus',ps)
 }
-```
+
