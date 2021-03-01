@@ -1,10 +1,38 @@
 
-
-
+```
+## Warning: package 'phyloseq' was built under R version 4.0.4
+```
 
 ```
-## Error in as.data.frame.default(x[[i]], optional = TRUE): cannot coerce class 'structure("phyloseq", package = "phyloseq")' to a data.frame
+## Warning: package 'ggplot2' was built under R version 4.0.4
 ```
+
+```
+## Warning: package 'igraph' was built under R version 4.0.4
+```
+
+```
+## Warning: package 'markovchain' was built under R version 4.0.4
+```
+
+```
+## Warning: package 'RColorBrewer' was built under R version 4.0.4
+```
+
+```
+## Warning: package 'gridExtra' was built under R version 4.0.4
+```
+
+```
+## Warning: package 'tidyr' was built under R version 4.0.4
+```
+
+```
+## Warning: package 'dplyr' was built under R version 4.0.4
+```
+
+
+
 
 
 # Cluster into CSTs
@@ -12,13 +40,13 @@
 ![plot of chunk MDS_CLRleo](figure/MDS_CLRleo-1.png)
 
 ```
-##  [1] 3.7713973 2.9522877 2.3623454 1.9879696 1.4780915 1.4019418 1.0325943
-##  [8] 0.9159503 0.6976916 0.6490130 0.6113887 0.5096734 0.5014806 0.4718493
-## [15] 0.4436903 0.4410315 0.3809519 0.3695511 0.3207295 0.3036129
+##  [1] 5.9840548 3.7404996 2.0896780 1.3230250 1.1019674 0.9766566 0.9021602
+##  [8] 0.6464166 0.5868130 0.5087633 0.4418356 0.3914422 0.3474311 0.3149250
+## [15] 0.3031454 0.2890737 0.2568495 0.2294809 0.2250794 0.2010400
 ```
 
 ```
-## [1] -0.03871145 -0.04200195 -0.05245575 -0.07669412 -0.08421908 -0.11034026
+## [1] -0.05442782 -0.06150271 -0.07856958 -0.09270186 -0.10894815 -0.12931259
 ```
 
 
@@ -53,7 +81,7 @@ Perform PAM K-fold clusters and assess significance of CST vs. location (p-value
 ## 	Fisher's Exact Test for Count Data
 ## 
 ## data:  table(sample_data(ps)[, c("CST", "Geographical_location")])
-## p-value = 0.03092
+## p-value = 0.002411
 ## alternative hypothesis: two.sided
 ```
 
@@ -75,7 +103,7 @@ Coloured by CST community type
 
 Heatmaps for the community state types. The most different OTUs are shown.
 
-<img src="figure/clust-diverse_CLRleo-1.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="33%" /><img src="figure/clust-diverse_CLRleo-2.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="33%" /><img src="figure/clust-diverse_CLRleo-3.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="33%" /><img src="figure/clust-diverse_CLRleo-4.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="33%" /><img src="figure/clust-diverse_CLRleo-5.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="33%" /><img src="figure/clust-diverse_CLRleo-6.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="33%" />
+<img src="figure/clust-diverse_CLRleo-1.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="33%" /><img src="figure/clust-diverse_CLRleo-2.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="33%" /><img src="figure/clust-diverse_CLRleo-3.png" title="plot of chunk clust-diverse_CLRleo" alt="plot of chunk clust-diverse_CLRleo" width="33%" />
 
 
 
@@ -83,25 +111,22 @@ Heatmaps for the community state types. The most different OTUs are shown.
 Table of full names for the heatmap taxa:
 
 
-|ASV     |Full_name                                                                                         |
-|:-------|:-------------------------------------------------------------------------------------------------|
-|OTU2172 |Bacteria_Firmicutes_Bacilli_Bacillales_Staphylococcaceae_Staphylococcus                           |
-|OTU2125 |Bacteria_Proteobacteria_Gammaproteobacteria_Enterobacterales _Enterobacteriaceae_Shimwellia       |
-|OTU367  |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Bacillus                                       |
-|OTU184  |Bacteria_Actinobacteria_Actinobacteria_Pseudonocardiales_Pseudonocardiaceae_Amycolatopsis         |
-|OTU2388 |Bacteria_Actinobacteria_Actinobacteria_Corynebacteriales_NA_Tomitella                             |
-|OTU1075 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Geobacillus                                    |
-|OTU985  |Bacteria_Proteobacteria_Gammaproteobacteria_Enterobacterales _Enterobacteriaceae_Escherichia      |
-|OTU2021 |Bacteria_Proteobacteria_Alphaproteobacteria_Rhodospirillales_Acetobacteraceae_Roseomonas          |
-|OTU1137 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Halobacillus                                   |
-|OTU2151 |Bacteria_Proteobacteria_Gammaproteobacteria_Chromatiales_Ectothiorhodospiraceae_Spiribacter       |
-|OTU497  |Bacteria_Proteobacteria_Alphaproteobacteria_Rhizobiales_Bradyrhizobiaceae_Bosea                   |
-|OTU2390 |Bacteria_Spirochaetes_Spirochaetia_Spirochaetales_Spirochaetaceae_Treponema                       |
-|OTU2267 |Bacteria_Actinobacteria_Actinobacteria_Streptosporangiales_Streptosporangiaceae_Streptosporangium |
-|OTU1130 |Bacteria_Proteobacteria_Deltaproteobacteria_Myxococcales_Kofleriaceae_Haliangium                  |
-|OTU2093 |Bacteria_Firmicutes_Bacilli_Bacillales_Sporolactobacillaceae_Scopulibacillus                      |
-|OTU1336 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Lentibacillus                                  |
-|OTU860  |Bacteria_Firmicutes_Negativicutes_Selenomonadales_Sporomusaceae_Desulfosporomusa                  |
-|OTU629  |Bacteria_Proteobacteria_Gammaproteobacteria_Enterobacterales _Enterobacteriaceae_Citrobacter      |
-|OTU2081 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Salsuginibacillus                              |
+```
+## Warning: package 'knitr' was built under R version 4.0.4
+```
+
+
+
+|ASV     |Full_name                                                                        |
+|:-------|:--------------------------------------------------------------------------------|
+|OTU367  |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Bacillus                      |
+|OTU2172 |Bacteria_Firmicutes_Bacilli_Bacillales_Staphylococcaceae_Staphylococcus          |
+|OTU194  |Bacteria_Firmicutes_Tissierellia_Tissierellales_Peptoniphilaceae_Anaerococcus    |
+|OTU2398 |Bacteria_Firmicutes_Bacilli_Bacillales_Sporolactobacillaceae_Tuberibacillus      |
+|OTU1137 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Halobacillus                  |
+|OTU1075 |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Geobacillus                   |
+|OTU2390 |Bacteria_Spirochaetes_Spirochaetia_Spirochaetales_Spirochaetaceae_Treponema      |
+|OTU1980 |Bacteria_Firmicutes_Bacilli_Bacillales_Sporolactobacillaceae_Pullulanibacillus   |
+|OTU860  |Bacteria_Firmicutes_Negativicutes_Selenomonadales_Sporomusaceae_Desulfosporomusa |
+|OTU211  |Bacteria_Firmicutes_Bacilli_Bacillales_Bacillaceae_Anoxybacillus                 |
 
