@@ -118,6 +118,12 @@ for (tax in top.taxa) {
     theme(axis.text.x = element_text(angle = 360, hjust = 1)) +
     #labs(x = "Location", y = "Abundance (CLR)", title = map_levels(tax, from='tax', to='genus',ps))
     labs(x = "Location", y = "Abundance (CLR)", title = as.vector(tax_table(ps)[tax, "genus"]))
+<<<<<<< HEAD
   print(p)
+=======
+
+  print(p)
+
+>>>>>>> e54743ef42fff69609fdb75935869a12c32c16a9
 }
 ```
