@@ -1,5 +1,4 @@
 
-
 # Ordination
 
 ```{r init, echo=FALSE, message=FALSE}
@@ -35,14 +34,14 @@ phy <- readRDS("data/processed/phyloseq/phy20.1.RDS")
 * Dissimilarity measure: `r distance`
 
 ```{r pcoa, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="33%", fig.show="hold", warning=FALSE}
-theme_set(theme_bw(15))
+theme_set(theme_bw(25))
 p <- plot_landscape(microbiome::transform(phy , "compositional"),
                     distance = distance,
                     method = method,
                     size = 3,
                     col = "Diet",
                     shading = FALSE) +
-  scale_colour_brewer(palette = "Set1")		    
+  scale_colour_brewer(palette = "Set1")	+ labs(title = "Diet")  	    
 print(p)
 
 p1 <- plot_landscape(microbiome::transform(phy , "compositional"),
@@ -51,16 +50,17 @@ p1 <- plot_landscape(microbiome::transform(phy , "compositional"),
                     size = 3,
                     col = "Geographical_location",
                     shading = FALSE) +
-  scale_colour_brewer(palette = "Set1")		    
+  scale_colour_brewer(palette = "Set1") + labs(title = "Location")    
 print(p1)
 
+theme_set(theme_bw(25))
 p2 <- plot_landscape(microbiome::transform(phy , "compositional"),
                      distance = distance,
                      method = method,
                      size = 3,
                      col = "age_group",
                      shading = FALSE) +
-  scale_colour_brewer(palette = "Set1")		    
+  scale_colour_brewer(palette = "Set1")	+ labs(title = "Age")	    
 print(p2)
 ```
 

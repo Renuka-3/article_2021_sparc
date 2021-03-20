@@ -102,7 +102,7 @@ d <- meta(ps)
 
 for (tax in top.taxa) {
 
-  #d$taxa <- abundances(ps)[tax, ]
+  d$taxa <- abundances(ps)[tax, ]
   #d$gen <- taxa(ps)["genus", ]
   
   p <- ggplot(d, aes(x = Geographical_location, y = taxa)) +
@@ -111,7 +111,7 @@ for (tax in top.taxa) {
     scale_y_log10()+
     theme(axis.text.x = element_text(angle = 360, hjust = 1)) +
     #labs(x = "Location", y = "Abundance (CLR)", title = map_levels(tax, from='tax', to='genus',ps))
+    labs(x = "Location", y = "Abundance (CLR)", title = as.vector(tax_table(ps)[tax, "genus"]))
   print(p)
-#title = map_levels(tax, from='tax', to='genus',ps)
 }
 

@@ -40,13 +40,19 @@ opts_chunk$set(dev="CairoPNG")
 # Estimate alpha diversities
 A <- alpha(phy)
 index <- "diversity_shannon"
+c <- meta(phy)
+c2 <- bind_cols(b,A)
+is.data.frame(c) 
+is.data.frame(c2)
+sapply(split(c2$diversity_shannon, c2$age_group), mean)
 ```
 
 # Group-wise comparisons
 * Diversity index: `r index`
 
-```{r group_comp, echo=FALSE, echo=FALSE, message=FALSE, fig.width=10, fig.height=8, fig.show="keep", out.width="50%"}
+```{r group_comp, echo=FALSE, echo=FALSE, message=FALSE, fig.width=6, fig.height=6, fig.show="keep", out.width="50%", fig.show="hold"}
 library(Cairo)
+theme_set(theme_bw(base_size=25))
 df <- meta(phy)
 df <- bind_cols(df, A)
 df$index <- df[[index]]
@@ -54,12 +60,14 @@ pv <- kruskal.test(data = df, index ~ factor(age_group))$p.value
 kruskal.test(data = df, index ~ factor(age_group))
 
 library(ggbeeswarm)
-p1 <- ggplot(df, aes(x = age_group, y = index, fill = age_group)) +
-        ggbeeswarm::geom_beeswarm() +
-	theme(axis.text.x = element_text(angle = 0, hjust = 1)) +
+p1 <- ggplot(df, aes(x = age_group, y = index)) +
+      geom_boxplot() +
+       geom_jitter(width = 0.1) +  
+
+	theme(axis.text.x = element_text(angle = 0, hjust = 1)) +theme(legend.position = "none")+
         labs(y = "Shannon Diversity",
 	     x = "",
-	     title = paste0("kruskal tast p=", round(pv, 2)))
+	     title = "Age")
 
 print(p1)
 ```
@@ -82,16 +90,16 @@ distance <- "bray"
 * Ordination method: `r method`
 * Dissimilarity measure: `r distance`
 
-```{r pcoa, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold"}
-theme_set(theme_bw(15))
+```{r pcoa, echo=FALSE, message=FALSE, fig.width=7, fig.height=5, out.width="50%", fig.show="hold"}
+theme_set(theme_bw(20))
 library(microbiome)
 p <- plot_landscape(microbiome::transform(Q , "compositional"),
                     distance = "bray",
                     method = "PCoA",
                     size = 3,
                     col = "age_group",
-                    shading = FALSE) +
-  scale_colour_brewer(palette = "Set1")		    
+                    shading = FALSE) + 
+  scale_colour_brewer(palette = "Set1") +labs(title = "Age")   
 print(p)
 ```
 

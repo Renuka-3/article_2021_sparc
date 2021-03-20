@@ -35,22 +35,29 @@ Diversity index: `r index`
 ```{r alpha1, echo=FALSE, message=FALSE, warning=FALSE}
 # Estimate alpha diversities
 A <- alpha(phy)
+b <- meta(phy)
+b2 <- bind_cols(b,A)
+is.data.frame(b) 
+is.data.frame(b2)
+sapply(split(b2$diversity_shannon, b2$Geographical_location), mean)
 ```
 
 
-```{r group_comp, echo=FALSE, echo=FALSE, message=FALSE, fig.width=10, fig.height=6, fig.show="keep", out.width="50%"}
+```{r group_comp, echo=FALSE, echo=FALSE, message=FALSE, fig.width=6, fig.height=6, fig.show="keep", out.width="50%"}
+theme_set(theme_bw(base_size=25))
 library(Cairo)
 df <- meta(phy)
 df <- bind_cols(df, A)
 df$index <- df[[index]]
 pv <- kruskal.test(data = df, index ~ factor(Geographical_location))$p.value
 library(ggbeeswarm)
-p1 <- ggplot(df, aes(x = Geographical_location, y = index, fill = Geographical_location)) +
-        ggbeeswarm::geom_beeswarm() +
-	theme(axis.text.x = element_text(angle = 0, hjust = 1)) +
+p1 <- ggplot(df, aes(x = Geographical_location, y = index)) +
+       geom_boxplot() +
+       geom_jitter(width = 0.1) +  
+        theme(axis.text.x = element_text(angle = 0, hjust = 1)) + theme(legend.position = "none")+
         labs(y = "Shannon Diversity",
 	     x = "",
-	     title = paste0("Kruskal test p=", round(pv, 2)))
+	     title = "Location")
 print(p1)
 ```  
 
@@ -66,7 +73,8 @@ For community comparison, see [CSTAnalysis_SkinSamples.md](CSTAnalysis_SkinSampl
 
 Significant (or marginally significant) taxa between geographical locations.
 
-```{r diffab, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="25%", fig.show="hold"}
+```{r diffab, echo=FALSE, message=FALSE, fig.width=7, fig.height=5, out.width="25%", fig.show="hold"}
+theme_set(theme_bw(base_size=25))
 library(readr)
 library(tidyverse)
 otu_data <- abundances(phy)
@@ -118,12 +126,16 @@ for (tax in top.taxa) {
     theme(axis.text.x = element_text(angle = 360, hjust = 1)) +
     #labs(x = "Location", y = "Abundance (CLR)", title = map_levels(tax, from='tax', to='genus',ps))
     labs(x = "Location", y = "Abundance (CLR)", title = as.vector(tax_table(ps)[tax, "genus"]))
-<<<<<<< HEAD
   print(p)
-=======
-
-  print(p)
-
->>>>>>> e54743ef42fff69609fdb75935869a12c32c16a9
 }
 ```
+
+
+```{r diffab, echo=FALSE, message=FALSE}
+s1 <- sample_names(subset_samples(ps, Geographical_location == "Ahmednagar"))
+s2 <- sample_names(subset_samples(ps, Geographical_location == "Nashik"))
+s3 <- sample_names(subset_samples(ps, Geographical_location == "Pune"))
+rp<- rowMeans(abundances(pseq)[, s1])/rowMeans(abundances(pseq)[, s2])/rowMeans(abundances(pseq)[, s3])
+sample_data(ps)$rp<- rowMeans(abundances(pseq)[, s1])/rowMeans(abundances(pseq)[, s2])/rowMeans(abundances(pseq)[, s3])
+```
+

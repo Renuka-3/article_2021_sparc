@@ -1,11 +1,3 @@
----
-title: "Dirichlet multinominal analysis"
-author: "Renuka"
-date: "`r Sys.Date()`"
-output: html_document
----
-
-
 
 ```{r init, echo=FALSE, message=FALSE, warning=FALSE}
 library(microbiome)

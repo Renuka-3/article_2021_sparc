@@ -96,6 +96,7 @@ plot_ordination(ps, ok, color="Geographical_location") + ggtitle("NMDS -- bray -
 Coloured by CST community type
 
 ```{r pcoa, echo=FALSE, message=FALSE, fig.width=7, fig.height=5, out.width="50%", fig.show="hold", warning=FALSE}
+theme_set(theme_bw(base_size=25))
 method <- "PCoA"
 trans <- "compositional"
 distance <- "bray"
@@ -109,6 +110,7 @@ p1 <- plot_landscape(microbiome::transform(ps , "compositional"),
   scale_colour_brewer(palette = "Set1")		    
 print(p1)
 
+theme_set(theme_bw(base_size=15))
 p2 <- plot_landscape(microbiome::transform(ps , "compositional"),
                     distance = distance,
                     method = method,
@@ -125,7 +127,7 @@ print(p2)
 Heatmaps for the community state types. The most different OTUs are shown.
 
 ```{r clust-diverse_CLRleo, eval= T, message=FALSE, echo=FALSE, warning=FALSE, out.width="33%", fig.show="hold", warning=FALSE}
-theme_set(theme_bw(base_size = 20))
+theme_set(theme_bw(base_size = 17))
 library(BBmisc)
 library(reshape2)
 library("RColorBrewer")
@@ -172,6 +174,7 @@ for(CST in CSTs) {
 		ggtitle(paste("CST:", CST))
 print(p[[CST]])
 }
+```
 ```
 
 
