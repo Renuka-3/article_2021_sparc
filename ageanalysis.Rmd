@@ -1,4 +1,4 @@
-```{r alpha, message=F, echo=F, echo=FALSE}
+```{r alpha, message=F, echo=F, echo=FALSE, warning=FALSE}
 knitr::opts_chunk$set(echo =F)
 library(ggplot2)
 library(phyloseq)
@@ -50,7 +50,7 @@ sapply(split(c2$diversity_shannon, c2$age_group), mean)
 # Group-wise comparisons
 * Diversity index: `r index`
 
-```{r group_comp, echo=FALSE, echo=FALSE, message=FALSE, fig.width=6, fig.height=6, fig.show="keep", out.width="50%", fig.show="hold"}
+```{r group_comp, echo=FALSE, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=6, fig.show="keep", out.width="50%", fig.show="hold"}
 library(Cairo)
 theme_set(theme_bw(base_size=25))
 df <- meta(phy)
@@ -75,7 +75,7 @@ print(p1)
 
 # Ordination
 
-```{r init, echo=FALSE, message=FALSE}
+```{r init, echo=FALSE, message=FALSE, warning=FALSE}
 library(microbiome)
 library(phyloseq)
 library(vegan)
@@ -90,7 +90,7 @@ distance <- "bray"
 * Ordination method: `r method`
 * Dissimilarity measure: `r distance`
 
-```{r pcoa, echo=FALSE, message=FALSE, fig.width=7, fig.height=5, out.width="50%", fig.show="hold"}
+```{r pcoa, echo=FALSE, message=FALSE, warning=FALSE, fig.width=7, fig.height=5, out.width="50%", fig.show="hold"}
 theme_set(theme_bw(20))
 library(microbiome)
 p <- plot_landscape(microbiome::transform(Q , "compositional"),
@@ -108,7 +108,7 @@ print(p)
 
 Differential abundance analysis is carried out using DESeq2 method
 
-```{r DESeq2, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold"}
+```{r DESeq2, echo=FALSE, message=FALSE, warning=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold"}
 library(phyloseq)
 library(reshape2)
 library(DESeq2)
@@ -162,7 +162,7 @@ for (tax in top.taxa) {
 
 effect of age on microbial community is observed to be significant (p=0.05)
 
-```{r PERMANOVA, echo=FALSE}
+```{r PERMANOVA, echo=FALSE, warning=FALSE}
 library(microbiome)
 library(ggplot2)
 library(dplyr)
@@ -187,7 +187,7 @@ anova(betadisper(dist, meta$age_group))
 
 # Investigate the top factors
 
-```{r top_factors, echo=FALSE}
+```{r top_factors, echo=FALSE, warning=FALSE}
 library(vegan)
 coef <- coefficients(permanova)["age_group1", ]
 top.coef <- coef[rev(order(abs(coef)))[1:20]]

@@ -46,7 +46,7 @@ sapply(split(t2$diversity_shannon, t2$Diet), mean)
 # Group-wise comparisons
 * Diversity index: `r index`
 
-```{r group_comp, echo=FALSE, message=FALSE, fig.width=6, fig.height=6, fig.show="keep", out.width="50%"}
+```{r group_comp, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=6, fig.show="keep", out.width="50%"}
 theme_set(theme_bw(base_size = 25))
 library(Cairo)
 df <- meta(phy)
@@ -67,7 +67,7 @@ print(p1)
 
 # Ordination
 
-```{r init, echo=FALSE, message=FALSE}
+```{r init, echo=FALSE, message=FALSE, warning=FALSE}
 library(microbiome)
 library(phyloseq)
 library(vegan)
@@ -82,7 +82,7 @@ distance <- "bray"
 * Ordination method: `r method`
 * Dissimilarity measure: `r distance`
 
-```{r pcoa, echo=FALSE, message=FALSE, fig.width=7, fig.height=5, out.width="50%", fig.show="hold"}
+```{r pcoa, echo=FALSE, message=FALSE, warning=FALSE, fig.width=7, fig.height=5, out.width="50%", fig.show="hold"}
 theme_set(theme_bw(base_size=25))
 library(microbiome)
 p <- plot_landscape(microbiome::transform(phy , "compositional"),
@@ -100,7 +100,7 @@ print(p)
 
 Differential abundance analysis is carriedout using DESeq2 method
 
-```{r DESeq2, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold"}
+```{r DESeq2, echo=FALSE, message=FALSE,warning=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold"}
 library(phyloseq)
 library(reshape2)
 library(DESeq2)
@@ -154,7 +154,7 @@ for (tax in top.taxa) {
 
 p value for the effect of diet is (p=0.31), which is not significant.
 
-```{r PERMANOVA, echo= FALSE}
+```{r PERMANOVA, echo= FALSE, warning=FALSE}
 library(microbiome)
 library(ggplot2)
 library(dplyr)
@@ -179,7 +179,7 @@ anova(betadisper(dist, meta$Diet))
 
 # Investigate the top factors
 
-```{r top_factors, echo=FALSE, fig.width=20, fig.height=10}
+```{r top_factors, echo=FALSE, warning=FALSE, fig.width=20, fig.height=10}
 library(vegan)
 coef1 <- coefficients(permanova)["Diet1", ]
 top.coef1 <- coef1[rev(order(abs(coef1)))[1:20]]

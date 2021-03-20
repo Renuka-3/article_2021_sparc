@@ -1,7 +1,7 @@
 
 # Ordination
 
-```{r init, echo=FALSE, message=FALSE}
+```{r init, echo=FALSE, message=FALSE, warning=FALSE}
 library(microbiome)
 library(phyloseq)
 library(vegan)

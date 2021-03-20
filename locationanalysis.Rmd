@@ -43,7 +43,7 @@ sapply(split(b2$diversity_shannon, b2$Geographical_location), mean)
 ```
 
 
-```{r group_comp, echo=FALSE, echo=FALSE, message=FALSE, fig.width=6, fig.height=6, fig.show="keep", out.width="50%"}
+```{r group_comp, echo=FALSE, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=6, fig.show="keep", out.width="50%"}
 theme_set(theme_bw(base_size=25))
 library(Cairo)
 df <- meta(phy)
@@ -73,7 +73,7 @@ For community comparison, see [CSTAnalysis_SkinSamples.md](CSTAnalysis_SkinSampl
 
 Significant (or marginally significant) taxa between geographical locations.
 
-```{r diffab, echo=FALSE, message=FALSE, fig.width=7, fig.height=5, out.width="25%", fig.show="hold"}
+```{r diffab, echo=FALSE, message=FALSE, warning=FALSE, fig.width=7, fig.height=5, out.width="25%", fig.show="hold"}
 theme_set(theme_bw(base_size=25))
 library(readr)
 library(tidyverse)
@@ -131,7 +131,7 @@ for (tax in top.taxa) {
 ```
 
 
-```{r diffab, echo=FALSE, message=FALSE}
+```{r diffab, echo=FALSE, message=FALSE, warning=FALSE}
 s1 <- sample_names(subset_samples(ps, Geographical_location == "Ahmednagar"))
 s2 <- sample_names(subset_samples(ps, Geographical_location == "Nashik"))
 s3 <- sample_names(subset_samples(ps, Geographical_location == "Pune"))
