@@ -162,13 +162,13 @@ dfm$short_name <- dfm$Full_name %>% strsplit("_" ) %>% sapply(tail, 1 )
 
 for(CST in CSTs) {
   pshm <- prune_samples(sample_data(pso1)$CST == CST, pso1)
-  dfm$short_name <- full.names[as.character(dfm$Var1)] %>% strsplit("_" ) %>% sapply(tail, 1 )
   dfm <- melt(abundances(pshm))
   ##colnames(dfm) <- c("Taxa", "Sample", "value")
   colnames(dfm) <- c("short_name", "Sample", "value")
   ##dfm$Taxa <- factor(dfm$Taxa, levels = short_names)
   ##dfm$short_name <- factor(dfm$short_name)
-  # dfm$Sample <- factor(dfm$Sample, levels = neatsort(pshm, "cols")) 
+  # dfm$Sample <- factor(dfm$Sample, levels = neatsort(pshm, "cols"))
+  dfm$short_name <- full.names[as.character(dfm$Var1)] %>% strsplit("_" ) %>% sapply(tail, 1 )
   p[[CST]]<- heat((dfm), "Sample","short_name", "value", legend.text = "Abundance", order.rows = F, 
                 order.cols = F, limits= c(-5,5), step = 0.5) +
 		ggtitle(paste("CST:", CST))
