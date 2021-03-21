@@ -33,13 +33,14 @@ opts_chunk$set(dev="CairoPNG")
 # Estimate alpha diversities
 A <- alpha(phy)
 index <- "diversity_shannon"
-#df %>% filter(Diet == "Veg") %>% select(diversity_shannon) %>% mean()
 head(A)
 t <- meta(phy)
 t2 <- bind_cols(t,A)
 is.data.frame(t) 
 is.data.frame(t2)
-sapply(split(t2$diversity_shannon, t2$Diet), mean)
+#s <- sapply(split(t2$diversity_shannon, t2$Diet), mean) %>%
+p <- round(100 * sapply(split(t2$diversity_shannon, t2$Diet), mean),2)
+kable(p)
 ```
 
 

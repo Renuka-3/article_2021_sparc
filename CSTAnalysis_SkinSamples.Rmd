@@ -168,13 +168,14 @@ for(CST in CSTs) {
   colnames(dfm) <- c("short_name", "Sample", "value")
   ##dfm$Taxa <- factor(dfm$Taxa, levels = short_names)
   ##dfm$short_name <- factor(dfm$short_name)
-  # dfm$Sample <- factor(dfm$Sample, levels = neatsort(pshm, "cols"))
+  # dfm$Sample <- factor(dfm$Sample, levels = neatsort(pshm, "cols")) 
   p[[CST]]<- heat((dfm), "Sample","short_name", "value", legend.text = "Abundance", order.rows = F, 
                 order.cols = F, limits= c(-5,5), step = 0.5) +
 		ggtitle(paste("CST:", CST))
 print(p[[CST]])
 }
 ```
+
 
 
 

@@ -41,10 +41,11 @@ opts_chunk$set(dev="CairoPNG")
 A <- alpha(phy)
 index <- "diversity_shannon"
 c <- meta(phy)
-c2 <- bind_cols(b,A)
+c2 <- bind_cols(c,A)
 is.data.frame(c) 
 is.data.frame(c2)
-sapply(split(c2$diversity_shannon, c2$age_group), mean)
+c <- round(100 * sapply(split(c2$diversity_shannon, c2$age_group), mean),2)
+kable(c)
 ```
 
 # Group-wise comparisons
