@@ -1,15 +1,3 @@
-    ## Warning: package 'ggplot2' was built under R version 3.6.3
-
-    ## Warning: package 'igraph' was built under R version 3.6.3
-
-    ## Warning: package 'markovchain' was built under R version 3.6.3
-
-    ## Warning: package 'gridExtra' was built under R version 3.6.3
-
-    ## Warning: package 'tidyr' was built under R version 3.6.3
-
-    ## Warning: package 'dplyr' was built under R version 3.6.3
-
 Cluster into CSTs
 =================
 
@@ -70,8 +58,6 @@ shown.
 <img src="analysisCST_files/figure-markdown_strict/clust-diverse_CLRleo-1.png" width="33%" /><img src="analysisCST_files/figure-markdown_strict/clust-diverse_CLRleo-2.png" width="33%" /><img src="analysisCST_files/figure-markdown_strict/clust-diverse_CLRleo-3.png" width="33%" />
 
 Table of full names for the heatmap taxa:
-
-    ## Warning: package 'knitr' was built under R version 3.6.3
 
 <table>
 <colgroup>
