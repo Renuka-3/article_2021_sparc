@@ -125,8 +125,11 @@ dfm <- df %>% group_by(Genus) %>%
          summarise(mean = round(100 * mean(value), 1),
 	           median = round(100 * median(value), 1),
 		   min = round(100 * min(value), 1),
-		   max = round(100 * max(value), 1)) %>%
+		   max = round(100 * max(value), 1),
+		   prevalence = round(100 * prevalence(value), 1))%>%
 	 arrange(desc(mean))
-kable(dfm)
+kable(dfm) 
 write.csv(dfm, file="genus table.csv")
+#prevalence = round(100 * prevalence(value), 1)
+names(dfm)
 ```

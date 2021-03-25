@@ -39,8 +39,8 @@ b <- meta(phy)
 b2 <- bind_cols(b,A)
 is.data.frame(b) 
 is.data.frame(b2)
-b <- round(100 * sapply(split(b2$diversity_shannon, b2$Geographical_location), mean),2)
-kable(b)
+z<- sapply(split(b2$diversity_shannon, b2$Geographical_location), mean)
+kable(z)
 ```
 
 
@@ -129,6 +129,9 @@ for (tax in top.taxa) {
     labs(x = "Location", y = "Abundance (CLR)", title = as.vector(tax_table(ps)[tax, "genus"]))
   print(p)
 }
+library(gridExtra)
+#theme_set(theme_bw(base_size=25))
+grid.arrange(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, nrow = 6)
 ```
 
 

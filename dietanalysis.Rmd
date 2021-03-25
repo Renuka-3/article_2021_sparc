@@ -38,9 +38,8 @@ t <- meta(phy)
 t2 <- bind_cols(t,A)
 is.data.frame(t) 
 is.data.frame(t2)
-#s <- sapply(split(t2$diversity_shannon, t2$Diet), mean) %>%
-p <- round(100 * sapply(split(t2$diversity_shannon, t2$Diet), mean),2)
-kable(p)
+s <- sapply(split(t2$diversity_shannon, t2$Diet), mean) 
+kable(s)
 ```
 
 

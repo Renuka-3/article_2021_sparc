@@ -1,4 +1,4 @@
-```{r initCST_CLR, message=F, echo=F, echo=FALSE}
+```{r initCST_CLR, message=F, warning=FALSE, echo=F, echo=FALSE}
 library("phyloseq")
 library("ggplot2")
 library("cluster")
@@ -95,7 +95,7 @@ plot_ordination(ps, ok, color="Geographical_location") + ggtitle("NMDS -- bray -
 
 Coloured by CST community type
 
-```{r pcoa, echo=FALSE, message=FALSE, fig.width=7, fig.height=5, out.width="50%", fig.show="hold", warning=FALSE}
+```{r pcoa, echo=FALSE, message=FALSE, fig.width=14, fig.height=8, out.width="60%", fig.show="hold", warning=FALSE}
 theme_set(theme_bw(base_size=25))
 method <- "PCoA"
 trans <- "compositional"
@@ -107,7 +107,7 @@ p1 <- plot_landscape(microbiome::transform(ps , "compositional"),
                     col = "CST",
                     shading = FALSE) +
   labs(title = "CST") + 		    		    
-  scale_colour_brewer(palette = "Set1")		    
+  scale_colour_brewer(palette = "Set1") + theme(legend.position="bottom")	  		    
 print(p1)
 
 theme_set(theme_bw(base_size=15))
@@ -118,8 +118,12 @@ p2 <- plot_landscape(microbiome::transform(ps , "compositional"),
                     col = "Geographical_location",
                     shading = FALSE) +
   labs(title = "Location") + 		    
-  scale_colour_brewer(palette = "Set1")		    
+  scale_colour_brewer(palette = "Set1")	+ theme(legend.position="bottom")	    
 print(p2)
+
+library(gridExtra)
+theme_set(theme_bw(base_size=25))
+grid.arrange(p1, p2, nrow = 1)
 ```
 
 ### Heatmap
@@ -179,6 +183,9 @@ print(p[[CST]])
 #print(p[[2]])
 #print(p[[3]])
 }
+library(gridExtra)
+#theme_set(theme_bw(base_size=25))
+grid.arrange(p1, p2, p3, nrow = 1)
 ```
 
 
