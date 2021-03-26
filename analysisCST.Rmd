@@ -185,7 +185,7 @@ print(p[[CST]])
 }
 library(gridExtra)
 #theme_set(theme_bw(base_size=25))
-grid.arrange(p1, p2, p3, nrow = 1)
+#grid.arrange(p1, p2, p3, nrow = 1)
 ```
 
 
@@ -195,7 +195,7 @@ grid.arrange(p1, p2, p3, nrow = 1)
 
 Table of full names for the heatmap taxa:
 
-```{r full_names, echo=FALSE}
+```{r full_names, echo=FALSE, results='hide'}
 library(knitr)
 tab <- data.frame(ASV = significant.taxa, Full_name = full.names[significant.taxa])
 rownames(tab) <- NULL

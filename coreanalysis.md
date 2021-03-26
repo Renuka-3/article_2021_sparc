@@ -721,6 +721,9 @@ Phylum abundance table (relative abundance %):
 |Cucumis                 |  0.0|    0.0| 0.0|  0.0|        1.7|
 
 ```
-## [1] "Genus"      "mean"       "median"     "min"        "max"       
-## [6] "prevalence"
+## Error in file(file, ifelse(append, "a", "w")): cannot open the connection
+```
+
+```
+## [1] "Genus"      "mean"       "median"     "min"        "max"        "prevalence"
 ```
