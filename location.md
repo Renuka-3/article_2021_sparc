@@ -30,7 +30,7 @@ Diversity index: diversity_shannon
 
 
 
-## Differential abundance analysis (with ANCOM)
+## Differential abundance analysis (with ANCOMBC)
 
 In [jointanalysis.md](jointanalysis.md) it was shown that geographical location has a significant effect.
 
