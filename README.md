@@ -20,10 +20,10 @@ Following are the most prevalent genera and phyla found on human skin,
 has significant effect on the overall community composition.
 
 
-3. [Location](locationanalysis.md):  
+3. [Location](location.md):  
 * Alpha diversity analysis- No significant differences observed.
 * Beta diversity analysis- Significant differences observed and this analysis is available in Joint analysis.
-* Differential abundance analysis (DESeq2)- Significant differences obserbved in some taxonomic groups.
+* Differential abundance analysis (ANCOMBC)- Significant differences obserbved in some taxonomic groups.
 
 
 4. [CST analysis](CSTAnalysis_SkinSamples.md): Here we identified three community state type analysis.
