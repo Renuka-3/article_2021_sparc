@@ -11,27 +11,16 @@ using OTU table, Taxonomic table and metadata of individuals.
 
 ### Conclusions
 1. [Core microbiota](core.md): 
-Following are the most prevalent genera and phyla found on human skin,
-* Most prevalent genera: Staphylococcus, Bacillus, Corynebacterium, and Anaerococcus.
-* Most prevalent phyla: Firmicutes, Proteobacteria, and Actinobacteria
-
 
 2. [Joint analysis](jointanalysis.md): PERMANOVA analysis showed that, only geographiclocation 
 has significant effect on the overall community composition.
 
-
-3. [Location](location.md):  
-* Alpha diversity analysis- No significant differences observed.
-* Beta diversity analysis- Significant differences observed and this analysis is available in Joint analysis.
-* Differential abundance analysis (ANCOMBC)- Significant differences obserbved in some taxonomic groups.
-
+3. [Location](location.md): Here we performed aplha,beta diversity and genus differential 
+analysis using ANCOMBC based on geographic location.
 
 4. [CST analysis](CSTAnalysis_SkinSamples.md): Here we identified three community state type analysis.
 
-
 5. [Diet](diet.md) and [Age](age.md): We have also perfomed some 
 additional analysis based on diet and age groups
-* Alpha diversity analysis- No significant differences observed in both groups.
-* Beta diversity analysis- No significant differences observed in diet, Significant differences obseved 
-in PERMANOVA analysis of age.
+
 
