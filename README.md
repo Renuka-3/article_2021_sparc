@@ -10,7 +10,7 @@ using OTU table, Taxonomic table and metadata of individuals.
 * [create_control_phyloseq.R](create_control_phyloseq.R)
 
 ### Conclusions
-1. [Core genera](coreanalysis.md): 
+1. [Core genera](core.md): 
 Following are the most prevalent genera and phyla found on human skin,
 * Most prevalent genera: Staphylococcus, Bacillus, Corynebacterium, and Anaerococcus.
 * Most prevalent phyla: Firmicutes, Proteobacteria, and Actinobacteria
