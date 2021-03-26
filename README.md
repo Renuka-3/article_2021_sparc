@@ -34,4 +34,4 @@ additional analysis based on diet and age groups
 * Alpha diversity analysis- No significant differences observed in both groups.
 * Beta diversity analysis- No significant differences observed in diet, Significant differences obseved 
 in PERMANOVA analysis of age.
-* Differential abundance analysis (DESeq2)- Significant differences observed only in some genera in both gropus.
+
