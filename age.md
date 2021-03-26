@@ -36,7 +36,7 @@
 
 # PERMANOVA analysis
 
-p value for the effect of age  is (p=0.07), which is significant.
+p value for the effect of age  is (p=0.04), which is significant.
 
 
 ```
