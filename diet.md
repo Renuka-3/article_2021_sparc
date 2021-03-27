@@ -39,10 +39,10 @@
 
 
 
-|      |        x|
-|:-----|--------:|
-|Mixed | 1.270704|
-|Veg   | 1.236754|
+|      |        s|         g|
+|:-----|--------:|---------:|
+|Mixed | 1.270704| 0.8257846|
+|Veg   | 1.236754| 0.6488095|
 
 
 # Group-wise comparisons
@@ -68,7 +68,7 @@ p value for the effect of diet is (p=0.31), which is not significant.
 
 
 ```
-## [1] 0.24
+## [1] 0.28
 ```
 
 ```
