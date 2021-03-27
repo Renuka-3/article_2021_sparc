@@ -51,10 +51,11 @@
 
 ```
 ## 
-## 	Kruskal-Wallis rank sum test
+## 	Wilcoxon rank sum test
 ## 
 ## data:  index by factor(Diet)
-## Kruskal-Wallis chi-squared = 0.11719, df = 1, p-value = 0.7321
+## W = 442, p-value = 0.7399
+## alternative hypothesis: true location shift is not equal to 0
 ```
 
 <img src="figure_diet/group_comp-1.png" title="plot of chunk group_comp" alt="plot of chunk group_comp" width="50%" />
@@ -77,7 +78,7 @@ p value for the effect of diet is (p=0.31), which is not significant.
 
 
 ```
-## [1] 0.3
+## [1] 0.37
 ```
 
 ```
