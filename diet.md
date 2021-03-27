@@ -68,7 +68,7 @@ p value for the effect of diet is (p=0.31), which is not significant.
 
 
 ```
-## [1] 0.31
+## [1] 0.32
 ```
 
 ```

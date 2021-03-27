@@ -19,18 +19,18 @@ Diversity index: diversity_shannon
 
 
 
-|           |        x|
-|:----------|--------:|
-|Ahmednagar | 1.484529|
-|Nashik     | 1.271455|
-|Pune       | 1.176848|
+|           |        z|         f|
+|:----------|--------:|---------:|
+|Ahmednagar | 1.484529| 0.8822138|
+|Nashik     | 1.271455| 0.7312206|
+|Pune       | 1.176848| 0.6908416|
 
 
 <img src="figure_location/diffab-1.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="50%" />
 
 
 
-## Differential abundance analysis (with ANCOMBC)
+## Differential abundance analysis (with ANCOM)
 
 In [jointanalysis.md](jointanalysis.md) it was shown that geographical location has a significant effect.
 
