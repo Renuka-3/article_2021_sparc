@@ -75,7 +75,7 @@ colnames(d) <- c("Taxon", "Mean Relative abundance (%)", "Prevalence (%)")
 kable(d)
 ```
 
-```{r phylum_table, echo=FALSE, message=FALSE,  warning=FALSE, fig.width=12, fig.height=6, fig.show="keep", out.width="50%"}
+```{r phylum_table, echo=TRUE, message=FALSE,  warning=FALSE, fig.width=12, fig.height=6, fig.show="keep", out.width="50%"}
 library(knitr)
 a <- aggregate_taxa(phy20.1, level = "genus")
 xc <- abundances(transform(a, "compositional"))

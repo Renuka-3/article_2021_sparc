@@ -1,7 +1,7 @@
 
 # Analysis
 
-```{r alpha, message=F, echo=F, echo=FALSE, warning=FALSE}
+```{r, message=F, echo=F, echo=FALSE, warning=FALSE}
 library(knitr)
 library(knitcitations) 
 library(microbiome)
@@ -44,7 +44,7 @@ kable(z)
 ```
 
 
-```{r group_comp, echo=FALSE, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=6, fig.show="keep", out.width="50%"}
+```{r diffab, echo=FALSE, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=6, fig.show="keep", out.width="50%"}
 theme_set(theme_bw(base_size=25))
 library(Cairo)
 df <- meta(phy)
@@ -74,7 +74,7 @@ For community comparison, see [CSTAnalysis_SkinSamples.md](CSTAnalysis_SkinSampl
 
 Significant (or marginally significant) taxa between geographical locations.
 
-```{r diffab, echo=FALSE, message=FALSE, warning=FALSE, fig.width=7, fig.height=5, out.width="25%", fig.show="hold"}
+```{r diffab2, echo=FALSE, message=FALSE, warning=FALSE, fig.width=7, fig.height=5, out.width="25%", fig.show="hold"}
 theme_set(theme_bw(base_size=25))
 library(readr)
 library(tidyverse)
@@ -131,11 +131,11 @@ for (tax in top.taxa) {
 }
 library(gridExtra)
 #theme_set(theme_bw(base_size=25))
-grid.arrange(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, nrow = 6)
+#grid.arrange(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, nrow = 6)
 ```
 
 
-```{r diffab, echo=FALSE, message=FALSE, warning=FALSE}
+```{r renuschunk, echo=FALSE, message=FALSE, warning=FALSE}
 s1 <- sample_names(subset_samples(ps, Geographical_location == "Ahmednagar"))
 s2 <- sample_names(subset_samples(ps, Geographical_location == "Nashik"))
 s3 <- sample_names(subset_samples(ps, Geographical_location == "Pune"))
