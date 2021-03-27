@@ -39,7 +39,9 @@ t2 <- bind_cols(t,A)
 is.data.frame(t) 
 is.data.frame(t2)
 s <- sapply(split(t2$diversity_shannon, t2$Diet), mean) 
-kable(s)
+g <- sapply(split(t2$diversity_shannon, t2$Diet), sd) 
+y <- cbind(s,g)
+kable(y)
 ```
 
 

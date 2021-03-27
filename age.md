@@ -14,11 +14,11 @@
 
 
 
-|           |         x|
-|:----------|---------:|
-|adult      | 1.4559824|
-|middle_age | 0.8868898|
-|elderly    | 1.3082521|
+|           |         i|         o|
+|:----------|---------:|---------:|
+|adult      | 1.4559824| 0.6633482|
+|middle_age | 0.8868898| 0.4883428|
+|elderly    | 1.3082521| 0.8993438|
 
 # Group-wise comparisons
 * Diversity index: diversity_shannon
@@ -40,7 +40,7 @@ p value for the effect of age  is (p=0.04), which is significant.
 
 
 ```
-## [1] 0.06
+## [1] 0.02
 ```
 
 ```
