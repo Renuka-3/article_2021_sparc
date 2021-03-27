@@ -64,7 +64,7 @@
 
 # PERMANOVA analysis
 
-p value for the effect of diet is (p=0.31), which is not significant.
+p value for the effect of diet is (p=0.24), which is not significant.
 
 
 ```
