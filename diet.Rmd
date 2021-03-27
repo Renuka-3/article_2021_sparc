@@ -55,7 +55,7 @@ df <- meta(phy)
 df <- bind_cols(df, A)
 df$index <- df[[index]]
 pv <- wilcox.test(data = df, index ~ factor(Diet))$p.value
-kruskal.test(data = df, index ~factor(Diet))
+wilcox.test(data = df, index ~factor(Diet))
 library(ggbeeswarm)
 p1 <- ggplot(df, aes(x = Diet, y = index)) +
         geom_boxplot() +
