@@ -26,6 +26,15 @@ Diversity index: diversity_shannon
 |Pune       | 1.176848| 0.6908416|
 
 
+
+```
+## 
+## 	Kruskal-Wallis rank sum test
+## 
+## data:  index by factor(Geographical_location)
+## Kruskal-Wallis chi-squared = 0.94558, df = 2, p-value = 0.6233
+```
+
 <img src="figure_location/diffab-1.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="50%" />
 
 

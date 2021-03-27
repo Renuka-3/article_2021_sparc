@@ -53,6 +53,8 @@ df <- meta(phy)
 df <- bind_cols(df, A)
 df$index <- df[[index]]
 pv <- kruskal.test(data = df, index ~ factor(Geographical_location))$p.value
+kruskal.test(data = df, index ~factor(Geographical_location))
+
 library(ggbeeswarm)
 p1 <- ggplot(df, aes(x = Geographical_location, y = index)) +
        geom_boxplot() +
