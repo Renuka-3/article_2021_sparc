@@ -20,7 +20,7 @@ analysis using ANCOMBC based on geographic location.
 
 4. [CST analysis](CSTAnalysis_SkinSamples.md): Here we identified three community state type analysis.
 
-5. [Diet](diet.md) and [Age](age.md): We have also perfomed some 
+5. [Diet](skin_microbiome/output/md_files/diet.md) and [Age](age.md): We have also perfomed some 
 additional analysis based on diet and age groups
 
 
