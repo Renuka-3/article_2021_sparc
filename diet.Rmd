@@ -33,7 +33,7 @@ opts_chunk$set(dev="CairoPNG")
 # Estimate alpha diversities
 A <- alpha(phy)
 index <- "diversity_shannon"
-head(A)
+#head(A)
 t <- meta(phy)
 t2 <- bind_cols(t,A)
 is.data.frame(t) 
