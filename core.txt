@@ -17,7 +17,7 @@ The following taxonomic groups are in the core genera. Mean relative abundance a
 
 Abundance variation across samples for each core taxa.
 
-![plot of chunk core_rank_abundance](figure/core_rank_abundance-1.png)
+![plot of chunk core_rank_abundance](figure_diet/core_rank_abundance-1.png)
 
 
 Phylum abundance table (relative abundance %):
