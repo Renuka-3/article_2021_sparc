@@ -37,6 +37,15 @@ Diversity index: diversity_shannon
 
 <img src="figure_location/diffab-1.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="50%" />
 
+## investigating top factors
+
+
+
+```
+## [1] "OTU15"  "OTU22"  "OTU76"  "OTU169"
+```
+
+<img src="figure_location/topfact-1.png" title="plot of chunk topfact" alt="plot of chunk topfact" width="50%" />
 
 
 ## Differential abundance analysis (with ANCOM)
@@ -51,16 +60,44 @@ Significant (or marginally significant) taxa between geographical locations.
 
 
 ```
-##   taxa_id   W detected_0.9 detected_0.8 detected_0.7 detected_0.6
-## 1 OTU1075 273         TRUE         TRUE         TRUE         TRUE
-## 2 OTU2529 271         TRUE         TRUE         TRUE         TRUE
-## 3  OTU773 267         TRUE         TRUE         TRUE         TRUE
-## 4 OTU1235 267         TRUE         TRUE         TRUE         TRUE
-## 5 OTU2172 265         TRUE         TRUE         TRUE         TRUE
-## 6 OTU1893 263         TRUE         TRUE         TRUE         TRUE
+## Error in library(compositions): there is no package called 'compositions'
 ```
 
-<img src="figure_location/xyz-1.png" title="plot of chunk xyz" alt="plot of chunk xyz" width="25%" /><img src="figure_location/xyz-2.png" title="plot of chunk xyz" alt="plot of chunk xyz" width="25%" /><img src="figure_location/xyz-3.png" title="plot of chunk xyz" alt="plot of chunk xyz" width="25%" /><img src="figure_location/xyz-4.png" title="plot of chunk xyz" alt="plot of chunk xyz" width="25%" /><img src="figure_location/xyz-5.png" title="plot of chunk xyz" alt="plot of chunk xyz" width="25%" /><img src="figure_location/xyz-6.png" title="plot of chunk xyz" alt="plot of chunk xyz" width="25%" /><img src="figure_location/xyz-7.png" title="plot of chunk xyz" alt="plot of chunk xyz" width="25%" /><img src="figure_location/xyz-8.png" title="plot of chunk xyz" alt="plot of chunk xyz" width="25%" /><img src="figure_location/xyz-9.png" title="plot of chunk xyz" alt="plot of chunk xyz" width="25%" /><img src="figure_location/xyz-10.png" title="plot of chunk xyz" alt="plot of chunk xyz" width="25%" /><img src="figure_location/xyz-11.png" title="plot of chunk xyz" alt="plot of chunk xyz" width="25%" /><img src="figure_location/xyz-12.png" title="plot of chunk xyz" alt="plot of chunk xyz" width="25%" />
+```
+## Error in feature_table_pre_process(feature_table, meta_data, sample_var, : could not find function "feature_table_pre_process"
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'prepro' not found
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'prepro' not found
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'prepro' not found
+```
+
+```
+## Error in ANCOM(feature_table, meta_data, struc_zero, main_var, p_adj_method, : could not find function "ANCOM"
+```
+
+```
+## Error in UseMethod("arrange"): no applicable method for 'arrange' applied to an object of class "NULL"
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'res.sorted' not found
+```
+
+```
+## Error in head(res.sorted): object 'res.sorted' not found
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'top.taxa' not found
+```
 
 
 

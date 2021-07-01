@@ -66,6 +66,25 @@ p1 <- ggplot(df, aes(x = Geographical_location, y = index)) +
 print(p1)
 ```  
 
+## investigating top factors
+
+
+```{r topfact, echo=FALSE, echo=FALSE, message=FALSE, warning=FALSE, fig.width=12, fig.height=6, fig.show="keep", out.width="50%"}
+theme_set(theme_bw(20))
+sp <- aggregate_taxa(phy, "genus")
+sp <- microbiome::transform(phy, "compositional")
+pvs <- sapply(1:nsamples(sp), function (i) {kruskal.test(abundances(sp)[i,] ~ meta(sp)[, "Geographical_location"])$p.value})
+padj <- p.adjust(pvs)
+toptaxa <- names(which(padj < 0.05))
+taxa(sp)[which(padj < 0.05)]
+df <- psmelt(sp)
+
+df.top <- df %>% filter(OTU %in% taxa(sp)[which(padj < 0.05)])
+
+p <- ggplot(df.top, aes(x = genus, y = Abundance, fill = Geographical_location)) + geom_boxplot()
+#print(p)
+p + scale_y_log10(label = scales::percent)
+```
 
 
 ## Differential abundance analysis (with ANCOM)
