@@ -16,6 +16,7 @@ library(reshape2)
 library(tidyverse)
 library(dada2)
 library(dplyr)
+library(ggsignif)
 theme_set(theme_bw(20))
 knitr::opts_chunk$set(fig.width=10, fig.height=10, message=FALSE, warning=FALSE)
 knitr::opts_chunk$set(fig.path="figure_diet/")
@@ -58,15 +59,19 @@ pv <- wilcox.test(data = df, index ~ factor(Diet))$p.value
 wilcox.test(data = df, index ~factor(Diet))
 
 library(ggbeeswarm)
+library(ggsignif)
+jpeg(file= "figure_diet.jpeg", quality = 300)
 p1 <- ggplot(df, aes(x = Diet, y = index)) +
         geom_boxplot() +
        geom_jitter(width = 0.05) +
-	theme(axis.text.x = element_text(angle = 0, hjust = 1)) +theme(legend.position = "none")+
+	theme(axis.text.x = element_text(angle = 0, hjust = 0.5),axis.title.x = element_text()) +scale_x_discrete(limits = c("Mixed", "Veg"),
+                       labels = c("Mixed", "Vegetarian")) +theme(legend.position = "none")+
         labs(y = "Shannon Diversity",
 	     x = "",
-	     title = "Diet")
-
+	     title = "Diet") + geom_signif(comparisons = list(c("Mixed", "Veg")),
+    map_signif_level = TRUE) 
 print(p1)
+dev.off()
 ```
 
 # Ordination

@@ -56,16 +56,19 @@ pv <- kruskal.test(data = df, index ~ factor(age_group))$p.value
 kruskal.test(data = df, index ~ factor(age_group))
 
 library(ggbeeswarm)
+jpeg(file= "figure_age.jpeg", quality = 300)
 p1 <- ggplot(df, aes(x = age_group, y = index)) +
       geom_boxplot() +
        geom_jitter(width = 0.1) +  
 
-	theme(axis.text.x = element_text(angle = 0, hjust = 1)) +theme(legend.position = "none")+
+	theme(axis.text.x = element_text(angle = 0, hjust = 0.5),axis.title.x = element_text()) +scale_x_discrete(limits = c("adult", "middle_age","elderly"),
+                       labels = c("Adult","Middle age","Elderly" )) + theme(legend.position = "none") +
         labs(y = "Shannon Diversity",
 	     x = "",
-	     title = "Age group")
-
+	     title = "Age group")+ geom_signif(comparisons = list(c("adult", "middle_age", "elderly")),
+    map_signif_level = TRUE)
 print(p1)
+dev.off()
 ```
 
 # PERMANOVA analysis
