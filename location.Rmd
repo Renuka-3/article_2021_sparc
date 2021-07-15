@@ -85,7 +85,8 @@ df <- psmelt(sp)
 
 df.top <- df %>% filter(OTU %in% taxa(sp)[which(padj < 0.05)])
 
-p <- ggplot(df.top, aes(x = genus, y = Abundance, fill = Geographical_location)) + geom_boxplot()
+p <- ggplot(df.top, aes(x = genus, y = Abundance, fill = Geographical_location))+ labs(y = "Relative abundance (%)", x = '')+ geom_boxplot()+ coord_flip()
+
 #print(p)
 p + scale_y_log10(label = scales::percent)
 ```
