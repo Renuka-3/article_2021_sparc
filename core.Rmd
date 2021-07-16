@@ -94,6 +94,7 @@ library(data.table)
 a <- data.table:::print.data.table(dfm, nrows = 18, topn=18)
 ```
 
+
 ```{r core_abundance, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=7, fig.show="hold"}
 theme_set(theme_bw(base_size = 18))
 core_detection1 <- .1/100
@@ -101,19 +102,23 @@ core_prevalence <- 20/100
 b <- aggregate_taxa(phy20.1, "genus")
 b <- microbiome::transform(b, "compositional")
 b.core <- core(b, detection = core_detection1, prevalence = core_prevalence)
+x <- prevalence(b.core)
 bs <- melt(abundances(b.core))
-bs$Var2 <- factor(bs$Var2, levels = rev(d$Taxon))
-bs$Var3 = str_wrap(bs$Var2, width =30)
-p4 <- ggplot(bs, aes(x = Var1, y = value)) +
+bs <- data.frame(abundances =x) %>% arrange(abundances)
+bs$Var1 <- rownames(bs)
+sorted.names <- rownames(bs)
+bs$Var1 <- factor(bs$Var1, levels=sorted.names)
+#bs$Var2 <- factor(bs$Var2, levels = rev(d$Taxon))
+#bs$Var3 = str_wrap(bs$Var2, width =30)
+bs$Var1 <- gsub(bs$Var1, pattern = "Propionibacterium", replacement = "Propionibacterium/Cutibacterium")
+p4 <- ggplot(bs, aes(x = Var1, y = abundances)) +
        geom_boxplot() +
        geom_jitter(width = 0.1) +       
-       scale_y_log10(label = scales::percent) +
+       #scale_y_log10(label = scales::percent) +
        coord_flip() + theme(legend.position="none") +
        labs(y = "Relative abundance (%)", x = '', title = "Core abundance variation")
 print(p4)
 ```
-
-
 
 ```{r core_prevalance, echo=FALSE, warning=FALSE, message=FALSE, fig.width=9, fig.height=7, fig.show="hold"}
 theme_set(theme_bw(base_size = 20))
@@ -123,10 +128,11 @@ x <- prevalence(b.core)
 df <- data.frame(prevalence = x) %>% arrange(prevalence) # Also sort by prevalence
 df$Genus <- rownames(df)
 sorted.names <- rownames(df) # Use the same order than in prevalences that were now sorted by magnitude
-# sorted.names <- sort(rownames(df)) # Alphabetic order
-
+#sorted.names <- sort(rownames(df)) # Alphabetic order
 df$Genus <- factor(df$Genus, levels=sorted.names)
-ggplot(df, aes(x = df$Genus, y = prevalence )) +
+df$Genus <- gsub(df$Genus, pattern = "Propionibacterium", replacement = "Propionibacterium/Cutibacterium")
+#df$Genus <- factor(df$Genus, levels=sorted.names)
+ggplot(df, aes(x = df$Genus, y = prevalence)) +
   geom_bar(stat = "identity") +
   coord_flip() +
   theme(axis.text.x = element_text(angle = 0, hjust = 1)) +
