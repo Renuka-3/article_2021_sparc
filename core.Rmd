@@ -120,7 +120,7 @@ p4 <- ggplot(bs, aes(x = Var1, y = abundances)) +
 print(p4)
 ```
 
-```{r core_prevalance, echo=FALSE, warning=FALSE, message=FALSE, fig.width=9, fig.height=7, fig.show="hold"}
+```{r core_prevalance, echo=FALSE, warning=FALSE, message=FALSE, fig.width=20, fig.height=7, fig.show="hold"}
 theme_set(theme_bw(base_size = 20))
 #sorted.names <- c("Acinetobacter", "Aeromonas", "Anaerococcus", "Arthrobacter", "Bacillus", "Brevibacillus", "Brevibacterium", "Clostridium", "Corynebacterium", "Enterobacter", "Exiguobacterium", "Geobacillus", "Intestinimonas", "Micrococcus", "Moraxella", "Oceanobacillus", "Paenibacillus", "Pantoea", "Propionibacterium", "Pseudomonas", "Salmonella" ,"Staphylococcus", "Thiolamprovum", "Virgibacillus")
 
@@ -129,12 +129,19 @@ df <- data.frame(prevalence = x) %>% arrange(prevalence) # Also sort by prevalen
 df$Genus <- rownames(df)
 sorted.names <- rownames(df) # Use the same order than in prevalences that were now sorted by magnitude
 #sorted.names <- sort(rownames(df)) # Alphabetic order
-df$Genus <- factor(df$Genus, levels=sorted.names)
-df$Genus <- gsub(df$Genus, pattern = "Propionibacterium", replacement = "Propionibacterium/Cutibacterium")
-#df$Genus <- factor(df$Genus, levels=sorted.names)
-ggplot(df, aes(x = df$Genus, y = prevalence)) +
+ren <- as.data.frame(df)
+ren <- factor(df$Genus, levels=sorted.names)
+se <- as.data.frame(gsub(df$Genus, pattern = "Propionibacterium", replacement = "Propionibacterium/Cutibacterium"))
+po <- cbind(ren,se)
+bt <- cbind(po,df)
+ct <- as.data.frame(bt)
+g <- ggplot(ct, aes(x = ct$gsub, y = prevalence)) +
   geom_bar(stat = "identity") +
   coord_flip() +
   theme(axis.text.x = element_text(angle = 0, hjust = 1)) +
   labs(y = "Prevalence (%)", x = 'Genus', title = "Core prevalence variation") 
+print(g)
+
+library("gridExtra")
+grid.arrange(p4,g, nrow=1)
 ```
