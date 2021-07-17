@@ -124,13 +124,14 @@ theme_set(theme_bw(base_size = 23))
 
 x <- prevalence(b.core)
 df <- data.frame(prevalence = x) %>% arrange(prevalence) # Also sort by prevalence
+se <- as.data.frame(gsub(df$Genus, pattern = "Propionibacterium", replacement = "Propionibacterium/Cutibacterium"))
 df$Genus <- rownames(df)
+##df$Genus <- rownames(df)
 sorted.names <- rownames(df) # Use the same order than in prevalences that were now sorted by magnitude
 #sorted.names <- sort(rownames(df)) # Alphabetic order
 ren <- as.data.frame(df)
 ren <- factor(df$Genus, levels=sorted.names)
-se <- as.data.frame(gsub(df$Genus, pattern = "Propionibacterium", replacement = "Propionibacterium/Cutibacterium"))
-po <- cbind(ren,se)
+##se <- as.data.frame(gsub(df$Genus, pattern = "Propionibacterium", replacement = "Propionibacterium/Cutibacterium"))po <- cbind(ren,se)
 bt <- cbind(po,df)
 ct <- as.data.frame(bt)
 g <- ggplot(ct, aes(x = ct$gsub, y = prevalence)) +
