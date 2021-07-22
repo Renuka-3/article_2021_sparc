@@ -1,53 +1,140 @@
 
 
+```{r alpha, message=F, echo=F, echo=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo =F)
+library(ggplot2)
+library(phyloseq)
+library(dada2)
+library(readxl)
+library(dplyr)
+library(knitr)
+library(knitcitations)
+library(microbiome)
+library(phyloseq)
+library(ggplot2)
+library(reshape2)
+library(tidyverse)
+library(dada2)
+library(dplyr)
+theme_set(theme_bw(20))
+knitr::opts_chunk$set(fig.width=10, fig.height=10, message=FALSE, warning=FALSE)
+knitr::opts_chunk$set(fig.path="figure_age/")
+# Was created with: source("create_phyloseq.R")
+phy<- readRDS("data/processed/phyloseq/phy20.1.RDS")
+w <- sample_data(phy)$age_group <- cut(meta(phy)$Age, breaks = c(0, 40, 59, Inf), labels = c("adult", "middle_age", "elderly"))
+```
+
 
 # Alpha diversity analysis
 
-
+```{r alpha1, echo=FALSE, message=FALSE, warning=FALSE}
+library(microbiome)
+opts_chunk$set(dev="CairoPNG")
+# Estimate alpha diversities
+A <- alpha(phy)
+index <- "diversity_shannon"
+c <- meta(phy)
+c2 <- bind_cols(c,A)
+is.data.frame(c) 
+is.data.frame(c2)
+i <- sapply(split(c2$diversity_shannon, c2$age_group), mean)
+o <- sapply(split(c2$diversity_shannon, c2$age_group), sd) 
+y <- cbind(i,o)
+#c <- round(100 * sapply(split(c2$diversity_shannon, c2$age_group), mean),2)
+kable(y)
 ```
-## [1] TRUE
-```
-
-```
-## [1] TRUE
-```
-
-
-
-|           |         i|         o|
-|:----------|---------:|---------:|
-|adult      | 1.4559824| 0.6633482|
-|middle_age | 0.8868898| 0.4883428|
-|elderly    | 1.3082521| 0.8993438|
 
 # Group-wise comparisons
-* Diversity index: diversity_shannon
+* Diversity index: `r index`
 
+```{r group_comp, echo=FALSE, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=6, fig.show="keep", out.width="50%", fig.show="hold"}
+library(Cairo)
+theme_set(theme_bw(base_size=25))
+df <- meta(phy)
+df <- bind_cols(df, A)
+df$index <- df[[index]]
+pv <- kruskal.test(data = df, index ~ factor(age_group))$p.value
+kruskal.test(data = df, index ~ factor(age_group))
+library(ggbeeswarm)
+library(ggsignif)
+p1 <- ggplot(df, aes(x = age_group, y = index)) +
+      geom_boxplot() + theme(legend.position="top", legend.title = element_text("Stats"), fill("**-0.05")) +
+       geom_jitter(width = 0.1) +  
+	theme(axis.text.x = element_text(angle = 0, hjust = 0.5),axis.title.x = element_text()) +
+  scale_x_discrete(limits = c("adult", "middle_age", "elderly"),
+                       labels = c("Adult", "Middle age", "Elderly")) + 
+        labs(y = "Shannon Diversity", x = "", title = "Age") + 
+        geom_signif(comparisons = list(c("adult", "middle_age", "elderly")), map_signif_level = TRUE) 
+print(p1)
+
+##Multiple pairwise comparison 
+
+qw <- subset(df, age_group %in% c("adult", "middle_age"))
+renu <- wilcox.test(data = qw, index ~ factor(age_group))$p.value
+wilcox.test(data = qw, index ~factor(age_group))
+
+er<- subset(df, age_group %in% c("adult", "elderly"))
+ru <- wilcox.test(data = er, index ~ factor(age_group))$p.value
+wilcox.test(data = er, index ~factor(age_group))
+
+ty<- subset(df, age_group %in% c("middle_age", "elderly"))
+en <- wilcox.test(data = ty, index ~ factor(age_group))$p.value
+wilcox.test(data = ty, index ~factor(age_group))
+p.adjust(c(0.001,0.71,0.12), method = "bonferroni")
+
+#d2 <- data.frame(df, aes(x ="", y = ""),label = c('min', '1st quartile', 'median', '3rd quartile', 'max', 'outlier'))
+
+#p1 + label = c('min', '1st quartile', 'median', '3rd quartile', 'max', 'outlier')
+
+
+##########################################
+x <- which(names(df) == "age_group") 
+y <- which(names(df) == "index")
+method1 <- "wilcox.test"
+method2 <- "wilcox.test" 
+my_comparisons <- list(c("adult", "middle_age"), c("adult", "elderly"), c("middle_age", "elderly")) 
+library(ggpubr)
+for (i in y) {
+  for (j in x) {
+    p <- ggboxplot(df,
+      x = colnames(df[j]), y = colnames(df[i]),
+      color = colnames(df[j]),
+      legend = "none",
+      palette = "npg",
+      add = "jitter"
+    )
+    print(
+      p + stat_compare_means(aes(label = paste0(..method.., ", p-value = ", ..p.format..)),
+        method = method1, label.y = max(df[, i], na.rm = TRUE)
+      )
+      + stat_compare_means(comparisons = my_comparisons, method = method2, label = "p.format") # remove if p-value of ANOVA or Kruskal-Wallis test >= alpha
+    )
+  }
+}
 
 ```
-## 
-## 	Kruskal-Wallis rank sum test
-## 
-## data:  index by factor(age_group)
-## Kruskal-Wallis chi-squared = 7.7239, df = 2, p-value = 0.02103
-```
 
-<img src="figure_age/group_comp-1.png" title="plot of chunk group_comp" alt="plot of chunk group_comp" width="50%" />
 
 # PERMANOVA analysis
 
-p value for the effect of age  is (p=0.04), which is significant.
+p value for the effect of age  is (p=0.07), which is significant.
 
-
-```
-## [1] 0.02
-```
-
-```
-## Analysis of Variance Table
-## 
-## Response: Distances
-##           Df  Sum Sq  Mean Sq F value Pr(>F)
-## Groups     2 0.02546 0.012730  0.5711 0.5682
-## Residuals 55 1.22601 0.022291
+```{r PERMANOVA, echo= FALSE, warning=FALSE}
+library(microbiome)
+library(ggplot2)
+library(dplyr)
+pseq <- phy# Rename the example data
+data = microbiome::meta(phy)
+# Pick relative abundances (compositional) and sample metadata 
+pseq.rel <- microbiome::transform(pseq, "compositional")
+otu <- abundances(pseq.rel)
+meta <- meta(pseq.rel)
+library(vegan)
+library(phyloseq)
+permanova <- adonis(t(otu) ~ age_group,
+               data = meta(phy), permutations=99, method = "bray")
+# P-value
+print(as.data.frame(permanova$aov.tab)["age_group", "Pr(>F)"])
+dist <- vegdist(t(otu))
+anova(betadisper(dist, meta$age_group))
 ```

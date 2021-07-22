@@ -59,15 +59,17 @@ library(ggbeeswarm)
 library(ggsignif)
 jpeg(file= "figure_location.jpeg", quality = 300)
 p1 <- ggplot(df, aes(x = Geographical_location, y = index)) +
-       geom_boxplot() +
+       geom_boxplot(color = "black") +
        geom_jitter(width = 0.1) +  
         theme(axis.text.x = element_text(angle = 0, hjust = 0.5)) + theme(legend.position = "none")+
         labs(y = "Shannon Diversity",
 	     x = "",
-	     title = "Geographical location") + geom_signif(comparisons = list(c("Ahmednagar", "Nashik", "Pune")),
-    map_signif_level = TRUE) 
+	     title = "Geographical location") 
+  #geom_signif(comparisons = list(c("Ahmednagar", "Nashik", "Pune")),map_signif_level = TRUE) 
 print(p1)
-dev.off()
+#dev.off()
+#geom_signif(comparisons = list(c("Ahmednagar", "Nashik"), c("Ahmednagar", "Pune"), c("Nashik", "Pune")),
+    #map_signif_level = TRUE) 
 ```  
 
 ## investigating top factors

@@ -68,8 +68,7 @@ p1 <- ggplot(df, aes(x = Diet, y = index)) +
                        labels = c("Mixed", "Vegetarian")) +theme(legend.position = "none")+
         labs(y = "Shannon Diversity",
 	     x = "",
-	     title = "Diet") + geom_signif(comparisons = list(c("Mixed", "Veg")),
-    map_signif_level = TRUE) 
+	     title = "Diet") #+ geom_signif(comparisons = list(c("Mixed", "Veg")), map_signif_level = TRUE) 
 print(p1)
 dev.off()
 ```
