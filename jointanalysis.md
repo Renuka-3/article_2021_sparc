@@ -1,5 +1,4 @@
 
-
 # Ordination
 
 
@@ -9,7 +8,7 @@
 * Ordination method: PCoA
 * Dissimilarity measure: bray
 
-<img src="figure_joint/pcoa-1.png" title="plot of chunk pcoa" alt="plot of chunk pcoa" width="33%" /><img src="figure_joint/pcoa-2.png" title="plot of chunk pcoa" alt="plot of chunk pcoa" width="33%" /><img src="figure_joint/pcoa-3.png" title="plot of chunk pcoa" alt="plot of chunk pcoa" width="33%" />
+<img src="figure_joint/pcoa-1.png" title="plot of chunk pcoa" alt="plot of chunk pcoa" width="40" /><img src="figure_joint/pcoa-2.png" title="plot of chunk pcoa" alt="plot of chunk pcoa" width="40" /><img src="figure_joint/pcoa-3.png" title="plot of chunk pcoa" alt="plot of chunk pcoa" width="40" /><img src="figure_joint/pcoa-4.png" title="plot of chunk pcoa" alt="plot of chunk pcoa" width="40" />
 
 # PERMANOVA analysis
 
@@ -25,9 +24,9 @@
 ## Terms added sequentially (first to last)
 ## 
 ##                       Df SumsOfSqs MeanSqs F.Model      R2 Pr(>F)   
-## Diet                   1    0.3745 0.37445 0.95573 0.01605   0.40   
+## Diet                   1    0.3745 0.37445 0.95573 0.01605   0.43   
 ## Geographical_location  2    1.7028 0.85138 2.17301 0.07299   0.01 **
-## age_group              2    0.8792 0.43960 1.12202 0.03769   0.28   
+## age_group              2    0.8792 0.43960 1.12202 0.03769   0.20   
 ## Residuals             52   20.3734 0.39180         0.87328          
 ## Total                 57   23.3298                 1.00000          
 ## ---

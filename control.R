@@ -21,9 +21,18 @@ opts_chunk$set(dev="CairoPNG")
 
 # Was created with: source("create_phyloseq.R")
 cphy <- readRDS("data/with_control/phyloseq/cphy.RDS")
+<<<<<<< HEAD
 #df$newcolumn <- (df$Sample == "NC")
 sample_data(cphy)$control =="NC"
 sample_data(cphy)$nc <- sample_data(cphy)$control =="NC"
+||||||| 1f1072b
+=======
+#df$newcolumn <- (df$Sample == "NC")
+sample_data(cphy)$Control <- sample_data(cphy)$NC
+sample_data(cphy)$control =="NC"
+#sample_data(cphy)$nc <- sample_data(cphy)$control =="NC"
+sample_data(cphy)$Control <- sample_data(cphy)$Sample =="NC"
+>>>>>>> 4ccc2ca2021414b0de5e6882b28e83c967dfb593
 
 
 ## ----pcoa, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold"----
@@ -38,7 +47,7 @@ p <- plot_landscape(microbiome::transform(cphy , "compositional"),
                     distance = "bray",
                     method = "PCoA",
                     size = 3,
-                    col = "Sample",
+                    col = "Control",
                     shading = FALSE)
 print(p)
 

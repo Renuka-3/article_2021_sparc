@@ -1,4 +1,4 @@
-```{r alpha, message=F, echo=F, echo=FALSE}
+```{r alpha, message=F, echo=F, echo=FALSE, warning=FALSE}
 knitr::opts_chunk$set(echo =F)
 library(ggplot2)
 library(phyloseq)
@@ -20,13 +20,7 @@ knitr::opts_chunk$set(fig.path="figure_age/")
 
 # Was created with: source("create_phyloseq.R")
 phy<- readRDS("data/processed/phyloseq/phy20.1.RDS")
-
-# Exclude middle-aged group
-Q <- subset_samples(phy, age_group %in% "middle_age")
-# Old code
-# Remove <- c("I1", "I2", "I6", "I9", "I10", "I11", "I16", "I19", "I22", "I25", "I27","I28", "I29", "I31","I34", "I40")
-#subset_samples(phy20.1, Sample %in% Remove)
-# Q <- subset_samples(phy, !(Sample %in% Remove))
+w <- sample_data(phy)$age_group <- cut(meta(phy)$Age, breaks = c(0, 40, 59, Inf), labels = c("adult", "middle_age", "elderly"))
 ```
 
 
@@ -37,127 +31,53 @@ library(microbiome)
 opts_chunk$set(dev="CairoPNG")
 
 # Estimate alpha diversities
-A <- alpha(Q)
+A <- alpha(phy)
 index <- "diversity_shannon"
+c <- meta(phy)
+c2 <- bind_cols(c,A)
+is.data.frame(c) 
+is.data.frame(c2)
+i <- sapply(split(t2$diversity_shannon, t2$age_group), mean) 
+#c <- round(100 * sapply(split(c2$diversity_shannon, c2$age_group), mean),2)
+kable(i)
 ```
 
 # Group-wise comparisons
 * Diversity index: `r index`
 
-```{r group_comp, echo=FALSE, echo=FALSE, message=FALSE, fig.width=10, fig.height=8, fig.show="keep", out.width="50%"}
+```{r group_comp, echo=FALSE, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=6, fig.show="keep", out.width="50%", fig.show="hold"}
 library(Cairo)
-df <- meta(Q)
+theme_set(theme_bw(base_size=25))
+df <- meta(phy)
 df <- bind_cols(df, A)
 df$index <- df[[index]]
-pv <- wilcox.test(data = df, index ~ factor(age_group))$p.value
+pv <- kruskal.test(data = df, index ~ factor(age_group))$p.value
+kruskal.test(data = df, index ~ factor(age_group))
+
 library(ggbeeswarm)
-p1 <- ggplot(df, aes(x = age_group, y = index, fill = age_group)) +
-        ggbeeswarm::geom_beeswarm() +
-	theme(axis.text.x = element_text(angle = 0, hjust = 1)) +
+p1 <- ggplot(df, aes(x = age_group, y = index)) +
+      geom_boxplot() +
+       geom_jitter(width = 0.1) +  
+
+	theme(axis.text.x = element_text(angle = 0, hjust = 1)) +theme(legend.position = "none")+
         labs(y = "Shannon Diversity",
 	     x = "",
-	     title = paste0("wilcoxon tast p=", round(pv, 2)))
+	     title = "Age")
 
 print(p1)
 ```
 
-
-# Ordination
-
-```{r init, echo=FALSE, message=FALSE}
-library(microbiome)
-library(phyloseq)
-library(vegan)
-opts_chunk$set(dev="CairoPNG")
-method <- "PCoA"
-trans <- "compositional"
-distance <- "jaccard"
-```
-
-# Principal Coordinates Analysis (PCoA)
-
-* Ordination method: `r method`
-* Dissimilarity measure: `r distance`
-
-```{r pcoa, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold"}
-theme_set(theme_bw(15))
-library(microbiome)
-p <- plot_landscape(microbiome::transform(Q , "compositional"),
-                    distance = "jaccard",
-                    method = "PCoA",
-                    size = 3,
-                    col = "age_group",
-                    shading = FALSE) +
-  scale_colour_brewer(palette = "Set1")		    
-print(p)
-```
-
-
-## Differential abundance analysis 
-
-Differential abundance analysis is carried out using DESeq2 method
-
-```{r DESeq2, echo=FALSE, message=FALSE, fig.width=9, fig.height=5, out.width="50%", fig.show="hold"}
-library(phyloseq)
-library(reshape2)
-library(DESeq2)
-padj.th <- 0.25
-mypseq <- Q
-
-# Remove NAs
-group <- "age_group"
-keep <- meta(Q)[, group] %>% complete.cases()
-df <- meta(mypseq)[keep, ]
-
-mygroup <- "age_group"
-df$group <- as.factor(df[[group]] == mygroup)
-sample_data(mypseq) <- sample_data(df)
-quiet(ds2 <- phyloseq_to_deseq2(mypseq, ~ age_group))
-dds <- DESeq(ds2)
-res <- results(dds)
-df <- as.data.frame(res)
-df$taxon <- rownames(df)
-#df <- df %>% arrange(desc(abs(log2FoldChange)), padj) %>%
-#             filter(padj < padj.th) 
-df <- df %>% arrange(padj, desc(abs(log2FoldChange))) %>%
-             filter(padj < padj.th) 
-df <- subset(df, select= c(log2FoldChange, padj, taxon))
-rownames(df) <- NULL
-
-# WHat is the purpose of this one?
-#full.names <- apply(tax_table(Q), 1, function (x) {paste(x, collapse = "_")})
-# top.taxa <- as.character(df$taxon)
-# Add full phylogenetic name for this OTU
-df$full_name <- full.names[df$taxon]
-
-library(knitr)
-kable(df)
-
-
-df <- meta(Q)
-ps <- microbiome::transform(Q, "clr")
-for (tax in top.taxa) {
-  df$taxa <- abundances(ps)[tax, ]
-  p <- ggplot(df, aes(x = age_group, y = taxa)) +
-    geom_boxplot() + 
-    ggbeeswarm::geom_beeswarm() +
-    theme(axis.text.x = element_text(angle = 360, hjust = 1)) +
-    labs(x = "age_group", y = "Abundance", title = tax)
-  print(p)
-}
-```
-
 # PERMANOVA analysis
 
-effect of age on microbial community is observed to be significant (p=0.05)
+p value for the effect of age  is (p=0.07), which is significant.
 
-```{r PERMANOVA, echo=FALSE}
+```{r PERMANOVA, echo= FALSE, warning=FALSE}
 library(microbiome)
 library(ggplot2)
 library(dplyr)
 
-pseq <- Q
-data = microbiome::meta(Q)
+pseq <- phy# Rename the example data
+data = microbiome::meta(phy)
 # Pick relative abundances (compositional) and sample metadata 
 pseq.rel <- microbiome::transform(pseq, "compositional")
 otu <- abundances(pseq.rel)
@@ -165,7 +85,7 @@ meta <- meta(pseq.rel)
 library(vegan)
 library(phyloseq)
 permanova <- adonis(t(otu) ~ age_group,
-               data = meta(Q), permutations=99, method = "bray")
+               data = meta(phy), permutations=99, method = "bray")
 
 # P-value
 print(as.data.frame(permanova$aov.tab)["age_group", "Pr(>F)"])
@@ -173,15 +93,3 @@ print(as.data.frame(permanova$aov.tab)["age_group", "Pr(>F)"])
 dist <- vegdist(t(otu))
 anova(betadisper(dist, meta$age_group))
 ```
-
-# Investigate the top factors
-
-```{r top_factors, echo=FALSE}
-library(vegan)
-coef <- coefficients(permanova)["age_group1", ]
-top.coef <- coef[rev(order(abs(coef)))[1:20]]
-names(top.coef) <- full.names[names(top.coef)]
-par(mar = c(3, 14, 2, 1))
-barplot(sort(top.coef), horiz = T, las = 1, main = "Top taxa / 1")
-```
-
