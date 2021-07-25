@@ -96,7 +96,10 @@ p <- ggplot(df, aes(x = genus, y = Abundance,
        labs(y = "Relative abundance (%)", x = '') +
        geom_boxplot(outlier.shape = NA) +
        coord_flip() +
-       scale_y_log10(label = scales::percent) #scale_y_continuous(label = scales::percent) 
+       #scale_y_log10(label = scales::percent) +
+       scale_y_continuous(label = scales::percent) +       
+       labs(fill = "Location")
+
 print(p)       
 ```
 
