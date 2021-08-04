@@ -57,7 +57,7 @@ kruskal.test(data = df, index ~factor(Geographical_location))
 
 library(ggbeeswarm)
 library(ggsignif)
-jpeg(file= "figure_location.jpeg", quality = 300)
+jpeg(file= "figure_location.jpeg", quality = 100)
 p1 <- ggplot(df, aes(x = Geographical_location, y = index)) +
        geom_boxplot(color = "black") +
        geom_jitter(width = 0.1) +  
@@ -164,6 +164,9 @@ d <- meta(ps)
 library(beeswarm)
 for (tax in top.taxa) {
   d$taxa <- abundances(ps)[tax, ]
+  # Add small pseudocount to enable visualization
+  d$taxa <- d$taxa + min(abundances(ps)[abundances(ps)>0])/2
+  
   # d$gen <- taxa(ps)["genus", ]
   
   p <- ggplot(d, aes(x = Geographical_location, y = taxa)) +
