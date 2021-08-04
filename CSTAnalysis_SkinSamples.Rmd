@@ -129,8 +129,8 @@ gridExtra::grid.arrange(p1, p2, nrow = 1)
 
 Heatmaps for the community state types. The most different OTUs are shown.
 
-```{r clust-diverse_CLRleo, eval= T, message=FALSE, echo=FALSE, warning=FALSE, out.width="33%", fig.show="hold", warning=FALSE}
-theme_set(theme_bw(base_size = 17))
+```{r clust-diverse_CLRleo, eval= T, message=FALSE, echo=FALSE, warning=FALSE, out.width="35%", fig.show="hold", warning=FALSE}
+theme_set(theme_bw(base_size = 23))
 library(BBmisc)
 library(reshape2)
 library("RColorBrewer")
@@ -173,7 +173,7 @@ for(CST in CSTs) {
   # dfm$Sample <- factor(dfm$Sample, levels = neatsort(pshm, "cols"))
   dfm$short_name <- full.names[as.character(dfm$Var1)] %>% strsplit("_" ) %>% sapply(tail, 1 )
   p[[CST]]<- heat((dfm), "Var2","short_name", "value", legend.text = "Abundance", order.rows = F, 
-                order.cols = F, limits= c(-5,5), step = 0.5) +
+                order.cols = F, limits= c(-5,5), step = 2) +
 		ggtitle(paste("CST:", CST)) + theme(axis.text.x = element_blank())
 print(p[[CST]]) 
 #print(p[[1]])

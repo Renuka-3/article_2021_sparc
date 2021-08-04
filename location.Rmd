@@ -1,7 +1,7 @@
 
 # Analysis
 
-```{r, message=F, echo=F, echo=FALSE, warning=FALSE}
+```{r, message=F, error=FALSE, echo=FALSE, warning=FALSE}
 library(knitr)
 library(knitcitations) 
 library(microbiome)
