@@ -1,7 +1,7 @@
 
 # Ordination
 
-```{r init, echo=FALSE, message=FALSE, warning=FALSE}
+```{r init, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
 library(microbiome)
 library(phyloseq)
 library(vegan)
@@ -33,40 +33,44 @@ phy <- readRDS("data/processed/phyloseq/phy20.1.RDS")
 * Ordination method: `r method`
 * Dissimilarity measure: `r distance`
 
-```{r pcoa, echo=FALSE, message=FALSE, fig.width=25, fig.height=10, out.width="40", fig.show="hold", warning=FALSE}
-theme_set(theme_bw(30))
-p <- plot_landscape(microbiome::transform(phy , "compositional"),
+```{r pcoa, echo=FALSE, message=FALSE, fig.width=20, fig.height=15, out.width="40", fig.show="hold", warning=FALSE}
+theme_set(theme_bw(50))
+phy.temp <- phy
+sample_data(phy.temp)$Diet <- as.factor(gsub("Veg", "Vegetarian", sample_data(phy.temp)$Diet))
+p <- plot_landscape(microbiome::transform(phy.temp , "compositional"),
                     distance = distance,
                     method = method,
                     size = 5,
                     col = "Diet",
                     shading = FALSE) +
-  scale_colour_brewer(palette = "Set1")	+ labs(title = "Diet") + theme(legend.position = 'bottom') 
-                                                                       #legend.direction = "horizontal",
-                                                                      #legend.box = "horizontal") + 
-           #guides(color = guide_legend(title.position = "top", 
-                                          #label.position = "bottom"))	    
+  scale_colour_brewer(palette = "Set1")	+ labs(title = "Diet") + theme(legend.position = 'bottom', legend.text=element_text(size=32)) + theme(legend.title=element_blank()) 
 print(p)
 
-p1 <- plot_landscape(microbiome::transform(phy , "compositional"),
-                    distance = distance,
-                    method = method,
-                    size = 5,
-                    col = "Geographical_location",
-                    shading = FALSE) +
-  scale_colour_brewer(palette = "Set1") + labs(title = "Geographical location") + theme(legend.position = 'bottom', legend.text=element_text(size=12), legend.title=element_text(size=22)) 
-print(p1)
-
-
-p2 <- plot_landscape(microbiome::transform(phy , "compositional"),
+theme_set(theme_bw(50))
+phy.tempp <- phy
+sample_data(phy.tempp)$age_group <- as.factor(gsub("middle_age", "Middle age", sample_data(phy.temp)$age_group))
+sample_data(phy.tempp)$age_group<- as.factor(gsub("adult", "Adult", sample_data(phy.tempp)$age_group))
+sample_data(phy.tempp)$age_group<- as.factor(gsub("elderly", "Elderly", sample_data(phy.tempp)$age_group))
+p1<- plot_landscape(microbiome::transform(phy.tempp , "compositional"),
                      distance = distance,
                      method = method,
                      size = 5,
                      col = "age_group",
                      shading = FALSE) +
-  scale_colour_brewer(palette = "Set1")	+ labs(title = "Age group")+ theme(legend.position = 'bottom', legend.text=element_text(size=20), legend.title=element_text(size=25))	    
-print(p2)
-gridExtra::grid.arrange(p, p1, p2, nrow = 1)
+  scale_colour_brewer(palette = "Set1")	+ labs(title = "Age group")+ theme(legend.position = 'bottom', legend.text=element_text(size=32))+ theme(legend.title=element_blank())    
+print(p1)
+
+#p2<- plot_landscape(microbiome::transform(phy , "compositional"),
+                    #distance = distance,
+                    #method = method,
+                    #size = 5,
+                    #col = "Geographical_location",
+                    #shading = FALSE) +
+  #scale_colour_brewer(palette = "Set1") + labs(title = "Geographical location") + theme(legend.position = 'bottom', legend.text=element_text(size=12), legend.title=element_text(size=22)) 
+#print(p2)
+#png("pcoa.png", width = 500, height = 500, res = 300)
+gridExtra::grid.arrange(p, p1, nrow = 1)
+#dev.off()
 ```
 
 # PERMANOVA analysis

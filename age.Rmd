@@ -58,7 +58,7 @@ kruskal.test(data = df, index ~ factor(age_group))
 library(ggbeeswarm)
 library(ggsignif)
 p1 <- ggplot(df, aes(x = age_group, y = index)) +
-      geom_boxplot() + theme(legend.position="top", legend.title = element_text("Stats"), fill("**-0.05")) +
+      geom_boxplot() + theme(legend.position="top", legend.title = element_text("Stats"))  +
        geom_jitter(width = 0.1) +  
 	theme(axis.text.x = element_text(angle = 0, hjust = 0.5),axis.title.x = element_text()) +
   scale_x_discrete(limits = c("adult", "middle_age", "elderly"),
@@ -85,32 +85,6 @@ p.adjust(c(0.001,0.71,0.12), method = "bonferroni")
 #d2 <- data.frame(df, aes(x ="", y = ""),label = c('min', '1st quartile', 'median', '3rd quartile', 'max', 'outlier'))
 
 #p1 + label = c('min', '1st quartile', 'median', '3rd quartile', 'max', 'outlier')
-
-
-##########################################
-x <- which(names(df) == "age_group") 
-y <- which(names(df) == "index")
-method1 <- "wilcox.test"
-method2 <- "wilcox.test" 
-my_comparisons <- list(c("adult", "middle_age"), c("adult", "elderly"), c("middle_age", "elderly")) 
-library(ggpubr)
-for (i in y) {
-  for (j in x) {
-    p <- ggboxplot(df,
-      x = colnames(df[j]), y = colnames(df[i]),
-      color = colnames(df[j]),
-      legend = "none",
-      palette = "npg",
-      add = "jitter"
-    )
-    print(
-      p + stat_compare_means(aes(label = paste0(..method.., ", p-value = ", ..p.format..)),
-        method = method1, label.y = max(df[, i], na.rm = TRUE)
-      )
-      + stat_compare_means(comparisons = my_comparisons, method = method2, label = "p.format") # remove if p-value of ANOVA or Kruskal-Wallis test >= alpha
-    )
-  }
-}
 
 ```
 

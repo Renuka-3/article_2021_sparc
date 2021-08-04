@@ -1,4 +1,4 @@
-```{r initCST_CLR, message=F, echo=F, echo=FALSE}
+```{r initCST_CLR, message=F, echo=F, echo=FALSE, warning=FALSE}
 library("phyloseq")
 library("ggplot2")
 library("cluster")
@@ -86,8 +86,8 @@ names(CSTColors) <- CSTs
 ok <- ordinate(ps, method="NMDS", distance=braydist)
 ```
 ```{r NMDS, message=FALSE, message=FALSE, echo=FALSE, warning=FALSE, fig.show="hold", out.width="50%"}
-plot_ordination(ps, ok, color="CST") + ggtitle("NMDS -- bray -- CST")
-plot_ordination(ps, ok, color="Geographical_location") + ggtitle("NMDS -- bray -- Location")
+#plot_ordination(ps, ok, color="CST") + ggtitle("NMDS -- bray -- CST")
+#plot_ordination(ps, ok, color="Geographical_location") + ggtitle("NMDS -- bray -- Location")
 ```
 
 
@@ -95,7 +95,7 @@ plot_ordination(ps, ok, color="Geographical_location") + ggtitle("NMDS -- bray -
 
 Coloured by CST community type
 
-```{r pcoa, echo=FALSE, message=FALSE, fig.width=7, fig.height=5, out.width="50%", fig.show="hold", warning=FALSE}
+```{r pcoa, echo=FALSE, message=FALSE, fig.width=15, fig.height=10, out.width="50%", fig.show="hold", warning=FALSE}
 theme_set(theme_bw(base_size=25))
 method <- "PCoA"
 trans <- "compositional"
@@ -103,23 +103,26 @@ distance <- "bray"
 p1 <- plot_landscape(microbiome::transform(ps , "compositional"),
                     distance = distance,
                     method = method,
-                    size = 3,
-                    col = "CST",
-                    shading = FALSE) +
-  labs(title = "CST") + 		    		    
-  scale_colour_brewer(palette = "Set1")		    
+                    size = 4,
+                    col = "Geographical_location",
+                    shading = FALSE) + 
+  scale_colour_brewer(palette = "Set1")	+ labs(title = "Geographical location") + theme(legend.position = 'bottom', legend.text=element_text(size=30)) +theme(legend.title=element_blank())
 print(p1)
 
-theme_set(theme_bw(base_size=15))
+
 p2 <- plot_landscape(microbiome::transform(ps , "compositional"),
                     distance = distance,
                     method = method,
-                    size = 3,
-                    col = "Geographical_location",
+                    size = 4,
+                    col = "CST",
                     shading = FALSE) +
-  labs(title = "Location") + 		    
-  scale_colour_brewer(palette = "Set1")		    
-print(p2)
+  labs(title = "CST") + 		    		    
+  scale_colour_brewer(palette = "Set1") +theme(legend.position = 'bottom', legend.text=element_text(size=30)) + theme(legend.title=element_blank())    
+#print(p2)
+
+#theme_set(theme_bw(base_size=20))
+
+gridExtra::grid.arrange(p1, p2, nrow = 1)
 ```
 
 ### Heatmap
@@ -172,10 +175,10 @@ for(CST in CSTs) {
   p[[CST]]<- heat((dfm), "Var2","short_name", "value", legend.text = "Abundance", order.rows = F, 
                 order.cols = F, limits= c(-5,5), step = 0.5) +
 		ggtitle(paste("CST:", CST)) + theme(axis.text.x = element_blank())
-#print(p[[CST]]) 
-print(p[[1]])
-print(p[[2]])
-print(p[[3]])
+print(p[[CST]]) 
+#print(p[[1]])
+#print(p[[2]])
+#print(p[[3]])
 }
 ```
 
