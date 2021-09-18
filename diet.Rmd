@@ -60,7 +60,7 @@ wilcox.test(data = df, index ~factor(Diet))
 
 library(ggbeeswarm)
 library(ggsignif)
-jpeg(file= "figure_diet.jpeg", quality = 300)
+#jpeg(file= "figure_diet.jpeg", quality = 300)
 p1 <- ggplot(df, aes(x = Diet, y = index)) +
         geom_boxplot() +
        geom_jitter(width = 0.05) +
@@ -70,7 +70,7 @@ p1 <- ggplot(df, aes(x = Diet, y = index)) +
 	     x = "",
 	     title = "Diet") #+ geom_signif(comparisons = list(c("Mixed", "Veg")), map_signif_level = TRUE) 
 print(p1)
-dev.off()
+#dev.off()
 ```
 
 # Ordination
