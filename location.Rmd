@@ -183,7 +183,7 @@ p <- ggplot(d, aes(x = Geographical_location, y = taxa)) +
 
 ## Dunn test for pairwise comparisions
 
-```{r ANCOM-BC, echo=FALSE, message=FALSE, warning=FALSE}
+```{r dunn, echo=FALSE, message=FALSE, warning=FALSE}
 library(FSA)
 ps <- microbiome::transform(phy, "compositional")
 # CLR transform
