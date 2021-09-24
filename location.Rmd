@@ -64,7 +64,7 @@ p1 <- ggplot(df, aes(x = Geographical_location, y = index)) +
         theme(axis.text.x = element_text(angle = 0, hjust = 0.5)) + theme(legend.position = "none")+
         labs(y = "Shannon Diversity",
 	     x = "",
-	     title = "Geographical location") 
+	     title = "Geographical location")
   #geom_signif(comparisons = list(c("Ahmednagar", "Nashik", "Pune")),map_signif_level = TRUE) 
 print(p1)
 #dev.off()
@@ -103,8 +103,8 @@ p <- ggplot(df, aes(x = Genus, y = Abundance,
        #scale_y_log10(label = scales::percent) +
        scale_y_continuous(label = scales::percent) +       
        labs(fill = " Geographical location")
+print(p)
 
-print(p)       
 ```
 
 
@@ -168,19 +168,36 @@ for (tax in top.taxa) {
   d$taxa <- d$taxa + min(abundances(ps)[abundances(ps)>0])/2
   
   # d$gen <- taxa(ps)["genus", ]
-  
-  p <- ggplot(d, aes(x = Geographical_location, y = taxa)) +
+ 
+p <- ggplot(d, aes(x = Geographical_location, y = taxa)) +
     geom_boxplot() + 
     ggbeeswarm::geom_beeswarm() +
-    scale_y_log10()+
+    scale_y_continuous() +
+    #scale_y_continuous(limits = c(0.005,0.005, 0.01,0.1, 0.5, 1.0)) +
     theme(axis.text.x = element_text(angle = 360, hjust = 1)) +
     #labs(x = "Location", y = "Abundance (CLR)", title = map_levels(tax, from='tax', to='genus',ps))
-    labs(x = "Location", y = "Abundance (CLR)", title = as.vector(tax_table(ps)[tax, "genus"]))
+    labs(x = "Location", y = "Abundance (%)", title = as.vector(tax_table(ps)[tax, "genus"]))
   print(p)
 }
-#library(gridExtra)
-#theme_set(theme_bw(base_size=25))
-#grid.arrange(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, nrow = 6)
+```
+
+## Dunn test for pairwise comparisions
+
+```{r ANCOM-BC, echo=FALSE, message=FALSE, warning=FALSE}
+library(FSA)
+ps <- microbiome::transform(phy, "compositional")
+# CLR transform
+#o <- microbiome::transform(phy, "clr")
+d <- meta(ps)
+#p_adj_method <- "fdr"
+for (tax in top.taxa) {
+  d$taxa <- abundances(ps)[tax, ]
+  # Add small pseudocount to enable visualization
+  d$taxa <- d$taxa + min(abundances(ps)[abundances(ps)>0])/2
+}
+d1 <- data.frame(d)
+re <- dunnTest(d1$taxa ~ d1$Geographical_location,data=d1)
+print(re)
 ```
 
 
@@ -192,3 +209,66 @@ rp<- rowMeans(abundances(pseq)[, s1])/rowMeans(abundances(pseq)[, s2])/rowMeans(
 sample_data(ps)$rp<- rowMeans(abundances(pseq)[, s1])/rowMeans(abundances(pseq)[, s2])/rowMeans(abundances(pseq)[, s3])
 ```
 
+
+## Differential abundance analysis (with ANCOM-BC)
+
+```{r ANCOM-BC, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(microbiome)
+library(magrittr)
+library(qwraps2)
+library(ANCOMBC)
+library(DT)
+options(DT.options = list(
+  initComplete = JS("function(settings, json) {",
+  "$(this.api().table().header()).css({'background-color': 
+  '#000', 'color': '#fff'});","}")))
+
+data= phy #<- readRDS("data/processed/phyloseq/phy20.1.RDS")
+
+# Re-code the Geographical location group
+sample_data(data)$Geographical_location = recode(sample_data(data)$Geographical_location,
+                                  Ahmednagar = "AN",
+                                  Nashik = "NS",
+                                  Pune = "PN")
+# Re-code the age group
+sample_data(data)$age_group = recode(sample_data(data)$age_group,
+                                  middle_age = "MA",
+                                  elderly = "EL",
+                                  adult = "AD")
+
+# Aggregate to gunus level
+genus_data = aggregate_taxa(data, "genus") 
+
+# data summery
+options(qwraps2_markup = "markdown")
+summary_template =
+  list("Geographical_location" =
+         list("Ahmednagar" = ~ n_perc0(Geographical_location == "AN", na_rm = TRUE),
+              "Nashik" = ~ n_perc0(Geographical_location == "NS", na_rm = TRUE),
+              "Pune" = ~ n_perc0(Geographical_location == "PN", na_rm = TRUE))) 
+ "Age"= list("middle_age" = ~ n_perc0(age_group == "MA", na_rm = TRUE),
+             "elderly" = ~ n_perc0(age_group == "EL", na_rm = TRUE),
+            "adult" = ~ n_perc0(age_group == "AD", na_rm = TRUE))
+
+data_summary = summary_table(meta(data), summary_template)
+data_summary
+
+
+# Running ANCOM-BC function
+
+out = ancombc(phyloseq = genus_data, formula = "Age", 
+              p_adj_method = "holm", zero_cut = 0.90, lib_cut = 1000, 
+              group = "Geographical_location", struc_zero = TRUE, neg_lb = TRUE, tol = 1e-5, 
+              max_iter = 100, conserve = TRUE, alpha = 0.05, global = TRUE)
+
+res = out$res
+res_global = out$res_global
+
+# coefficients 
+tab_coef = res$beta
+col_name = c("AN-NS", "AN-PN", "PN-NS")
+colnames(tab_coef) = col_name
+tab_coef %>% datatable(caption = "Coefficients from the Primary Result") %>%
+      formatRound(col_name, digits = 2)
+```
