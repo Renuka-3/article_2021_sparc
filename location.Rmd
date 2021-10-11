@@ -119,159 +119,8 @@ print(l)
 ####print(M)
 ```
 
-## individual abundance bar graph
+## phyla level individual relative abundance bar graph
 
-```{r bar, echo=FALSE, message=FALSE, warning=FALSE, fig.width=12, fig.height=6, out.width="25%", fig.show="hold"}
-theme_set(theme_bw(base_size=25))
-sp <- aggregate_taxa(phy, "genus")
-core.taxa <- core_members(microbiome::transform(sp, "compositional"), detection = 0.1/100, prevalence=20/100) # FOcus on core taxa
-
-# Just pick the top taza for visu
-df <- psmelt(prune_taxa(toptaxa, sp.comp))
-df$Genus<- gsub((df$genus), pattern = "Propionibacterium", replacement = "Propionibacterium/Cutibacterium")
-df <- df %>% arrange(df, Geographical_location) %>% mutate(Sample=factor(Sample, levels=unique(Sample)))
-l <- ggplot(df, aes(x = Sample, fill = Genus, y = Abundance)) + geom_bar(stat = "identity", colour = "black") + scale_y_continuous(label=scales::percent) + labs(x = "Sample", y = "Relative Abundance (%)") + facet_grid(Geographical_location ~ .)
-print(l)
-
-
-#################
-theme_set(theme_bw(base_size=25))
-transform <- microbiome::transform
-j <- transform(phy, "compositional")
-sp <- aggregate_taxa(j, "genus")
-
-ta <- as.data.frame(phy@tax_table) #for large color options
-ta$OTU <- rownames(ta)
-colnames(ta)
-#j <- j %>% arrange(j, Geographical_location) %>% mutate(Sample=factor(Sample, levels=unique(Sample)))
-
-#sp <- aggregate_taxa(phy, "genus")
-
-#v <- abundances(transform(phy, "compositional"))
-p3 <- plot_composition(sp,
-                      taxonomic.level = "genus",
-                      sample.sort = "sample",
-                      x.label = " ") +
-  guides(fill = guide_legend(ncol = 1)) + 
-  scale_y_continuous(label = scales::percent) + 
-  labs(x = " ", y = "Relative abundance (%)",
-       title = "Relative abundance") 
-    #geom_bar(stat = "identity", colour = "black") + facet_grid(Geographical_location ~ .)
-print(p3)
-```
-
-# 29/9/21
-
-
-```{r plot, echo=FALSE, message=FALSE, warning=FALSE, fig.width=15, fig.height=7, out.width="25%", fig.show="hold"}
-theme_set(theme_bw(base_size=25))
-transform <- microbiome::transform
-j <- transform(phy, "compositional")
-sp <- aggregate_taxa(j, "genus")
-#today md <-  psmelt(sp)
-#today op <- aggregate_rare(md, level = 'genus',detection = 0.1/100, prevalence = 20/100, include.lowest =TRUE)
-#tax_table(sp$other) <- aggregate_rare(sp, level = 'genus',detection = 0.1/100, prevalence = 20/100, include.lowest =FALSE)
-o <- aggregate_rare(sp, level = 'genus',detection = 0.1/100, prevalence = 20/100, include.lowest =TRUE)
-#@# md <-  psmelt(o)
-genus.ordering <- names(sort(rowMeans(abundances(transform(o, "compositional")))))
-df <- psmelt(o)
-df$genus <- factor(df$genus, levels=genus.ordering)
-w <- df %>% filter (Geographical_location=="Ahmednagar")
-f <- ggplot(w, aes(x = Sample, fill = genus, y = Abundance)) + geom_bar(stat = "identity", colour = "black") + 
-            labs(y =  "Relative abundance (%)", x = "") + scale_y_continuous(label=scales::percent) + scale_fill_brewer("genus", palette = "Paired") + facet_grid(Geographical_location ~ .) + theme(axis.text.x = element_blank())
-print(f)
-
-#for pune
-l <- df %>% filter (Geographical_location=="Pune")
-m <- ggplot(l, aes(x = Sample, fill = genus, y = Abundance)) + geom_bar(stat = "identity", colour = "black") + 
-            labs(y =  "Relative abundance (%)", x = "") + scale_y_continuous(label=scales::percent) + scale_fill_brewer("genus", palette = "Paired") + facet_grid(Geographical_location ~ .) + theme(axis.text.x = element_blank())
-print(m)
-
-n <- df %>% filter (Geographical_location=="Nashik")
-u <- ggplot(n, aes(x = Sample, fill = genus, y = Abundance)) + geom_bar(stat = "identity", colour = "black") + 
-            labs(y =  "Relative abundance (%)", x = "") + scale_y_continuous(label=scales::percent) + facet_grid(Geographical_location ~ .) + theme(axis.text.x = element_blank())
-print(u)
-
-library("gridExtra")
-grid.arrange(f, m, u , nrow = 1)
-
-#worked##tp <- ggplot(df, aes(x = Sample, fill = genus, y = Abundance)) + geom_bar(stat = "identity", colour = "black") + facet_grid(Geographical_location ~ .)
-
-
-s <- ggplot(w, aes(x = Sample, y = Abundance, fill = Geographical_location)) + geom_bar(stat = "identity") +
-           labs(y = "Relative abundance (%)", x = '', title = "Core abundance")
-print(I)
-#re = subset_samples(df, Geographical_location=="Ahmednagar")
-
-
-
-dfdf <- md %>% arrange(Abundance) #leo 21.37
-df$test <- factor(df$test, levels=unique(df$test))
-md$test <- gsub(md$test, pattern = "Propionibacterium", replacement = "Propionibacterium/Cutibacterium")
-##renukadd <- data.frame(Abundance = md) %>% arrange(Abundance)
-
-##dd <- data.frame(Genus = names(md), prevalence = f) %>% arrange(Abundance)
-
-##renukay <- data.frame(test = names(md), detection = md) %>% arrange(Abundance)
-##o$taxa <- factor(o$taxa, levels=sorted.names)
-##sorted.names <- o$genus 
-
-
-#attenmt x <- abundances(transform(o, "compositional"))
-#attenmtf <- melt(x)
-#attenmtf$c <- gsub(f$Var1, pattern = "Propionibacterium", replacement = "Propionibacterium/Cutibacterium")
-#names(x) <- gsub(names(x), pattern = "Propionibacterium", replacement = "Propionibacterium/Cutibacterium")
-#attenmtdd <- data.frame(Genus = names(f), prevalence = f) %>% arrange(value)
-#attenmt sorted.names <- df$Genus 
-
-I <- ggplot(md, aes(x = "Sample", y = "Abundance")) + geom_bar(stat = "identity") +
-           labs(y = "Relative abundance (%)", x = '', title = "Core abundance")
-print(I)
-
-##Worked 30-9.21#####################################################
-
-transform <- microbiome::transform
-j <- transform(phy, "compositional")
-sp <- aggregate_taxa(j, "genus")
-#tax_table(sp$other) <- aggregate_rare(sp, level = 'genus',detection = 0.1/100, prevalence = 20/100, include.lowest =FALSE)
-o <- aggregate_rare(sp, level = 'genus',detection = 0.1/100, prevalence = 20/100, include.lowest =TRUE)
-
-#Visualisation
-re = subset_samples(o, Geographical_location=="Ahmednagar")
-r <- plot_composition(re,
-                      taxonomic.level = "genus",
-                      sample.sort = "sample",
-                      x.label = " ") +
-  guides(fill = guide_legend(ncol = 1)) + 
-  scale_y_continuous(label = scales::percent) + scale_fill_brewer("genus", palette = "#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5", "#D9D9D9", "#BC80BD", "#CCEBC5", "#FFED6F", "#A6CEE3", "#1F78B4", "#B2DF8A", "#33A02C", "#FB9A99", "#E31A1C", "#FDBF6F", "#FF7F00", "#CAB2D6", "#6A3D9A", "#FFFF99", "#B15928") +
-  labs(x = "Ahmednagar samples", y = "Relative abundance (%)") 
-print(r)
-
-nu = subset_samples(o, Geographical_location=="Pune")
-n <- plot_composition(nu,
-                      taxonomic.level = "genus",
-                      sample.sort = "sample",
-                      x.label = " ") +
-  guides(fill = guide_legend(ncol = 1)) + 
-  scale_y_continuous(label = scales::percent) + 
-  labs(x = "Pune samples", y = "Relative abundance (%)")
-print(n)
-
-ka = subset_samples(o, Geographical_location=="Nashik")
-k <- plot_composition(ka,
-                      taxonomic.level = "genus",
-                      sample.sort = "sample",
-                      x.label = " ") +
-  guides(fill = guide_legend(ncol = 1)) + 
-  scale_y_continuous(label = scales::percent) + 
-  labs(x = "Nashik samples", y = "Relative abundance (%)")
-print(k)
-
-library("gridExtra")
-grid.arrange(r, n, k , nrow = 1)
-```
-
-# 3/10/21 at phylum level 
 
 ```{r chunk label, echo=FALSE, message=FALSE, warning=FALSE, fig.width=20, fig.height=6}
 knitr::opts_chunk$set(fig.width=15, fig.height=10, message=FALSE, warning=FALSE)
@@ -310,16 +159,6 @@ grid.arrange(f, m, u , nrow = 1)
 ```
 
 
-```{r plot, echo=FALSE, message=FALSE, warning=FALSE, fig.width=10, fig.height=6}
-theme_set(theme_bw(base_size=25))
-n <- df %>% filter (Geographical_location=="Nashik")
-u <- ggplot(n, aes(x = Sample, fill = Phylum, y = Abundance)) + geom_bar(stat = "identity", colour = "black") + 
-            labs(y =  "Relative abundance (%)", x = "") + scale_y_continuous(label=scales::percent) + scale_fill_brewer("Phyla", palette = "Set3") + facet_grid(Geographical_location ~ .) + facet_grid(cols = vars(Geographical_location)) + theme(axis.text.x = element_blank())
-print(u)
-
-library("gridExtra")
-grid.arrange(f, m, u , nrow = 1)
-```
 
 ## Differential abundance analysis (with ANCOM)
 
@@ -419,69 +258,69 @@ s1 <- sample_names(subset_samples(ps, Geographical_location == "Ahmednagar"))
 s2 <- sample_names(subset_samples(ps, Geographical_location == "Nashik"))
 s3 <- sample_names(subset_samples(ps, Geographical_location == "Pune"))
 rp<- rowMeans(abundances(pseq)[, s1])/rowMeans(abundances(pseq)[, s2])/rowMeans(abundances(pseq)[, s3])
-sample_data(ps)$rp<- rowMeans(abundances(pseq)[, s1])/rowMeans(abundances(pseq)[, s2])/rowMeans(abundances(pseq)[, s3])
+#sample_data(ps)$rp<- rowMeans(abundances(pseq)[, s1])/rowMeans(abundances(pseq)[, s2])/rowMeans(abundances(pseq)[, s3])
 ```
 
 
 ## Differential abundance analysis (with ANCOM-BC)
 
 ```{r ANCOM-BC, echo=FALSE, message=FALSE, warning=FALSE}
-library(tidyverse)
-library(microbiome)
-library(magrittr)
-library(qwraps2)
-library(ANCOMBC)
-library(DT)
-options(DT.options = list(
-  initComplete = JS("function(settings, json) {",
-  "$(this.api().table().header()).css({'background-color': 
-  '#000', 'color': '#fff'});","}")))
+#library(tidyverse)
+#library(microbiome)
+#library(magrittr)
+#library(qwraps2)
+#library(ANCOMBC)
+#library(DT)
+#options(DT.options = list(
+#  initComplete = JS("function(settings, json) {",
+#  "$(this.api().table().header()).css({'background-color': 
+ # '#000', 'color': '#fff'});","}")))
 
-data= phy #<- readRDS("data/processed/phyloseq/phy20.1.RDS")
+#data= phy #<- readRDS("data/processed/phyloseq/phy20.1.RDS")
 
 # Re-code the Geographical location group
-sample_data(data)$Geographical_location = recode(sample_data(data)$Geographical_location,
-                                  Ahmednagar = "AN",
-                                  Nashik = "NS",
-                                  Pune = "PN")
+#sample_data(data)$Geographical_location = recode(sample_data(data)$Geographical_location,
+ #                                 Ahmednagar = "AN",
+#                                  Nashik = "NS",
+#                                  Pune = "PN")
 # Re-code the age group
-sample_data(data)$age_group = recode(sample_data(data)$age_group,
-                                  middle_age = "MA",
-                                  elderly = "EL",
-                                  adult = "AD")
+#sample_data(data)$age_group = recode(sample_data(data)$age_group,
+#                                  middle_age = "MA",
+#                                  elderly = "EL",
+#                                  adult = "AD")
 
 # Aggregate to gunus level
-genus_data = aggregate_taxa(data, "genus") 
+#genus_data = aggregate_taxa(data, "genus") 
 
 # data summery
-options(qwraps2_markup = "markdown")
-summary_template =
-  list("Geographical_location" =
-         list("Ahmednagar" = ~ n_perc0(Geographical_location == "AN", na_rm = TRUE),
-              "Nashik" = ~ n_perc0(Geographical_location == "NS", na_rm = TRUE),
-              "Pune" = ~ n_perc0(Geographical_location == "PN", na_rm = TRUE))) 
- "Age"= list("middle_age" = ~ n_perc0(age_group == "MA", na_rm = TRUE),
-             "elderly" = ~ n_perc0(age_group == "EL", na_rm = TRUE),
-            "adult" = ~ n_perc0(age_group == "AD", na_rm = TRUE))
+#options(qwraps2_markup = "markdown")
+#summary_template =
+ # list("Geographical_location" =
+  #       list("Ahmednagar" = ~ n_perc0(Geographical_location == "AN", na_rm = TRUE),
+#              "Nashik" = ~ n_perc0(Geographical_location == "NS", na_rm = TRUE),
+#              "Pune" = ~ n_perc0(Geographical_location == "PN", na_rm = TRUE))) 
+# "Age"= list("middle_age" = ~ n_perc0(age_group == "MA", na_rm = TRUE),
+#             "elderly" = ~ n_perc0(age_group == "EL", na_rm = TRUE),
+#            "adult" = ~ n_perc0(age_group == "AD", na_rm = TRUE))
 
-data_summary = summary_table(meta(data), summary_template)
-data_summary
+#data_summary = summary_table(meta(data), summary_template)
+#data_summary
 
 
 # Running ANCOM-BC function
 
-out = ancombc(phyloseq = genus_data, formula = "Age", 
-              p_adj_method = "holm", zero_cut = 0.90, lib_cut = 1000, 
-              group = "Geographical_location", struc_zero = TRUE, neg_lb = TRUE, tol = 1e-5, 
-              max_iter = 100, conserve = TRUE, alpha = 0.05, global = TRUE)
+#out = ancombc(phyloseq = genus_data, formula = "Age", 
+#              p_adj_method = "holm", zero_cut = 0.90, lib_cut = 1000, 
+#              group = "Geographical_location", struc_zero = TRUE, neg_lb = TRUE, tol = 1e-5, 
+ #             max_iter = 100, conserve = TRUE, alpha = 0.05, global = TRUE)
 
-res = out$res
-res_global = out$res_global
+#res = out$res
+#res_global = out$res_global
 
 # coefficients 
-tab_coef = res$beta
-col_name = c("AN-NS", "AN-PN", "PN-NS")
-colnames(tab_coef) = col_name
-tab_coef %>% datatable(caption = "Coefficients from the Primary Result") %>%
-      formatRound(col_name, digits = 2)
+#tab_coef = res$beta
+#col_name = c("AN-NS", "AN-PN", "PN-NS")
+#colnames(tab_coef) = col_name
+#tab_coef %>% datatable(caption = "Coefficients from the Primary Result") %>%
+#      formatRound(col_name, digits = 2)
 ```
