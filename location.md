@@ -1,107 +1,73 @@
-
 # Analysis
-
-
-
 
 ## Alpha diversity analysis
 
-Diversity index: diversity_shannon
+Diversity index: diversity\_shannon
 
+    ## [1] TRUE
 
-```
-## [1] TRUE
-```
+    ## [1] TRUE
 
-```
-## [1] TRUE
-```
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">z</th>
+<th style="text-align: right;">f</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Ahmednagar</td>
+<td style="text-align: right;">1.484529</td>
+<td style="text-align: right;">0.8822138</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nashik</td>
+<td style="text-align: right;">1.271455</td>
+<td style="text-align: right;">0.7312206</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Pune</td>
+<td style="text-align: right;">1.176848</td>
+<td style="text-align: right;">0.6908416</td>
+</tr>
+</tbody>
+</table>
 
+    ## 
+    ##  Kruskal-Wallis rank sum test
+    ## 
+    ## data:  index by factor(Geographical_location)
+    ## Kruskal-Wallis chi-squared = 0.94558, df = 2, p-value = 0.6233
 
+<img src="figure_location/diffab-1.png" width="50%" />
 
-|           |        z|         f|
-|:----------|--------:|---------:|
-|Ahmednagar | 1.484529| 0.8822138|
-|Nashik     | 1.271455| 0.7312206|
-|Pune       | 1.176848| 0.6908416|
+## Phyla level individual relative abundance bar graph
 
-
-
-```
-## 
-## 	Kruskal-Wallis rank sum test
-## 
-## data:  index by factor(Geographical_location)
-## Kruskal-Wallis chi-squared = 0.94558, df = 2, p-value = 0.6233
-```
-
-<img src="figure_location/diffab-1.png" title="plot of chunk diffab" alt="plot of chunk diffab" width="50%" />
-
-## investigating top factors
-
-
-
-```
-## [1] "OTU15"  "OTU22"  "OTU76"  "OTU169"
-```
-
-<img src="figure_location/topfact-1.png" title="plot of chunk topfact" alt="plot of chunk topfact" width="50%" />
-
+![](figure_location/chunk%20label-1.png)
 
 ## Differential abundance analysis (with ANCOM)
 
-In [jointanalysis.md](jointanalysis.md) it was shown that geographical location has a significant effect.
+In [jointanalysis.md](jointanalysis.md) it was shown that geographical
+location has a significant effect.
 
 Here, we investigate individual taxonomic groups in more detail.
 
-For community comparison, see [CSTAnalysis_SkinSamples.md](CSTAnalysis_SkinSamples.md)
+For community comparison, see
+[CSTAnalysis\_SkinSamples.md](CSTAnalysis_SkinSamples.md)
 
-Significant (or marginally significant) taxa between geographical locations.
+Significant (or marginally significant) taxa between geographical
+locations.
 
+Dunn test was performed for pairwise comparisons on significant taxa.
 
-```
-## Error in library(compositions): there is no package called 'compositions'
-```
+    ##   taxa_id   W detected_0.9 detected_0.8 detected_0.7 detected_0.6
+    ## 1 OTU1075 273         TRUE         TRUE         TRUE         TRUE
+    ## 2 OTU2529 271         TRUE         TRUE         TRUE         TRUE
+    ## 3  OTU773 267         TRUE         TRUE         TRUE         TRUE
+    ## 4 OTU1235 267         TRUE         TRUE         TRUE         TRUE
+    ## 5 OTU2172 265         TRUE         TRUE         TRUE         TRUE
+    ## 6 OTU1893 263         TRUE         TRUE         TRUE         TRUE
 
-```
-## Error in feature_table_pre_process(feature_table, meta_data, sample_var, : could not find function "feature_table_pre_process"
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'prepro' not found
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'prepro' not found
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'prepro' not found
-```
-
-```
-## Error in ANCOM(feature_table, meta_data, struc_zero, main_var, p_adj_method, : could not find function "ANCOM"
-```
-
-```
-## Error in UseMethod("arrange"): no applicable method for 'arrange' applied to an object of class "NULL"
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'res.sorted' not found
-```
-
-```
-## Error in head(res.sorted): object 'res.sorted' not found
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'top.taxa' not found
-```
-
-
-
-```
-## Error in `$<-.data.frame`(S3Part(x, TRUE), name, value): replacement has 674 rows, data has 58
-```
-
+<img src="figure_location/xyz-1.png" width="25%" /><img src="figure_location/xyz-2.png" width="25%" /><img src="figure_location/xyz-3.png" width="25%" /><img src="figure_location/xyz-4.png" width="25%" /><img src="figure_location/xyz-5.png" width="25%" /><img src="figure_location/xyz-6.png" width="25%" /><img src="figure_location/xyz-7.png" width="25%" /><img src="figure_location/xyz-8.png" width="25%" /><img src="figure_location/xyz-9.png" width="25%" /><img src="figure_location/xyz-10.png" width="25%" /><img src="figure_location/xyz-11.png" width="25%" /><img src="figure_location/xyz-12.png" width="25%" />

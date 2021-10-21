@@ -114,11 +114,11 @@ bs$new <- factor(bs$new, levels=sorted.names)
 p4 <- ggplot(bs, aes(x = new, y = value)) +
        geom_boxplot() +
        geom_jitter(width = 0.1) +
-       scale_y_continuous(label = scales::percent) +      
+       scale_y_continuous(label = scales::percent) +   
        #scale_y_log10(label = scales::percent) +
        coord_flip() + theme(legend.position="none") +
        labs(y = "Relative abundance (%)", x = '', title = "Core abundance")
-#print(p4)
+print(p4)
 ```
 
 ```{r core_prevalance, echo=FALSE, warning=FALSE, message=FALSE, fig.width=23, fig.height=11, fig.show="hold"}
