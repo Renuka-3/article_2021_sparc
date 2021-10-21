@@ -28,18 +28,18 @@ ps <- transform(ps, "compositional")
 ```{r MDS_CLRleo, warning=FALSE, message=FALSE, echo=FALSE, warning=FALSE}
 braydist <- phyloseq::distance(ps, method="bray")
 ord <- ordinate(ps, method = "MDS", distance = braydist)
-plot_scree(ord) + xlim(as.character(seq(1,15))) + ggtitle("MDS-bray ordination eigenvalues")
+#plot_scree(ord) + xlim(as.character(seq(1,15))) + ggtitle("MDS-bray ordination eigenvalues")
 evs <- ord$value$Eigenvalues
-print(evs[1:20])
-print(tail(evs))
+#print(evs[1:20])
+#print(tail(evs))
 ```
 
 
 ## Denoise distance matrix
 
 ```{r PCoA-cutoff2_CLRleo, warning=FALSE, message=FALSE, echo=FALSE, warning=FALSE}
-h_sub5 <- hist(evs[6:length(evs)], 100)
-plot(h_sub5$mids, h_sub5$count, log="y", type='h', lwd=10, lend=2)
+#h_sub5 <- hist(evs[6:length(evs)], 100)
+#plot(h_sub5$mids, h_sub5$count, log="y", type='h', lwd=10, lend=2)
 ```
 
 
@@ -55,7 +55,7 @@ pamPCoA = function(x, k) {
   list(cluster = pam(x[,1:2], k, cluster.only = TRUE))
 }
 gs <- clusGap(x, FUN = pamPCoA, K.max = 12, B = 50)
-plot_clusgap(gs) + scale_x_continuous(breaks=c(seq(0, 12, 2)))
+#plot_clusgap(gs) + scale_x_continuous(breaks=c(seq(0, 12, 2)))
 ```
 
 
@@ -107,7 +107,7 @@ p1 <- plot_landscape(microbiome::transform(ps , "compositional"),
                     col = "Geographical_location",
                     shading = FALSE) + 
   scale_colour_brewer(palette = "Set1")	+ labs(title = "Geographical location") + theme(legend.position = 'bottom', legend.text=element_text(size=30)) +theme(legend.title=element_blank())
-print(p1)
+#print(p1)
 
 
 p2 <- plot_landscape(microbiome::transform(ps , "compositional"),
@@ -120,7 +120,6 @@ p2 <- plot_landscape(microbiome::transform(ps , "compositional"),
   scale_colour_brewer(palette = "Set1") +theme(legend.position = 'bottom', legend.text=element_text(size=30)) + theme(legend.title=element_blank())    
 #print(p2)
 
-#theme_set(theme_bw(base_size=20))
 
 gridExtra::grid.arrange(p1, p2, nrow = 1)
 ```
@@ -161,24 +160,14 @@ dfm <- tab <- data.frame(ASV = significant.taxa, Full_name = full.names[signific
 dfm$short_name <- dfm$Full_name %>% strsplit("_" ) %>% sapply(tail, 1 )
 #tab$short_names <- tab$Full_name %>% strsplit("_" ) %>% sapply(tail, 1 )
 
-
-
 for(CST in CSTs) {
   pshm <- prune_samples(sample_data(pso1)$CST == CST, pso1)
   dfm <- melt(abundances(pshm))
-  ##colnames(dfm) <- c("Taxa", "Sample", "value")
-  #colnames(dfm) <- c("short_name", "Sample", "value")
-  ##dfm$Taxa <- factor(dfm$Taxa, levels = short_names)
-  ##dfm$short_name <- factor(dfm$short_name)
-  # dfm$Sample <- factor(dfm$Sample, levels = neatsort(pshm, "cols"))
   dfm$short_name <- full.names[as.character(dfm$Var1)] %>% strsplit("_" ) %>% sapply(tail, 1 )
   p[[CST]]<- heat((dfm), "Var2","short_name", "value", legend.text = "Abundance", order.rows = F, 
                 order.cols = F, limits= c(-5,5), step = 2) +
 		ggtitle(paste("CST:", CST)) + theme(axis.text.x = element_blank())
 print(p[[CST]]) 
-#print(p[[1]])
-#print(p[[2]])
-#print(p[[3]])
 }
 ```
 
@@ -193,6 +182,6 @@ Table of full names for the heatmap taxa:
 library(knitr)
 tab <- data.frame(ASV = significant.taxa, Full_name = full.names[significant.taxa])
 rownames(tab) <- NULL
-kable(tab)
+#kable(tab)
 ```
 
