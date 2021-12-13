@@ -85,18 +85,18 @@ sorted.samples.by.Firmicutes <- unlist(subset(df, Phylum=="Firmicutes") %>% arra
 df$Sample <- factor(df$Sample, levels = sorted.samples.by.Firmicutes)
 w <- df %>% filter (Geographical_location=="Ahmednagar")
 f <- ggplot(w, aes(x = Sample, fill = Phylum, y = Abundance)) + geom_bar(stat = "identity", colour = "black") + 
-            labs(y =  "Relative abundance (%)", x = "") + scale_y_continuous(label=scales::percent) + scale_fill_brewer("Phylum", palette = "Set3") + facet_grid(Geographical_location ~ .) + facet_grid(cols = vars(Geographical_location)) + theme(axis.text.x = element_blank(),legend.position = "none") 
+            labs(y =  "Relative abundance (%)", x = "Individuals") + scale_y_continuous(label=scales::percent) + scale_fill_brewer("Phylum", palette = "Set3") + facet_grid(Geographical_location ~ .) + facet_grid(cols = vars(Geographical_location)) + theme(axis.text.x = element_blank(),legend.position = "none") 
 #print(f)
 
 
 l <- df %>% filter (Geographical_location=="Pune")
 m <- ggplot(l, aes(x = Sample, fill = Phylum, y = Abundance)) + geom_bar(stat = "identity", colour = "black") + 
-            labs(y =  "", x = "") + scale_y_continuous(label=scales::percent)  + scale_fill_brewer("Phylum", palette = "Set3") + facet_grid(Geographical_location ~ .) +  facet_grid(cols = vars(Geographical_location)) + theme(axis.text.x = element_blank(), legend.position = "none")
+            labs(y =  "", x = "Individuals") + scale_y_continuous(label=scales::percent)  + scale_fill_brewer("Phylum", palette = "Set3") + facet_grid(Geographical_location ~ .) +  facet_grid(cols = vars(Geographical_location)) + theme(axis.text.x = element_blank(), legend.position = "none")
 #print(m)
 
 n <- df %>% filter (Geographical_location=="Nashik")
 u <- ggplot(n, aes(x = Sample, fill = Phylum, y = Abundance)) + geom_bar(stat = "identity", colour = "black") + 
-            labs(y =  "", x = "") + scale_y_continuous(label=scales::percent) + scale_fill_brewer("Phyla", palette = "Set3") + facet_grid(Geographical_location ~ .) + facet_grid(cols = vars(Geographical_location)) + theme(axis.text.x = element_blank())
+            labs(y =  "", x = "Individuals") + scale_y_continuous(label=scales::percent) + scale_fill_brewer("Phyla", palette = "Set3") + facet_grid(Geographical_location ~ .) + facet_grid(cols = vars(Geographical_location)) + theme(axis.text.x = element_blank())
 #print(u)
 
 library("gridExtra")

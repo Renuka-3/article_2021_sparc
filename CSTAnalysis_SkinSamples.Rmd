@@ -166,7 +166,7 @@ for(CST in CSTs) {
   dfm$short_name <- full.names[as.character(dfm$Var1)] %>% strsplit("_" ) %>% sapply(tail, 1 )
   p[[CST]]<- heat((dfm), "Var2","short_name", "value", legend.text = "Abundance", order.rows = F, 
                 order.cols = F, limits= c(-5,5), step = 2) +
-		ggtitle(paste("CST:", CST)) + theme(axis.text.x = element_blank())
+		ggtitle(paste("CST:", CST)) + theme(axis.text.x = element_blank()) +labs(x= "Individuals")
 print(p[[CST]]) 
 }
 ```
