@@ -8,16 +8,9 @@ library(vegan)
 library(Cairo)
 library(knitr)
 library(knitcitations)
-library(microbiome)
 library(ggplot2)
 library(dplyr)
-library(vegan)
-library(phyloseq)
-library(microbiome)
-library(phyloseq)
 library(reshape2)
-
-
 opts_chunk$set(dev="CairoPNG")
 knitr::opts_chunk$set(fig.path="figure_joint/")
 
@@ -32,44 +25,24 @@ phy <- readRDS("data/processed/phyloseq/phy20.1.RDS")
 * Ordination method: `r method`
 * Dissimilarity measure: `r distance`
 
-```{r pcoa, echo=FALSE, message=FALSE, fig.width=20, fig.height=15, out.width="40", fig.show="hold", warning=FALSE}
-theme_set(theme_bw(50))
+```{r pcoa, echo=FALSE, message=FALSE, fig.width=20, fig.height=12, out.width="40", fig.show="hold", warning=FALSE}
+theme_set(theme_bw(40))
 phy.temp <- phy
 sample_data(phy.temp)$Diet <- as.factor(gsub("Veg", "Vegetarian", sample_data(phy.temp)$Diet))
-p <- plot_landscape(microbiome::transform(phy.temp , "compositional"),
-                    distance = distance,
-                    method = method,
-                    size = 5,
-                    col = "Diet",
-                    shading = FALSE) +
-  scale_colour_brewer(palette = "Set1")	+ labs(title = "Diet") + theme(legend.position = 'bottom', legend.text=element_text(size=32)) + theme(legend.title=element_blank()) 
+V <- microbiome::transform(phy.temp, "compositional")
+ord <- ordinate(V, method="PCoA", distance="bray")
+p <- plot_ordination(V, ord, color="Diet")+ geom_point(size=5) + theme(legend.position = 'bottom', legend.text=element_text(size=35)) + theme(legend.title=element_blank()) + theme(axis.text.x = element_text(size=30), axis.text.y = element_text(size = 30)) + theme(axis.title = element_text(size = 35)) + labs(x = "PC1 [28.4%]", y= " PC2 [17.7%]", title = "A. Diet")
 print(p)
 
-theme_set(theme_bw(50))
 phy.tempp <- phy
 sample_data(phy.tempp)$age_group <- as.factor(gsub("middle_age", "Middle age", sample_data(phy.temp)$age_group))
 sample_data(phy.tempp)$age_group<- as.factor(gsub("adult", "Adult", sample_data(phy.tempp)$age_group))
 sample_data(phy.tempp)$age_group<- as.factor(gsub("elderly", "Elderly", sample_data(phy.tempp)$age_group))
-p1<- plot_landscape(microbiome::transform(phy.tempp , "compositional"),
-                     distance = distance,
-                     method = method,
-                     size = 5,
-                     col = "age_group",
-                     shading = FALSE) +
-  scale_colour_brewer(palette = "Set1")	+ labs(title = "Age group")+ theme(legend.position = 'bottom', legend.text=element_text(size=32))+ theme(legend.title=element_blank())    
-print(p1)
-
-#p2<- plot_landscape(microbiome::transform(phy , "compositional"),
-                    #distance = distance,
-                    #method = method,
-                    #size = 5,
-                    #col = "Geographical_location",
-                    #shading = FALSE) +
-  #scale_colour_brewer(palette = "Set1") + labs(title = "Geographical location") + theme(legend.position = 'bottom', legend.text=element_text(size=12), legend.title=element_text(size=22)) 
-#print(p2)
-#png("pcoa.png", width = 500, height = 500, res = 300)
-gridExtra::grid.arrange(p, p1, nrow = 1)
-#dev.off()
+V1 <- microbiome::transform(phy.tempp, "compositional")
+ord <- ordinate(V1, method="PCoA", distance="bray")
+p2 <- plot_ordination(V1, ord, color="age_group")+ geom_point(size=5) + theme(legend.position = 'bottom', legend.text=element_text(size=35)) + theme(legend.title=element_blank()) + theme(axis.text.x = element_text(size=33), axis.text.y = element_text(size = 33)) + theme(axis.title = element_text(size = 33)) + labs(x = "PC1 [28.4%]", y= " PC2 [17.7%]", title = "B. Age group")
+print(p2)
+gridExtra::grid.arrange(p, p2, nrow = 1)
 ```
 
 # PERMANOVA analysis
@@ -87,15 +60,4 @@ print(res)
 There is a significant difference in microbiota community composition between different geographical areas.
 
 No significant effect is observed in diet or age group.
-
-# Investigating the top factors
-
-```{r,echo=FALSE, message=FALSE}
-#coef <- coefficients(res)["Geographical_location1",]
-#top.coef <- coef[rev(order(abs(coef)))[1:20]]
-#par(mar = c(3, 14, 2, 1))
-#barplot(sort(top.coef), horiz = T, las = 1, main = "Top taxa")
-```
-
-
 

@@ -27,39 +27,8 @@ Core microbiota is here defined based on the following parameters:
 
 The following taxonomic groups are in the core genera. Mean relative abundance and population prevalence (above detection threshold) are shown.
 
-```{r core_genera, echo=FALSE, message=FALSE, results='hide', fig.width=10, fig.height=8, out.width="50%"}
-ps <- aggregate_taxa(phy20.1, "genus")
-ps <- microbiome::transform(ps, "compositional")
-ps.core <- core(ps, detection = core_detection, prevalence = core_prevalence)
-m <- round(100 * rowMeans(abundances(ps.core)), 1)
-median <- round(100 * apply(abundances(ps.core), 1, median), 1)
-prev <- round(100 * prevalence(ps.core, detection = core_detection), 1)
-d <- as.data.frame(list(Taxon = names(m), Abundance_mean = m, Abundance_median = median, Prevalence = prev))
-rownames(d) <- NULL
-d <- d %>% arrange(desc(Abundance_mean), desc(Prevalence))
-colnames(d) <- c("Taxon", "Mean Relative abundance (%)", "Median Relative abundance (%)", "Prevalence (%)")
-#kable(d)
-```
 
-
-Abundance variation across samples for each core taxa.
-
-```{r core_rank_abundance, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=4, fig.show="hold"}
-theme_set(theme_bw(base_size = 13))
-dfm <- melt(abundances(ps.core))
-dfm$Var1 <- factor(dfm$Var1, levels = rev(d$Taxon))
-dfm$Var_new = str_wrap(dfm$Var1, width = 40)
-p2 <- ggplot(dfm, aes(x = Var_new, y = value)) +
-       geom_boxplot() +
-       geom_jitter(width = 0.1) +       
-       scale_y_log10(label = scales::percent) +
-       coord_flip() + theme(legend.position="none") +
-       labs(y = "Relative abundance (%)", x = '', title = "Core abundance variation")
-#print(p2)
-```
-
-
-Phylum abundance table (relative abundance %):
+Phylum abundance table (relative abundance % and prevalance):
 
 ```{r core_phyla, echo=FALSE, message=FALSE, fig.width=10, fig.height=8, out.width="50%"}
 ps <- aggregate_taxa(phy20.1, "phylum")
@@ -74,6 +43,9 @@ d <- d %>% arrange(desc(Abundance_mean), desc(Prevalence))
 colnames(d) <- c("Taxon", "Mean Relative abundance (%)", "Prevalence (%)")
 kable(d)
 ```
+
+# Genus abundance table (relative abundance % and prevalance):
+
 
 ```{r genus_table, echo=FALSE, message=FALSE,  warning=FALSE, fig.width=12, fig.height=6, fig.show="keep", out.width="50%"}
 library(knitr)
@@ -94,6 +66,7 @@ library(data.table)
 a <- data.table:::print.data.table(dfm, nrows = 20, topn=20)
 ```
 
+# Relative abundance and prevalance for most prevalnet genera
 
 ```{r core_abundance, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=7, fig.show="hold"}
 theme_set(theme_bw(base_size = 18))
@@ -118,7 +91,6 @@ p4 <- ggplot(bs, aes(x = new, y = value)) +
        #scale_y_log10(label = scales::percent) +
        coord_flip() + theme(legend.position="none") +
        labs(y = "Relative abundance (%)", x = '', title = "Core abundance")
-#print(p4)
 ```
 
 ```{r core_prevalance, echo=FALSE, warning=FALSE, message=FALSE, fig.width=23, fig.height=11, fig.show="hold"}
@@ -129,18 +101,13 @@ names(x) <- gsub(names(x), pattern = "Propionibacterium", replacement = "Cutibac
 df <- data.frame(Genus = names(x), prevalence = x) %>% arrange(prevalence)
 sorted.names <- df$Genus 
 df$Genus <- factor(df$Genus, levels = sorted.names)
-#png("core.png", width = 500, height = 500, res = 300)
 g <- ggplot(df, aes(x = df$Genus, y = prevalence)) +
   geom_bar(stat = "identity") +
   coord_flip() +
   theme(axis.text.x = element_text(angle = 0, hjust = 1)) + 
   scale_y_continuous(label = scales::percent) +  
   labs(y = "Prevalence (%)", x = '', title = "Core prevalence") 
-#print(g)
-#dev.off()
 library("gridExtra")
-#png("core.png", width = 500, height = 500, res = 300)
 grid.arrange(p4,g, nrow=1)
-#dev.off()
 ```
 

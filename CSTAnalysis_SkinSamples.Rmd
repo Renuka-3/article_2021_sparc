@@ -95,33 +95,20 @@ ok <- ordinate(ps, method="NMDS", distance=braydist)
 
 Coloured by CST community type
 
-```{r pcoa, echo=FALSE, message=FALSE, fig.width=15, fig.height=10, out.width="50%", fig.show="hold", warning=FALSE}
-theme_set(theme_bw(base_size=25))
+```{r pcoa, echo=FALSE, message=FALSE, fig.width=17, fig.height=10, out.width="50%", fig.show="hold", warning=FALSE}
+theme_set(theme_bw(base_size=33))
 method <- "PCoA"
 trans <- "compositional"
 distance <- "bray"
-p1 <- plot_landscape(microbiome::transform(ps , "compositional"),
-                    distance = distance,
-                    method = method,
-                    size = 4,
-                    col = "Geographical_location",
-                    shading = FALSE) + 
-  scale_colour_brewer(palette = "Set1")	+ labs(title = "Geographical location") + theme(legend.position = 'bottom', legend.text=element_text(size=30)) +theme(legend.title=element_blank())
-#print(p1)
+p3 <- microbiome::transform(ps, "compositional")
+ordi <- ordinate(p3, method="PCoA", distance="bray")
+p4 <- plot_ordination(p3, ordi, color="Geographical_location")+ geom_point(size=5) + theme(legend.position = 'bottom', legend.text=element_text(size=30)) + theme(legend.title=element_blank()) + theme(axis.text.x = element_text(size=30), axis.text.y = element_text(size = 30)) + theme(axis.title = element_text(size = 33)) + labs(x = "PC1 [28.4%]", y= " PC2 [17.7%]", title= "C. Geographical location")
+#print(p4)
 
-
-p2 <- plot_landscape(microbiome::transform(ps , "compositional"),
-                    distance = distance,
-                    method = method,
-                    size = 4,
-                    col = "CST",
-                    shading = FALSE) +
-  labs(title = "CST") + 		    		    
-  scale_colour_brewer(palette = "Set1") +theme(legend.position = 'bottom', legend.text=element_text(size=30)) + theme(legend.title=element_blank())    
-#print(p2)
-
-
-gridExtra::grid.arrange(p1, p2, nrow = 1)
+p8 <- microbiome::transform(ps, "compositional")
+ordi <- ordinate(p8, method="PCoA", distance="bray")
+p9 <- plot_ordination(p8, ordi, color="CST")+ geom_point(size=5) + theme(legend.position = 'bottom', legend.text=element_text(size=35)) + theme(legend.title=element_blank()) + theme(axis.text.x = element_text(size=30), axis.text.y = element_text(size = 30)) + theme(axis.title = element_text(size = 33)) + labs(x = "PC1 [28.4%]", y= " PC2 [17.7%]", title = "D. CST")
+gridExtra::grid.arrange(p4, p9, nrow = 1)
 ```
 
 ### Heatmap
@@ -169,19 +156,5 @@ for(CST in CSTs) {
 		ggtitle(paste("CST:", CST)) + theme(axis.text.x = element_blank()) +labs(x= "Individuals")
 print(p[[CST]]) 
 }
-```
-
-
-
-
-
-
-Table of full names for the heatmap taxa:
-
-```{r full_names, echo=FALSE}
-library(knitr)
-tab <- data.frame(ASV = significant.taxa, Full_name = full.names[significant.taxa])
-rownames(tab) <- NULL
-#kable(tab)
 ```
 

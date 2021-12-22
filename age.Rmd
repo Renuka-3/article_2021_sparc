@@ -10,12 +10,8 @@ library(dplyr)
 library(knitr)
 library(knitcitations)
 library(microbiome)
-library(phyloseq)
-library(ggplot2)
 library(reshape2)
 library(tidyverse)
-library(dada2)
-library(dplyr)
 theme_set(theme_bw(20))
 knitr::opts_chunk$set(fig.width=10, fig.height=10, message=FALSE, warning=FALSE)
 knitr::opts_chunk$set(fig.path="figure_age/")
@@ -40,7 +36,6 @@ is.data.frame(c2)
 i <- sapply(split(c2$diversity_shannon, c2$age_group), mean)
 o <- sapply(split(c2$diversity_shannon, c2$age_group), sd) 
 y <- cbind(i,o)
-#c <- round(100 * sapply(split(c2$diversity_shannon, c2$age_group), mean),2)
 kable(y)
 ```
 
@@ -80,35 +75,5 @@ wilcox.test(data = er, index ~factor(age_group))
 ty<- subset(df, age_group %in% c("middle_age", "elderly"))
 en <- wilcox.test(data = ty, index ~ factor(age_group))$p.value
 wilcox.test(data = ty, index ~factor(age_group))
-p.adjust(c(0.001,0.71,0.12), method = "bonferroni")
-
-#d2 <- data.frame(df, aes(x ="", y = ""),label = c('min', '1st quartile', 'median', '3rd quartile', 'max', 'outlier'))
-
-#p1 + label = c('min', '1st quartile', 'median', '3rd quartile', 'max', 'outlier')
-
-```
-
-
-# PERMANOVA analysis
-
-p value for the effect of age  is (p=0.07), which is significant.
-
-```{r PERMANOVA, echo= FALSE, warning=FALSE}
-library(microbiome)
-library(ggplot2)
-library(dplyr)
-pseq <- phy# Rename the example data
-data = microbiome::meta(phy)
-# Pick relative abundances (compositional) and sample metadata 
-pseq.rel <- microbiome::transform(pseq, "compositional")
-otu <- abundances(pseq.rel)
-meta <- meta(pseq.rel)
-library(vegan)
-library(phyloseq)
-permanova <- adonis(t(otu) ~ age_group,
-               data = meta(phy), permutations=99, method = "bray")
-# P-value
-print(as.data.frame(permanova$aov.tab)["age_group", "Pr(>F)"])
-dist <- vegdist(t(otu))
-anova(betadisper(dist, meta$age_group))
+p.adjust(c(0.001,0.01,0.05,0.1), method = "bonferroni")
 ```

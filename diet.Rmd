@@ -6,12 +6,9 @@ library(ggplot2)
 library(phyloseq)
 library(dada2)
 library(readxl)
-library(dplyr)
 library(knitr)
 library(knitcitations)
 library(microbiome)
-library(phyloseq)
-library(ggplot2)
 library(reshape2)
 library(tidyverse)
 library(dada2)
@@ -57,10 +54,8 @@ df <- bind_cols(df, A)
 df$index <- df[[index]]
 pv <- wilcox.test(data = df, index ~ factor(Diet))$p.value
 wilcox.test(data = df, index ~factor(Diet))
-
 library(ggbeeswarm)
 library(ggsignif)
-#jpeg(file= "figure_diet.jpeg", quality = 300)
 p1 <- ggplot(df, aes(x = Diet, y = index)) +
         geom_boxplot() +
        geom_jitter(width = 0.05) +
@@ -70,65 +65,5 @@ p1 <- ggplot(df, aes(x = Diet, y = index)) +
 	     x = "",
 	     title = "Diet") #+ geom_signif(comparisons = list(c("Mixed", "Veg")), map_signif_level = TRUE) 
 print(p1)
-#dev.off()
-```
-
-# Ordination
-
-```{r init, echo=FALSE, message=FALSE, warning=FALSE}
-library(microbiome)
-library(phyloseq)
-library(vegan)
-opts_chunk$set(dev="CairoPNG")
-method <- "PCoA"
-trans <- "compositional"
-distance <- "bray"
-```
-
-## *Principal Coordinates Analysis (PCoA)*
-
-* Ordination method: `r method`
-* Dissimilarity measure: `r distance`
-
-```{r pcoa, echo=FALSE, message=FALSE, warning=FALSE, fig.width=7, fig.height=5, out.width="50%", fig.show="hold"}
-theme_set(theme_bw(base_size=25))
-library(microbiome)
-p <- plot_landscape(microbiome::transform(phy , "compositional"),
-                    distance = "bray",
-                    method = "PCoA",
-                    size = 3,
-                    col = "Diet",
-                    shading = FALSE) +
-  scale_colour_brewer(palette = "Set1")	+labs(title = "Diet")	    
-print(p)
-#p + guides(color = guide_legend(title = "Diet"))"
-```
-
-
-# PERMANOVA analysis
-
-p value for the effect of diet is (p=0.31), which is not significant.
-
-```{r PERMANOVA, echo= FALSE, warning=FALSE}
-library(microbiome)
-library(ggplot2)
-library(dplyr)
-
-pseq <- phy# Rename the example data
-data = microbiome::meta(phy)
-# Pick relative abundances (compositional) and sample metadata 
-pseq.rel <- microbiome::transform(pseq, "compositional")
-otu <- abundances(pseq.rel)
-meta <- meta(pseq.rel)
-library(vegan)
-library(phyloseq)
-permanova <- adonis(t(otu) ~ Diet,
-               data = meta(phy), permutations=99, method = "bray")
-
-# P-value
-print(as.data.frame(permanova$aov.tab)["Diet", "Pr(>F)"])
-
-dist <- vegdist(t(otu))
-anova(betadisper(dist, meta$Diet))
 ```
 
