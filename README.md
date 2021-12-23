@@ -16,7 +16,7 @@ using OTU table, Taxonomic table and metadata of individuals.
 has significant effect on the overall community composition.
 
 3. [Location](location.md): Here we performed aplha,beta diversity and genus differential 
-analysis using ANCOMBC based on geographic location.
+analysis using ANCOM based on geographic location.
 
 4. [CST analysis](CSTAnalysis_SkinSamples.md): Here we identified three community state type analysis.
 
