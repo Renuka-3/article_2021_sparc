@@ -1,4 +1,4 @@
-# Skin microbiome
+# Code repository for article_2021_sparc
 Skin serves as a host for many microbial communities. The distribution and abundance of these microbes 
 are influenced by multiple parameters such as, lifestyle, environment, age, geography etc.
 Here we are investigating skin microbial community compostion along with its associated factors. 
@@ -7,8 +7,6 @@ Here we are investigating skin microbial community compostion along with its ass
 * [create_phyloseq.R](create_phyloseq.R):The phyloseq object is created 
 using OTU table, Taxonomic table and metadata of individuals.
 
-* [create_control_phyloseq.R](create_control_phyloseq.R)
-
 ### Conclusions
 1. [Core microbiota](output/core.md): Here we analysis relative abundance and prevalance of core microbiota.
 
@@ -16,7 +14,7 @@ using OTU table, Taxonomic table and metadata of individuals.
 has significant effect on the overall community composition.
 
 3. [Location](location.md): Here we performed aplha,beta diversity and genus differential 
-analysis using ANCOMBC based on geographic location.
+analysis using ANCOM based on geographic location.
 
 4. [CST analysis](CSTAnalysis_SkinSamples.md): Here we identified three community state type analysis.
 
