@@ -7,8 +7,6 @@ Here we are investigating skin microbial community compostion along with its ass
 * [create_phyloseq.R](create_phyloseq.R):The phyloseq object is created 
 using OTU table, Taxonomic table and metadata of individuals.
 
-* [create_control_phyloseq.R](create_control_phyloseq.R)
-
 ### Conclusions
 1. [Core microbiota](output/core.md): Here we analysis relative abundance and prevalance of core microbiota.
 
