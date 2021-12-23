@@ -1,53 +1,69 @@
-
-
-
 # Alpha diversity analysis
 
+    ## [1] TRUE
 
-```
-## [1] TRUE
-```
+    ## [1] TRUE
 
-```
-## [1] TRUE
-```
-
-
-
-|           |         i|         o|
-|:----------|---------:|---------:|
-|adult      | 1.4559824| 0.6633482|
-|middle_age | 0.8868898| 0.4883428|
-|elderly    | 1.3082521| 0.8993438|
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">i</th>
+<th style="text-align: right;">o</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">adult</td>
+<td style="text-align: right;">1.4559824</td>
+<td style="text-align: right;">0.6633482</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">middle_age</td>
+<td style="text-align: right;">0.8868898</td>
+<td style="text-align: right;">0.4883428</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">elderly</td>
+<td style="text-align: right;">1.3082521</td>
+<td style="text-align: right;">0.8993438</td>
+</tr>
+</tbody>
+</table>
 
 # Group-wise comparisons
-* Diversity index: diversity_shannon
 
+-   Diversity index: diversity\_shannon
 
-```
-## 
-## 	Kruskal-Wallis rank sum test
-## 
-## data:  index by factor(age_group)
-## Kruskal-Wallis chi-squared = 7.7239, df = 2, p-value = 0.02103
-```
+<!-- -->
 
-<img src="figure_age/group_comp-1.png" title="plot of chunk group_comp" alt="plot of chunk group_comp" width="50%" />
+    ## 
+    ##  Kruskal-Wallis rank sum test
+    ## 
+    ## data:  index by factor(age_group)
+    ## Kruskal-Wallis chi-squared = 7.7239, df = 2, p-value = 0.02103
 
-# PERMANOVA analysis
+    ## 
+    ##  Wilcoxon rank sum exact test
+    ## 
+    ## data:  index by factor(age_group)
+    ## W = 302, p-value = 0.001873
+    ## alternative hypothesis: true location shift is not equal to 0
 
-p value for the effect of age  is (p=0.04), which is significant.
+    ## 
+    ##  Wilcoxon rank sum exact test
+    ## 
+    ## data:  index by factor(age_group)
+    ## W = 231, p-value = 0.7154
+    ## alternative hypothesis: true location shift is not equal to 0
 
+    ## 
+    ##  Wilcoxon rank sum exact test
+    ## 
+    ## data:  index by factor(age_group)
+    ## W = 99, p-value = 0.1258
+    ## alternative hypothesis: true location shift is not equal to 0
 
-```
-## [1] 0.02
-```
+    ## [1] 0.004 0.040 0.200 0.400
 
-```
-## Analysis of Variance Table
-## 
-## Response: Distances
-##           Df  Sum Sq  Mean Sq F value Pr(>F)
-## Groups     2 0.02546 0.012730  0.5711 0.5682
-## Residuals 55 1.22601 0.022291
-```
+<img src="figure_age/group_comp-1.png" width="50%" />
