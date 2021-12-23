@@ -1,4 +1,4 @@
-# Repository for article_2021_sparc
+# Code repository for article_2021_sparc
 Skin serves as a host for many microbial communities. The distribution and abundance of these microbes 
 are influenced by multiple parameters such as, lifestyle, environment, age, geography etc.
 Here we are investigating skin microbial community compostion along with its associated factors. 
