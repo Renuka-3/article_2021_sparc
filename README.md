@@ -22,5 +22,4 @@ analysis using ANCOM based on geographic location.
 additional analysis based on diet and age groups
 
 
-Cite the code: [![DOI](https://sandbox.zenodo.org/badge/213624949.svg)](https://sandbox.zenodo.org/badge/latestdoi/213624949)
-[![DOI](https://zenodo.org/badge/213624949.svg)](https://zenodo.org/badge/latestdoi/213624949)
+Cite the code: [![DOI](https://zenodo.org/badge/213624949.svg)](https://zenodo.org/badge/latestdoi/213624949)
