@@ -8,7 +8,7 @@ Here we are investigating skin microbial community compostion along with its ass
 using OTU table, Taxonomic table and metadata of individuals.
 
 ### Conclusions
-1. [Core microbiota](output/core.md): Here we analysis relative abundance and prevalance of core microbiota.
+1. [Core microbiota](core.md): Here we analysis relative abundance and prevalance of core microbiota.
 
 2. [Joint analysis](jointanalysis.md): PERMANOVA analysis showed that, only geographiclocation 
 has significant effect on the overall community composition.
