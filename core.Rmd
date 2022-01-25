@@ -36,11 +36,14 @@ ps <- microbiome::transform(ps, "compositional")
 ps.core <- core(ps, detection = core_detection, prevalence = core_prevalence)
 m <- round(100 * rowMeans(abundances(ps.core)), 1)
 #median <- round(100 * apply(abundances(ps.core), 1, median), 1)
+###sd <- round(100 * apply(abundances(ps.core), 1, sd), 1)
+sd <- round(apply(abundances(ps.core), 1, sd), 2)
+###sd <- sd(abundances(ps.core))
 prev <- round(100 * prevalence(ps.core, detection = core_detection), 1)
-d <- as.data.frame(list(Taxon = names(m), Abundance_mean = m, Prevalence = prev))
+d <- as.data.frame(list(Taxon = names(m), Abundance_mean = m, Prevalence = prev, sd = sd))
 rownames(d) <- NULL
 d <- d %>% arrange(desc(Abundance_mean), desc(Prevalence))
-colnames(d) <- c("Taxon", "Mean Relative abundance (%)", "Prevalence (%)")
+colnames(d) <- c("Taxon", "Mean Relative abundance (%)", "Prevalence (%)", "Standard deviation")
 kable(d)
 ```
 
@@ -58,7 +61,8 @@ dfm <- df %>% group_by(Genus) %>%
 	           #median = round(100 * median(value), 1),
 		   #min = round(100 * min(value), 1),
 		   #max = round(100 * max(value), 1),
-		   prevalence = round(100 * prevalence(value), 1))%>%
+		   prevalence = round(100 * prevalence(value), 1),
+		   sd= round(sd(value),2))%>%
 	 arrange(desc(mean))
 #kable(dfm) 
 #write.csv(dfm, file="genus table.csv")
